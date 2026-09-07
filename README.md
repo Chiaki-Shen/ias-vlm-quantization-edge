@@ -1,17 +1,18 @@
-# Edge Deployment & Failure Mode Evaluation of Lightweight Safety-Critical Perception Models
+Vision Encoder Quantization Sensitivity in Driving VLMs on Jetson Edge Hardware
+Team
+Yiang Shen — MS Computer Engineering
+Maximilian Garcia — MS Artificial Intelligence
+Abstract
 
-## Team
-- Yiang Shen — MS Computer Engineering
-- Maximilian Garcia — MS Artificial Intelligence
+Compact vision-language models (VLMs) are emerging as practical candidates for autonomous driving reasoning on edge platforms, but deploying them within the strict memory budgets of devices like the Jetson Orin Nano (8 GB) demands aggressive quantization. Prior work on VLM quantization has established that vision encoders are disproportionately sensitive to precision reduction compared to language model backbones, yet this finding has only been characterized on general-purpose benchmarks (MME, MMMU) using server-class hardware — never on driving-domain tasks or memory-constrained edge devices. This project isolates and measures vision encoder quantization sensitivity across precision levels (FP16, INT8, INT4) in modern sub-4B driving VLMs deployed on a physical Jetson Orin Nano 8 GB, evaluated on the DriveLM driving visual question answering benchmark. By comparing component-wise quantization configurations — where the vision encoder and language backbone are quantized independently — we characterize the precision floor below which driving task performance degrades, providing the deployment-stage quantization guidance that recent edge-oriented driving VLM pipelines identify as a critical next step.
 
-## Abstract
-Safety-critical perception systems deployed on edge devices face a well-known accuracy tradeoff under model compression (quantization, pruning). However, average accuracy metrics obscure a more dangerous pattern: compressed models may retain overall performance while disproportionately failing on hard subsets, such as rainy conditions, occlusion, low-light scenes. This project deploys a lightweight object detection model (YOLOv8-nano or MobileNet-V3) on a resource-constrained edge device and introduces a structured failure mode evaluation framework to measure how compression shifts failure distributions across normal and adverse conditions, not just average accuracy.
+Track
 
-## Track
 Intelligent Autonomous Systems (IAS) — Deployment & Optimization Track
 
-## Repository Structure
-- `/proposal` — Project proposal documents and novelty audit
-- `/survey` — Literature & SOTA survey
-- `/src` — Source code (model pipeline, benchmarking scripts, evaluation framework)
-- `/results` — Benchmarking outputs and visualizations
+Repository Structure
+/proposal — Project proposal, novelty audit, and literature survey
+/src — Quantization scripts, inference pipeline, and evaluation framework
+/configs — Model and quantization configuration files
+/results — Benchmarking outputs, score tables, and visualizations
+/docs — Meeting notes, progress logs, and reference materials
