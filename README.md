@@ -18,19 +18,18 @@ Intelligent Autonomous Systems (IAS) — Deployment & Optimization Track
 
 ```
 ias-vlm-quantization-edge/
-├── README.md                       # this file (Deliverable A)
-├── docs/
-│   ├── LITERATURE_SURVEY.md        # Deliverable B: 10-paper SOTA survey
-│   ├── NOVELTY_AUDIT.md            # Deliverable D: AI novelty & feasibility audit
-│   └── proposal.pdf                # Deliverable C: project proposal (also submitted to Canvas)
-├── src/
-│   ├── inference/                   # llama.cpp / TensorRT-LLM inference runners
-│   ├── quantization/                # component-wise quantization scripts (VE vs. LLM)
-│   ├── eval/                        # BLINK, CV-Bench, LingoQA scoring
-│   └── utils/                       # logging, hardware metrics, data loading
-├── configs/                         # model + quantization matrix configurations
-├── results/                         # score tables, sensitivity curves, TensorRT comparisons
-└── notebooks/                       # EDA + result analysis
+├── README.md                              # this file (Deliverable A)
+├── proposal/
+│   ├── LITERATURE_SOTA_SURVEY.md          # Deliverable B: 10-paper SOTA survey
+│   └── NOVELTY_FEASIBILITY_AUDIT.md       # Deliverable D: AI novelty & feasibility audit
+├── src/                                    # (coming soon)
+│   ├── inference/                          # llama.cpp / TensorRT-LLM inference runners
+│   ├── quantization/                       # component-wise quantization scripts (VE vs. LLM)
+│   ├── eval/                               # BLINK, CV-Bench, LingoQA scoring
+│   └── utils/                              # logging, hardware metrics, data loading
+├── configs/                                # model + quantization matrix configurations
+├── results/                                # score tables, sensitivity curves, TensorRT comparisons
+└── notebooks/                              # EDA + result analysis
 ```
 
 ## Hardware
