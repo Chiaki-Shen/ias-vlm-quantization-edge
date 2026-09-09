@@ -35,6 +35,6 @@ ias-vlm-quantization-edge/
 
 ## Hardware
 
-- **Device:** NVIDIA Jetson Orin Nano 8 GB Developer Kit (physically in hand, borrowed from Prof. Liu's lab)
-- **Primary model:** Cosmos-Reason2-2B (confirmed with Prof. Liu, Sep 8 2026)
+- **Device:** NVIDIA Jetson Orin Nano 8 GB Developer Kit 
+- **Primary model:** Cosmos-Reason2-2B 
 - **Toolchain:** llama.cpp / GGUF (co-primary) + TensorRT-LLM (co-primary)
