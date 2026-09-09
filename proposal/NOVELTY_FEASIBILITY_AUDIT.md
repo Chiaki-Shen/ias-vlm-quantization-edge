@@ -10,9 +10,9 @@
 
 ## 1. Project Summary
 
-This project benchmarks how aggressively the vision encoder in modern driving Vision-Language Models (VLMs) can be quantized before driving-task performance degrades, measured on a physical NVIDIA Jetson Orin Nano 8 GB. The core finding motivating this work — that vision encoders are significantly more sensitive to quantization than language decoders — has been established in general-domain VLM research (MBQ, CVPR 2025; Shin et al., ICML 2026 Workshop) but never characterized on driving benchmarks, at aggressive precision levels (INT4/FP4), or on the Orin Nano specifically.
+This project benchmarks how aggressively the vision encoder in Cosmos-Reason2-2B can be quantized before spatial reasoning performance degrades, measured on a physical NVIDIA Jetson Orin Nano 8 GB. The core finding motivating this work — that vision encoders are significantly more sensitive to quantization than language decoders — has been established in general-domain VLM research (MBQ, CVPR 2025; Shin et al., ICML 2026 Workshop) but never characterized on spatial reasoning benchmarks, at precision levels including FP8 and INT4, or on the Orin Nano specifically.
 
-We apply component-wise quantization (vision encoder and language decoder quantized independently at FP16 / INT8 / INT4) to Qwen3 VL 4B, run inference on the DriveLM-nuScenes graph VQA benchmark, and score outputs offline using an LLM-as-judge. The contribution is the sensitivity characterization itself — actionable thresholds for edge deployment — not beating any SOTA.
+We apply component-wise quantization (vision encoder and language decoder quantized independently at FP16 / FP8 / INT8 / INT4) to Cosmos-Reason2-2B, run inference on BLINK (BlinkDepth + BlinkSpatial) and CV-Bench, and compare accuracy against official published scores from the model card. All evaluation runs on the Jetson itself per advisor requirements. TensorRT acceleration is measured at each quantization level. The contribution is the sensitivity characterization itself — actionable thresholds for edge deployment — not beating any SOTA.
 
 ---
 
@@ -21,16 +21,16 @@ We apply component-wise quantization (vision encoder and language decoder quanti
 ### ❌ Standard Object Detection Quantization (v1 — rejected)
 - INT8 quantization of YOLO-family models on Jetson hardware is exhaustively documented by NVIDIA, Ultralytics, and open-source tutorials.
 - Prof. Liu rejected this direction explicitly: "too old, companies already do this."
-- Reporting mAP before/after quantization alone is an engineering exercise, not a research contribution.
+- Reporting mAP before/after quantization is an engineering exercise, not a research contribution.
 
 ### ❌ BEV Fusion & Multi-Sensor Pipelines
 - BEVFusion, BEVFormer, and sensor-fusion architectures dominate CVPR/NeurIPS submissions (2022–2025). Every major AV company publishes in this space. Academic differentiation is nearly impossible at the MS project level.
 
 ### ❌ End-to-End Autonomous Driving with Generative Models
-- Cosmos/World Foundation Models for autonomous driving are heavily pursued by NVIDIA Research with compute budgets no academic team can match. (An early misunderstanding attributed a Cosmos suggestion to Prof. Liu; this was traced to a teammate's misinterpretation of a class comment and explicitly dropped.)
+- Cosmos/World Foundation Models for autonomous driving are heavily pursued by NVIDIA Research with compute budgets no academic team can match. (An early misunderstanding attributed a Cosmos suggestion to Prof. Liu; this was traced to a teammate's misinterpretation of a class comment. We use Cosmos-Reason2-2B as an evaluation target, not as the research direction itself.)
 
 ### ❌ Uniform VLM Quantization Benchmarking
-- Applying the same precision level to an entire VLM and reporting average accuracy is already covered by standard quantization toolchains (TensorRT, llama.cpp). The interesting question is *which components* tolerate quantization and which don't — uniform benchmarking misses this entirely.
+- Applying the same precision level to an entire VLM and reporting average accuracy is covered by standard quantization toolchains (TensorRT, llama.cpp). The interesting question is *which components* tolerate quantization and which don't — uniform benchmarking misses this.
 
 ---
 
@@ -40,9 +40,121 @@ Two papers require prominent citation and careful positioning because they overl
 
 ### 🔴 MBQ — Modality-Balanced Quantization (CVPR 2025)
 - **Overlap:** Established the vision-vs-language quantization sensitivity asymmetry as their core finding. They propose a mixed-precision scheme that assigns higher precision to vision-sensitive layers.
-- **Gap we fill:** MBQ evaluates on general-domain VLM benchmarks (MMBench, TextVQA, ScienceQA) — never on driving tasks. They test on datacenter GPUs — never on edge hardware. Their models are 7B+ — never sub-5B.
-- **Reframing:** We don't claim to *discover* the asymmetry. We *characterize* it in the driving domain, at precision levels and model scales MBQ didn't cover, on hardware they didn't deploy to.
+- **Gap we fill:** MBQ evaluates on general-domain VLM benchmarks (MMBench, TextVQA, ScienceQA) — never on spatial reasoning benchmarks (BLINK, CV-Bench). They test on datacenter GPUs — never on edge hardware. Their models are 7B+ — never sub-3B. They don't include FP8 in their precision sweep.
+- **Reframing:** We don't claim to discover the asymmetry. We characterize it for a physical-world reasoning model on spatial benchmarks, at precision levels and hardware MBQ didn't cover.
 
+### 🔴 Shin et al. — Rethinking Small VLM Quantization (ICML 2026 Workshop)
+- **Overlap:** Component-wise VLM quantization ablations (vision encoder / projector / LLM decoder quantized independently) on Jetson Orin hardware with sub-3B VLMs. This is our exact experimental shape.
+- **Gaps we fill (four distinct ones):**
+  1. **Vision encoder precision floor:** Shin et al. never push vision encoder quantization below INT8. We test FP8 and INT4.
+  2. **Benchmarks:** They evaluate on MME (general-domain). We evaluate on BLINK and CV-Bench (spatial reasoning) with official published baselines from Cosmos-Reason2-2B's model card.
+  3. **Hardware tier:** They use Jetson Orin NX and AGX Orin. They explicitly excluded the Orin Nano — their Appendix notes that sub-3B VLMs OOM'd on it with BitsAndBytes. We target the Nano specifically.
+  4. **Quantization backend:** They use BitsAndBytes (which their own appendix flags for anomalous overhead). We use llama.cpp/GGUF and TensorRT-LLM.
+- **Reframing:** We extend Shin et al.'s component-wise framework into precision regimes, benchmarks, and hardware tiers they did not cover.
+
+### 🟡 Supporting Evidence (not threats)
+- **ReasonDrive, VTS, MPDrive** all freeze vision encoder weights during fine-tuning while adapting language layers — treating the vision encoder as the more fragile component. Indirect but consistent evidence supporting the asymmetry hypothesis.
+- **MoRAL (Prof. Liu)** deploys Cosmos-Reason2-2B at 4.61 GB VRAM without quantization and explicitly calls for quantization characterization on edge hardware in its Future Work. Our project is the direct answer to this call.
+
+---
+
+## 4. Blue Ocean Analysis — Genuine Novelty
+
+### ✅ Core Novel Contribution
+
+**No existing paper combines all three:** component-wise VLM quantization analysis + spatial reasoning benchmarks with published baselines + actual edge hardware deployment (Jetson Orin Nano).
+
+### ✅ Novel Dimensions (each individually extends prior work)
+
+**1. Aggressive vision encoder precision on spatial reasoning**
+- Pushing vision encoder to FP8 and INT4 on BLINK/CV-Bench has never been done. Shin et al. stopped at INT8. The question "does INT4 vision encoding destroy depth perception (BlinkDepth) faster than spatial reasoning (BlinkSpatial)?" has no answer in the literature.
+
+**2. Published baselines enable clean comparison**
+- Unlike most quantization studies that must reproduce their own FP16 baselines, we compare directly against Cosmos-Reason2-2B's official model card scores (BlinkDepth 82.26, BlinkSpatial 75.52, CV-Bench 78.74). This eliminates baseline reproduction uncertainty.
+
+**3. Orin Nano deployment (memory-constrained edge)**
+- Shin et al.'s own paper documents why the Orin Nano was excluded: OOM with BitsAndBytes. We specifically target this hardware gap, using llama.cpp/GGUF (Jetson AI Lab verified) and TensorRT-LLM.
+
+**4. TensorRT acceleration measurement**
+- Prof. Liu specifically requested TensorRT speed testing ("whether the speed can be improved or not"). No existing VLM quantization paper reports TensorRT acceleration at multiple precision levels on Jetson Orin Nano.
+
+**5. Direct downstream extension of Prof. Liu's MoRAL**
+- MoRAL's Future Work calls for quantization characterization on edge hardware using the same model (Cosmos-Reason2-2B) we're testing. Confirmed with Prof. Liu during September 8 office hours.
+
+---
+
+## 5. Novelty Verdict
+
+| Dimension | Assessment |
+|---|---|
+| Technical novelty | **Medium-High** — Novel combination of three axes (quant + spatial benchmarks + edge), each established individually |
+| Overlap risk | **Managed** — MBQ and Shin et al. are close but each has documented gaps we fill |
+| Oversaturation risk | **Low** — Spatial VLM quantization on Orin Nano is genuinely uncovered |
+| Differentiation from prior work | **Clear** — Related work table shows the gap explicitly |
+| Publication-worthiness | **Plausible** — Edge AI workshop papers (e.g., MLSys, ECV at CVPR) are realistic targets |
+| Advisor alignment | **Strong** — Same model as MoRAL, confirmed in office hours, fills stated Future Work gap |
+
+**Overall novelty rating: 7 / 10**
+Honest assessment: the vision encoder sensitivity finding is not new — MBQ and Shin et al. already showed it. Our novelty is the characterization in an uncovered regime (spatial reasoning × edge hardware × aggressive precision × TensorRT acceleration). This is a legitimate gap, but the contribution is empirical, not methodological. Appropriate for an MS course project; borderline for a workshop paper depending on result strength.
+
+---
+
+## 6. Feasibility Assessment
+
+### Hardware Feasibility
+- Jetson Orin Nano 8 GB physically in hand (borrowed from Prof. Liu's lab).
+- Cosmos-Reason2-2B deployment verified by Jetson AI Lab using llama.cpp/GGUF — this significantly de-risks the "does the model even run?" question.
+- MoRAL shows the model fits at 4.61 GB VRAM in BF16 on a consumer GPU. On the Jetson's unified memory architecture (8 GB shared), the Q8_0 GGUF variant should fit comfortably.
+- No hardware-sharing risk: device stays with Aeon in San Jose for the full semester.
+
+### Toolchain Feasibility
+- **llama.cpp / GGUF** (co-primary): Recommended by Jetson AI Lab for this exact model on this exact hardware. Pre-quantized GGUF checkpoints available on HuggingFace (Q8_0, Q4_K_M, etc.). GGUF format allows layer-group quantization for component-wise control.
+- **TensorRT-LLM** (co-primary): NVIDIA's own inference optimization stack. Professor specifically requested TensorRT acceleration testing. Supports INT8 and INT4/FP4. Whether it supports Cosmos-Reason2-2B / Qwen3-VL architecture cleanly is the key open question — but llama.cpp is the safety net.
+- **Neither team member has TensorRT-LLM experience.** Timeline explicitly includes 2–3 weeks of ramp-up. This is honest, not a weakness.
+
+### Evaluation Feasibility
+- BLINK and CV-Bench are MCQ benchmarks — scoring is simple accuracy computation, no LLM judge needed. This runs directly on-device per advisor requirements.
+- BLINK: ~534 total examples. CV-Bench: ~2,638 examples. Both are manageable for repeated inference across multiple quantization configurations.
+- Official Cosmos-Reason2-2B scores on HuggingFace model card provide comparison baselines — no need to reproduce FP16 results on datacenter hardware.
+- LingoQA (stretch goal) uses Lingo-Judge, a lightweight text classifier that can also run on-device.
+
+### Timeline Feasibility
+- 11-week timeline (weeks 4–14) with explicit ramp-up acknowledgment in weeks 4–6.
+- Risk-adjusted: if TensorRT-LLM doesn't work, llama.cpp/GGUF is already the co-primary path and is verified working.
+- Minimum viable result: sensitivity curves for Cosmos-Reason2-2B at 4 precision levels on BLINK + CV-Bench. This is achievable even with delays.
+
+### Risk Table
+
+| Risk | Likelihood | Mitigation |
+|---|---|---|
+| Cosmos-Reason2-2B GGUF doesn't fit on Jetson at Q8_0 | Low | Jetson AI Lab confirms it works; fall back to Q4 baseline |
+| TensorRT-LLM doesn't support Cosmos-Reason2-2B / Qwen3-VL | Medium | llama.cpp/GGUF is co-primary and already verified |
+| Component-wise quantization not possible in GGUF | Medium | Report uniform quantization results; TensorRT may support per-component control |
+| CV-Bench too large for repeated Jetson runs | Low | Use representative subset (500 examples) for full matrix; full set for key configs |
+| LingoQA video processing exceeds Jetson memory | High | Explicitly a stretch goal; project success does not depend on it |
+| Qwen3 VL 4B (second model) doesn't fit at FP16 | Medium | Fall back to Qwen3-VL-2B-Instruct (base model of Cosmos-Reason2) |
+| Official scores obtained at different settings | Low | Document all inference settings; relative degradation patterns still valid |
+
+---
+
+## 7. AI Critique — Honest Limitations
+
+- **Novelty ceiling:** The vision encoder sensitivity finding is already published (MBQ, Shin et al.). Our contribution is empirical characterization in a new regime, not a new discovery. This is appropriate for a course project but should be framed carefully to avoid overclaiming.
+- **Benchmark scope:** BLINK and CV-Bench test general spatial reasoning, not driving-specific tasks. LingoQA would add driving relevance but is a high-risk stretch goal. If LingoQA doesn't work, the project lacks a direct driving benchmark — though BLINK's depth/spatial tasks are relevant to driving perception.
+- **Single-model risk:** If results come only from Cosmos-Reason2-2B, generalizability claims are limited. The second model (Qwen3 VL 4B or 2B) would strengthen the work but is not guaranteed to fit.
+- **Toolchain uncertainty:** The TensorRT-LLM learning curve is real. Component-wise quantization in GGUF may not be straightforward either — GGUF typically quantizes the whole model uniformly. This is the biggest open technical question.
+- **Baseline comparison nuance:** We compare on-device quantized scores against official model card scores obtained on different hardware with potentially different inference settings. Any systematic offset (e.g., from different sampling, different prompt formatting) would appear as a uniform shift across all our configurations — so relative degradation patterns are still valid, but absolute accuracy differences should be interpreted cautiously.
+- **Zero-shot only:** Our baselines are zero-shot Cosmos-Reason2-2B on BLINK/CV-Bench. Fine-tuned models or models with reasoning chains (ReasonDrive) may show different quantization sensitivity patterns. This is a scope limitation, not a flaw.
+
+---
+
+## 8. Conclusion
+
+This project occupies a genuine gap at the intersection of VLM quantization, spatial reasoning evaluation, and edge hardware deployment. The direction was confirmed through Prof. Liu's in-person guidance during September 8 office hours, uses the same model as his own published work (MoRAL), and directly fills the quantization gap identified in MoRAL's Future Work section.
+
+The core framing principle: **we are not discovering the vision encoder sensitivity phenomenon — we are characterizing it in a regime where no one else has looked, using published baselines that enable clean comparison.** All scope decisions (model, benchmarks, hardware, toolchain) protect this characterization contribution.
+
+**Key risks are managed, not eliminated.** The llama.cpp/GGUF path is verified working by Jetson AI Lab, providing a safety net under the TensorRT-LLM ramp-up. Component-wise quantization support in GGUF is the biggest open question — if it's not feasible, uniform quantization results are still a valid (if weaker) contribution.
 ### 🔴 Shin et al. — Rethinking Small VLM Quantization (ICML 2026 Workshop)
 - **Overlap:** Component-wise VLM quantization ablations (vision encoder / projector / LLM decoder quantized independently) on Jetson Orin hardware with sub-3B VLMs. This is our exact experimental shape.
 - **Gaps we fill (four distinct ones):**
