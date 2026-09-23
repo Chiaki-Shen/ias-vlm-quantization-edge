@@ -201,11 +201,11 @@ def image_to_b64(path):
 
 
 def build_prompt(question, choices):
-    letters = ["A", "B", "C", "D", "E"]
+    letters = [chr(ord('A') + i) for i in range(26)]
     choice_str = "\n".join(f"{letters[i]}. {c}" for i, c in enumerate(choices))
     return (
         f"{question}\n\n{choice_str}\n\n"
-        "Answer with only the letter of the correct choice (A, B, C, or D). "
+        "Answer with only the letter of the correct choice. "
         "Do not explain."
     )
 
@@ -235,7 +235,7 @@ def call_server(image_paths, prompt):
     try:
         with urllib.request.urlopen(req, timeout=60) as resp:
             return json.loads(resp.read().decode("utf-8"))
-    except urllib.error.URLError as e:
+    except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
         return {"error": str(e)}
 
 
@@ -299,9 +299,9 @@ def run_inference(config):
                     if tok_s > 0:
                         tok_s_list.append(tok_s)
 
-                gt = str(record["answer"]).strip().upper()
+                gt = str(record["answer"]).strip().upper().strip("()")
                 if gt.isdigit():
-                    gt = ["A", "B", "C", "D"][int(gt)]
+                    gt = chr(ord('A') + int(gt))
 
                 is_correct = (predicted == gt)
                 if is_correct:
