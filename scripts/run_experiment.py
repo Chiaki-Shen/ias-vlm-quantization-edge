@@ -24,6 +24,19 @@ Expected project layout on Jetson:
     │   ├── blink_spatial/
     │   └── cv_bench/
     └── results/                ← created automatically
+
+Changes from previous version:
+    - RESTART_EVERY lowered from 75 to 50
+    - Retry-on-error: failed records get one retry after a server restart
+    - RAM cleanup after experiment (kill stale processes, drop caches)
+    - Summary now reports retries and true errors separately
+    - Accuracy calculated on answered records (errors excluded) + raw accuracy
+
+v3 changes (Sep 23):
+    - Timestamps use Pacific time (US/Pacific)
+    - Error logging: captures error message and image file sizes for diagnosis
+    - Fixed cache drop (was failing on read-only /proc in container)
+    - Poison-image tracking: logs which record indices consistently fail
 """
 
 import argparse
@@ -35,8 +48,14 @@ import sys
 import time
 import urllib.request
 import urllib.error
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
+
+# Pacific time: UTC-7 (PDT) — adjust to -8 after Nov daylight saving
+_PACIFIC = timezone(timedelta(hours=-7))
+
+def now_pacific():
+    return datetime.now(_PACIFIC)
 
 # ── Paths ────────────────────────────────────────────────────────────────────
 
@@ -121,7 +140,7 @@ DATASETS = ["blink_depth", "blink_spatial", "cv_bench"]
 # ── Argument parsing ──────────────────────────────────────────────────────────
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--data-dir", default=str(SCRIPT_DIR / "benchmarks"))  # /Developer/ias-vlm-quantization-edge/benchmarks
+parser.add_argument("--data-dir", default=str(SCRIPT_DIR / "benchmarks"))
 parser.add_argument("--limit",    default=None, type=int)
 parser.add_argument("--port",     default=8080, type=int)
 args = parser.parse_args()
@@ -152,12 +171,19 @@ def print_menu():
 
 # ── Server ────────────────────────────────────────────────────────────────────
 
+def kill_stale_servers():
+    """Kill any leftover llama-server processes."""
+    subprocess.run(["pkill", "-9", "-f", "llama-server"], capture_output=True)
+    time.sleep(1)
+
+
 def start_server(config):
+    kill_stale_servers()
     cmd = [
         str(LLAMA_SRV),
         "--model",        str(MODEL_DIR / config["model"]),
         "--mmproj",       str(MODEL_DIR / config["mmproj"]),
-        "--ctx-size",     "4096",
+        "--ctx-size",     "2048",
         "--n-gpu-layers", "999",
         "--port",         str(PORT),
         "--log-disable",
@@ -175,7 +201,7 @@ def wait_for_server(timeout=120):
         try:
             with urllib.request.urlopen(f"{BASE_URL}/health", timeout=2) as r:
                 if r.status == 200:
-                    print(f"  ready in {time.time()-start:.1f}s")
+                    print(f"  ready in {time.time()-start:.1f}s  [{mem_str()}]")
                     return True
         except Exception:
             print(".", end="", flush=True)
@@ -191,7 +217,55 @@ def stop_server(proc):
         proc.wait(timeout=10)
     except subprocess.TimeoutExpired:
         proc.kill()
+        proc.wait(timeout=5)
+    # Kill any stragglers
+    kill_stale_servers()
     print("  Server stopped.")
+
+
+def cleanup_ram():
+    """Release GPU and system memory after experiment ends."""
+    print("\n  Cleaning up memory ...")
+    kill_stale_servers()
+    # Try to drop kernel page caches — may fail in containers with read-only /proc
+    try:
+        subprocess.run(["sync"], timeout=5)
+        result = subprocess.run(
+            ["sh", "-c", "echo 3 > /proc/sys/vm/drop_caches"],
+            timeout=5, capture_output=True
+        )
+        if result.returncode == 0:
+            print("  Page caches dropped.")
+        else:
+            print("  Cache drop skipped (read-only /proc — normal in containers).")
+    except Exception as e:
+        print(f"  Cache drop skipped: {e}")
+    print("  Cleanup complete.")
+
+# ── RAM monitoring ────────────────────────────────────────────────────────────
+
+def get_mem_mb():
+    """Read available memory from /proc/meminfo. Returns (avail_MB, total_MB) or (None, None)."""
+    try:
+        with open("/proc/meminfo") as f:
+            info = {}
+            for line in f:
+                parts = line.split()
+                if parts[0] in ("MemTotal:", "MemAvailable:"):
+                    info[parts[0]] = int(parts[1])  # kB
+            total = info.get("MemTotal:", 0) // 1024
+            avail = info.get("MemAvailable:", 0) // 1024
+            return avail, total
+    except Exception:
+        return None, None
+
+
+def mem_str():
+    """Short string like '1842/7764 MB' for log output."""
+    avail, total = get_mem_mb()
+    if avail is None:
+        return "mem=N/A"
+    return f"mem={avail}/{total}MB"
 
 # ── Inference helpers ─────────────────────────────────────────────────────────
 
@@ -208,6 +282,17 @@ def build_prompt(question, choices):
         "Answer with only the letter of the correct choice. "
         "Do not explain."
     )
+
+
+def get_image_sizes(image_paths):
+    """Return list of (path, file_size_KB) for error diagnostics."""
+    sizes = []
+    for p in image_paths:
+        try:
+            sizes.append((p, round(os.path.getsize(p) / 1024, 1)))
+        except OSError:
+            sizes.append((p, -1))
+    return sizes
 
 
 def call_server(image_paths, prompt):
@@ -236,7 +321,7 @@ def call_server(image_paths, prompt):
         with urllib.request.urlopen(req, timeout=60) as resp:
             return json.loads(resp.read().decode("utf-8"))
     except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
-        return {"error": str(e)}
+        return {"error": str(e), "error_type": type(e).__name__}
 
 
 def extract_answer(response):
@@ -255,17 +340,19 @@ def extract_tok_s(response):
 
 # ── Inference loop ────────────────────────────────────────────────────────────
 
-def run_inference(config):
+def run_inference(config, proc):
     summary = {
         "config_num":   config["num"],
         "config_label": config["label"],
         "config_short": config["short"],
         "mmproj":       config["mmproj"],
         "model":        config["model"],
-        "timestamp":    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "timestamp":    now_pacific().strftime("%Y-%m-%d %H:%M:%S"),
         "limit":        args.limit,
         "datasets":     {},
     }
+
+    RESTART_EVERY = 50  # restart server every N records to avoid memory leak
 
     for ds_name in DATASETS:
         jsonl_path = DATA_DIR / ds_name / "data.jsonl"
@@ -280,7 +367,9 @@ def run_inference(config):
         out_path = RESULTS_DIR / f"config{config['num']}_{config['short']}__{ds_name}.jsonl"
         print(f"\n  [{ds_name}]  {len(records)} records  →  {out_path.name}")
 
-        correct, total, errors = 0, 0, 0
+        correct, total, errors, retries = 0, 0, 0, 0
+        poison_records = []  # record indices that fail even after retry
+        since_restart = 0  # count records since last restart
         tok_s_list = []
         ds_start   = time.time()
 
@@ -289,10 +378,38 @@ def run_inference(config):
                 prompt   = build_prompt(record["question"], record["choices"])
                 response = call_server(record["image_paths"], prompt)
 
+                # ── Retry logic: if error, restart server and try once more ──
+                retried = False
+                error_msg = ""
+                if "error" in response:
+                    retries += 1
+                    retried = True
+                    error_msg = response.get("error", "unknown")
+                    img_sizes = get_image_sizes(record["image_paths"])
+                    size_str = ", ".join(f"{s[1]}KB" for s in img_sizes)
+                    print(f"    [!] Record {i+1} failed ({size_str}) {mem_str()}, restarting for retry ...")
+                    stop_server(proc)
+                    proc = start_server(config)
+                    if not wait_for_server():
+                        # Server won't come back — mark rest as errors and bail
+                        proc.kill()
+                        errors += len(records) - i
+                        total  += len(records) - i
+                        break
+                    since_restart = 0
+                    response = call_server(record["image_paths"], prompt)
+
+                # ── Process response ──
                 if "error" in response:
                     errors += 1
                     predicted = ""
                     tok_s = 0.0
+                    error_msg = response.get("error", "unknown")
+                    avail_mb, total_mb = get_mem_mb()
+                    poison_records.append({"idx": record["idx"], "record_num": i+1,
+                                           "error": error_msg,
+                                           "image_sizes": get_image_sizes(record["image_paths"]),
+                                           "mem_avail_mb": avail_mb, "mem_total_mb": total_mb})
                 else:
                     predicted = extract_answer(response)
                     tok_s     = extract_tok_s(response)
@@ -307,53 +424,90 @@ def run_inference(config):
                 if is_correct:
                     correct += 1
                 total += 1
+                since_restart += 1
 
+                avail_now, _ = get_mem_mb()
                 out_f.write(json.dumps({
-                    "idx":         record["idx"],
-                    "dataset":     ds_name,
-                    "config":      config["short"],
-                    "task":        record.get("task", ""),
-                    "question":    record["question"],
-                    "choices":     record["choices"],
-                    "gt_answer":   gt,
-                    "predicted":   predicted,
-                    "correct":     is_correct,
-                    "tok_s":       tok_s,
-                    "image_paths": record["image_paths"],
+                    "idx":          record["idx"],
+                    "dataset":      ds_name,
+                    "config":       config["short"],
+                    "task":         record.get("task", ""),
+                    "question":     record["question"],
+                    "choices":      record["choices"],
+                    "gt_answer":    gt,
+                    "predicted":    predicted,
+                    "correct":      is_correct,
+                    "tok_s":        tok_s,
+                    "retried":      retried,
+                    "error":        error_msg if error_msg else None,
+                    "mem_avail_mb": avail_now,
+                    "image_paths":  record["image_paths"],
                 }) + "\n")
 
+                # ── Scheduled restart ──
+                if RESTART_EVERY and since_restart >= RESTART_EVERY and (i + 1) < len(records):
+                    stop_server(proc)
+                    proc = start_server(config)
+                    if not wait_for_server():
+                        proc.kill()
+                        errors += len(records) - (i + 1)
+                        total  += len(records) - (i + 1)
+                        break
+                    since_restart = 0
+
+                # ── Progress ──
                 if (i + 1) % 25 == 0 or (i + 1) == len(records):
-                    acc     = correct / total * 100
+                    acc     = correct / total * 100 if total else 0
+                    answered = total - errors
+                    acc_ans = correct / answered * 100 if answered else 0
                     avg_tok = sum(tok_s_list) / len(tok_s_list) if tok_s_list else 0
                     elapsed = time.time() - ds_start
-                    print(f"    [{i+1:4d}/{len(records)}]  acc={acc:.1f}%  "
-                          f"avg_tok/s={avg_tok:.1f}  elapsed={elapsed:.0f}s  errors={errors}")
+                    print(f"    [{i+1:4d}/{len(records)}]  acc={acc:.1f}% ({acc_ans:.1f}% of answered)  "
+                          f"avg_tok/s={avg_tok:.1f}  elapsed={elapsed:.0f}s  "
+                          f"errors={errors} retries={retries}  {mem_str()}")
 
         ds_elapsed = time.time() - ds_start
         avg_tok    = sum(tok_s_list) / len(tok_s_list) if tok_s_list else 0
+        answered   = total - errors
 
         summary["datasets"][ds_name] = {
-            "total":      total,
-            "correct":    correct,
-            "accuracy":   round(correct / total * 100, 2) if total else 0,
-            "avg_tok_s":  round(avg_tok, 1),
-            "errors":     errors,
-            "elapsed_s":  round(ds_elapsed, 1),
-            "output_file": str(out_path),
+            "total":          total,
+            "answered":       answered,
+            "correct":        correct,
+            "accuracy_raw":   round(correct / total * 100, 2) if total else 0,
+            "accuracy_ans":   round(correct / answered * 100, 2) if answered else 0,
+            "avg_tok_s":      round(avg_tok, 1),
+            "errors":         errors,
+            "retries":        retries,
+            "poison_records": len(poison_records),
+            "elapsed_s":      round(ds_elapsed, 1),
+            "output_file":    str(out_path),
         }
+
+        # Save poison record log for cross-config analysis
+        if poison_records:
+            poison_path = RESULTS_DIR / f"config{config['num']}_{config['short']}__{ds_name}_poison.jsonl"
+            with open(poison_path, "w") as pf:
+                for pr in poison_records:
+                    pf.write(json.dumps(pr) + "\n")
+            print(f"    Poison records ({len(poison_records)}) saved → {poison_path.name}")
 
     return summary
 
 # ── Summary ───────────────────────────────────────────────────────────────────
 
 def save_summary(summary):
-    ts    = datetime.now().strftime("%Y-%m-%d_%H-%M")
+    ts    = now_pacific().strftime("%Y-%m-%d_%H-%M")
     fname = f"config{summary['config_num']}_{summary['config_short']}_{ts}.md"
     path  = RESULTS_DIR / fname
 
-    total_correct = sum(d["correct"] for d in summary["datasets"].values())
-    total_records = sum(d["total"]   for d in summary["datasets"].values())
-    overall_acc   = total_correct / total_records * 100 if total_records else 0
+    total_correct  = sum(d["correct"]  for d in summary["datasets"].values())
+    total_records  = sum(d["total"]    for d in summary["datasets"].values())
+    total_answered = sum(d["answered"] for d in summary["datasets"].values())
+    total_errors   = sum(d["errors"]   for d in summary["datasets"].values())
+    total_retries  = sum(d["retries"]  for d in summary["datasets"].values())
+    overall_raw    = total_correct / total_records * 100 if total_records else 0
+    overall_ans    = total_correct / total_answered * 100 if total_answered else 0
 
     lines = [
         "# CMPE 249 — Experiment Summary",
@@ -368,23 +522,28 @@ def save_summary(summary):
         f"| Language decoder | {summary['model']} ({FILE_SIZES[summary['model']]}) |",
         f"| Timestamp | {summary['timestamp']} |",
         f"| Record limit | {summary['limit'] or 'all (full run)'} |",
+        f"| Server restart interval | every {50} records |",
         "",
         "## Results by Dataset",
         "",
-        "| Dataset | Total | Correct | Accuracy | Avg tok/s | Errors | Time |",
-        "|---------|-------|---------|----------|-----------|--------|------|",
+        "| Dataset | Total | Answered | Correct | Acc (raw) | Acc (answered) | Avg tok/s | Errors | Retries | Time |",
+        "|---------|-------|----------|---------|-----------|----------------|-----------|--------|---------|------|",
     ]
 
     for ds_name, ds in summary["datasets"].items():
         lines.append(
-            f"| {ds_name} | {ds['total']} | {ds['correct']} | "
-            f"{ds['accuracy']:.2f}% | {ds['avg_tok_s']} | "
-            f"{ds['errors']} | {ds['elapsed_s']}s |"
+            f"| {ds_name} | {ds['total']} | {ds['answered']} | {ds['correct']} | "
+            f"{ds['accuracy_raw']:.2f}% | {ds['accuracy_ans']:.2f}% | {ds['avg_tok_s']} | "
+            f"{ds['errors']} | {ds['retries']} | {ds['elapsed_s']}s |"
         )
 
     lines += [
-        f"| **TOTAL** | **{total_records}** | **{total_correct}** | "
-        f"**{overall_acc:.2f}%** | — | — | — |",
+        f"| **TOTAL** | **{total_records}** | **{total_answered}** | **{total_correct}** | "
+        f"**{overall_raw:.2f}%** | **{overall_ans:.2f}%** | — | "
+        f"**{total_errors}** | **{total_retries}** | — |",
+        "",
+        "**Acc (raw)** = correct / total (errors count as wrong)  ",
+        "**Acc (answered)** = correct / answered (errors excluded) — use this for cross-config comparison  ",
         "",
         "## Output Files",
         "",
@@ -459,12 +618,12 @@ def main():
 
     exp_start = time.time()
     try:
-        summary = run_inference(config)
+        summary = run_inference(config, proc)
     except KeyboardInterrupt:
         print("\n  Interrupted.")
         summary = {"config_num": config["num"], "config_label": config["label"],
                    "config_short": config["short"], "mmproj": config["mmproj"],
-                   "model": config["model"], "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                   "model": config["model"], "timestamp": now_pacific().strftime("%Y-%m-%d %H:%M:%S"),
                    "limit": args.limit, "datasets": {}}
     finally:
         stop_server(proc)
@@ -477,11 +636,16 @@ def main():
     print(f"  Total time: {total_elapsed/60:.1f} min")
     print(f"{'='*68}")
     for ds_name, ds in summary.get("datasets", {}).items():
-        print(f"  {ds_name:<22} acc={ds['accuracy']:.2f}%  avg_tok/s={ds['avg_tok_s']}")
+        ans = ds.get("answered", ds["total"])
+        print(f"  {ds_name:<22} acc={ds['accuracy_raw']:.2f}% (answered: {ds['accuracy_ans']:.2f}%)  "
+              f"avg_tok/s={ds['avg_tok_s']}  errors={ds['errors']}")
     print()
 
     summary["total_elapsed_s"] = round(total_elapsed, 1)
     save_summary(summary)
+
+    # Clean up RAM so the Jetson is usable after the run
+    cleanup_ram()
 
 
 if __name__ == "__main__":
