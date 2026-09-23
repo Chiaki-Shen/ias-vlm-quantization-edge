@@ -415,6 +415,7 @@ def run_inference(config, proc):
                     tok_s     = extract_tok_s(response)
                     if tok_s > 0:
                         tok_s_list.append(tok_s)
+                    error_msg = ""  # clear: retry succeeded (or no error at all)
 
                 gt = str(record["answer"]).strip().upper().strip("()")
                 if gt.isdigit():
