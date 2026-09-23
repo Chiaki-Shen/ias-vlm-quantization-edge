@@ -54,11 +54,11 @@ def image_to_b64(path: str) -> str:
 
 def build_prompt(question: str, choices: list) -> str:
     """Format MCQ question with lettered choices."""
-    letters = ["A", "B", "C", "D", "E"]
+    letters = [chr(ord('A') + i) for i in range(26)]
     choice_str = "\n".join(f"{letters[i]}. {c}" for i, c in enumerate(choices))
     return (
         f"{question}\n\n{choice_str}\n\n"
-        "Answer with only the letter of the correct choice (A, B, C, or D). "
+        "Answer with only the letter of the correct choice. "
         "Do not explain."
     )
 
@@ -93,7 +93,7 @@ def call_server(image_paths: list, prompt: str) -> dict:
     try:
         with urllib.request.urlopen(req, timeout=60) as resp:
             return json.loads(resp.read().decode("utf-8"))
-    except urllib.error.URLError as e:
+    except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
         return {"error": str(e)}
 
 
@@ -156,10 +156,10 @@ for dataset_name in DATASETS:
             tok_s     = extract_tok_s(response)
 
             # Ground truth: BLINK uses letter directly; CV-Bench same
-            gt_answer = str(record["answer"]).strip().upper()
+            gt_answer = str(record["answer"]).strip().upper().strip("()")
             # Handle cases where answer is an index (0,1,2,3) vs letter (A,B,C,D)
             if gt_answer.isdigit():
-                gt_answer = ["A","B","C","D"][int(gt_answer)]
+                gt_answer = chr(ord('A') + int(gt_answer))
 
             is_correct = (predicted == gt_answer)
             if is_correct:
