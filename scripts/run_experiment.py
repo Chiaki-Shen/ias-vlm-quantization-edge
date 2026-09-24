@@ -124,6 +124,14 @@ CONFIGS = [
         "model":    "Cosmos-Reason2-2B-Q4_K_M.gguf",
         "official": False,
     },
+        {
+        "num":      8,
+        "label":    "Q4_0 vision  +  Q8_0 language  [Q4 vision isolation test]",
+        "short":    "Q4v_Q8l",
+        "mmproj":   "mmproj-Cosmos-Reason2-2B-Q4_0.gguf",
+        "model":    "Cosmos-Reason2-2B-Q8_0.gguf",
+        "official": False,
+    },
 ]
 
 FILE_SIZES = {
