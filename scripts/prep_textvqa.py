@@ -37,7 +37,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-DATASET_ID = "facebook/textvqa"        # fallback: lmms-lab/textvqa (same 5,000 validation rows)
+DATASET_ID = "lmms-lab/textvqa"   # parquet. facebook/textvqa is script-based and fails on datasets>=4
 SPLIT = "validation"
 EXPECTED_COUNT = 5000
 SEED = 249
@@ -137,10 +137,14 @@ def main():
     for d in (full_dir, sub_dir):
         if (d / "data.jsonl").exists() and not args.overwrite:
             sys.exit(f"[ABORT] {d / 'data.jsonl'} already exists. Pass --overwrite to rebuild.")
-        (d / "images").mkdir(parents=True, exist_ok=True)
 
     print(f"[TextVQA] loading {args.dataset_id} split={SPLIT} ...")
     ds = load_dataset(args.dataset_id, split=SPLIT)
+    missing = {"image", "question", "answers"} - set(ds.column_names)
+    if missing:
+        sys.exit(f"[ABORT] dataset is missing columns {sorted(missing)}; found {ds.column_names}")
+    for d in (full_dir, sub_dir):                    # created only after a successful load
+        (d / "images").mkdir(parents=True, exist_ok=True)
     n_total = len(ds)
     print(f"  validation rows: {n_total}")
     if n_total != EXPECTED_COUNT:
