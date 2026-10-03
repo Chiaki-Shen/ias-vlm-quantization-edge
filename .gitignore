@@ -4,3 +4,7 @@ __pycache__/
 .DS_Store
 __pycache__/
 *.pyc
+make_diag_subset.py
+compare_diag.py
+DIAG_RERUN_GUIDE.md
+diag_results/
