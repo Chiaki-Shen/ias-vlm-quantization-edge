@@ -1,0 +1,83 @@
+{
+ "started": "2026-10-05T08:12:56.174+00:00",
+ "args": {
+  "cmd": "run",
+  "records": "results_latency/records_frozen.json",
+  "out": "results_latency/overnight",
+  "configs": "2,5,9,10,8,11",
+  "rounds": 3,
+  "restart_every": 0,
+  "limit_per_dataset": null,
+  "cooldown_temp": 50.0,
+  "cooldown_max": 300.0,
+  "min_cooldown": 60.0,
+  "port": 8080,
+  "data_dir": null,
+  "model_dir": null,
+  "server_bin": null,
+  "dry_run": false,
+  "server_extra": "--parallel 1 --cache-ram 0",
+  "max_restarts": 5,
+  "server_logs": false,
+  "min_avail_mb": 0
+ },
+ "runner_revision": {
+  "protocol_version": "p2.1",
+  "script_sha256": "4bfae0d4684f1cc8",
+  "git_commit": null
+ },
+ "bench_script_sha256": "661e8d3de2f780ef",
+ "frozen_records_sha256": "34ddc3743c0d1a4f584ea97f3faae5d73536baada914263ea33b2499b7f86272",
+ "n_timed": {
+  "scienceqa": 100,
+  "textvqa": 100
+ },
+ "model_hashes": {
+  "2": {
+   "mmproj_sha256": "8d3284c340d6a9c9237d56f2fc42f2df50d3761f539f3f01be964cefb0b73916",
+   "mmproj_frozen_match": true,
+   "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+   "model_frozen_match": true
+  },
+  "5": {
+   "mmproj_sha256": "b03075492e73a39309d758bc33e0eb051af0d5976fda4984fa1dd2be3e5b1c07",
+   "mmproj_frozen_match": true,
+   "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+   "model_frozen_match": true
+  },
+  "9": {
+   "mmproj_sha256": "039b9b1c097f8f300664b69387d1ad0eaf9735eebd13ff5791ae65bf231262e8",
+   "mmproj_frozen_match": true,
+   "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+   "model_frozen_match": true
+  },
+  "10": {
+   "mmproj_sha256": "7cb96c2aa395974a8d296912f2b896a3b8e594aa4f5ff420848e9b183e242b06",
+   "mmproj_frozen_match": true,
+   "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+   "model_frozen_match": true
+  },
+  "8": {
+   "mmproj_sha256": "ea7e9a9f637dabdf386875353fdfb0d4718bdb909e02c894163c04fc642a92b6",
+   "mmproj_frozen_match": true,
+   "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+   "model_frozen_match": true
+  },
+  "11": {
+   "mmproj_sha256": "cd7ccd53e47c25fcfacd27f6cd3a1129cc437a73d4b9446a05dc02e59553cca9",
+   "mmproj_frozen_match": true,
+   "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+   "model_frozen_match": true
+  }
+ },
+ "server_version": "0.00.001.134 I srv  llama_server: initializing ...\nversion: 0.4.1-dev (build 11056, commit e613ef2c8)\nbuilt with GNU 13.2.0 for Linux aarch64",
+ "finished": "2026-10-05T11:36:09.134+00:00",
+ "status": "completed",
+ "completion": {
+  "timed_expected": 3600,
+  "timed_valid": 3600,
+  "timed_invalid": 0,
+  "server_deaths": 0
+ },
+ "slot_failures": []
+}

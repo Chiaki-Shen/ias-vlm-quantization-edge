@@ -1,0 +1,57 @@
+run status: completed  timed valid 3600/3600  slot failures: 0
+
+== Latency (wall-clock per request, ms; valid, non-retried requests) ==
+cfg dataset   valid bad     med     p25     p75     p95 prompt_ms  gen_ms gen_tok  per-round medians
+  2 scienceqa   300   0     637     461    1072    1481       540      54       2  [636, 637, 635]
+  2 textvqa     300   0    2637    2349    2776    3761      2439     114       3  [2635, 2648, 2651]
+  5 scienceqa   300   0     629     461    1065    1471       534      54       2  [630, 629, 630]
+  5 textvqa     300   0    2634    2343    2763    3706      2433     114       3  [2645, 2641, 2627]
+  9 scienceqa   300   0     650     475    1123    1557       556      54       2  [651, 651, 650]
+  9 textvqa     300   0    2785    2472    2908    3887      2587     114       3  [2784, 2783, 2793]
+ 10 scienceqa   300   0     642     471    1104    1530       550      54       2  [645, 642, 641]
+ 10 textvqa     300   0    2746    2432    2884    3851      2550     114       3  [2742, 2745, 2748]
+  8 scienceqa   300   0     632     461    1065    1475       538      54       2  [630, 630, 634]
+  8 textvqa     300   0    2640    2352    2774    3708      2446     116       3  [2640, 2636, 2642]
+ 11 scienceqa   300   0     646     471    1107    1542       553      55       2  [644, 646, 646]
+ 11 textvqa     300   0    2749    2442    2899    3887      2560     116       3  [2737, 2748, 2754]
+
+== Cache check (cache_prompt was sent as false) ==
+  valid timed requests: 3600   cache_n missing: 0   cache_n > 0: 0
+  records whose prompt_n differs between rounds (same config): 0 of 1200  (expect 0)
+  records whose prompt_n differs across configs: 0 of 200  (expect 0 if image tokens do not depend on the encoder)
+
+== Memory drift over each SERVER LIFETIME (MemAvailable, first-10 vs last-10 timed requests, MB) ==
+   negative = available memory shrinking while the server stays up
+  config 2: (requests, drift) per server [(200, -148), (200, -149), (200, -121)]
+  config 5: (requests, drift) per server [(200, -146), (200, -180), (200, -182)]
+  config 9: (requests, drift) per server [(200, -121), (200, -141), (200, -198)]
+  config 10: (requests, drift) per server [(200, -142), (200, -183), (200, -147)]
+  config 8: (requests, drift) per server [(200, -167), (200, -182), (200, -158)]
+  config 11: (requests, drift) per server [(200, -154), (200, -168), (200, -112)]
+  lowest SwapFree seen: 3411 MB
+  max temperature seen at request start: 59.2 C
+  WARNING: 18 cool-downs hit the timeout (start temperature was above target)
+
+== tegrastats: max sampled SYSTEM RAM used (MB) on this fixed workload ==
+   whole-system reading, not per-process. 'strict' ignores samples within 1 s of a phase edge
+   (tegrastats stamps whole seconds, so edge samples are ambiguous); 'incl' keeps them.
+   idle (server stopped, cool-down windows): median of window minima = 1636 MB
+cfg phase   max incl max strict max swap   per-interval strict maxima
+  2 load        4443       4208      396   [4106, 4207, 4208]
+  2 warmup      4707       4703      396   [4703, 4703, 4685]
+  2 timed       4928       4928      398   [4761, 4925, 4762, 4928, 4733, 4917]
+  5 load        4139       3849      397   [3405, 3828, 3849]
+  5 warmup      4348       4347      397   [4299, 4306, 4347]
+  5 timed       4575       4575      397   [4358, 4516, 4364, 4532, 4390, 4575]
+  9 load        4076       3722      397   [3722, 3696, 3390]
+  9 warmup      4324       4324      397   [4214, 4258, 4324]
+  9 timed       4541       4541      397   [4263, 4431, 4312, 4456, 4345, 4541]
+ 10 load        4099       3688      397   [3434, 3688, 3031]
+ 10 warmup      4317       4317      397   [4254, 4245, 4317]
+ 10 timed       4516       4516      397   [4289, 4443, 4290, 4477, 4356, 4516]
+  8 load        4028       3428      396   [3051, 3380, 3428]
+  8 warmup      4251       4251      396   [4224, 4251, 4236]
+  8 timed       4455       4455      396   [4263, 4427, 4266, 4455, 4277, 4439]
+ 11 load        3970       3575      396   [3575, 3029, 3296]
+ 11 warmup      4267       4258      396   [4212, 4209, 4258]
+ 11 timed       4456       4456      396   [4244, 4402, 4227, 4408, 4298, 4456]

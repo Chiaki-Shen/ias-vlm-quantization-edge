@@ -1,0 +1,53 @@
+{
+ "started": "2026-10-05T07:39:29.820+00:00",
+ "args": {
+  "cmd": "run",
+  "records": "results_latency/records_frozen.json",
+  "out": "results_latency/testB",
+  "configs": "2",
+  "rounds": 1,
+  "restart_every": 0,
+  "limit_per_dataset": null,
+  "cooldown_temp": 50.0,
+  "cooldown_max": 300.0,
+  "min_cooldown": 60.0,
+  "port": 8080,
+  "data_dir": null,
+  "model_dir": null,
+  "server_bin": null,
+  "dry_run": false,
+  "server_extra": "--cache-ram 0",
+  "max_restarts": 10,
+  "server_logs": true,
+  "min_avail_mb": 0
+ },
+ "runner_revision": {
+  "protocol_version": "p2.1",
+  "script_sha256": "4bfae0d4684f1cc8",
+  "git_commit": null
+ },
+ "bench_script_sha256": "661e8d3de2f780ef",
+ "frozen_records_sha256": "34ddc3743c0d1a4f584ea97f3faae5d73536baada914263ea33b2499b7f86272",
+ "n_timed": {
+  "scienceqa": 100,
+  "textvqa": 100
+ },
+ "model_hashes": {
+  "2": {
+   "mmproj_sha256": "8d3284c340d6a9c9237d56f2fc42f2df50d3761f539f3f01be964cefb0b73916",
+   "mmproj_frozen_match": true,
+   "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+   "model_frozen_match": true
+  }
+ },
+ "server_version": "0.00.001.237 I srv  llama_server: initializing ...\nversion: 0.4.1-dev (build 11056, commit e613ef2c8)\nbuilt with GNU 13.2.0 for Linux aarch64",
+ "finished": "2026-10-05T07:49:45.606+00:00",
+ "status": "completed_with_problems",
+ "completion": {
+  "timed_expected": 200,
+  "timed_valid": 150,
+  "timed_invalid": 50,
+  "server_deaths": 0
+ },
+ "slot_failures": []
+}

@@ -1,0 +1,7 @@
+{"event": "round_order", "round": 0, "t": 1791185970.0071204, "order": [2]}
+{"event": "interval", "phase": "cooldown", "t0": 1791185970.0075576, "t1": 1791186270.1404305, "iso0": "2026-10-05T07:39:30.007+00:00", "round": 0, "slot": 0, "config": 2, "temp_end_c": 51.562, "timed_out": true}
+{"event": "baseline", "t": 1791186270.1412177, "round": 0, "slot": 0, "config": 2, "mem_avail_mb": 5851, "swap_free_mb": 3400}
+{"event": "interval", "phase": "load", "t0": 1791186270.1415322, "t1": 1791186276.2596397, "iso0": "2026-10-05T07:44:30.141+00:00", "round": 0, "slot": 0, "config": 2, "block": "scienceqa:0", "load_s": 5.104959011077881}
+{"event": "interval", "phase": "warmup", "t0": 1791186276.2602286, "t1": 1791186280.9697695, "iso0": "2026-10-05T07:44:36.260+00:00", "round": 0, "slot": 0, "config": 2, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1791186280.9700592, "t1": 1791186358.9713051, "iso0": "2026-10-05T07:44:40.970+00:00", "round": 0, "slot": 0, "config": 2, "block": "scienceqa:0", "dataset": "scienceqa", "n": 100}
+{"event": "interval", "phase": "timed", "t0": 1791186358.973637, "t1": 1791186583.0666502, "iso0": "2026-10-05T07:45:58.973+00:00", "round": 0, "slot": 0, "config": 2, "block": "textvqa:0", "dataset": "textvqa", "n": 100}
