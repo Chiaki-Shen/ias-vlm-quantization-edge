@@ -1,0 +1,56 @@
+{
+  "config_num": 2,
+  "config_label": "F16 vision  +  Q8_0 language",
+  "config_short": "F16v_Q8l",
+  "mmproj": "mmproj-Cosmos-Reason2-2B-F16.gguf",
+  "model": "Cosmos-Reason2-2B-Q8_0.gguf",
+  "note": "",
+  "timestamp": "2026-10-03 00:28:21",
+  "limit": null,
+  "protocol_version": "p2.1",
+  "interrupted": false,
+  "server_failed": false,
+  "not_run": [],
+  "complete": true,
+  "runner": {
+    "protocol_version": "p2.1",
+    "script_sha256": "4bfae0d4684f1cc8",
+    "git_commit": null
+  },
+  "model_hashes": {
+    "mmproj_sha256": "8d3284c340d6a9c9237d56f2fc42f2df50d3761f539f3f01be964cefb0b73916",
+    "mmproj_frozen_match": true,
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "model_frozen_match": true
+  },
+  "datasets": {
+    "scienceqa": {
+      "metric": "accuracy",
+      "target": 2017,
+      "total": 2017,
+      "pending": 0,
+      "placeholders": 0,
+      "complete": true,
+      "status": "complete",
+      "answered": 2017,
+      "errors": 0,
+      "retries": 0,
+      "unparsed": 0,
+      "correct": 1673,
+      "score_sum": 1673.0,
+      "score_raw": 0.8294496777392166,
+      "score_answered": 0.8294496777392166,
+      "avg_tok_s": 16.8,
+      "parser_disagreements": 0,
+      "elapsed_s": 2086.1,
+      "poison_records": 0,
+      "output_file": "/Developer/ias-vlm-quantization-edge/results/config2_F16v_Q8l__scienceqa.jsonl",
+      "prompt": "context",
+      "parser": "v2",
+      "scorer": "mcq_exact_v1",
+      "max_tokens": 16,
+      "format": "mcq"
+    }
+  },
+  "total_elapsed_s": 2087.8
+}

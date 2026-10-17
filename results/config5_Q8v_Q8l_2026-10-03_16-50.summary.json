@@ -1,0 +1,56 @@
+{
+  "config_num": 5,
+  "config_label": "Q8_0 vision  +  Q8_0 language",
+  "config_short": "Q8v_Q8l",
+  "mmproj": "mmproj-Cosmos-Reason2-2B-Q8_0.gguf",
+  "model": "Cosmos-Reason2-2B-Q8_0.gguf",
+  "note": "",
+  "timestamp": "2026-10-03 12:09:49",
+  "limit": null,
+  "protocol_version": "p2.1",
+  "interrupted": false,
+  "server_failed": false,
+  "not_run": [],
+  "complete": true,
+  "runner": {
+    "protocol_version": "p2.1",
+    "script_sha256": "4bfae0d4684f1cc8",
+    "git_commit": null
+  },
+  "model_hashes": {
+    "mmproj_sha256": "b03075492e73a39309d758bc33e0eb051af0d5976fda4984fa1dd2be3e5b1c07",
+    "mmproj_frozen_match": true,
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "model_frozen_match": true
+  },
+  "datasets": {
+    "textvqa": {
+      "metric": "TextVQA accuracy",
+      "target": 5000,
+      "total": 5000,
+      "pending": 0,
+      "placeholders": 0,
+      "complete": true,
+      "status": "complete",
+      "answered": 4995,
+      "errors": 5,
+      "retries": 167,
+      "unparsed": 0,
+      "correct": null,
+      "score_sum": 3812.0,
+      "score_raw": 0.7624,
+      "score_answered": 0.7631631631631631,
+      "avg_tok_s": 16.9,
+      "parser_disagreements": null,
+      "elapsed_s": 16860.4,
+      "poison_records": 5,
+      "output_file": "/Developer/ias-vlm-quantization-edge/results/config5_Q8v_Q8l__textvqa.jsonl",
+      "prompt": "short",
+      "parser": "short",
+      "scorer": "textvqa_mmf_v1",
+      "max_tokens": 32,
+      "format": "open_vqa"
+    }
+  },
+  "total_elapsed_s": 16862.4
+}

@@ -1,0 +1,43 @@
+{
+  "fingerprint": {
+    "protocol_version": "p2.1",
+    "config_num": 11,
+    "config_short": "Q3v_Q8l",
+    "mmproj": "mmproj-Cosmos-Reason2-2B-Q3_K_M.gguf",
+    "model": "Cosmos-Reason2-2B-Q8_0.gguf",
+    "mmproj_sha256": "cd7ccd53e47c25fcfacd27f6cd3a1129cc437a73d4b9446a05dc02e59553cca9",
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "dataset": "blink_depth",
+    "format": "mcq",
+    "prompt": "legacy",
+    "parser": "v1",
+    "scorer": "mcq_exact_v1",
+    "max_tokens": 16,
+    "temperature": 0.0,
+    "ctx_size": 2048,
+    "n_gpu_layers": 999,
+    "data_sha256": "54645628bcc3953e46889508287472e08f6bdc01b16fc959d08c0cbb8de945d5",
+    "manifest_sha256": null
+  },
+  "created": "2026-10-02T18:04:18.995749-07:00",
+  "sessions": [
+    {
+      "start": "2026-10-02T18:04:18.995791-07:00",
+      "processed": 124,
+      "elapsed_s": 121.7,
+      "completed": true,
+      "runner": {
+        "protocol_version": "p2.1",
+        "script_sha256": "7663286e3bb79759",
+        "git_commit": null
+      },
+      "end": "2026-10-02T18:06:20.711761-07:00"
+    }
+  ],
+  "model_checks": {
+    "mmproj_sha256": "cd7ccd53e47c25fcfacd27f6cd3a1129cc437a73d4b9446a05dc02e59553cca9",
+    "mmproj_frozen_match": true,
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "model_frozen_match": true
+  }
+}

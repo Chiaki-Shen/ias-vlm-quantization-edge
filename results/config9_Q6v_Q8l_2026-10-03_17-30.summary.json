@@ -1,0 +1,56 @@
+{
+  "config_num": 9,
+  "config_label": "Q6_K vision  +  Q8_0 language  [PRIMARY \u2014 experimental mmproj]",
+  "config_short": "Q6v_Q8l",
+  "mmproj": "mmproj-Cosmos-Reason2-2B-Q6_K.gguf",
+  "model": "Cosmos-Reason2-2B-Q8_0.gguf",
+  "note": "Experimental K-quant mmproj generated Oct 1 with llama-quantize from the F16 mmproj; passed load + one-image gate.",
+  "timestamp": "2026-10-03 16:50:59",
+  "limit": null,
+  "protocol_version": "p2.1",
+  "interrupted": false,
+  "server_failed": false,
+  "not_run": [],
+  "complete": true,
+  "runner": {
+    "protocol_version": "p2.1",
+    "script_sha256": "4bfae0d4684f1cc8",
+    "git_commit": null
+  },
+  "model_hashes": {
+    "mmproj_sha256": "039b9b1c097f8f300664b69387d1ad0eaf9735eebd13ff5791ae65bf231262e8",
+    "mmproj_frozen_match": true,
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "model_frozen_match": true
+  },
+  "datasets": {
+    "scienceqa": {
+      "metric": "accuracy",
+      "target": 2017,
+      "total": 2017,
+      "pending": 0,
+      "placeholders": 0,
+      "complete": true,
+      "status": "complete",
+      "answered": 2017,
+      "errors": 0,
+      "retries": 0,
+      "unparsed": 1,
+      "correct": 1658,
+      "score_sum": 1658.0,
+      "score_raw": 0.8220128904313336,
+      "score_answered": 0.8220128904313336,
+      "avg_tok_s": 17.0,
+      "parser_disagreements": 1,
+      "elapsed_s": 2359.9,
+      "poison_records": 0,
+      "output_file": "/Developer/ias-vlm-quantization-edge/results/config9_Q6v_Q8l__scienceqa.jsonl",
+      "prompt": "context",
+      "parser": "v2",
+      "scorer": "mcq_exact_v1",
+      "max_tokens": 16,
+      "format": "mcq"
+    }
+  },
+  "total_elapsed_s": 2361.5
+}

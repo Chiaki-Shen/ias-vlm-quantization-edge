@@ -1,0 +1,31 @@
+config,vision,language,dataset,accuracy_pct,n_valid,n_error
+2,F16,Q8_0,blink_depth,70.1613,124,0
+2,F16,Q8_0,blink_spatial,73.4266,143,0
+2,F16,Q8_0,cv_bench,79.0873,2520,118
+2,F16,Q8_0,textvqa,76.4144,4995,5
+2,F16,Q8_0,scienceqa,82.9450,2017,0
+5,Q8_0,Q8_0,blink_depth,70.1613,124,0
+5,Q8_0,Q8_0,blink_spatial,74.1259,143,0
+5,Q8_0,Q8_0,cv_bench,78.9286,2520,118
+5,Q8_0,Q8_0,textvqa,76.3163,4995,5
+5,Q8_0,Q8_0,scienceqa,82.4988,2017,0
+9,Q6_K,Q8_0,blink_depth,71.7742,124,0
+9,Q6_K,Q8_0,blink_spatial,74.1259,143,0
+9,Q6_K,Q8_0,cv_bench,78.6111,2520,118
+9,Q6_K,Q8_0,textvqa,76.3724,4995,5
+9,Q6_K,Q8_0,scienceqa,82.2013,2017,0
+10,Q5_K_M,Q8_0,blink_depth,72.5806,124,0
+10,Q5_K_M,Q8_0,blink_spatial,73.4266,143,0
+10,Q5_K_M,Q8_0,cv_bench,79.2460,2520,118
+10,Q5_K_M,Q8_0,textvqa,76.4825,4995,5
+10,Q5_K_M,Q8_0,scienceqa,82.3500,2017,0
+8,Q4_0,Q8_0,blink_depth,67.7419,124,0
+8,Q4_0,Q8_0,blink_spatial,72.0280,143,0
+8,Q4_0,Q8_0,cv_bench,77.1032,2520,118
+8,Q4_0,Q8_0,textvqa,75.7157,4995,5
+8,Q4_0,Q8_0,scienceqa,81.8542,2017,0
+11,Q3_K_M,Q8_0 (optional),blink_depth,69.3548,124,0
+11,Q3_K_M,Q8_0 (optional),blink_spatial,71.3287,143,0
+11,Q3_K_M,Q8_0 (optional),cv_bench,77.9365,2520,118
+11,Q3_K_M,Q8_0 (optional),textvqa,73.7578,4995,5
+11,Q3_K_M,Q8_0 (optional),scienceqa,82.2013,2017,0

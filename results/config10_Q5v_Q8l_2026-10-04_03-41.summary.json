@@ -1,0 +1,56 @@
+{
+  "config_num": 10,
+  "config_label": "Q5_K_M vision  +  Q8_0 language  [PRIMARY \u2014 experimental mmproj]",
+  "config_short": "Q5v_Q8l",
+  "mmproj": "mmproj-Cosmos-Reason2-2B-Q5_K_M.gguf",
+  "model": "Cosmos-Reason2-2B-Q8_0.gguf",
+  "note": "Experimental K-quant mmproj generated Oct 1 with llama-quantize from the F16 mmproj; passed load + one-image gate.",
+  "timestamp": "2026-10-03 22:56:47",
+  "limit": null,
+  "protocol_version": "p2.1",
+  "interrupted": false,
+  "server_failed": false,
+  "not_run": [],
+  "complete": true,
+  "runner": {
+    "protocol_version": "p2.1",
+    "script_sha256": "4bfae0d4684f1cc8",
+    "git_commit": null
+  },
+  "model_hashes": {
+    "mmproj_sha256": "7cb96c2aa395974a8d296912f2b896a3b8e594aa4f5ff420848e9b183e242b06",
+    "mmproj_frozen_match": true,
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "model_frozen_match": true
+  },
+  "datasets": {
+    "textvqa": {
+      "metric": "TextVQA accuracy",
+      "target": 5000,
+      "total": 5000,
+      "pending": 0,
+      "placeholders": 0,
+      "complete": true,
+      "status": "complete",
+      "answered": 4995,
+      "errors": 5,
+      "retries": 159,
+      "unparsed": 0,
+      "correct": null,
+      "score_sum": 3820.3,
+      "score_raw": 0.7640600000000001,
+      "score_answered": 0.7648248248248248,
+      "avg_tok_s": 17.1,
+      "parser_disagreements": null,
+      "elapsed_s": 17105.3,
+      "poison_records": 5,
+      "output_file": "/Developer/ias-vlm-quantization-edge/results/config10_Q5v_Q8l__textvqa.jsonl",
+      "prompt": "short",
+      "parser": "short",
+      "scorer": "textvqa_mmf_v1",
+      "max_tokens": 32,
+      "format": "open_vqa"
+    }
+  },
+  "total_elapsed_s": 17107.1
+}

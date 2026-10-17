@@ -1,0 +1,319 @@
+{
+  "script": "make_table_b.py",
+  "script_sha256": "b9702fc8c88321c70be017d4da075742cf7ea45e45636f6dd0f18b24e18cd4d8",
+  "baseline_config": 2,
+  "n_boot": 10000,
+  "seed": 249,
+  "textvqa_folder_used": "textvqa",
+  "error_rule": "rows with non-empty error excluded from accuracy",
+  "summary_crosschecks": {
+    "config2/scienceqa": [
+      "ok"
+    ],
+    "config5/scienceqa": [
+      "ok"
+    ],
+    "config9/blink_depth": [
+      "ok"
+    ],
+    "config9/blink_spatial": [
+      "ok"
+    ],
+    "config9/cv_bench": [
+      "ok"
+    ],
+    "config10/blink_depth": [
+      "ok"
+    ],
+    "config10/blink_spatial": [
+      "ok"
+    ],
+    "config10/cv_bench": [
+      "ok"
+    ],
+    "config8/scienceqa": [
+      "ok"
+    ],
+    "config11/blink_depth": [
+      "ok"
+    ],
+    "config11/blink_spatial": [
+      "ok"
+    ],
+    "config11/cv_bench": [
+      "ok"
+    ]
+  },
+  "input_files": [
+    {
+      "config": 2,
+      "dataset": "blink_depth",
+      "file": "config2_F16v_Q8l__blink_depth.jsonl",
+      "path": "results/config2_F16v_Q8l__blink_depth.jsonl",
+      "sha256": "ae8ec8a57a006b4449437e57ad243d1728aad5b87b25d4ee7914d93fbcbf633f",
+      "sha_verified": null,
+      "lines": 124
+    },
+    {
+      "config": 2,
+      "dataset": "blink_spatial",
+      "file": "config2_F16v_Q8l__blink_spatial.jsonl",
+      "path": "results/config2_F16v_Q8l__blink_spatial.jsonl",
+      "sha256": "075042fa2b9a4fe2b338a17cff94977b41cd9897fec89ea3a8788c4075fce851",
+      "sha_verified": null,
+      "lines": 143
+    },
+    {
+      "config": 2,
+      "dataset": "cv_bench",
+      "file": "config2_F16v_Q8l__cv_bench.jsonl",
+      "path": "results/config2_F16v_Q8l__cv_bench.jsonl",
+      "sha256": "8a67ff5cc0e8e74415ac9d62edc50be2138cef16d77a61291065d6e01a1764da",
+      "sha_verified": null,
+      "lines": 2638
+    },
+    {
+      "config": 2,
+      "dataset": "textvqa",
+      "file": "config2_F16v_Q8l__textvqa.jsonl",
+      "path": "results/config2_F16v_Q8l__textvqa.jsonl",
+      "sha256": "361585882d194498838f85ebf80250bd7858ebf17626f86e0251c9913b43b619",
+      "sha_verified": null,
+      "lines": 5000
+    },
+    {
+      "config": 2,
+      "dataset": "scienceqa",
+      "file": "config2_F16v_Q8l__scienceqa.jsonl",
+      "path": "results/config2_F16v_Q8l__scienceqa.jsonl",
+      "sha256": "f3b03fe4a3602fd8b485eedf095ca2d2c11ccade78feda92f5574702d3046d18",
+      "sha_verified": null,
+      "lines": 2017
+    },
+    {
+      "config": 5,
+      "dataset": "blink_depth",
+      "file": "config5_Q8v_Q8l__blink_depth.jsonl",
+      "path": "results/config5_Q8v_Q8l__blink_depth.jsonl",
+      "sha256": "56bd0efe77172ba98d62d0a9cb82e8b6d2c5fede3cbca92fb10d2f8246c86861",
+      "sha_verified": null,
+      "lines": 124
+    },
+    {
+      "config": 5,
+      "dataset": "blink_spatial",
+      "file": "config5_Q8v_Q8l__blink_spatial.jsonl",
+      "path": "results/config5_Q8v_Q8l__blink_spatial.jsonl",
+      "sha256": "e447042e23d11ecda6399bb0dad2060868fea8d80a07f79b860d1837ae73c4e2",
+      "sha_verified": null,
+      "lines": 143
+    },
+    {
+      "config": 5,
+      "dataset": "cv_bench",
+      "file": "config5_Q8v_Q8l__cv_bench.jsonl",
+      "path": "results/config5_Q8v_Q8l__cv_bench.jsonl",
+      "sha256": "8d624e18614066bba3c046f8699e6e02d1d0bdea4a42b224ba0ac8360c2e3544",
+      "sha_verified": null,
+      "lines": 2638
+    },
+    {
+      "config": 5,
+      "dataset": "textvqa",
+      "file": "config5_Q8v_Q8l__textvqa.jsonl",
+      "path": "results/config5_Q8v_Q8l__textvqa.jsonl",
+      "sha256": "a2cba372d226f8db006843ff5b07d6b402383811497fe37f077d2c256740e250",
+      "sha_verified": null,
+      "lines": 5000
+    },
+    {
+      "config": 5,
+      "dataset": "scienceqa",
+      "file": "config5_Q8v_Q8l__scienceqa.jsonl",
+      "path": "results/config5_Q8v_Q8l__scienceqa.jsonl",
+      "sha256": "7c0a46fcf800abe50e86538176081625d527c9029686eb4590b79f7ba84ecf5b",
+      "sha_verified": null,
+      "lines": 2017
+    },
+    {
+      "config": 9,
+      "dataset": "blink_depth",
+      "file": "config9_Q6v_Q8l__blink_depth.jsonl",
+      "path": "results/config9_Q6v_Q8l__blink_depth.jsonl",
+      "sha256": "3abce4fc29b87d46e65b26e40a34763a8c9aeb35d943166dd6e4d52baced3eed",
+      "sha_verified": null,
+      "lines": 124
+    },
+    {
+      "config": 9,
+      "dataset": "blink_spatial",
+      "file": "config9_Q6v_Q8l__blink_spatial.jsonl",
+      "path": "results/config9_Q6v_Q8l__blink_spatial.jsonl",
+      "sha256": "a1ddefb68fd80ef5fd4122418cce7ec7154517a5188744b6ceb0bd24dbe3a3fd",
+      "sha_verified": null,
+      "lines": 143
+    },
+    {
+      "config": 9,
+      "dataset": "cv_bench",
+      "file": "config9_Q6v_Q8l__cv_bench.jsonl",
+      "path": "results/config9_Q6v_Q8l__cv_bench.jsonl",
+      "sha256": "3d68e662b0a207786ea3bc2febee52c78a440fe7928e8740c547def454e6fe88",
+      "sha_verified": null,
+      "lines": 2638
+    },
+    {
+      "config": 9,
+      "dataset": "textvqa",
+      "file": "config9_Q6v_Q8l__textvqa.jsonl",
+      "path": "results/config9_Q6v_Q8l__textvqa.jsonl",
+      "sha256": "1770b5f0638c85e68e3acf683e94b3975e6eb7f013308fdc6496ef1177e07ec0",
+      "sha_verified": null,
+      "lines": 5000
+    },
+    {
+      "config": 9,
+      "dataset": "scienceqa",
+      "file": "config9_Q6v_Q8l__scienceqa.jsonl",
+      "path": "results/config9_Q6v_Q8l__scienceqa.jsonl",
+      "sha256": "65352afaf49d2a0451424f600cac88afb70f95872a6e007d46576a072ce4752d",
+      "sha_verified": null,
+      "lines": 2017
+    },
+    {
+      "config": 10,
+      "dataset": "blink_depth",
+      "file": "config10_Q5v_Q8l__blink_depth.jsonl",
+      "path": "results/config10_Q5v_Q8l__blink_depth.jsonl",
+      "sha256": "dfe453143ca7b78e396cf3c527b5194ca3eb5da7ee3a84d2c280b32a640d0b91",
+      "sha_verified": null,
+      "lines": 124
+    },
+    {
+      "config": 10,
+      "dataset": "blink_spatial",
+      "file": "config10_Q5v_Q8l__blink_spatial.jsonl",
+      "path": "results/config10_Q5v_Q8l__blink_spatial.jsonl",
+      "sha256": "b817b7dd856b5d2be18ebcd79f84f02f18f698b6f85d6014aa023b8e6bf7b15b",
+      "sha_verified": null,
+      "lines": 143
+    },
+    {
+      "config": 10,
+      "dataset": "cv_bench",
+      "file": "config10_Q5v_Q8l__cv_bench.jsonl",
+      "path": "results/config10_Q5v_Q8l__cv_bench.jsonl",
+      "sha256": "6e9652e87e56373290fd4b57839b9b0dcc4dcc86a88de1755cbfc58d437f8d84",
+      "sha_verified": null,
+      "lines": 2638
+    },
+    {
+      "config": 10,
+      "dataset": "textvqa",
+      "file": "config10_Q5v_Q8l__textvqa.jsonl",
+      "path": "results/config10_Q5v_Q8l__textvqa.jsonl",
+      "sha256": "8a3d45a5f8350fd7dcc200fff500b06ccd6a19b8092736b080eae008b948cbe3",
+      "sha_verified": null,
+      "lines": 5000
+    },
+    {
+      "config": 10,
+      "dataset": "scienceqa",
+      "file": "config10_Q5v_Q8l__scienceqa.jsonl",
+      "path": "results/config10_Q5v_Q8l__scienceqa.jsonl",
+      "sha256": "a6fd2a01678b6bbc8c5d9b7a4d3e1cd0e51e6bc7b7660eac9d09157ad10e367e",
+      "sha_verified": null,
+      "lines": 2017
+    },
+    {
+      "config": 8,
+      "dataset": "blink_depth",
+      "file": "config8_Q4v_Q8l__blink_depth.jsonl",
+      "path": "results/config8_Q4v_Q8l__blink_depth.jsonl",
+      "sha256": "a866b34a1ba71eb84b517877c5a2580a15149a02291720c766b18d269666e2cd",
+      "sha_verified": null,
+      "lines": 124
+    },
+    {
+      "config": 8,
+      "dataset": "blink_spatial",
+      "file": "config8_Q4v_Q8l__blink_spatial.jsonl",
+      "path": "results/config8_Q4v_Q8l__blink_spatial.jsonl",
+      "sha256": "30bb12422efbdc1547506751753dc1bb08446288888ffe4e383487a462c92877",
+      "sha_verified": null,
+      "lines": 143
+    },
+    {
+      "config": 8,
+      "dataset": "cv_bench",
+      "file": "config8_Q4v_Q8l__cv_bench.jsonl",
+      "path": "results/config8_Q4v_Q8l__cv_bench.jsonl",
+      "sha256": "904853fe5177a0447ddc33292529c9ce2cc1cb8e5fa558cf5babcf330cb29aeb",
+      "sha_verified": null,
+      "lines": 2638
+    },
+    {
+      "config": 8,
+      "dataset": "textvqa",
+      "file": "config8_Q4v_Q8l__textvqa.jsonl",
+      "path": "results/config8_Q4v_Q8l__textvqa.jsonl",
+      "sha256": "412f958b9f4a6b72568255f3474bd400f1ca210f9715ac3940eb19a36bcb6658",
+      "sha_verified": null,
+      "lines": 5000
+    },
+    {
+      "config": 8,
+      "dataset": "scienceqa",
+      "file": "config8_Q4v_Q8l__scienceqa.jsonl",
+      "path": "results/config8_Q4v_Q8l__scienceqa.jsonl",
+      "sha256": "f1c9268a3b52d7bcf625a7be54a089933b23cd69c15296f4b7f872f660b82147",
+      "sha_verified": null,
+      "lines": 2017
+    },
+    {
+      "config": 11,
+      "dataset": "blink_depth",
+      "file": "config11_Q3v_Q8l__blink_depth.jsonl",
+      "path": "results/config11_Q3v_Q8l__blink_depth.jsonl",
+      "sha256": "a8e05beff0ad6e005cfb4ec2bde3288fa92ae60cdc8486330f3bb5f0dda1cd9f",
+      "sha_verified": null,
+      "lines": 124
+    },
+    {
+      "config": 11,
+      "dataset": "blink_spatial",
+      "file": "config11_Q3v_Q8l__blink_spatial.jsonl",
+      "path": "results/config11_Q3v_Q8l__blink_spatial.jsonl",
+      "sha256": "847c4a7c3149557ec42482874ddfb1fea3f788444518cf59d478de267b46d324",
+      "sha_verified": null,
+      "lines": 143
+    },
+    {
+      "config": 11,
+      "dataset": "cv_bench",
+      "file": "config11_Q3v_Q8l__cv_bench.jsonl",
+      "path": "results/config11_Q3v_Q8l__cv_bench.jsonl",
+      "sha256": "e4eb6df3521d85dc000bdb1739ddfbc2da31bd625e2e79db9524907e98abafe6",
+      "sha_verified": null,
+      "lines": 2638
+    },
+    {
+      "config": 11,
+      "dataset": "textvqa",
+      "file": "config11_Q3v_Q8l__textvqa.jsonl",
+      "path": "results/config11_Q3v_Q8l__textvqa.jsonl",
+      "sha256": "003a1a44da73cf11967299e4ccfda574014d42aa14fe8cac5f0baef1a5a8b88d",
+      "sha_verified": null,
+      "lines": 5000
+    },
+    {
+      "config": 11,
+      "dataset": "scienceqa",
+      "file": "config11_Q3v_Q8l__scienceqa.jsonl",
+      "path": "results/config11_Q3v_Q8l__scienceqa.jsonl",
+      "sha256": "4ce2aac93fe82008a8a55f17f2488df94f2569206f9d9f061e6760e752ee3998",
+      "sha_verified": null,
+      "lines": 2017
+    }
+  ]
+}

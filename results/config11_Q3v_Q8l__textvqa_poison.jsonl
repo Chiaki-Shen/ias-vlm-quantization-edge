@@ -1,0 +1,5 @@
+{"idx": 691, "record_num": 692, "error": "HTTP Error 400: Bad Request", "image_sizes": [["/Developer/ias-vlm-quantization-edge/benchmarks/textvqa/images/00691.jpg", 1331.1]], "mem_avail_mb": 2817, "mem_total_mb": 7619}
+{"idx": 1185, "record_num": 1186, "error": "HTTP Error 400: Bad Request", "image_sizes": [["/Developer/ias-vlm-quantization-edge/benchmarks/textvqa/images/01185.jpg", 1331.1]], "mem_avail_mb": 2808, "mem_total_mb": 7619}
+{"idx": 1578, "record_num": 1579, "error": "HTTP Error 400: Bad Request", "image_sizes": [["/Developer/ias-vlm-quantization-edge/benchmarks/textvqa/images/01578.jpg", 3063.7]], "mem_avail_mb": 2847, "mem_total_mb": 7619}
+{"idx": 2497, "record_num": 2498, "error": "HTTP Error 400: Bad Request", "image_sizes": [["/Developer/ias-vlm-quantization-edge/benchmarks/textvqa/images/02497.jpg", 1761.6]], "mem_avail_mb": 2854, "mem_total_mb": 7619}
+{"idx": 4041, "record_num": 4042, "error": "HTTP Error 400: Bad Request", "image_sizes": [["/Developer/ias-vlm-quantization-edge/benchmarks/textvqa/images/04041.jpg", 4065.1]], "mem_avail_mb": 2789, "mem_total_mb": 7619}
