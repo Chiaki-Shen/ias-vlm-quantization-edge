@@ -25,8 +25,9 @@ Record handling (both runner formats):
     unless --allow-error-set-mismatch is given.
 
 Statistics: paired percentile bootstrap (default 10,000 resamples, seed 249) on
-the per-record score difference. For binary datasets an exact two-sided McNemar
-p-value is also given. Intervals are 95% and NOT adjusted for multiple
+the per-record score difference, with an independent random stream per
+(config, dataset) cell: default_rng([seed, config, dataset_index]). For binary
+datasets an exact two-sided McNemar p-value is also given. Intervals are 95% and NOT adjusted for multiple
 comparisons.
 """
 import argparse
@@ -249,7 +250,6 @@ def main():
     args = ap.parse_args()
 
     found = discover(args.results_dir, set(args.exclude_dir))
-    rng = np.random.default_rng(args.seed)
 
     expected = {}
     if args.sha_file:
@@ -312,6 +312,10 @@ def main():
             acc = float(np.mean(list(d["valid"].values()))) * 100
             row[label] = {"acc": acc, "n": len(d["valid"]), "n_err": len(d["err"])}
             if cfg != base_cfg and (base_cfg, ds) in data:
+                # Independent stream per (config, dataset) cell, so adding or
+                # removing a config does not move the other intervals.
+                ds_i = [k for k, _ in col_ds].index(ds)
+                rng = np.random.default_rng([args.seed, cfg, ds_i])
                 pd = paired_delta(data[(base_cfg, ds)], d, args.n_boot, rng)
                 if pd:
                     pd.update({"config": cfg, "dataset": ds, "label": label})
@@ -352,7 +356,7 @@ def main():
                 continue
             lo, hi = d["ci"]
             star = "*" if (lo > 0 or hi < 0) else ""
-            cells.append(f"{d["delta"]+0.0:+.2f} [{lo:+.2f}, {hi:+.2f}]{star}")
+            cells.append(f"{d['delta']+0.0:+.2f} [{lo:+.2f}, {hi:+.2f}]{star}")
         md.append("| " + " | ".join(cells) + " |")
     md += ["", "`*` = 95% CI excludes 0 (unadjusted for multiple comparisons). "
            "Deltas use only records valid in both configs.", ""]
