@@ -1,0 +1,453 @@
+sjsujetson@sjsujetson-48:/Developer/models/cosmos-reason2-2b-vllm/cosmos-reason2-2b_v1208-fp8-static-kv8$ docker ru
+n --rm -it \
+  --runtime nvidia \
+  --network host \
+  -v /Developer/models/cosmos-reason2-2b-vllm/cosmos-reason2-2b_v1208-fp8-static-kv8:/models/cosmos-reason2:ro \
+  -e NVIDIA_VISIBLE_DEVICES=all \
+  -e NVIDIA_DRIVER_CAPABILITIES=compute,utility \
+  ghcr.io/nvidia-ai-iot/vllm:latest-jetson-orin \
+  bash
+root@sjsujetson-48:/# cd /opt && source venv/bin/activate
+vllm serve /models/cosmos-reason2 \
+  --served-model-name local \
+  --host 0.0.0.0 --port 8000 \
+  --trust-remote-code \
+  --enforce-eager \
+  --max-model-len 768 \
+  --max-num-batched-tokens 768 \
+  --gpu-memory-utilization 0.52 \
+  --max-num-seqs 1 \
+  --enable-chunked-prefill \
+  --limit-mm-per-prompt '{"image":1}'
+/opt/venv/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is
+deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+(APIServer pid=24) INFO 10-05 20:24:18 [utils.py:299]
+(APIServer pid=24) INFO 10-05 20:24:18 [utils.py:299]        █     █     █▄   ▄█
+(APIServer pid=24) INFO 10-05 20:24:18 [utils.py:299]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.19.0
+(APIServer pid=24) INFO 10-05 20:24:18 [utils.py:299]   █▄█▀ █     █     █     █  model   /models/cosmos-reason2
+(APIServer pid=24) INFO 10-05 20:24:18 [utils.py:299]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=24) INFO 10-05 20:24:18 [utils.py:299]
+(APIServer pid=24) INFO 10-05 20:24:18 [utils.py:233] non-default args: {'model_tag': '/models/cosmos-reason2', 'ho
+st': '0.0.0.0', 'model': '/models/cosmos-reason2', 'trust_remote_code': True, 'max_model_len': 768, 'enforce_eager'
+: True, 'served_model_name': ['local'], 'gpu_memory_utilization': 0.52, 'limit_mm_per_prompt': {'image': 1}, 'max_n
+um_batched_tokens': 768, 'max_num_seqs': 1, 'enable_chunked_prefill': True}
+(APIServer pid=24) INFO 10-05 20:24:35 [model.py:549] Resolved architecture: Qwen3VLForConditionalGeneration
+(APIServer pid=24) INFO 10-05 20:24:35 [model.py:1678] Using max model len 768
+(APIServer pid=24) INFO 10-05 20:24:36 [scheduler.py:238] Chunked prefill is enabled with max_num_batched_tokens=76
+8.
+(APIServer pid=24) INFO 10-05 20:24:36 [vllm.py:790] Asynchronous scheduling is enabled.
+(APIServer pid=24) WARNING 10-05 20:24:36 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs.
+This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=24) WARNING 10-05 20:24:36 [vllm.py:859] Inductor compilation was disabled by user settings, optimiz
+ations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=24) INFO 10-05 20:24:36 [vllm.py:1025] Cudagraph is disabled under eager mode
+(APIServer pid=24) INFO 10-05 20:24:36 [compilation.py:290] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=24) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: htt
+ps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wil
+l lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to f
+ix this issue.
+(APIServer pid=24) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: htt
+ps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wil
+l lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to f
+ix this issue.
+(APIServer pid=24) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: htt
+ps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wil
+l lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to f
+ix this issue.
+/opt/venv/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is
+deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+^[[B^[[B^[[B^[[B^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A(EngineCore pid=68) INFO 10-05 20:25:00 [core.py:105] I
+nitializing a V1 LLM engine (v0.19.0) with config: model='/models/cosmos-reason2', speculative_config=None, tokeniz
+er='/models/cosmos-reason2', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None
+, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=768, download_dir=None, load_format=auto, tensor_parall
+el_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs,
+disable_custom_all_reduce=False, quantization=compressed-tensors, enforce_eager=True, enable_return_routed_experts=
+False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', d
+isable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='',
+enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_tra
+ces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_me
+trics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable
+_logging_iteration_details=False), seed=0, served_model_name=local, enable_prefix_caching=True, enable_chunked_pref
+ill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cach
+e_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [
+], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cuda
+graph_max_images_per_batch': 0, 'compile_sizes': [], 'compile_ranges_endpoints': [768], 'inductor_compile_config':
+{'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False
+, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.N
+ONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_s
+pecialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_qu
+ant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, '
+max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_g
+uards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_
+moe_layers': []}
+(EngineCore pid=68) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: ht
+tps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wi
+ll lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+fix this issue.
+(EngineCore pid=68) INFO 10-05 20:25:02 [parallel_state.py:1400] world_size=1 rank=0 local_rank=0 distributed_init_
+method=tcp://192.168.86.145:60425 backend=nccl
+(EngineCore pid=68) INFO 10-05 20:25:02 [parallel_state.py:1716] rank 0 in world size 1 is assigned as DP rank 0, P
+P rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=68) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: ht
+tps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wi
+ll lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+fix this issue.
+(EngineCore pid=68) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: ht
+tps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wi
+ll lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+fix this issue.
+(EngineCore pid=68) INFO 10-05 20:25:09 [gpu_model_runner.py:4735] Starting to load model /models/cosmos-reason2...
+(EngineCore pid=68) INFO 10-05 20:25:10 [cuda.py:390] Using backend AttentionBackendEnum.FLASH_ATTN for vit attenti
+on
+(EngineCore pid=68) INFO 10-05 20:25:10 [mm_encoder_attention.py:230] Using AttentionBackendEnum.FLASH_ATTN for MME
+ncoderAttention.
+(EngineCore pid=68) INFO 10-05 20:25:10 [vllm.py:790] Asynchronous scheduling is enabled.
+(EngineCore pid=68) WARNING 10-05 20:25:10 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs.
+ This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore pid=68) WARNING 10-05 20:25:10 [vllm.py:859] Inductor compilation was disabled by user settings, optimi
+zations settings that are only active during inductor compilation will be ignored.
+(EngineCore pid=68) INFO 10-05 20:25:10 [vllm.py:1025] Cudagraph is disabled under eager mode
+(EngineCore pid=68) INFO 10-05 20:25:10 [compilation.py:290] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=68) INFO 10-05 20:25:12 [cuda.py:334] Using FLASHINFER attention backend out of potential backends:
+ ['FLASHINFER', 'TRITON_ATTN'].
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.88s/it]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.89s/it]
+(EngineCore pid=68)
+(EngineCore pid=68) INFO 10-05 20:25:15 [default_loader.py:384] Loading weights took 2.96 seconds
+(EngineCore pid=68) WARNING 10-05 20:25:15 [marlin_utils_fp8.py:97] Your GPU does not have native support for FP8 c
+omputation but FP8 quantization is being used. Weight-only FP8 compression will be used leveraging the Marlin kerne
+l. This may degrade performance for compute-heavy workloads.
+(EngineCore pid=68) INFO 10-05 20:25:17 [gpu_model_runner.py:4820] Model loading took 2.91 GiB memory and 6.479678
+seconds
+(EngineCore pid=68) INFO 10-05 20:25:18 [gpu_model_runner.py:5753] Encoder cache will be initialized with a budget
+of 12288 tokens, and profiled with 1 video items of the maximum feature size.
+(EngineCore pid=68) INFO 10-05 20:26:33 [gpu_worker.py:436] Available KV cache memory: -1.4 GiB
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108] EngineCore failed to start.
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108] Traceback (most recent call last):
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engi
+ne/core.py", line 1082, in run_engine_core
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]     engine_core = EngineCoreProc(*args, engine_index=dp_ran
+k, **kwargs)
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]   File "/opt/venv/lib/python3.10/site-packages/vllm/tracing
+/otel.py", line 178, in sync_wrapper
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]     return func(*args, **kwargs)
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engi
+ne/core.py", line 848, in __init__
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]     super().__init__(
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engi
+ne/core.py", line 124, in __init__
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]     kv_cache_config = self._initialize_kv_caches(vllm_confi
+g)
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]   File "/opt/venv/lib/python3.10/site-packages/vllm/tracing
+/otel.py", line 178, in sync_wrapper
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]     return func(*args, **kwargs)
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engi
+ne/core.py", line 258, in _initialize_kv_caches
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]     kv_cache_configs = get_kv_cache_configs(
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/core
+/kv_cache_utils.py", line 1579, in get_kv_cache_configs
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]     _check_enough_kv_cache_memory(
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/core
+/kv_cache_utils.py", line 626, in _check_enough_kv_cache_memory
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108]     raise ValueError(
+(EngineCore pid=68) ERROR 10-05 20:26:33 [core.py:1108] ValueError: No available memory for the cache blocks. Try i
+ncreasing `gpu_memory_utilization` when initializing the engine. See https://docs.vllm.ai/en/latest/configuration/c
+onserving_memory/ for more details.
+(EngineCore pid=68) Process EngineCore:
+(EngineCore pid=68) Traceback (most recent call last):
+(EngineCore pid=68)   File "/root/.local/share/uv/python/cpython-3.10-linux-aarch64-gnu/lib/python3.10/multiprocess
+ing/process.py", line 314, in _bootstrap
+(EngineCore pid=68)     self.run()
+(EngineCore pid=68)   File "/root/.local/share/uv/python/cpython-3.10-linux-aarch64-gnu/lib/python3.10/multiprocess
+ing/process.py", line 108, in run
+(EngineCore pid=68)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=68)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/core.py", line 1112, in run_engin
+e_core
+(EngineCore pid=68)     raise e
+(EngineCore pid=68)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/core.py", line 1082, in run_engin
+e_core
+(EngineCore pid=68)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=68)   File "/opt/venv/lib/python3.10/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=68)     return func(*args, **kwargs)
+(EngineCore pid=68)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/core.py", line 848, in __init__
+(EngineCore pid=68)     super().__init__(
+(EngineCore pid=68)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/core.py", line 124, in __init__
+(EngineCore pid=68)     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=68)   File "/opt/venv/lib/python3.10/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=68)     return func(*args, **kwargs)
+(EngineCore pid=68)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/core.py", line 258, in _initializ
+e_kv_caches
+(EngineCore pid=68)     kv_cache_configs = get_kv_cache_configs(
+(EngineCore pid=68)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/core/kv_cache_utils.py", line 1579, in g
+et_kv_cache_configs
+(EngineCore pid=68)     _check_enough_kv_cache_memory(
+(EngineCore pid=68)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/core/kv_cache_utils.py", line 626, in _c
+heck_enough_kv_cache_memory
+(EngineCore pid=68)     raise ValueError(
+(EngineCore pid=68) ValueError: No available memory for the cache blocks. Try increasing `gpu_memory_utilization` w
+hen initializing the engine. See https://docs.vllm.ai/en/latest/configuration/conserving_memory/ for more details.
+[rank0]:[W1005 20:26:35.946046414 ProcessGroupNCCL.cpp:1553] Warning: WARNING: destroy_process_group() was not call
+ed before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distrib
+uted.html#shutdown (function operator())
+(APIServer pid=24) Traceback (most recent call last):
+(APIServer pid=24)   File "/opt/venv/bin/vllm", line 10, in <module>
+(APIServer pid=24)     sys.exit(main())
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/entrypoints/cli/main.py", line 75, in main
+(APIServer pid=24)     args.dispatch_function(args)
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/entrypoints/cli/serve.py", line 122, in cmd
+(APIServer pid=24)     uvloop.run(run_server(args))
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/uvloop/__init__.py", line 69, in run
+(APIServer pid=24)     return loop.run_until_complete(wrapper())
+(APIServer pid=24)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=24)     return await main
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 670,
+ in run_server
+(APIServer pid=24)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 684,
+ in run_server_worker
+(APIServer pid=24)     async with build_async_engine_client(
+(APIServer pid=24)   File "/root/.local/share/uv/python/cpython-3.10-linux-aarch64-gnu/lib/python3.10/contextlib.py
+", line 199, in __aenter__
+(APIServer pid=24)     return await anext(self.gen)
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 100,
+ in build_async_engine_client
+(APIServer pid=24)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=24)   File "/root/.local/share/uv/python/cpython-3.10-linux-aarch64-gnu/lib/python3.10/contextlib.py
+", line 199, in __aenter__
+(APIServer pid=24)     return await anext(self.gen)
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 136,
+ in build_async_engine_client_from_engine_args
+(APIServer pid=24)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/async_llm.py", line 225, in from_v
+llm_config
+(APIServer pid=24)     return cls(
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/async_llm.py", line 154, in __init
+__
+(APIServer pid=24)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=24)     return func(*args, **kwargs)
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/core_client.py", line 130, in make
+_async_mp_client
+(APIServer pid=24)     return AsyncMPClient(*client_args)
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=24)     return func(*args, **kwargs)
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/core_client.py", line 887, in __in
+it__
+(APIServer pid=24)     super().__init__(
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/core_client.py", line 535, in __in
+it__
+(APIServer pid=24)     with launch_core_engines(
+(APIServer pid=24)   File "/root/.local/share/uv/python/cpython-3.10-linux-aarch64-gnu/lib/python3.10/contextlib.py
+", line 142, in __exit__
+(APIServer pid=24)     next(self.gen)
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/utils.py", line 998, in launch_cor
+e_engines
+(APIServer pid=24)     wait_for_engine_startup(
+(APIServer pid=24)   File "/opt/venv/lib/python3.10/site-packages/vllm/v1/engine/utils.py", line 1057, in wait_for_
+engine_startup
+(APIServer pid=24)     raise RuntimeError(
+(APIServer pid=24) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+(venv) root@sjsujetson-48:/opt# clear-history
+bash: clear-history: command not found
+(venv) root@sjsujetson-48:/opt# echo "=== ATTEMPT 2: video disabled, util 0.52, len 768 ==="
+vllm serve /models/cosmos-reason2 \
+  --served-model-name local \
+  --host 0.0.0.0 --port 8000 \
+  --trust-remote-code \
+  --enforce-eager \
+  --max-model-len 768 \
+  --max-num-batched-tokens 768 \
+  --gpu-memory-utilization 0.52 \
+  --max-num-seqs 1 \
+  --enable-chunked-prefill \
+  --limit-mm-per-prompt '{"image":1,"video":0}'
+=== ATTEMPT 2: video disabled, util 0.52, len 768 ===
+/opt/venv/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is
+deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+(APIServer pid=167) INFO 10-05 20:31:43 [utils.py:299]
+(APIServer pid=167) INFO 10-05 20:31:43 [utils.py:299]        █     █     █▄   ▄█
+(APIServer pid=167) INFO 10-05 20:31:43 [utils.py:299]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.19.0
+(APIServer pid=167) INFO 10-05 20:31:43 [utils.py:299]   █▄█▀ █     █     █     █  model   /models/cosmos-reason2
+(APIServer pid=167) INFO 10-05 20:31:43 [utils.py:299]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=167) INFO 10-05 20:31:43 [utils.py:299]
+(APIServer pid=167) INFO 10-05 20:31:43 [utils.py:233] non-default args: {'model_tag': '/models/cosmos-reason2', 'h
+ost': '0.0.0.0', 'model': '/models/cosmos-reason2', 'trust_remote_code': True, 'max_model_len': 768, 'enforce_eager
+': True, 'served_model_name': ['local'], 'gpu_memory_utilization': 0.52, 'limit_mm_per_prompt': {'image': 1, 'video
+': 0}, 'max_num_batched_tokens': 768, 'max_num_seqs': 1, 'enable_chunked_prefill': True}
+(APIServer pid=167) INFO 10-05 20:31:43 [model.py:549] Resolved architecture: Qwen3VLForConditionalGeneration
+(APIServer pid=167) INFO 10-05 20:31:43 [model.py:1678] Using max model len 768
+(APIServer pid=167) INFO 10-05 20:31:43 [scheduler.py:238] Chunked prefill is enabled with max_num_batched_tokens=7
+68.
+(APIServer pid=167) INFO 10-05 20:31:43 [vllm.py:790] Asynchronous scheduling is enabled.
+(APIServer pid=167) WARNING 10-05 20:31:43 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs.
+ This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=167) WARNING 10-05 20:31:43 [vllm.py:859] Inductor compilation was disabled by user settings, optimi
+zations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=167) INFO 10-05 20:31:43 [vllm.py:1025] Cudagraph is disabled under eager mode
+(APIServer pid=167) INFO 10-05 20:31:43 [compilation.py:290] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=167) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: ht
+tps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wi
+ll lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+fix this issue.
+(APIServer pid=167) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: ht
+tps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wi
+ll lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+fix this issue.
+(APIServer pid=167) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: ht
+tps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wi
+ll lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+fix this issue.
+/opt/venv/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is
+deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+(EngineCore pid=193) INFO 10-05 20:32:08 [core.py:105] Initializing a V1 LLM engine (v0.19.0) with config: model='/
+models/cosmos-reason2', speculative_config=None, tokenizer='/models/cosmos-reason2', skip_tokenizer_init=False, tok
+enizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len
+=768, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1,
+decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=compressed-te
+nsors, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_
+outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=
+False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=Observabil
+ityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_m
+etrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mf
+u_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_nam
+e=local, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <
+CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend
+': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': Fal
+se, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_images_per_batch': 0, 'compile_sizes': [], 'compi
+le_ranges_endpoints': [768], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': Fa
+lse, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, '
+inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_
+sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': Fals
+e, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, '
+fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'
+type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cac
+he_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}
+(EngineCore pid=193) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: h
+ttps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This w
+ill lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+ fix this issue.
+(EngineCore pid=193) INFO 10-05 20:32:09 [parallel_state.py:1400] world_size=1 rank=0 local_rank=0 distributed_init
+_method=tcp://192.168.86.145:36267 backend=nccl
+(EngineCore pid=193) INFO 10-05 20:32:09 [parallel_state.py:1716] rank 0 in world size 1 is assigned as DP rank 0,
+PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=193) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: h
+ttps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This w
+ill lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+ fix this issue.
+(EngineCore pid=193) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: h
+ttps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This w
+ill lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+ fix this issue.
+(EngineCore pid=193) INFO 10-05 20:32:16 [gpu_model_runner.py:4735] Starting to load model /models/cosmos-reason2..
+.
+(EngineCore pid=193) INFO 10-05 20:32:17 [cuda.py:390] Using backend AttentionBackendEnum.FLASH_ATTN for vit attent
+ion
+(EngineCore pid=193) INFO 10-05 20:32:17 [mm_encoder_attention.py:230] Using AttentionBackendEnum.FLASH_ATTN for MM
+EncoderAttention.
+(EngineCore pid=193) INFO 10-05 20:32:18 [vllm.py:790] Asynchronous scheduling is enabled.
+(EngineCore pid=193) WARNING 10-05 20:32:18 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs
+. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore pid=193) WARNING 10-05 20:32:18 [vllm.py:859] Inductor compilation was disabled by user settings, optim
+izations settings that are only active during inductor compilation will be ignored.
+(EngineCore pid=193) INFO 10-05 20:32:18 [vllm.py:1025] Cudagraph is disabled under eager mode
+(EngineCore pid=193) INFO 10-05 20:32:18 [compilation.py:290] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=193) INFO 10-05 20:32:19 [cuda.py:334] Using FLASHINFER attention backend out of potential backends
+: ['FLASHINFER', 'TRITON_ATTN'].
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:03<00:00,  3.08s/it]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:03<00:00,  3.08s/it]
+(EngineCore pid=193)
+(EngineCore pid=193) INFO 10-05 20:32:22 [default_loader.py:384] Loading weights took 3.15 seconds
+(EngineCore pid=193) WARNING 10-05 20:32:22 [marlin_utils_fp8.py:97] Your GPU does not have native support for FP8
+computation but FP8 quantization is being used. Weight-only FP8 compression will be used leveraging the Marlin kern
+el. This may degrade performance for compute-heavy workloads.
+(EngineCore pid=193) INFO 10-05 20:32:24 [gpu_model_runner.py:4820] Model loading took 2.91 GiB memory and 6.212806
+ seconds
+(EngineCore pid=193) INFO 10-05 20:32:25 [gpu_model_runner.py:5753] Encoder cache will be initialized with a budget
+ of 768 tokens, and profiled with 1 image items of the maximum feature size.
+(EngineCore pid=193) INFO 10-05 20:32:29 [gpu_worker.py:436] Available KV cache memory: 0.24 GiB
+(EngineCore pid=193) INFO 10-05 20:32:29 [kv_cache_utils.py:1319] GPU KV cache size: 4,512 tokens
+(EngineCore pid=193) INFO 10-05 20:32:29 [kv_cache_utils.py:1324] Maximum concurrency for 768 tokens per request: 5
+.88x
+(EngineCore pid=193) INFO 10-05 20:32:29 [kernel_warmup.py:69] Warming up FlashInfer attention.
+(EngineCore pid=193) INFO 10-05 20:34:28 [core.py:283] init engine (profile, create kv cache, warmup model) took 12
+3.37 seconds
+(EngineCore pid=193) WARNING 10-05 20:34:29 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs
+. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore pid=193) WARNING 10-05 20:34:29 [vllm.py:859] Inductor compilation was disabled by user settings, optim
+izations settings that are only active during inductor compilation will be ignored.
+(EngineCore pid=193) INFO 10-05 20:34:29 [vllm.py:1025] Cudagraph is disabled under eager mode
+(APIServer pid=167) INFO 10-05 20:34:29 [api_server.py:590] Supported tasks: ['generate']
+(APIServer pid=167) WARNING 10-05 20:34:30 [model.py:1435] Default vLLM sampling parameters have been overridden by
+ the model's `generation_config.json`: `{'temperature': 0.7, 'top_k': 20, 'top_p': 0.8}`. If this is not intended,
+please relaunch vLLM instance with `--generation-config vllm`.
+(APIServer pid=167) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: ht
+tps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wi
+ll lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+fix this issue.
+(APIServer pid=167) INFO 10-05 20:34:32 [hf.py:314] Detected the chat template content format to be 'openai'. You c
+an set `--chat-template-content-format` to override this.
+(APIServer pid=167) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: ht
+tps://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This wi
+ll lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to
+fix this issue.
+(APIServer pid=167) INFO 10-05 20:34:39 [base.py:231] Multi-modal warmup completed in 6.352s
+(APIServer pid=167) INFO 10-05 20:34:39 [api_server.py:594] Starting vLLM server on http://0.0.0.0:8000
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:37] Available routes are:
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /docs, Methods: HEAD, GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /docs/oauth2-redirect, Methods: HEAD, GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /redoc, Methods: HEAD, GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /tokenize, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /detokenize, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /load, Methods: GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /version, Methods: GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /health, Methods: GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /metrics, Methods: GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/models, Methods: GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /ping, Methods: GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /ping, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /invocations, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/chat/completions/batch, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/responses, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/completions, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/messages, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /inference/v1/generate, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/chat/completions/render, Methods: POST
+(APIServer pid=167) INFO 10-05 20:34:39 [launcher.py:46] Route: /v1/completions/render, Methods: POST
+(APIServer pid=167) INFO:     Started server process [167]
+(APIServer pid=167) INFO:     Waiting for application startup.
+(APIServer pid=167) INFO:     Application startup complete.
+(APIServer pid=167) INFO:     127.0.0.1:49722 - "GET /v1/models HTTP/1.1" 200 OK
+(APIServer pid=167) INFO:     127.0.0.1:35916 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=167) INFO 10-05 20:44:00 [loggers.py:259] Engine 000: Avg prompt throughput: 8.0 tokens/s, Avg gener
+ation throughput: 3.3 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.8%, Prefix cache hit rate:
+37.5%, MM cache hit rate: 50.0%
+(APIServer pid=167) INFO:     127.0.0.1:39912 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=167) INFO 10-05 20:44:10 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg gener
+ation throughput: 3.1 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate:
+37.5%, MM cache hit rate: 50.0%
+(APIServer pid=167) INFO 10-05 20:44:20 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg gener
+ation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate:
+37.5%, MM cache hit rate: 50.0%
+(APIServer pid=167) INFO:     127.0.0.1:36782 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=167) INFO:     127.0.0.1:36792 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+(APIServer pid=167) INFO 10-05 20:46:40 [loggers.py:259] Engine 000: Avg prompt throughput: 2.6 tokens/s, Avg gener
+ation throughput: 6.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate:
+37.6%, MM cache hit rate: 50.0%
+(APIServer pid=167) INFO 10-05 20:46:50 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg gener
+ation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate:
+37.6%, MM cache hit rate: 50.0%
+

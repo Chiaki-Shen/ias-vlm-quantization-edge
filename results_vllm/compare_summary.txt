@@ -1,0 +1,28 @@
+===== scienceqa (rec_no 0 to 199) =====
+records usable in all four files: 200/200
+idx/question mismatches across files: 0
+pass1 vs pass2 identical raw text: 200/200, identical normalized answer: 200/200
+accuracy on these records:
+  Config 2     86.00%
+  Config 5     85.50%
+  vLLM pass1   85.00%
+  vLLM pass2   85.00%
+paired differences (same records):
+  vLLM pass1 minus Config 2: -1.00 pts  95% CI [-4.00, +2.00]  first better on 4, second better on 6, answers differ on 11
+  vLLM pass1 minus Config 5: -0.50 pts  95% CI [-3.50, +2.50]  first better on 5, second better on 6, answers differ on 12
+  Config 5 minus Config 2: -0.50 pts  95% CI [-1.50, +0.00]  first better on 0, second better on 1, answers differ on 1
+
+===== textvqa (rec_no 0 to 199) =====
+records usable in all four files: 200/200
+idx/question mismatches across files: 0
+pass1 vs pass2 identical raw text: 200/200, identical normalized answer: 200/200
+accuracy on these records:
+  Config 2     78.15%
+  Config 5     78.50%
+  vLLM pass1   74.80%
+  vLLM pass2   74.80%
+paired differences (same records):
+  vLLM pass1 minus Config 2: -3.35 pts  95% CI [-7.50, +0.80]  first better on 10, second better on 23, answers differ on 38
+  vLLM pass1 minus Config 5: -3.70 pts  95% CI [-7.90, +0.35]  first better on 10, second better on 23, answers differ on 37
+  Config 5 minus Config 2: +0.35 pts  95% CI [-0.85, +1.70]  first better on 2, second better on 1, answers differ on 8
+

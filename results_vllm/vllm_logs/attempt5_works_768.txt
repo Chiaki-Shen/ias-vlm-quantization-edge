@@ -1,0 +1,124 @@
+(venv) root@sjsujetson-48:/opt# echo "=== ATTEMPT 5: video disabled, util 0.52, len 768, default attention, checkpoint kv_cache_scheme removed ==="                         
+vllm serve /models/cosmos-reason2 \                      
+  --served-model-name local \                            
+  --host 0.0.0.0 --port 8000 \                           
+  --trust-remote-code \     
+  --enforce-eager \         
+  --max-model-len 768 \     
+  --max-num-batched-tokens 768 \                         
+  --gpu-memory-utilization 0.52 \                        
+  --max-num-seqs 1 \        
+  --enable-chunked-prefill \                             
+  --limit-mm-per-prompt '{"image":1,"video":0}'          
+=== ATTEMPT 5: video disabled, util 0.52, len 768, default attention, checkpoint kv_cache_scheme removed ===       
+/opt/venv/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.                                       
+  warnings.warn(            
+(APIServer pid=770) INFO 10-05 20:59:11 [utils.py:299]   
+(APIServer pid=770) INFO 10-05 20:59:11 [utils.py:299]        █     █     █▄   ▄█                                  
+(APIServer pid=770) INFO 10-05 20:59:11 [utils.py:299]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.19.0                  
+(APIServer pid=770) INFO 10-05 20:59:11 [utils.py:299]   █▄█▀ █     █     █     █  model   /models/cosmos-reason2  
+(APIServer pid=770) INFO 10-05 20:59:11 [utils.py:299]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀                                  
+(APIServer pid=770) INFO 10-05 20:59:11 [utils.py:299]   
+(APIServer pid=770) INFO 10-05 20:59:11 [utils.py:233] non-default args: {'model_tag': '/models/cosmos-reason2', 'host': '0.0.0.0', 'model': '/models/cosmos-reason2', 'trust_remote_code': True, 'max_model_len': 768, 'enforce_eager': True, 'served_model_name': ['local'], 'gpu_memory_utilization': 0.52, 'limit_mm_per_prompt': {'image': 1, 'video': 0}, 'max_num_batched_tokens': 768, 'max_num_seqs': 1, 'enable_chunked_prefill': True}                           
+(APIServer pid=770) INFO 10-05 20:59:12 [model.py:549] Resolved architecture: Qwen3VLForConditionalGeneration      
+(APIServer pid=770) INFO 10-05 20:59:12 [model.py:1678] Using max model len 768                                    
+(APIServer pid=770) INFO 10-05 20:59:12 [scheduler.py:238] Chunked prefill is enabled with max_num_batched_tokens=768.                         
+(APIServer pid=770) INFO 10-05 20:59:12 [vllm.py:790] Asynchronous scheduling is enabled.                          
+(APIServer pid=770) WARNING 10-05 20:59:12 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none                                               
+(APIServer pid=770) WARNING 10-05 20:59:12 [vllm.py:859] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.                                 
+(APIServer pid=770) INFO 10-05 20:59:12 [vllm.py:1025] Cudagraph is disabled under eager mode                      
+(APIServer pid=770) INFO 10-05 20:59:12 [compilation.py:290] Enabled custom fusions: norm_quant, act_quant         
+(APIServer pid=770) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.             
+(APIServer pid=770) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.             
+(APIServer pid=770) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.             
+/opt/venv/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.                                       
+  warnings.warn(            
+(EngineCore pid=796) INFO 10-05 20:59:36 [core.py:105] Initializing a V1 LLM engine (v0.19.0) with config: model='/models/cosmos-reason2', speculative_config=None, tokenizer='/models/cosmos-reason2', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=768, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=compressed-tensors, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=local, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_images_per_batch': 0, 'compile_sizes': [], 'compile_ranges_endpoints': [768], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}                                           
+(EngineCore pid=796) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.            
+(EngineCore pid=796) INFO 10-05 20:59:38 [parallel_state.py:1400] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://192.168.86.145:43181 backend=nccl          
+(EngineCore pid=796) INFO 10-05 20:59:38 [parallel_state.py:1716] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A                                                       
+(EngineCore pid=796) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.            
+(EngineCore pid=796) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.            
+(EngineCore pid=796) INFO 10-05 20:59:45 [gpu_model_runner.py:4735] Starting to load model /models/cosmos-reason2...                           
+(EngineCore pid=796) INFO 10-05 20:59:46 [cuda.py:390] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention                         
+(EngineCore pid=796) INFO 10-05 20:59:46 [mm_encoder_attention.py:230] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.           
+(EngineCore pid=796) INFO 10-05 20:59:46 [vllm.py:790] Asynchronous scheduling is enabled.                         
+(EngineCore pid=796) WARNING 10-05 20:59:46 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none                                              
+(EngineCore pid=796) WARNING 10-05 20:59:46 [vllm.py:859] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.                                
+(EngineCore pid=796) INFO 10-05 20:59:46 [vllm.py:1025] Cudagraph is disabled under eager mode                     
+(EngineCore pid=796) INFO 10-05 20:59:46 [compilation.py:290] Enabled custom fusions: norm_quant, act_quant        
+(EngineCore pid=796) INFO 10-05 20:59:47 [cuda.py:334] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].                                                   
+(EngineCore pid=796) INFO 10-05 20:59:47 [flash_attn.py:596] Using FlashAttention version 2                        
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]                                       
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.85s/it]                               
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.85s/it]                               
+(EngineCore pid=796)        
+(EngineCore pid=796) INFO 10-05 20:59:51 [default_loader.py:384] Loading weights took 2.93 seconds                 
+(EngineCore pid=796) WARNING 10-05 20:59:51 [marlin_utils_fp8.py:97] Your GPU does not have native support for FP8 computation but FP8 quantization is being used. Weight-only FP8 compression will be used leveraging the Marlin kernel. This may degrade performance for compute-heavy workloads.                                                      
+(EngineCore pid=796) INFO 10-05 20:59:53 [gpu_model_runner.py:4820] Model loading took 2.91 GiB memory and 5.955144 seconds                    
+(EngineCore pid=796) INFO 10-05 20:59:53 [gpu_model_runner.py:5753] Encoder cache will be initialized with a budget of 768 tokens, and profiled with 1 image items of the maximum feature size.                                       
+(EngineCore pid=796) INFO 10-05 20:59:57 [gpu_worker.py:436] Available KV cache memory: 0.23 GiB                   
+(EngineCore pid=796) INFO 10-05 20:59:57 [kv_cache_utils.py:1319] GPU KV cache size: 2,192 tokens                  
+(EngineCore pid=796) INFO 10-05 20:59:57 [kv_cache_utils.py:1324] Maximum concurrency for 768 tokens per request: 2.85x                        
+(EngineCore pid=796) INFO 10-05 20:59:58 [core.py:283] init engine (profile, create kv cache, warmup model) took 4.67 seconds                  
+(EngineCore pid=796) WARNING 10-05 20:59:58 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none                                              
+(EngineCore pid=796) WARNING 10-05 20:59:58 [vllm.py:859] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.                                
+(EngineCore pid=796) INFO 10-05 20:59:58 [vllm.py:1025] Cudagraph is disabled under eager mode                     
+(APIServer pid=770) INFO 10-05 20:59:58 [api_server.py:590] Supported tasks: ['generate']                          
+(APIServer pid=770) WARNING 10-05 20:59:58 [model.py:1435] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.7, 'top_k': 20, 'top_p': 0.8}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.                                                     
+(APIServer pid=770) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.             
+(APIServer pid=770) INFO 10-05 21:00:00 [hf.py:314] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to override this.                                                          
+(APIServer pid=770) The tokenizer you are loading from '/models/cosmos-reason2' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.             
+(APIServer pid=770) INFO 10-05 21:00:07 [base.py:231] Multi-modal warmup completed in 7.104s                       
+(APIServer pid=770) INFO 10-05 21:00:07 [api_server.py:594] Starting vLLM server on http://0.0.0.0:8000            
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:37] Available routes are:                                     
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET                  
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /docs, Methods: HEAD, GET                          
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /docs/oauth2-redirect, Methods: HEAD, GET          
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /redoc, Methods: HEAD, GET                         
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /tokenize, Methods: POST                           
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /detokenize, Methods: POST                         
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /load, Methods: GET                                
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /version, Methods: GET                             
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /health, Methods: GET                              
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /metrics, Methods: GET                             
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/models, Methods: GET                           
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /ping, Methods: GET                                
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /ping, Methods: POST                               
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /invocations, Methods: POST                        
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/chat/completions, Methods: POST                
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/chat/completions/batch, Methods: POST          
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/responses, Methods: POST                       
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/responses/{response_id}, Methods: GET          
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/responses/{response_id}/cancel, Methods: POST  
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/completions, Methods: POST                     
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/messages, Methods: POST                        
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/messages/count_tokens, Methods: POST           
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /inference/v1/generate, Methods: POST              
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /scale_elastic_ep, Methods: POST                   
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /is_scaling_elastic_ep, Methods: POST              
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/chat/completions/render, Methods: POST         
+(APIServer pid=770) INFO 10-05 21:00:07 [launcher.py:46] Route: /v1/completions/render, Methods: POST              
+(APIServer pid=770) INFO:     Started server process [770]                                                         
+(APIServer pid=770) INFO:     Waiting for application startup.                                                     
+(APIServer pid=770) INFO:     Application startup complete.                                                        
+echo "=== ATTEMPT 5: video disabled, util 0.52, len 768, default attention, checkpoint kv_cache_scheme removed ==="
+vllm serve /models/cosmos-reason2 \                      
+  --served-model-name local \                            
+  --host 0.0.0.0 --port 8000 \                           
+  --trust-remote-code \     
+  --enforce-eager \         
+  --max-model-len 768 \     
+  --max-num-batched-tokens 768 \                         
+  --gpu-memory-utilization 0.52 \                        
+  --max-num-seqs 1 \        
+  --enable-chunked-prefill \                             
+(APIServer pid=770) INFO:     127.0.0.1:43868 - "POST /v1/chat/completions HTTP/1.1" 200 OK                        
+(APIServer pid=770) INFO:     127.0.0.1:43872 - "POST /v1/chat/completions HTTP/1.1" 200 OK                        
+(APIServer pid=770) INFO 10-05 21:01:18 [loggers.py:259] Engine 000: Avg prompt throughput: 2.6 tokens/s, Avg generation throughput: 1.6 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 38.1%                       
+(APIServer pid=770) INFO 10-05 21:01:28 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 38.1%                       
+(APIServer pid=770) INFO:     127.0.0.1:50656 - "POST /v1/chat/completions HTTP/1.1" 200 OK                        
+(APIServer pid=770) INFO:     127.0.0.1:50664 - "POST /v1/chat/completions HTTP/1.1" 200 OK                        
+(APIServer pid=770) INFO 10-05 21:01:58 [loggers.py:259] Engine 000: Avg prompt throughput: 8.0 tokens/s, Avg generation throughput: 5.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 37.6%, MM cache hit rate: 50.0%                          
+(APIServer pid=770) INFO 10-05 21:02:08 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 37.6%, MM cache hit rate: 50.0%                          
+

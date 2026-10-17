@@ -1,0 +1,22 @@
+
+[scienceqa] 200 records, 200 to run -> results_vllm/vLLM_FP8w16kv_pass2__scienceqa.jsonl
+  25/200 done, 11s elapsed
+  50/200 done, 22s elapsed
+  75/200 done, 34s elapsed
+  100/200 done, 45s elapsed
+  125/200 done, 57s elapsed
+  150/200 done, 69s elapsed
+  175/200 done, 81s elapsed
+  200/200 done, 91s elapsed
+[scienceqa] records=200 errors=0 mean_score=85.00% median_wall=0.38s finish_length=0 think=0
+
+[textvqa] 200 records, 200 to run -> results_vllm/vLLM_FP8w16kv_pass2__textvqa.jsonl
+  25/200 done, 33s elapsed
+  50/200 done, 66s elapsed
+  75/200 done, 101s elapsed
+  100/200 done, 136s elapsed
+  125/200 done, 168s elapsed
+  150/200 done, 204s elapsed
+  175/200 done, 238s elapsed
+  200/200 done, 272s elapsed
+[textvqa] records=200 errors=0 mean_score=74.80% median_wall=1.30s finish_length=0 think=0

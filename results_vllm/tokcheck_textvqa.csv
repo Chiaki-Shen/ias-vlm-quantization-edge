@@ -1,0 +1,101 @@
+pos,idx,vllm_prompt_tokens,llama_prompt_tokens,sec,finish,has_think,answer
+4120,4120,732,732,1.27,stop,False,jesus
+1401,1401,798,798,1.25,stop,False,bonus
+2617,2617,706,706,1.11,stop,False,cycle
+2260,2260,799,799,1.39,stop,False, lips of faith
+3586,3586,830,830,1.37,stop,False,4-way
+4016,4016,704,704,1.25,stop,False,liverpool
+1017,1017,799,799,1.51,stop,False,10:10
+0,0,1056,1056,1.69,stop,False,california
+4106,4106,797,797,1.29,stop,False,nestle
+3041,3041,766,766,1.39,stop,False,dr. laffer
+112,112,1056,1056,1.77,stop,False, crockpot
+4528,4528,806,806,1.69,stop,False,stupid emai of the week
+1971,1971,800,800,1.3,stop,False,believe
+4809,4809,735,735,1.2,stop,False,europa
+2730,2730,702,702,1.22,stop,False,antibiotics
+123,123,705,705,1.18,stop,False,12
+3922,3922,703,703,1.24,stop,False,hamilton beach
+1091,1091,795,795,1.28,stop,False,department store
+3956,3956,702,702,1.15,stop,False,tp sports
+48,48,800,800,1.36,stop,False,3 fl oz
+3951,3951,799,799,1.43,stop,False,0.69
+3252,3252,607,607,1.42,stop,False,3-10-70
+2268,2268,801,801,1.31,stop,False,wednesday
+25,25,1055,1055,1.61,stop,False,yes
+3157,3157,1054,1054,1.8,stop,False,macbook air
+2503,2503,800,800,1.22,stop,False,no
+1314,1314,702,702,1.17,stop,False,bridge dedication
+1640,1640,799,799,1.25,stop,False,3
+2613,2613,799,799,1.21,stop,False,Introduction
+2836,2836,701,701,1.68,stop,False,ensure you always wear your emergency escape set
+3458,3458,701,701,1.17,stop,False,eastar
+4429,4429,604,604,1.05,stop,False,schin
+3469,3469,608,608,1.01,stop,False,12
+2477,2477,960,960,1.59,stop,False,47
+124,124,1058,1058,1.73,stop,False,3m
+155,155,799,799,1.36,stop,False,ultra lemon
+2070,2070,702,702,1.1,stop,False,yes
+4662,4662,702,702,1.24,stop,False,anniversary ale
+4570,4570,708,708,1.11,stop,False,yes
+4869,4869,801,801,1.22,stop,False,yes
+4566,4566,702,702,1.48,stop,False,henry d. norse
+1307,1307,862,862,1.52,stop,False,$.15
+4915,4915,797,797,1.53,stop,False,ray a. kroc
+689,689,705,705,1.2,stop,False, magne
+2895,2895,703,703,1.4,stop,False,san luis water incident
+1533,1533,798,798,1.3,stop,False,siemens
+4866,4866,801,801,1.4,stop,False,behringer
+2735,2735,1057,1057,1.64,stop,False,3
+622,622,896,896,1.46,stop,False,fastpitch
+3090,3090,1022,1022,1.83,stop,False,arizona
+1446,1446,768,768,1.15,stop,False,9
+219,219,800,800,1.3,stop,False,27
+3741,3741,708,708,1.43,stop,False,www.amfibni.no
+152,152,798,798,1.37,stop,False,cheerleading
+1738,1738,732,732,1.38,stop,False,renaud camus
+3423,3423,701,701,1.11,stop,False,4
+51,51,1054,1054,1.71,stop,False,26
+69,69,1056,1056,1.74,stop,False,rockstar
+2017,2017,801,801,1.21,stop,False,postcode
+3024,3024,668,668,1.66,stop,False,nova nanosem 430
+3750,3750,801,801,1.23,stop,False,three
+3346,3346,798,798,1.29,stop,False,kickstarter
+4053,4053,829,829,1.37,stop,False,corona
+3648,3648,607,607,1.05,stop,False, smashed pumpkin
+2621,2621,799,799,1.37,stop,False,u.s.
+3016,3016,863,863,1.56,stop,False,1605
+5,5,1054,1054,2.26,stop,False,2013-2014
+56,56,1054,1054,1.73,stop,False,winter
+700,700,702,702,1.17,stop,False,capital city
+4874,4874,796,796,1.29,stop,False,daily nation
+556,556,800,800,1.29,stop,False,43
+4157,4157,799,799,1.46,stop,False,7987
+4572,4572,706,706,1.2,stop,False,kansas
+4205,4205,799,799,1.3,stop,False,new york
+2202,2202,800,800,1.29,stop,False,yamaha
+1874,1874,735,735,1.14,stop,False,wolf
+1781,1781,799,799,1.4,stop,False, gallery 4
+1889,1889,802,802,1.44,stop,False, harold's
+2136,2136,798,798,1.38,stop,False, mike lee
+132,132,1053,1053,1.74,stop,False,good stuff
+4817,4817,704,704,1.38,stop,False,17:23
+2320,2320,802,802,1.48,stop,False,port adelaide market
+3031,3031,703,703,1.09,stop,False,love
+2438,2438,798,798,1.38,stop,False, proof of pearls
+2981,2981,798,798,1.53,stop,False,sauvignon blanc
+781,781,604,604,1.16,stop,False,1:37
+4589,4589,639,639,1.07,stop,False,macys
+200,200,736,736,1.24,stop,False,adidas
+3,3,1053,1053,2.0,stop,False,11:38 ET
+2989,2989,700,700,1.24,stop,False,longhorns
+1672,1672,796,796,1.24,stop,False,keys
+2509,2509,734,734,1.38,stop,False,17th st
+1838,1838,798,798,1.55,stop,False,07-th-fd
+3507,3507,706,706,1.17,stop,False,44
+2844,2844,705,705,1.19,stop,False,bahia
+3913,3913,771,771,1.28,stop,False,weaver
+4117,4117,797,797,1.45,stop,False,2.99
+514,514,704,704,1.16,stop,False,tonight
+4048,4048,732,732,1.2,stop,False,star club
+269,269,799,799,1.42,stop,False,pelican brief

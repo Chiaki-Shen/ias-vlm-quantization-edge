@@ -1,0 +1,33 @@
+
+[scienceqa] 200 records, 200 to run -> results_vllm/vLLM_FP8w16kv__scienceqa.jsonl
+  25/200 done, 11s elapsed
+  50/200 done, 22s elapsed
+  75/200 done, 34s elapsed
+  100/200 done, 46s elapsed
+  125/200 done, 57s elapsed
+  150/200 done, 70s elapsed
+  175/200 done, 82s elapsed
+  200/200 done, 92s elapsed
+[scienceqa] records=200 errors=0 mean_score=85.00% median_wall=0.39s finish_length=0 think=0
+
+[textvqa] 200 records, 200 to run -> results_vllm/vLLM_FP8w16kv__textvqa.jsonl
+  25/200 done, 33s elapsed
+  50/200 done, 66s elapsed
+  75/200 done, 102s elapsed
+  100/200 done, 137s elapsed
+  125/200 done, 169s elapsed
+  150/200 done, 205s elapsed
+  [!] rec 172 error: timed out
+  [!] rec 174 error: timed out
+  175/200 done, 487s elapsed
+  [!] rec 176 error: timed out
+  [!] rec 177 error: <urlopen error [Errno 111] Connection refused>
+  [!] rec 178 error: <urlopen error [Errno 111] Connection refused>
+  [!] rec 179 error: <urlopen error [Errno 111] Connection refused>
+  [!] rec 180 error: <urlopen error [Errno 111] Connection refused>
+  5 consecutive errors, aborting (server probably died). Re-run to resume.
+
+[textvqa] 200 records, 26 to run -> results_vllm/vLLM_FP8w16kv__textvqa.jsonl
+  175/200 done, 4s elapsed
+  200/200 done, 35s elapsed
+[textvqa] records=200 errors=0 mean_score=74.80% median_wall=1.31s finish_length=0 think=0
