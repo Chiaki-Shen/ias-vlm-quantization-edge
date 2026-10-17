@@ -1,0 +1,43 @@
+{
+  "fingerprint": {
+    "protocol_version": "p2.1",
+    "config_num": 5,
+    "config_short": "Q8v_Q8l",
+    "mmproj": "mmproj-Cosmos-Reason2-2B-Q8_0.gguf",
+    "model": "Cosmos-Reason2-2B-Q8_0.gguf",
+    "mmproj_sha256": "b03075492e73a39309d758bc33e0eb051af0d5976fda4984fa1dd2be3e5b1c07",
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "dataset": "blink_spatial",
+    "format": "mcq",
+    "prompt": "legacy",
+    "parser": "v1",
+    "scorer": "mcq_exact_v1",
+    "max_tokens": 16,
+    "temperature": 0.0,
+    "ctx_size": 2048,
+    "n_gpu_layers": 999,
+    "data_sha256": "6a93253c1a3b34901a86e22244afaefb968a0a1244be1c631e4cc7bf6e297e26",
+    "manifest_sha256": null
+  },
+  "created": "2026-10-04T13:59:12.824735-07:00",
+  "sessions": [
+    {
+      "start": "2026-10-04T13:59:12.824777-07:00",
+      "processed": 143,
+      "elapsed_s": 182.9,
+      "completed": true,
+      "runner": {
+        "protocol_version": "p2.1",
+        "script_sha256": "4bfae0d4684f1cc8",
+        "git_commit": null
+      },
+      "end": "2026-10-04T14:02:15.749494-07:00"
+    }
+  ],
+  "model_checks": {
+    "mmproj_sha256": "b03075492e73a39309d758bc33e0eb051af0d5976fda4984fa1dd2be3e5b1c07",
+    "mmproj_frozen_match": true,
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "model_frozen_match": true
+  }
+}
