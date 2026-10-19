@@ -14,12 +14,12 @@ Selection: derek-thomas/ScienceQA, split "test", image-bearing questions only
 Leakage rule: only the `hint` is exposed (as `context`). `lecture` and
 `solution` are never written to data.jsonl.
 
-Usage (on the Mac):
+Usage (from anywhere; use the Python that has `datasets` installed):
     pip install datasets pillow
-    python3 prep_scienceqa.py                       # writes ./benchmarks/scienceqa
-    python3 prep_scienceqa.py --out-dir ~/cmpe249/benchmarks
-    python3 prep_scienceqa.py --limit 20 --out-dir /tmp/sqa_test   # quick trial
-    python3 prep_scienceqa.py --overwrite           # rebuild an existing folder
+    python scripts/prep_scienceqa.py                    # writes <repo>/benchmarks/scienceqa
+    python scripts/prep_scienceqa.py --out-dir ~/cmpe249-benchmarks
+    python scripts/prep_scienceqa.py --limit 20 --out-dir /tmp/sqa_test   # quick trial
+    python scripts/prep_scienceqa.py --overwrite        # rebuild an existing folder
 """
 
 import argparse
@@ -35,6 +35,7 @@ SOURCE_URL = "https://huggingface.co/datasets/derek-thomas/ScienceQA"
 SPLIT = "test"
 EXPECTED_COUNT = 2017
 JPEG_QUALITY = 95
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def sha256_file(path: Path) -> str:
@@ -83,7 +84,8 @@ def build_record(idx: int, orig_idx: int, row: dict, rel_image: str) -> dict:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out-dir", default="./benchmarks", help="parent folder; scienceqa/ is created inside")
+    ap.add_argument("--out-dir", default=str(PROJECT_ROOT / "benchmarks"),
+                    help="parent folder; scienceqa/ is created inside (default: <repo>/benchmarks)")
     ap.add_argument("--limit", type=int, default=None, help="keep only the first N image records (trial runs)")
     ap.add_argument("--overwrite", action="store_true", help="rebuild if scienceqa/ already has a data.jsonl")
     args = ap.parse_args()

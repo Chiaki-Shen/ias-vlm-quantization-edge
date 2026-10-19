@@ -21,9 +21,10 @@ Design notes
   * ocr_tokens and other reference annotations are NOT written (not model input).
   * Images are re-encoded as RGB JPEG (quality 95). No resizing is applied.
 
-Usage (Mac, conda env cmpe249, use `python`, not `python3`):
+Usage (from anywhere; use the Python that has `datasets` installed):
+    python scripts/prep_textvqa.py                  # writes <repo>/benchmarks/textvqa{,_1500}
     python scripts/prep_textvqa.py --limit 30 --subset-size 10 --out-dir /tmp/tv_trial
-    python scripts/prep_textvqa.py --out-dir /Users/Aeon/cmpe249-benchmarks
+    python scripts/prep_textvqa.py --out-dir ~/cmpe249-benchmarks
     python scripts/prep_textvqa.py --overwrite      # rebuild (invalidates resumable results)
 """
 
@@ -42,6 +43,7 @@ SPLIT = "validation"
 EXPECTED_COUNT = 5000
 SEED = 249
 JPEG_QUALITY = 95
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def sha256_file(path: Path) -> str:
@@ -86,9 +88,9 @@ def write_jsonl(path: Path, records: list):
     tmp.replace(path)
 
 
-def write_manifest(folder: Path, records: list, extra: dict, ds_version: str):
+def write_manifest(folder: Path, records: list, extra: dict, ds_version: str, source: str):
     manifest = {
-        "source": DATASET_ID,
+        "source": source,
         "split": SPLIT,
         "record_count": len(records),
         "answers_per_question": 10,
@@ -119,7 +121,8 @@ def validate_folder(folder: Path, records: list):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out-dir", default="./benchmarks", help="parent folder for textvqa/ and textvqa_1500/")
+    ap.add_argument("--out-dir", default=str(PROJECT_ROOT / "benchmarks"),
+                    help="parent folder for textvqa/ and textvqa_1500/ (default: <repo>/benchmarks)")
     ap.add_argument("--dataset-id", default=DATASET_ID)
     ap.add_argument("--subset-size", type=int, default=1500)
     ap.add_argument("--limit", type=int, default=None, help="trial runs: keep only N records in the full set")
@@ -178,14 +181,14 @@ def main():
         "name": "textvqa",
         "selection": "all validation questions, seeded shuffle",
         "limit": args.limit,
-    }, _ds.__version__)
+    }, _ds.__version__, args.dataset_id)
     m_sub = write_manifest(sub_dir, sub_records, {
         "name": sub_name,
         "selection": f"first {len(sub_records)} records of the seeded shuffle of textvqa (exact prefix)",
         "parent_dataset": "textvqa",
         "parent_data_jsonl_sha256": m_full["data_jsonl_sha256"],
         "limit": args.limit,
-    }, _ds.__version__)
+    }, _ds.__version__, args.dataset_id)
 
     print(f"\nDone.")
     print(f"  {full_dir}  ({len(records)} records)  sha256 {m_full['data_jsonl_sha256']}")

@@ -192,20 +192,20 @@ ias-vlm-quantization-edge/
 └── results_vllm/                # vLLM feasibility: results, server logs, notes
 ```
 
-Benchmark data (`benchmarks/`) is not tracked in git. It is rebuilt locally with the prep scripts below.
+Benchmark data (`benchmarks/`) is not tracked in git. See [Get the benchmark datasets](#1-get-the-benchmark-datasets) for the frozen copy used in every result and for rebuilding it.
 
 ## Hardware & Toolchain
 
 | Item | Detail |
 |------|--------|
 | Device | NVIDIA Jetson Orin Nano 8 GB Developer Kit |
-| JetPack | 6.1+ (CUDA 12.6, TensorRT 10.3) |
+| JetPack | 6.2, L4T R36.4.3 (CUDA 12.6, TensorRT 10.3) |
 | Power mode | 15W (mode 0), locked for all runs |
 | Primary model | Cosmos-Reason2-2B (NVIDIA, Qwen3-VL backbone) |
 | Runtime | llama.cpp build 11056 (compiled from source, aarch64 + CUDA) |
 | Quantization | GGUF per-component: `--model` (language) + `--mmproj` (vision) swapped independently |
 | Server settings | `--ctx-size 2048`, `--n-gpu-layers 999`, temperature 0.0, server restart every 50 records (latency benchmark adds `--parallel 1 --cache-ram 0`) |
-| Benchmarks | BLINK ([`BLINK-Benchmark/BLINK`](https://huggingface.co/datasets/BLINK-Benchmark/BLINK)), CV-Bench ([`nyu-visionx/CV-Bench`](https://huggingface.co/datasets/nyu-visionx/CV-Bench)), ScienceQA test-image questions ([`lupantech/ScienceQA`](https://github.com/lupantech/ScienceQA)), TextVQA validation ([`lmms-lab/textvqa`](https://huggingface.co/datasets/lmms-lab/textvqa)) |
+| Benchmarks | BLINK ([`BLINK-Benchmark/BLINK`](https://huggingface.co/datasets/BLINK-Benchmark/BLINK)), CV-Bench ([`nyu-visionx/CV-Bench`](https://huggingface.co/datasets/nyu-visionx/CV-Bench)), ScienceQA test-image questions ([`derek-thomas/ScienceQA`](https://huggingface.co/datasets/derek-thomas/ScienceQA), the Hugging Face copy of [`lupantech/ScienceQA`](https://github.com/lupantech/ScienceQA)), TextVQA validation ([`lmms-lab/textvqa`](https://huggingface.co/datasets/lmms-lab/textvqa)) |
 | Runner revisions | `7663286e` (BLINK, CV-Bench for Configs 9 to 11), `4bfae0d4` (ScienceQA, TextVQA, Oct 4 re-runs) |
 | Total inference calls | about 71,000 in the accuracy experiments: 20,335 pilot (2,905 x 7) + 8,715 (Configs 9 to 11 on BLINK + CV-Bench) + 42,102 (6 configs x 7,017 ScienceQA + TextVQA); plus 3,600 timed latency-benchmark requests and two 400-request vLLM passes |
 | vLLM (feasibility only) | `ghcr.io/nvidia-ai-iot/vllm:latest-jetson-orin`, NGC checkpoint `cosmos-reason2-2b:1208-fp8-static-kv8` |
@@ -213,20 +213,45 @@ Benchmark data (`benchmarks/`) is not tracked in git. It is rebuilt locally with
 
 ## Reproducing the Experiment
 
-### 1. Prepare benchmark datasets (Mac/Linux)
+### 1. Get the benchmark datasets
+
+`benchmarks/` is not in git. Every published result used one frozen copy of it, kept on the Jetson at `/Developer/ias-vlm-quantization-edge/benchmarks/`:
+
+| Folder | Records | Source | `data.jsonl` SHA-256 |
+|---|---:|---|---|
+| `blink_depth` | 124 | BLINK `Relative_Depth`, val | `54645628bcc3953e46889508287472e08f6bdc01b16fc959d08c0cbb8de945d5` |
+| `blink_spatial` | 143 | BLINK `Spatial_Relation`, val | `6a93253c1a3b34901a86e22244afaefb968a0a1244be1c631e4cc7bf6e297e26` |
+| `cv_bench` | 2,638 | CV-Bench, test | `96d92b62e872400db13c36702f421b7978f35f2df08a55b21172d2e07dcae2f5` |
+| `scienceqa` | 2,017 | ScienceQA test, image questions only | `5a625705b29382c83b4076a1e936fc4b5e036bdd91667eafc48bc229f832e7be` |
+| `textvqa` | 5,000 | TextVQA validation, seeded shuffle | `c984a621405e2883e8576a6cd1313aeb7d2bd21897c0d508dbd9906e601e6324` |
+| `textvqa_1500` | 1,500 | First 1,500 records of `textvqa` | `4f9cfa88e122aa4d1768d657cfcf6cafd6eaa0788781864783d8a86ca20ed887` |
+
+The first five are also recorded as `data_sha256` in the `results*/*.meta.json` files.
+
+**Option A: the frozen copy (use this for anything compared with our results).** Ask Yiang for the archive. It holds `benchmarks/` and a `SHA256SUMS` file covering every file in it. Put the folder at `/Developer/ias-vlm-quantization-edge/benchmarks/` and check it from `/Developer/ias-vlm-quantization-edge`:
+
+```bash
+sha256sum -c --quiet benchmarks/SHA256SUMS && echo "all files OK"
+```
+
+The location matters: the BLINK and CV-Bench `data.jsonl` files store absolute image paths under `/Developer/ias-vlm-quantization-edge/benchmarks/`. If your clone lives somewhere else, still put the data at that path (a symlink is fine). The runners check every image before starting, so a wrong location shows up as missing images in `--dry-run`, not as wrong scores.
+
+**Option B: rebuild from Hugging Face (new experiments only).**
 
 ```bash
 pip install datasets Pillow
-python3 scripts/prep_datasets.py     # BLINK + CV-Bench
-python3 scripts/prep_scienceqa.py    # ScienceQA
-python3 scripts/prep_textvqa.py      # TextVQA validation
+python scripts/prep_datasets.py      # BLINK depth + spatial, CV-Bench
+python scripts/prep_scienceqa.py     # ScienceQA
+python scripts/prep_textvqa.py       # TextVQA, plus the textvqa_1500 subset
 ```
 
-Each dataset folder gets a `manifest.json` with its source, filter, record count and the SHA-256 of `data.jsonl`. Do not rebuild a dataset folder once results exist for it; a rebuild changes the manifest and blocks `--resume`.
+Use the Python that has `datasets` installed (in a conda env that is `python`, which may not be the same as `python3`). Each script writes into `benchmarks/` at the repo root wherever you run it from (`--out-dir` changes that), uses relative image paths so the folder can be copied anywhere, prints the SHA-256 of each `data.jsonl`, and refuses to overwrite an existing folder unless `--overwrite` is given. ScienceQA and TextVQA folders also get a `manifest.json` (source, filter, record count, hashes). `--limit N` on the ScienceQA and TextVQA scripts makes a small trial set.
+
+A rebuild will not hash-match the frozen copy for BLINK and CV-Bench, because the image paths are now relative. `python scripts/prep_datasets.py --legacy-abs-root /Developer/ias-vlm-quantization-edge/benchmarks` writes the original absolute paths and should reproduce the frozen hashes if nothing changed upstream (Hugging Face datasets, Pillow's JPEG encoder); this has not been checked against the real datasets. A rebuilt ScienceQA or TextVQA `manifest.json` always differs (it records the build time), so do not rebuild a folder that already has results: it blocks `--resume`.
 
 ### 2. Transfer to Jetson
 
-Copy the generated `benchmarks/` folder and `scripts/` to `/Developer/ias-vlm-quantization-edge/` on the Jetson.
+Skip this with Option A. Otherwise copy `benchmarks/` and `scripts/` to `/Developer/ias-vlm-quantization-edge/` on the Jetson.
 
 ### 3. Run an experiment (Jetson, inside sjsujetsontool shell)
 
