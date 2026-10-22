@@ -1,0 +1,14 @@
+{
+    "producer": {
+        "name": "modelopt",
+        "version": "0.44.0"
+    },
+    "quantization": {
+        "quant_algo": "W8A8_SQ_PER_CHANNEL",
+        "kv_cache_quant_algo": null,
+        "exclude_modules": [
+            "lm_head",
+            "model.visual*"
+        ]
+    }
+}
