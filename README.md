@@ -200,9 +200,10 @@ Benchmark data (`benchmarks/`) is not tracked in git. See [Get the benchmark dat
 |------|--------|
 | Device | NVIDIA Jetson Orin Nano 8 GB Developer Kit |
 | JetPack | 6.2, L4T R36.4.3 (CUDA 12.6, TensorRT 10.3) |
+| Container | `cmpelkk/jetson-llm:latest` (image `sha256:ccb3bdd0f7ad`), entered via `sjsujetsontool shell`; container CUDA 12.6.85 |
 | Power mode | 15W (mode 0), locked for all runs |
 | Primary model | Cosmos-Reason2-2B (NVIDIA, Qwen3-VL backbone) |
-| Runtime | llama.cpp build 11056 (compiled from source, aarch64 + CUDA) |
+| Runtime | llama.cpp build 11056 (compiled from source inside the container, aarch64 + CUDA 12.6.85 cudart/cuBLAS) |
 | Quantization | GGUF per-component: `--model` (language) + `--mmproj` (vision) swapped independently |
 | Server settings | `--ctx-size 2048`, `--n-gpu-layers 999`, temperature 0.0, server restart every 50 records (latency benchmark adds `--parallel 1 --cache-ram 0`) |
 | Benchmarks | BLINK ([`BLINK-Benchmark/BLINK`](https://huggingface.co/datasets/BLINK-Benchmark/BLINK)), CV-Bench ([`nyu-visionx/CV-Bench`](https://huggingface.co/datasets/nyu-visionx/CV-Bench)), ScienceQA test-image questions ([`derek-thomas/ScienceQA`](https://huggingface.co/datasets/derek-thomas/ScienceQA), the Hugging Face copy of [`lupantech/ScienceQA`](https://github.com/lupantech/ScienceQA)), TextVQA validation ([`lmms-lab/textvqa`](https://huggingface.co/datasets/lmms-lab/textvqa)) |
