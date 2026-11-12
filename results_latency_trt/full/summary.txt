@@ -1,0 +1,35 @@
+=============
+== PyTorch ==
+=============
+NVIDIA Release 24.12 (build 126674151)
+PyTorch Version 2.6.0a0+df5bbc0
+run status: completed  timed valid 1200/1200  slot failures: 0
+== Latency (wall-clock per request, ms; valid, non-retried requests) ==
+cfg dataset   valid bad     med     p25     p75     p95 prompt_ms  gen_ms gen_tok  per-round medians
+ T8 scienceqa   300   0     218     175     365     498       nan     nan       2  [219, 218, 217]
+ T8 textvqa     300   0     951     851    1004    1327       nan     nan       3  [948, 950, 951]
+ T4 scienceqa   300   0     269     207     443     616       nan     nan       2  [269, 270, 270]
+ T4 textvqa     300   0    1102     999    1192    1558       nan     nan       3  [1103, 1101, 1103]
+== Cache check (cache_prompt was sent as false) ==
+  valid timed requests: 1200   cache_n missing: 1200   cache_n > 0: 0
+  !! cache_n is missing from some responses, so 'no cache hits' is NOT proven by that field
+  !! 1200 valid requests lack some timing fields
+  records whose prompt_n differs between rounds (same config): 0 of 0  (expect 0)
+  records whose prompt_n differs across configs: 0 of 0  (expect 0 if image tokens do not depend on the encoder)
+== Memory drift over each SERVER LIFETIME (MemAvailable, first-10 vs last-10 timed requests, MB) ==
+   negative = available memory shrinking while the server stays up
+  config T8: (requests, drift) per server [(200, -6), (200, -16), (200, -26)]
+  config T4: (requests, drift) per server [(200, -8), (200, -15), (200, -25)]
+  lowest SwapFree seen: 3662 MB
+  max temperature seen at request start: 58.1 C
+== tegrastats: max sampled SYSTEM RAM used (MB) on this fixed workload ==
+   whole-system reading, not per-process. 'strict' ignores samples within 1 s of a phase edge
+   (tegrastats stamps whole seconds, so edge samples are ambiguous); 'incl' keeps them.
+   idle (server stopped, cool-down windows): median of window minima = 1868 MB
+cfg phase   max incl max strict max swap   per-interval strict maxima
+ T8 load        5804       5600      142   [5599, 5600, 5556]
+ T8 warmup      5915        n/a      147   []
+ T8 timed       5934       5934      147   [5919, 5924, 5929, 5934, 5862, 5875]
+ T4 load        4900       4437      143   [4437, 4420, 4410]
+ T4 warmup      4910        n/a      143   []
+ T4 timed       4929       4929      143   [4921, 4927, 4918, 4929, 4856, 4872]

@@ -1,0 +1,80 @@
+diff --git a/cpp/common/trtUtils.cpp b/cpp/common/trtUtils.cpp
+index 25d6d48..b809968 100644
+--- a/cpp/common/trtUtils.cpp
++++ b/cpp/common/trtUtils.cpp
+@@ -23,6 +23,10 @@
+ #include <cerrno>
+ #include <cstddef>
+ #include <cstdint>
++#include <cstdlib>
++#include <unordered_map>
++#include <mutex>
++#include <cuda_runtime.h>
+ #include <cstring>
+ #include <fcntl.h>
+ #include <optional>
+@@ -458,9 +462,64 @@ bool engineHasOutputTensor(nvinfer1::ICudaEngine const* engine, char const* tens
+     return false;
+ }
+ 
++// Local patch (CMPE 249, JetPack 6.2): on L4T R36.4.3 the default cudaMallocAsync pool tops out at about
++// 2.5 GB per process (measured), so the 811 MB visual engine cannot be deserialized after the INT8 LLM
++// engine. With EDGELLM_SYNC_GPU_ALLOCATOR=1, engines loaded here use plain cudaMalloc/cudaFree instead.
++namespace
++{
++class SyncGpuAllocator : public nvinfer1::IGpuAsyncAllocator
++{
++public:
++    void* allocateAsync(uint64_t const size, uint64_t const alignment, nvinfer1::AllocatorFlags const /*flags*/,
++        cudaStream_t /*stream*/) noexcept override
++    {
++        uint64_t const align = alignment > 256 ? alignment : 256; // cudaMalloc itself is 256-byte aligned
++        if ((align & (align - 1)) != 0)
++        {
++            return nullptr;
++        }
++        uint64_t const extra = align > 256 ? align : 0;
++        void* base{nullptr};
++        if (cudaMalloc(&base, size + extra) != cudaSuccess)
++        {
++            return nullptr;
++        }
++        auto const aligned = (reinterpret_cast<uintptr_t>(base) + (align - 1)) & ~static_cast<uintptr_t>(align - 1);
++        void* ptr = reinterpret_cast<void*>(aligned);
++        std::lock_guard<std::mutex> lock(mMutex);
++        mBase[ptr] = base;
++        return ptr;
++    }
++    bool deallocateAsync(void* const memory, cudaStream_t /*stream*/) noexcept override
++    {
++        void* base = memory;
++        {
++            std::lock_guard<std::mutex> lock(mMutex);
++            auto it = mBase.find(memory);
++            if (it != mBase.end())
++            {
++                base = it->second;
++                mBase.erase(it);
++            }
++        }
++        return cudaFree(base) == cudaSuccess;
++    }
++
++private:
++    std::mutex mMutex;
++    std::unordered_map<void*, void*> mBase;
++};
++} // namespace
++
+ std::unique_ptr<nvinfer1::ICudaEngine> deserializeCudaEngineFromFile(
+     nvinfer1::IRuntime& runtime, std::filesystem::path const& enginePath)
+ {
++    if (char const* env = std::getenv("EDGELLM_SYNC_GPU_ALLOCATOR"); env != nullptr && std::string(env) == "1")
++    {
++        static SyncGpuAllocator syncAllocator;
++        runtime.setGpuAllocator(&syncAllocator);
++        LOG_INFO("EDGELLM_SYNC_GPU_ALLOCATOR=1: using cudaMalloc allocator for %s", enginePath.string().c_str());
++    }
+     FileStreamReaderV2 streamReader(enginePath);
+     auto engine = std::unique_ptr<nvinfer1::ICudaEngine>(runtime.deserializeCudaEngine(streamReader));
+     if (!engine)

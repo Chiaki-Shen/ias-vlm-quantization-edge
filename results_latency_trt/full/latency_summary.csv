@@ -1,0 +1,5 @@
+config,dataset,valid,invalid,wall_med,wall_p25,wall_p75,wall_p95,prompt_ms_med,gen_ms_med,gen_tokens_med
+T8,scienceqa,300,0,218.445,174.9125,365.45000000000005,498.35650000000004,nan,nan,2.0
+T8,textvqa,300,0,950.685,850.7075,1004.3625,1326.5405,nan,nan,3.0
+T4,scienceqa,300,0,269.23,206.9425,442.875,616.343,nan,nan,2.0
+T4,textvqa,300,0,1101.8400000000001,999.49,1192.0349999999999,1558.355,nan,nan,3.0

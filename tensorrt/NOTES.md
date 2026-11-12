@@ -52,7 +52,10 @@ Aeon's vLLM test matched llama.cpp's image token counts on 100/100 TextVQA recor
 with `maxPixels = maxImageTokensPerImage * 32 * 32`, so the visual engine must be built with
 `--maxImageTokensPerImage 1024`. **The default is 512**, which would silently downscale most TextVQA
 images (about 700 to 1,000 tokens in llama.cpp). `--minImageTokens` stays at its default of 4
-(4,096 pixels; vLLM matched with 3,136). Token counts still have to be verified on the board.
+(4,096 pixels; vLLM matched with 3,136). **Verified (2026-11-11):** applying Edge-LLM's
+`getResizedImageSize` (`cpp/multimodal/qwenViTRunner.cpp`) to the 100 frozen TextVQA latency
+records gives 576 to 1,024 image tokens (median 768), none capped. llama.cpp's `prompt_n` for the
+same records is 27 to 38 tokens higher on every record (text + template), so image tokens match.
 
 ## Prompt and decoding (must match llama.cpp)
 
@@ -135,6 +138,7 @@ W=~/tensorrt-edgellm-workspace
 memory on 8 GB, enable swap on NVMe for the build only (not during timed runs).
 
 **e. Checks before real runs**
+Status 2026-11-12: 1 and 2 done, 3 and 4 open (see Next steps).
 1. Smoke test: `python3 tensorrt/run_trt_experiment.py --config T8 --datasets blink_depth --limit 20`
    then look at `results_trt/smoke/` — answers should be single letters, no errors.
 2. Image tokens: run the 100 TextVQA records from `results_vllm/tokcheck_textvqa.csv` and compare
@@ -152,6 +156,74 @@ python3 tensorrt/run_trt_experiment.py --config T4 --resume
 About 9,900 records per config (BLINK 267 + CV-Bench 2,638 + ScienceQA 2,017 + TextVQA 5,000).
 Needs Aeon's `benchmarks/` folders (not in git) copied to the repo root.
 
+## Results (2026-11-12)
+
+### Accuracy (full datasets, `results_trt/`)
+
+Same protocol (p2.1), prompts, parsers, scorers and `max_tokens` as llama.cpp. MCQ = mean of
+`correct`, TextVQA = mean of `score`. Both TensorRT runs: 0 errors on all 9,922 records.
+
+| Config | BLINK depth (124) | BLINK spatial (143) | CV-Bench (2,638) | ScienceQA (2,017) | TextVQA (5,000) |
+|---|---:|---:|---:|---:|---:|
+| **T8** TRT FP16v + INT8 SQ | 67.7 | 69.9 | 77.2 | 77.8 | 75.5 |
+| Config 2 llama.cpp F16v + Q8_0 | 70.2 | 73.4 | 75.6 (118 errors) | 82.9 | 76.3 |
+| **T4** TRT FP16v + INT4 AWQ | 77.4 | 77.6 | 73.8 | 79.0 | 72.0 |
+| Config 3 llama.cpp F16v + Q4_K_M | 82.3 | 77.6 | 73.2 | not run | not run |
+
+- BLINK is small (124/143 questions), so 3 to 5 point differences there are within noise.
+- Config 2's CV-Bench has 118 failed requests counted as wrong; the TensorRT runs had none.
+- **Open:** both TensorRT configs are 4 to 5 points below Config 2 on ScienceQA (T8 vs Config 2:
+  1,474 both right, 199 only Config 2, 95 only T8). Settings are identical (p2.1, `context` prompt,
+  parser v2, 16 tokens), so the next check is the rendered prompt on each side (checklist 2e.3).
+
+### Latency and memory (`results_latency_trt/full/`)
+
+`tensorrt/bench_latency_trt.py`, the TensorRT twin of `scripts/bench_latency.py`: same 200 frozen
+records, same prompts and `max_tokens` (ScienceQA 16, TextVQA 32), 3 warm-ups per engine start,
+3 rounds with rotated order, same cool-down rule, one request at a time, a fresh engine process per
+slot. Desktop stopped (`systemctl stop display-manager`), 15W, zram only, tegrastats at 200 ms on
+the host. Same log schema, so `scripts/bench_latency.py summarize` produced `summary.txt` unchanged.
+Status: 1,200/1,200 valid, 0 worker deaths. Idle RAM 1,868 MB (Aeon: 1,636 MB).
+
+| Config | ScienceQA median ms | TextVQA median ms | TextVQA p95 ms | Peak RAM MB (timed) |
+|---|---:|---:|---:|---:|
+| **T8** TRT INT8 | 218 | 951 | 1,327 | 5,934 |
+| **T4** TRT INT4 | 269 | 1,102 | 1,558 | 4,929 |
+| Config 2 llama.cpp Q8_0 (`results_latency/overnight`) | 637 | 2,637 | 3,761 | 4,928 |
+
+- T8 is about 2.8x faster than Config 2 on both datasets and uses about 1 GB more RAM.
+- T4 is slower than T8: answers are 2 to 3 tokens, so time is mostly vision encode + prefill,
+  where W4A16 dequantization costs more than it saves.
+- Per-round medians agree within 3 ms; memory drift per engine lifetime is -6 to -26 MB.
+- `wall_ms` here is one in-process `LLM.generate()` call (image load + preprocess + encode + prefill +
+  decode); llama.cpp's is an HTTP round trip to llama-server. Edge-LLM's Python API gives no
+  prompt/decode split, so `prompt_ms`, `prompt_n`, `cache_n` are null (no prompt cache across calls).
+
+## Next steps
+
+1. **ScienceQA gap:** compare the exact prompt string Edge-LLM tokenizes with llama-server's
+   `/apply-template` output for the same records (2e.3).
+2. **Board sanity check (2e.4):** run llama.cpp Config 2 on this board (needs the GGUFs from Aeon);
+   accuracy should match Aeon's exactly and latency should be within noise.
+3. **Pair T4 properly:** Config 3 latency run and ScienceQA/TextVQA accuracy (Aeon).
+4. Optional bonus: T16 (FP16 language) engine, if it fits in memory.
+5. Paper caveats: TensorRT 10.7.0.23 from the course container (same image as llama.cpp's
+   `jetson-dev`), the three Edge-LLM patches in `jetson/`, and matching by bit width, not method
+   (SmoothQuant/AWQ vs Q8_0/Q4_K_M).
+
+## Needed from Aeon
+
+- [ ] `Cosmos-Reason2-2B-Q8_0.gguf` and `mmproj-Cosmos-Reason2-2B-F16.gguf` (or where the Q8_0
+      came from), for the sanity check on Max's board. Hashes are in his Phase 0 manifest.
+- [ ] Config 3 (F16v + Q4_K_M) latency run with `bench_latency.py`, plus ScienceQA and TextVQA
+      accuracy, to pair with T4.
+- [ ] His caveats list says two Edge-LLM patches; there are three (the third works around the
+      ~2.5 GB `cudaMallocAsync` cap so T8's visual engine can load).
+- [ ] His latency spec says `max_tokens` 16; `run_experiment.py` uses 32 for TextVQA. The TensorRT
+      bench follows the script. Please confirm and fix the spec.
+- [x] `benchmarks/` folders (received 2026-11-11, `SHA256SUMS` and README hashes OK).
+- [x] Desktop state: on for accuracy runs, stopped for latency (spec received 2026-11-11).
+
 ## Log
 
 | Date | Step | Result |
@@ -162,3 +234,20 @@ Needs Aeon's `benchmarks/` folders (not in git) copied to the repo root.
 | 2026-10-18 | `int8_sq` quantize | OK, 12 min, peak RAM 10.7 GB. W8A8_SQ_PER_CHANNEL; `lm_head` and `model.visual*` excluded. All language layers calibrated (the 105 "not calibrated" warnings are all visual or lm_head) |
 | 2026-10-18 | `int4_awq` quantize | OK, 34 min, peak RAM 10.7 GB. W4A16_AWQ, group size 128; same exclusions. ModelOpt's CUDA extension could not be compiled (no CUDA toolkit / ninja on PATH on the host) and it fell back to its CPU path: slower, same algorithm |
 | 2026-10-18 | ONNX export, both configs | OK, about 2 min each. LLM graph: 196 quantized linear layers (28 layers x 7 projections) + FP16 lm_head; INT8 as QuantizeLinear/DequantizeLinear around MatMul, INT4 as `Int4GroupwiseGemmPlugin`. Visual ONNX is FP16 and byte-identical across the two configs (779 MB, vs 782 MB F16 mmproj on the llama.cpp side). File hashes in `manifests/` |
+| 2026-11-10 | 2a: board vs agreement | sjsujetson-45, Orin Nano 8GB Super devkit. L4T R36.4.3, CUDA 12.6.68, cuDNN 9.3.0.75, TensorRT 10.3.0.30 on the host: all match Aeon. Power set to 15W (mode 0, was MAXN_SUPER); jetson_clocks not forced (GPU idles at 306 MHz, max 612 MHz). Root and models on NVMe. Fan dynamic, profile `quiet`. `tensorrt-dev` 10.3.0.30 added for headers (9 new packages, nothing upgraded) |
+| 2026-11-10 | 2c: ONNX copied to board | Both configs, all 22 files match `manifests/*.sha256` |
+| 2026-11-10 | 2b: build v0.9.1 on host | **Failed**: v0.9.1 uses `nvinfer1::IStreamReaderV2`, which TensorRT 10.3 (JetPack 6.2) does not have, despite the docs listing JetPack 6.2 |
+| 2026-11-10 | 2b: build in course container | Built inside `cmpelkk/jetson-llm:latest` (image `ccb3bdd0f7ad`): TensorRT 10.7.0.23, CUDA 12.6.85, cuDNN 9.6.0.74. **TensorRT column for the paper = 10.7.0.23**. Deviations, all in `jetson/build_edgellm.sh`: CuTe DSL groups `ffpa;gdn;gemm;int4_fp16_gemm;ssd` (no `f16_moe`: needs `cudaLibrary_t` from CUDA >= 12.8; MoE only); patch `jetson/edgellm-v0.9.1-jp62-fp4-plugin-guard.patch` (NVFP4 multi-GPU plugin needs TensorRT >= 10.8, unused on Orin); CUDA 12.0-12.6 cudart shim + `--wrap=_cudaLaunchKernelEx` passed to executables via `CMAKE_CXX_STANDARD_LIBRARIES` / `CMAKE_EXE_LINKER_FLAGS` (upstream only attaches them to shared libs) |
+| 2026-11-10 | 2b: Python bindings | `setup_pybind.py` hard-codes `EMBEDDED_TARGET=jetson-thor`, so `_edgellm_runtime` is built from the main tree instead (`jetson/build_pybind.sh`) -> `build/pybind/`, cpython-312 (container Python). The runner must run inside the container |
+| 2026-11-11 | 2d: llm_build segfault | Crash in libcuda inside `FMHAKernelLoader`. Cause: 2 of 11 sm87 FMHA cubins (`*_custom_mask_sm87`, new in v0.9.1, removed upstream in v0.10.0) are not valid images on L4T R36.4.3 (`cuModuleLoadData` -> 200; `cuobjdump` cannot parse them). The other 9 load fine (built with CUDA 12.8, toolkit=128). Patch `jetson/edgellm-v0.9.1-jp62-drop-sm87-custom-mask-fmha.patch` comments out the 2 table entries (custom-mask attention = tree/spec decoding, unused) |
+| 2026-11-11 | 2d: engines | Needed a 16 GB NVMe swap file (`/swapfile_build`, prio 1, build only, not in fstab). INT8: LLM 2.6 GB in 5:23 (peak RSS 5.4 GB, 6.7 GB swap used), visual 789 MB in 1:25. INT4: LLM 1.9 GB in 1:52, visual 789 MB in 1:24 (3.2 GB swap). Both with `--maxBatchSize 1 --maxInputLen 2048 --maxKVCacheCapacity 2048`, visual `--minImageTokens 4 --maxImageTokens 1024 --maxImageTokensPerImage 1024` |
+| 2026-11-11 | 2e: functional check (no datasets) | Needs `EDGELLM_PLUGIN_PATH=$HOME/TensorRT-Edge-LLM/build/libNvInfer_edgellm_plugin.so` (the auto-search only looks in `build/core`, `build/lib`). **INT4 works**: loads in 9.8 s, about 1.5 s per short answer; correct on solid red/blue/black-square images and a seal photo; text-only OK (`jetson/engine_vary.py`). INT8 first failed to load: the visual engine (811 MB) gave OOM after the INT8 LLM engine (see next rows) |
+| 2026-11-11 | 2e: INT8 OOM, cause | Not free memory: still fails with the desktop stopped (`systemctl isolate multi-user.target`, idle 560 MB) and 2.65 GB free. Measured on this driver (540.4.0, CUDA 12.6): `cudaMallocAsync` tops out at about 2.5 GB per process in total (largest single block 2,554 MB) while `cudaMalloc` is not capped. TensorRT's default allocator uses the async pool |
+| 2026-11-11 | 2e: allocator patch | `jetson/edgellm-v0.9.1-jp62-sync-gpu-allocator.patch`: with `EDGELLM_SYNC_GPU_ALLOCATOR=1`, `deserializeCudaEngineFromFile` sets a `cudaMalloc`/`cudaFree` `IGpuAsyncAllocator` via `IRuntime::setGpuAllocator` (opt-in; compute unchanged). **Use it for both configs.** With it: INT8 and INT4 both load and pass `jetson/engine_vary.py` (red/blue/black-square/seal photo, text-only). INT4 output is identical with and without the patch. Peak system RAM during load + 5 requests: INT8 5,587 MB, INT4 4,582 MB (desktop off, NVMe swap file still on) |
+| 2026-11-11 | How to run | `bash tensorrt/jetson/run_in_container.sh python3 tensorrt/run_trt_experiment.py --config T8 ...` sets `EDGE_LLM_PATH`, `EDGELLM_PLUGIN_PATH` and `EDGELLM_SYNC_GPU_ALLOCATOR=1` inside `jetson-llm:v1`. Before timed runs: remove `/swapfile_build`, and decide with Aeon whether the desktop is on or off (it changes idle RAM by about 1.5 GB) |
+| 2026-11-11 | Aeon's environment manifest | His llama.cpp also ran in `cmpelkk/jetson-llm:latest` (`ccb3bdd0f7ad`, container CUDA 12.6.85), so both runtimes use the same container stack. Fan `quiet`, zram 6 x 635 MB only, 15W: Max's board matches after the reboot (build swap file gone) |
+| 2026-11-11 | Datasets | Aeon's frozen `benchmarks/` unzipped to `/Developer/ias-vlm-quantization-edge/benchmarks` (symlink to the clone, since BLINK / CV-Bench store absolute image paths). `SHA256SUMS` OK, all 5 `data.jsonl` match the README. `--dry-run` OK for T8 and T4 |
+| 2026-11-11 | 2e.1 smoke test | T8, blink_depth, 20 records: 15/20 (Config 2: 14/20 on the same 20), same answer on 17/20, 0 errors, median 235 ms. Desktop on: peak 6.8 GB, 608 MB available at the low point |
+| 2026-11-11 | 2e.2 image tokens | Match llama.cpp (see "Image resolution") |
+| 2026-11-11 | Latency bench | `jetson/bench_latency_trt.sh full`, headless, 21:47 to 22:11. 1,200/1,200 valid. Results above |
+| 2026-11-11/12 | 2f full runs | Desktop stopped (accuracy is unaffected; more memory headroom for T8). `jetson/run_accuracy_after_bench.sh` ran T8 22:12 to 00:10, T4 00:10 to 02:28. 0 errors. Results above |

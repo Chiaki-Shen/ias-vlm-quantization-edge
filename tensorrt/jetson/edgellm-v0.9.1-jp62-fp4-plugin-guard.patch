@@ -1,0 +1,22 @@
+diff --git a/cpp/plugins/fusedNvfp4GemmAllReducePlugin/fusedNvfp4GemmAllReducePlugin.cpp b/cpp/plugins/fusedNvfp4GemmAllReducePlugin/fusedNvfp4GemmAllReducePlugin.cpp
+index 6e9866e..99a82d4 100644
+--- a/cpp/plugins/fusedNvfp4GemmAllReducePlugin/fusedNvfp4GemmAllReducePlugin.cpp
++++ b/cpp/plugins/fusedNvfp4GemmAllReducePlugin/fusedNvfp4GemmAllReducePlugin.cpp
+@@ -40,6 +40,11 @@
+ 
+ using namespace nvinfer1;
+ 
++// Local patch (CMPE 249, JetPack 6.2): DataType::kFP4 needs TensorRT >= 10.8. This NVFP4 multi-GPU
++// plugin cannot run on Orin (SM87), so skip it on older TensorRT, like the guards in common/tensor.cpp.
++#include <NvInferVersion.h>
++#if NV_TENSORRT_MAJOR > 10 || (NV_TENSORRT_MAJOR == 10 && NV_TENSORRT_MINOR >= 8)
++
+ namespace trt_edgellm
+ {
+ namespace plugins
+@@ -586,3 +591,5 @@ IPluginV3* FusedNvfp4GemmAllReducePluginCreator::createPlugin(
+ 
+ } // namespace plugins
+ } // namespace trt_edgellm
++
++#endif // NV_TENSORRT_MAJOR > 10 || (NV_TENSORRT_MAJOR == 10 && NV_TENSORRT_MINOR >= 8)

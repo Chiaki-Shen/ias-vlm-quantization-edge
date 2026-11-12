@@ -1,0 +1,48 @@
+{
+ "started": "2026-11-12T05:47:07.326+00:00",
+ "args": {
+  "cmd": "run",
+  "records": "/home/sjsujetson/ias-vlm-quantization-edge/results_latency/records_frozen.json",
+  "out": "results_latency_trt/full",
+  "workspace": "/home/sjsujetson/tensorrt-edgellm-workspace",
+  "data_dir": "/home/sjsujetson/ias-vlm-quantization-edge/benchmarks",
+  "limit_per_dataset": null,
+  "configs": "T8,T4",
+  "rounds": 3,
+  "cooldown_temp": 50.0,
+  "cooldown_max": 300.0,
+  "min_cooldown": 60.0,
+  "max_restarts": 5,
+  "min_avail_mb": 0,
+  "dry_run": false
+ },
+ "runtime": "tensorrt-edgellm",
+ "edge_llm_version": "v0.9.1",
+ "edge_llm_rev": "7f061f21f0a581ba234a1e233c9315b89d8e47d6",
+ "runner_revision": {
+  "protocol_version": "p2.1",
+  "script_sha256": "4bfae0d4684f1cc8",
+  "git_commit": "41fe462"
+ },
+ "bench_script_sha256": "0bb5921014323ed1",
+ "reference_bench_script_sha256": "661e8d3de2f780ef",
+ "frozen_records_sha256": "34ddc3743c0d1a4f584ea97f3faae5d73536baada914263ea33b2499b7f86272",
+ "n_timed": {
+  "scienceqa": 100,
+  "textvqa": 100
+ },
+ "sync_gpu_allocator": "1",
+ "engines": {
+  "T8": "/home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines",
+  "T4": "/home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int4awq/engines"
+ },
+ "finished": "2026-11-12T06:11:16.256+00:00",
+ "status": "completed",
+ "completion": {
+  "timed_expected": 1200,
+  "timed_valid": 1200,
+  "timed_invalid": 0,
+  "server_deaths": 0
+ },
+ "slot_failures": []
+}
