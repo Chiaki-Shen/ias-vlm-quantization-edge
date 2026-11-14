@@ -138,7 +138,9 @@ W=~/tensorrt-edgellm-workspace
 memory on 8 GB, enable swap on NVMe for the build only (not during timed runs).
 
 **e. Checks before real runs**
-Status 2026-11-12: 1 and 2 done, 3 and 4 open (see Next steps).
+Status 2026-11-13: 1, 2 and 3 done (3 by comparing Edge-LLM's `processed_chat_template.json` with
+the model's chat template: no default system prompt on either side, same image placeholder and
+generation prompt; the T16 result below confirms it). 4 is open (needs the GGUFs from Aeon).
 1. Smoke test: `python3 tensorrt/run_trt_experiment.py --config T8 --datasets blink_depth --limit 20`
    then look at `results_trt/smoke/` — answers should be single letters, no errors.
 2. Image tokens: run the 100 TextVQA records from `results_vllm/tokcheck_textvqa.csv` and compare
@@ -156,15 +158,16 @@ python3 tensorrt/run_trt_experiment.py --config T4 --resume
 About 9,900 records per config (BLINK 267 + CV-Bench 2,638 + ScienceQA 2,017 + TextVQA 5,000).
 Needs Aeon's `benchmarks/` folders (not in git) copied to the repo root.
 
-## Results (2026-11-12)
+## Results (2026-11-12/13)
 
 ### Accuracy (full datasets, `results_trt/`)
 
 Same protocol (p2.1), prompts, parsers, scorers and `max_tokens` as llama.cpp. MCQ = mean of
-`correct`, TextVQA = mean of `score`. Both TensorRT runs: 0 errors on all 9,922 records.
+`correct`, TextVQA = mean of `score`. All three TensorRT runs: 0 errors on all 9,922 records.
 
 | Config | BLINK depth (124) | BLINK spatial (143) | CV-Bench (2,638) | ScienceQA (2,017) | TextVQA (5,000) |
 |---|---:|---:|---:|---:|---:|
+| **T16** TRT FP16v + FP16 (bonus) | 81.5 | 74.1 | 80.4 | 84.0 | 76.3 |
 | **T8** TRT FP16v + INT8 SQ | 67.7 | 69.9 | 77.2 | 77.8 | 75.5 |
 | Config 2 llama.cpp F16v + Q8_0 | 70.2 | 73.4 | 75.6 (118 errors) | 82.9 | 76.3 |
 | **T4** TRT FP16v + INT4 AWQ | 77.4 | 77.6 | 73.8 | 79.0 | 72.0 |
@@ -172,11 +175,34 @@ Same protocol (p2.1), prompts, parsers, scorers and `max_tokens` as llama.cpp. M
 
 - BLINK is small (124/143 questions), so 3 to 5 point differences there are within noise.
 - Config 2's CV-Bench has 118 failed requests counted as wrong; the TensorRT runs had none.
-- **Open:** both TensorRT configs are 4 to 5 points below Config 2 on ScienceQA (T8 vs Config 2:
-  1,474 both right, 199 only Config 2, 95 only T8). Settings are identical (p2.1, `context` prompt,
-  parser v2, 16 tokens), so the next check is the rendered prompt on each side (checklist 2e.3).
+- **ScienceQA gap: resolved, it is INT8 SmoothQuant, not the runtime.** T8 was 5 points below
+  Config 2 (T8 vs Config 2: 1,474 both right, 199 only Config 2, 95 only T8). The prompt template
+  and image tokens are identical on both sides (checklist 2e.2, 2e.3). The unquantized TensorRT
+  engine (T16) scores 84.0, slightly above Config 2, and gives the same answer as Config 2 on 1,803
+  of 2,017 questions vs 1,673 for T8. So the runtime itself agrees with llama.cpp; the loss comes
+  from quantizing activations to INT8 (W8A8), which Q8_0 (weights only, A16) does not do.
+- T16 runs in 8 GB: peak 6.7 GB system RAM during the accuracy runs, at most 449 MB swap (zram).
 
-### Latency and memory (`results_latency_trt/full/`)
+### Latency and memory, all three TensorRT configs (`results_latency_trt/trio/`)
+
+Same protocol as below, run 2026-11-12 11:59 to about 12:45 with T16, T8 and T4 in the same
+session (order rotated each round). Desktop stopped, 15W, zram only (build swap file removed).
+Status: 1,800/1,800 valid, 0 worker deaths, max 58.9 C at request start. Idle RAM 1,641 MB.
+
+| Config | ScienceQA median ms | ScienceQA p95 | TextVQA median ms | TextVQA p95 | Peak RAM MB (timed) |
+|---|---:|---:|---:|---:|---:|
+| **T16** TRT FP16 | 278 | 585 | 1,102 | 1,504 | 6,755 |
+| **T8** TRT INT8 SQ | 218 | 497 | 947 | 1,325 | 5,703 |
+| **T4** TRT INT4 AWQ | 270 | 620 | 1,100 | 1,558 | 4,775 |
+| Config 2 llama.cpp Q8_0 (`results_latency/overnight`) | 637 | n/a | 2,637 | 3,761 | 4,928 |
+
+- T8 and T4 repeat the first bench (`full/`) within 4 ms, so the two sessions agree.
+- T16 is about as fast as T4: these answers are 2 to 3 tokens, so time is mostly vision encode and
+  prefill, where INT4 weight-only (W4A16) gains little and INT8 W8A8 (real INT8 tensor-core math)
+  gains the most. T16 costs 1 GB more RAM than T8 and 2 GB more than T4.
+- llama.cpp's F16 language config does not fit on this board (Aeon), while T16 does.
+
+### Latency and memory, first bench (`results_latency_trt/full/`)
 
 `tensorrt/bench_latency_trt.py`, the TensorRT twin of `scripts/bench_latency.py`: same 200 frozen
 records, same prompts and `max_tokens` (ScienceQA 16, TextVQA 32), 3 warm-ups per engine start,
@@ -201,15 +227,19 @@ Status: 1,200/1,200 valid, 0 worker deaths. Idle RAM 1,868 MB (Aeon: 1,636 MB).
 
 ## Next steps
 
-1. **ScienceQA gap:** compare the exact prompt string Edge-LLM tokenizes with llama-server's
-   `/apply-template` output for the same records (2e.3).
-2. **Board sanity check (2e.4):** run llama.cpp Config 2 on this board (needs the GGUFs from Aeon);
+All TensorRT runs that do not depend on Aeon are done (T8, T4, T16: accuracy and latency).
+
+1. **Board sanity check (2e.4):** run llama.cpp Config 2 on this board (needs the GGUFs from Aeon);
    accuracy should match Aeon's exactly and latency should be within noise.
-3. **Pair T4 properly:** Config 3 latency run and ScienceQA/TextVQA accuracy (Aeon).
-4. Optional bonus: T16 (FP16 language) engine, if it fits in memory.
-5. Paper caveats: TensorRT 10.7.0.23 from the course container (same image as llama.cpp's
+2. **Pair T4 properly:** Config 3 latency run and ScienceQA/TextVQA accuracy (Aeon).
+3. Paper: write up the ScienceQA finding (W8A8 SmoothQuant vs weight-only Q8_0) and T16 fitting
+   where llama.cpp F16 does not.
+4. Paper caveats: TensorRT 10.7.0.23 from the course container (same image as llama.cpp's
    `jetson-dev`), the three Edge-LLM patches in `jetson/`, and matching by bit width, not method
-   (SmoothQuant/AWQ vs Q8_0/Q4_K_M).
+   (SmoothQuant/AWQ vs Q8_0/Q4_K_M). Edge-LLM gives no prefill/decode split, so TensorRT latency is
+   end-to-end only.
+5. Optional, if INT8 accuracy matters more: an INT8 weight-only (W8A16) TensorRT config would be
+   the closer match to Q8_0.
 
 ## Needed from Aeon
 
@@ -251,3 +281,6 @@ Status: 1,200/1,200 valid, 0 worker deaths. Idle RAM 1,868 MB (Aeon: 1,636 MB).
 | 2026-11-11 | 2e.2 image tokens | Match llama.cpp (see "Image resolution") |
 | 2026-11-11 | Latency bench | `jetson/bench_latency_trt.sh full`, headless, 21:47 to 22:11. 1,200/1,200 valid. Results above |
 | 2026-11-11/12 | 2f full runs | Desktop stopped (accuracy is unaffected; more memory headroom for T8). `jetson/run_accuracy_after_bench.sh` ran T8 22:12 to 00:10, T4 00:10 to 02:28. 0 errors. Results above |
+| 2026-11-12 | T16 export + build | FP16 language ONNX exported on the x86 host (`tensorrt-edgellm-export models/Cosmos-Reason2-2B cr2b-fp16/onnx --skip-visual`, 2:14, peak RSS 9.4 GB), 7 files SHA-256 checked on the board. LLM engine 3.46 GB in 5:14 (`jetson/build_fp16_llm.sh`, same build flags; needed the NVMe swap file again, 8.9 GB swap used). Visual engine copied from `cr2b-int8sq` (same FP16 visual ONNX) |
+| 2026-11-12 | T16 accuracy | `jetson/run_t16.sh`, desktop stopped, swap file still on (accuracy only), 09:14 to 11:33. 0 errors. ScienceQA ran first and closed the ScienceQA question (see Results) |
+| 2026-11-12 | Latency bench, T16+T8+T4 | Swap file removed first. `jetson/bench_latency_trt.sh trio --configs T16,T8,T4`, headless, 11:59 to about 12:45. 1,800/1,800 valid. Results above |
