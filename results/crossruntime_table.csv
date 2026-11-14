@@ -1,0 +1,24 @@
+config,runtime,vision,language,dataset,accuracy_pct,n_matched,n_excluded
+C2,llama.cpp,F16,Q8_0,blink_depth,70.1613,124,0
+C2,llama.cpp,F16,Q8_0,blink_spatial,73.4266,143,0
+C2,llama.cpp,F16,Q8_0,cv_bench,79.0873,2520,118
+C2,llama.cpp,F16,Q8_0,scienceqa,82.9450,2017,0
+C2,llama.cpp,F16,Q8_0,textvqa,76.4144,4995,5
+T8,TensorRT Edge-LLM,FP16,INT8 SmoothQuant (W8A8),blink_depth,67.7419,124,0
+T8,TensorRT Edge-LLM,FP16,INT8 SmoothQuant (W8A8),blink_spatial,69.9301,143,0
+T8,TensorRT Edge-LLM,FP16,INT8 SmoothQuant (W8A8),cv_bench,77.8968,2520,118
+T8,TensorRT Edge-LLM,FP16,INT8 SmoothQuant (W8A8),scienceqa,77.7888,2017,0
+T8,TensorRT Edge-LLM,FP16,INT8 SmoothQuant (W8A8),textvqa,75.5195,4995,5
+C3,llama.cpp,F16,Q4_K_M,blink_depth,82.2581,124,0
+C3,llama.cpp,F16,Q4_K_M,blink_spatial,77.6224,143,0
+C3,llama.cpp,F16,Q4_K_M,cv_bench,76.6667,2520,118
+T4,TensorRT Edge-LLM,FP16,INT4 AWQ (W4A16),blink_depth,77.4194,124,0
+T4,TensorRT Edge-LLM,FP16,INT4 AWQ (W4A16),blink_spatial,77.6224,143,0
+T4,TensorRT Edge-LLM,FP16,INT4 AWQ (W4A16),cv_bench,75.0794,2520,118
+T4,TensorRT Edge-LLM,FP16,INT4 AWQ (W4A16),scienceqa,79.0283,2017,0
+T4,TensorRT Edge-LLM,FP16,INT4 AWQ (W4A16),textvqa,71.9540,4995,5
+T16,TensorRT Edge-LLM,FP16,FP16,blink_depth,81.4516,124,0
+T16,TensorRT Edge-LLM,FP16,FP16,blink_spatial,74.1259,143,0
+T16,TensorRT Edge-LLM,FP16,FP16,cv_bench,81.1508,2520,118
+T16,TensorRT Edge-LLM,FP16,FP16,scienceqa,83.9861,2017,0
+T16,TensorRT Edge-LLM,FP16,FP16,textvqa,76.2382,4995,5

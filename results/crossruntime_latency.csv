@@ -1,0 +1,9 @@
+config,dataset,valid,wall_med_ms,wall_p95_ms,peak_ram_mb_timed,source_dir
+C2,scienceqa,300,636.705,1480.641,4928,/Users/Aeon/ias-vlm-quantization-edge/results_latency/overnight
+C2,textvqa,300,2636.695,3760.584,4928,/Users/Aeon/ias-vlm-quantization-edge/results_latency/overnight
+T8,scienceqa,300,217.540,496.708,5703,/Users/Aeon/ias-vlm-quantization-edge/results_latency_trt/trio
+T8,textvqa,300,946.995,1324.548,5703,/Users/Aeon/ias-vlm-quantization-edge/results_latency_trt/trio
+T4,scienceqa,300,269.825,619.923,4775,/Users/Aeon/ias-vlm-quantization-edge/results_latency_trt/trio
+T4,textvqa,300,1100.070,1558.032,4775,/Users/Aeon/ias-vlm-quantization-edge/results_latency_trt/trio
+T16,scienceqa,300,278.270,584.542,6755,/Users/Aeon/ias-vlm-quantization-edge/results_latency_trt/trio
+T16,textvqa,300,1102.240,1503.657,6755,/Users/Aeon/ias-vlm-quantization-edge/results_latency_trt/trio
