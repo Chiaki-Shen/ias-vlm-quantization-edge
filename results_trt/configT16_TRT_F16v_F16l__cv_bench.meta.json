@@ -1,0 +1,31 @@
+{
+  "runtime": "tensorrt-edgellm",
+  "edge_llm_version": "v0.9.1",
+  "edge_llm_rev": "7f061f21f0a581ba234a1e233c9315b89d8e47d6",
+  "runner_rev": "5d5b5d754fad762939249c32b79345e44a59f0ff",
+  "config": {
+    "num": "T16",
+    "short": "TRT_F16v_F16l",
+    "engine_dir": "cr2b-fp16",
+    "label": "FP16 vision + FP16 language (bonus, if it fits)"
+  },
+  "engine_root": "/home/sjsujetson/tensorrt-edgellm-workspace/cr2b-fp16/engines",
+  "dataset": "cv_bench",
+  "data_sha256": "96d92b62e872400db13c36702f421b7978f35f2df08a55b21172d2e07dcae2f5",
+  "n_records": 2638,
+  "protocol_version": "p2.1",
+  "spec": {
+    "format": "mcq",
+    "prompt": "legacy",
+    "parser": "v1",
+    "max_tokens": 16
+  },
+  "sampling": {
+    "temperature": 0.0,
+    "top_k": 1,
+    "top_p": 1.0,
+    "max_tokens": 16,
+    "enable_thinking": false
+  },
+  "written_at": "2026-11-12T09:27:43.183145-08:00"
+}

@@ -1,0 +1,31 @@
+{
+  "runtime": "tensorrt-edgellm",
+  "edge_llm_version": "v0.9.1",
+  "edge_llm_rev": "7f061f21f0a581ba234a1e233c9315b89d8e47d6",
+  "runner_rev": "41fe462943097c9ea3279ce3d7376a71206df20a",
+  "config": {
+    "num": "T8",
+    "short": "TRT_F16v_INT8l",
+    "engine_dir": "cr2b-int8sq",
+    "label": "FP16 vision + INT8 SmoothQuant language (pairs with Config 2)"
+  },
+  "engine_root": "/home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines",
+  "dataset": "blink_spatial",
+  "data_sha256": "6a93253c1a3b34901a86e22244afaefb968a0a1244be1c631e4cc7bf6e297e26",
+  "n_records": 143,
+  "protocol_version": "p2.1",
+  "spec": {
+    "format": "mcq",
+    "prompt": "legacy",
+    "parser": "v1",
+    "max_tokens": 16
+  },
+  "sampling": {
+    "temperature": 0.0,
+    "top_k": 1,
+    "top_p": 1.0,
+    "max_tokens": 16,
+    "enable_thinking": false
+  },
+  "written_at": "2026-11-11T22:13:27.689513-08:00"
+}

@@ -1,0 +1,651 @@
+[20:34:32.319] [INFO] [trtUtils.h:66:loadEdgellmPluginLib] EDGELLM_PLUGIN_PATH: /home/sjsujetson/TensorRT-Edge-LLM/build/libNvInfer_edgellm_plugin.so
+[20:34:33.380] [INFO] [llmRuntimeUtils.cpp:561:loadEmbeddingTable] Loaded FP16 embedding: [151936, 2048]
+[20:34:33.380] [INFO] [llmEngineConfig.cpp:462:parseEngineConfig] reading /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/llm/config.json
+[20:34:33.381] [INFO] [llmRuntimeUtils.cpp:272:collectRopeConfig] Collected rope config: RopeConfig:  type: MRope  rotaryScale: 1  rotaryTheta: 5e+06  partialRotaryFactor: 1  maxPositionEmbeddings: 262144
+[20:34:33.381] [INFO] [llmEngineConfig.cpp:626:parseEngineConfig] LLMEngineConfig{ hiddenSize=2048 vocabSize=151936 outputVocabSize=151936 numDecoderLayers=28 numAttentionLayers=28 numKVHeads=8 headDim=128 rotaryDim=128 maxBatch=1 maxInputLen=2048 maxKVCapacity=2048 pleEnabled=false numPleInputs=0 pleHiddenSize=0 isSpecDecodeBase=false specDecodeType=0 loraRank=0 eosTokenIds=[151645,151643] }
+[20:34:33.381] [INFO] [engineExecutor.cpp:77:EngineExecutor] loading engine file: /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/llm/llm.engine
+[20:34:33.388] [INFO] [trtUtils.cpp:521:deserializeCudaEngineFromFile] EDGELLM_SYNC_GPU_ALLOCATOR=1: using cudaMalloc allocator for /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/llm/llm.engine
+[20:34:33.467] [WARNING] [TensorRT] Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+[20:34:36.229] [INFO] [TensorRT] [MS] Running engine with multi stream info
+[20:34:36.229] [INFO] [TensorRT] [MS] Number of aux streams is 2
+[20:34:36.229] [INFO] [TensorRT] [MS] Number of total worker streams is 3
+[20:34:36.229] [INFO] [TensorRT] [MS] The main stream provided by execute/enqueue calls is the first worker stream
+[20:34:37.564] [INFO] [TensorRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +0, now: CPU 0, GPU 1942 (MiB)
+[20:34:37.564] [INFO] [trtUtils.cpp:373:setNonBlockingAuxStreams] configured 2 non-blocking auxiliary stream(s) for execution context
+[20:34:37.564] [INFO] [engineExecutor.cpp:101:EngineExecutor] engine loaded successfully (65 I/O tensors)
+[20:34:37.564] [INFO] [llmInferenceRuntime.cpp:189:initializeCommon] Base EngineExecutor successfully loaded from /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/llm/llm.engine.
+[20:34:37.564] [INFO] [llmInferenceRuntime.cpp:201:initializeCommon] Runtime batch size set to: 1 (from engine bundle)
+[20:34:37.656] [INFO] [pipelineIO.cpp:321:createForLLM] Allocated 3 deepstack embeds tensors with shape [1, 2048, 2048]
+[20:34:37.716] [INFO] [llmInferenceRuntime.cpp:334:initializeCommon] Runtime tensors successfully allocated.
+[20:34:37.716] [INFO] [llmInferenceRuntime.cpp:365:initializeCommon] Start loading tokenizer from model directory: /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/llm
+[20:34:38.333] [INFO] [tokenizer.cpp:548:loadVocabulary] Loaded 151643 vocabulary tokens
+[20:34:38.506] [INFO] [tokenizer.cpp:108:loadFromHF] Loaded 26 special tokens
+[20:34:38.589] [INFO] [tokenizer.cpp:1024:loadChatTemplate] Successfully loaded chat template from /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/llm/processed_chat_template.json (for model: cr2b-int8sq/quantized)
+[20:34:38.589] [INFO] [tokenizer.cpp:135:loadFromHF] Successfully loaded tokenizer from /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/llm (vocab_size=151669)
+[20:34:38.636] [INFO] [llmInferenceRuntime.cpp:367:initializeCommon] Tokenizer successfully loaded from model directory: /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/llm
+[20:34:38.636] [INFO] [llmInferenceRuntime.cpp:375:initializeCommon] Loaded 2 EOS token IDs from config
+[20:34:38.637] [INFO] [trtUtils.cpp:521:deserializeCudaEngineFromFile] EDGELLM_SYNC_GPU_ALLOCATOR=1: using cudaMalloc allocator for /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/visual/visual.engine
+[20:34:38.651] [WARNING] [TensorRT] Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+[20:34:39.927] [INFO] [TensorRT] [MS] Running engine with multi stream info
+[20:34:39.927] [INFO] [TensorRT] [MS] Number of aux streams is 3
+[20:34:39.927] [INFO] [TensorRT] [MS] Number of total worker streams is 4
+[20:34:39.927] [INFO] [TensorRT] [MS] The main stream provided by execute/enqueue calls is the first worker stream
+[20:34:40.437] [INFO] [TensorRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +0, now: CPU 0, GPU 2724 (MiB)
+[20:34:40.438] [INFO] [trtUtils.cpp:373:setNonBlockingAuxStreams] configured 3 non-blocking auxiliary stream(s) for execution context
+[20:34:40.468] [INFO] [llmInferenceRuntime.cpp:396:operator()] Vision runner successfully initialized
+[20:34:40.468] [INFO] [llmInferenceRuntime.cpp:420:initializeCommon] Attempting to load Action runner from /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/visual/action
+[20:34:40.469] [INFO] [trtUtils.cpp:521:deserializeCudaEngineFromFile] EDGELLM_SYNC_GPU_ALLOCATOR=1: using cudaMalloc allocator for /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/visual/action/action.engine
+[20:34:40.474] [INFO] [llmInferenceRuntime.cpp:427:initializeCommon] Failed to load Action runner from /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/visual/action: Failed to open engine file: /home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int8sq/engines/visual/action/action.engine: No such file or directory
+[20:34:40.550] [INFO] [llmInferenceRuntime.cpp:474:initializeCommon] Setup shared execution context memory: 211812352 bytes (base requires: 100665856, strategy requires: 0, vision requires: 211812352, audio requires: 0, action requires: 0)
+[20:34:40.552] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:41.732] [INFO] [engineExecutor.cpp:287:captureGraph] captured graph (hash=0xa50328c2e23a5d5d)
+[20:34:41.732] [INFO] [decoderRegistry.cpp:92:captureCudaGraphs] Successfully captured decoding CUDA graphs for active decoding strategies.
+[20:34:41.745] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:41.847] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:41.975] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:42.063] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:42.100] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:42.784] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:42.901] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:42.940] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:43.317] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:43.463] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:43.504] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:43.779] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:43.843] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:43.880] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:44.109] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:44.163] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:44.198] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:44.279] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:44.334] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:44.369] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:44.479] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:44.532] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:44.568] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:44.667] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:44.736] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:44.777] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:45.173] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:45.230] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:45.263] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:45.396] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:45.463] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:45.501] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:45.769] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:45.841] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:45.880] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:46.307] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:46.361] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:46.398] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:46.483] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:46.544] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:46.582] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:46.842] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:46.896] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:46.934] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:47.068] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:47.120] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:47.155] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:47.229] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:47.285] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:47.316] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:47.426] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:47.479] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:47.512] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:47.646] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:47.709] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:47.743] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:47.974] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:48.028] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:48.063] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:48.136] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:48.189] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:48.224] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:48.306] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:48.360] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:48.395] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:48.481] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:48.549] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:48.587] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:48.940] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:49.004] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:49.045] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:49.320] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:49.383] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:49.420] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:49.648] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:49.703] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:49.738] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:49.812] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:49.867] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:49.902] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:50.007] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:50.062] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:50.098] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:50.208] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:50.271] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:50.310] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:50.569] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:50.635] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:50.675] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:50.951] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:51.004] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:51.036] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:51.109] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:51.172] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:51.207] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:51.436] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:51.500] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:51.539] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:51.755] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:51.814] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:51.848] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:51.989] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.043] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:52.075] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.164] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.218] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:52.251] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.333] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.386] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:52.420] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.506] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.561] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:52.596] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.697] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.759] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:52.796] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:52.998] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:53.051] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:53.082] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:53.167] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:53.221] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:53.256] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:53.385] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:53.456] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:53.497] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:53.958] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:54.025] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:54.065] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:54.340] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:54.399] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:54.435] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:54.565] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:54.625] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:54.662] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:54.850] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:54.906] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:54.939] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:55.057] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:55.110] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:55.143] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:55.234] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:55.289] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:55.325] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:55.429] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:55.494] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:55.533] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:55.810] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:55.865] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:55.900] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.000] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.056] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:56.091] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.226] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.278] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:56.312] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.384] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.439] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:56.475] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.585] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.639] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:56.675] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.784] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:56.840] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:56.876] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:57.034] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:57.097] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:57.134] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:57.360] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:57.417] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:57.457] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:57.714] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:57.768] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:57.804] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:57.946] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:58.013] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:58.050] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:58.447] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:58.512] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:58.553] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:58.825] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:58.891] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:58.907] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:59.204] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:59.260] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:59.292] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:59.398] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:59.461] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:59.492] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:59.723] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:34:59.794] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:34:59.836] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:00.254] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:00.307] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:00.341] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:00.414] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:00.478] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:00.514] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:00.790] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:00.853] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:00.890] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:01.115] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:01.166] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:01.201] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:01.275] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:01.325] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:01.357] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:01.428] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:01.489] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:01.524] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:01.752] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:01.815] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:01.828] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:02.077] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:02.142] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:02.179] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:02.454] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:02.509] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:02.544] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:02.619] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:02.683] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:02.723] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:02.996] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:03.059] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:03.097] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:03.321] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:03.385] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:03.426] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:03.698] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:03.750] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:03.784] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:03.859] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:03.914] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:03.950] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.047] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.099] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:04.134] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.206] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.257] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:04.292] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.363] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.418] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:04.453] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.559] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.610] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:04.645] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.717] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.771] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:04.806] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.910] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:04.979] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:05.020] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:05.411] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:05.477] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:05.518] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:05.790] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:05.860] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:05.902] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:06.292] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:06.363] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:06.406] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:06.824] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:06.885] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:06.921] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:07.033] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:07.098] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:07.137] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:07.410] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:07.475] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:07.492] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:07.788] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:07.849] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:07.888] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:08.114] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:08.166] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:08.200] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:08.272] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:08.325] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:08.360] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:08.444] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:08.498] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:08.534] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:08.642] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:08.705] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:08.744] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:09.018] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:09.074] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:09.110] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:09.215] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:09.280] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:09.319] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:09.593] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:09.650] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:09.687] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:09.821] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:09.874] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:09.909] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:09.982] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:10.048] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:10.085] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:10.351] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:10.408] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:10.445] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:10.593] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:10.656] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:10.693] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:10.919] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:10.974] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:11.011] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:11.122] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:11.215] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:11.249] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:11.939] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:12.084] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:12.115] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:12.909] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:12.998] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:13.037] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:13.699] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:13.802] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:13.835] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:14.627] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:14.804] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:14.843] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:15.683] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:15.821] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:15.856] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:16.517] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:16.691] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:16.725] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:17.517] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:17.780] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:17.814] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:18.965] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:19.064] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:19.100] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:19.890] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:20.028] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:20.064] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:20.794] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:21.018] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:21.050] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:22.202] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:22.380] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:22.410] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:23.205] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:23.343] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:23.358] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:24.168] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:24.302] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:24.338] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:25.028] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:25.121] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:25.157] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:25.818] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:25.991] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:26.010] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:26.691] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:26.766] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:26.781] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:27.460] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:27.633] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:27.668] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:28.459] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:28.583] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:28.621] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:29.280] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:29.379] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:29.414] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:30.206] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:30.381] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:30.398] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:31.207] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:31.411] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:31.449] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:31.998] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:32.328] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:32.364] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:33.157] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:33.301] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:33.335] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:34.485] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:34.595] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:34.611] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:35.779] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:35.953] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:35.988] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:36.779] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:36.874] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:36.912] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:37.572] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:37.713] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:37.746] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:38.539] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:38.633] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:38.649] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:39.460] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:39.548] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:39.586] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:40.246] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:40.420] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:40.438] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:41.116] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:41.239] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:41.277] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:41.823] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:41.942] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:41.958] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:42.527] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:42.629] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:42.663] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:43.663] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:43.818] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:43.849] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:45.001] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:45.131] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:45.168] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:45.958] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:46.129] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:46.166] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:46.827] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:46.914] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:46.931] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:47.611] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:47.823] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:47.841] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:48.524] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:48.623] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:48.655] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:49.449] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:49.539] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:49.578] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:50.239] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:50.416] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:50.451] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:51.322] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:51.499] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:51.533] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:52.325] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:52.532] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:52.571] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:53.234] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:53.366] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:53.385] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:54.065] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:54.317] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:54.349] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:55.143] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:55.279] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:55.295] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:56.106] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:56.298] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:56.329] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:57.481] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:57.590] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:57.625] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:58.540] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:58.675] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:58.715] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:59.792] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:35:59.890] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:35:59.926] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:00.653] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:00.746] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:00.781] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:01.572] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:01.706] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:01.743] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:02.407] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:02.662] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:02.698] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:03.488] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:03.659] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:03.698] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:04.387] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:04.599] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:04.636] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:05.296] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:05.406] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:05.438] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:06.589] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:06.730] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:06.746] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:07.913] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:08.049] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:08.085] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:08.876] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:08.965] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:08.999] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:09.623] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:09.800] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:09.836] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:10.627] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:10.722] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:10.740] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:11.549] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:11.686] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:11.722] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:12.562] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:12.691] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:12.729] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:13.280] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:13.413] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:13.452] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:14.240] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:14.427] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:14.464] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:15.335] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:15.562] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:15.596] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:16.746] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:17.178] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:17.195] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:18.363] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:18.456] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:18.492] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:19.153] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:19.292] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:19.325] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:20.117] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:20.250] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:20.269] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:21.079] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:21.223] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:21.237] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:22.047] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:22.255] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:22.292] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:22.956] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:23.098] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:23.130] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:23.923] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:24.059] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:24.074] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:24.884] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:25.015] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:25.053] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:25.742] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:25.842] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:25.877] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:26.668] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:26.845] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:26.864] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:27.674] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:27.814] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:27.829] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:28.639] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:28.790] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:28.822] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:29.974] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:30.104] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:30.141] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:30.800] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:31.061] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:31.095] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:31.889] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:32.099] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:32.136] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:32.797] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:32.980] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:33.012] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:33.805] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:33.983] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:33.998] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:34.809] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:34.972] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:35.008] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:35.556] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:35.757] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:35.796] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:36.382] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:36.517] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:36.554] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:37.243] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:37.347] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:37.381] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:38.531] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:38.822] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:38.859] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:39.519] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:39.706] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:39.739] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:40.530] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:40.627] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:40.667] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:41.355] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:41.572] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:41.609] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:42.400] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:42.650] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:42.686] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:43.350] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:43.487] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:43.505] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:44.187] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:44.324] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:44.360] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:45.127] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:45.267] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:45.301] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:46.093] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:46.300] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:46.340] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:47.000] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:47.136] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:47.169] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:47.858] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:48.004] [INFO] [llmInferenceRuntime.cpp:1256:multiModalRuntimePreprocess] Processing vision inputs
+[20:36:48.038] [INFO] [TensorRT] Switching optimization profile from: 1 to 0. Please ensure there are no enqueued operations pending in this context prior to switching profiles
+[20:36:48.830] [INFO] [TensorRT] Switching optimization profile from: 0 to 1. Please ensure there are no enqueued operations pending in this context prior to switching profiles
