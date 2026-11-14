@@ -1,0 +1,267 @@
+{
+  "script": "make_crossruntime_table.py",
+  "script_sha256": "af435beed5f9ae743d3bbc645c700fdd1f99a2308bc78055c56d3e203a13de7f",
+  "n_boot": 10000,
+  "seed": 249,
+  "exclusion_rule": "union over loaded configs of error rows, plus llama.cpp poison files",
+  "exclusions": {
+    "blink_depth": {
+      "n_total": 124,
+      "n_excluded": 0,
+      "n_matched": 124,
+      "from_error_field": 0,
+      "from_poison_files_only": 0,
+      "errors_by_config": {
+        "C2": 0,
+        "T8": 0,
+        "C3": 0,
+        "T4": 0,
+        "T16": 0
+      }
+    },
+    "blink_spatial": {
+      "n_total": 143,
+      "n_excluded": 0,
+      "n_matched": 143,
+      "from_error_field": 0,
+      "from_poison_files_only": 0,
+      "errors_by_config": {
+        "C2": 0,
+        "T8": 0,
+        "C3": 0,
+        "T4": 0,
+        "T16": 0
+      }
+    },
+    "cv_bench": {
+      "n_total": 2638,
+      "n_excluded": 118,
+      "n_matched": 2520,
+      "from_error_field": 118,
+      "from_poison_files_only": 0,
+      "errors_by_config": {
+        "C2": 118,
+        "T8": 0,
+        "C3": 0,
+        "T4": 0,
+        "T16": 0
+      }
+    },
+    "scienceqa": {
+      "n_total": 2017,
+      "n_excluded": 0,
+      "n_matched": 2017,
+      "from_error_field": 0,
+      "from_poison_files_only": 0,
+      "errors_by_config": {
+        "C2": 0,
+        "T8": 0,
+        "T4": 0,
+        "T16": 0
+      }
+    },
+    "textvqa": {
+      "n_total": 5000,
+      "n_excluded": 5,
+      "n_matched": 4995,
+      "from_error_field": 5,
+      "from_poison_files_only": 0,
+      "errors_by_config": {
+        "C2": 5,
+        "T8": 0,
+        "T4": 0,
+        "T16": 0
+      }
+    }
+  },
+  "input_files": [
+    {
+      "config": "C2",
+      "dataset": "blink_depth",
+      "path": "results/config2_F16v_Q8l__blink_depth.jsonl",
+      "sha256": "ae8ec8a57a006b4449437e57ad243d1728aad5b87b25d4ee7914d93fbcbf633f",
+      "records": 124,
+      "errors": 0
+    },
+    {
+      "config": "T8",
+      "dataset": "blink_depth",
+      "path": "results_trt/configT8_TRT_F16v_INT8l__blink_depth.jsonl",
+      "sha256": "c4bdad7e95661784c011d87615d0a1dbd9f5b4c833d1e21b7803708b77c10d80",
+      "records": 124,
+      "errors": 0
+    },
+    {
+      "config": "C3",
+      "dataset": "blink_depth",
+      "path": "results/config3_F16v_Q4l__blink_depth.jsonl",
+      "sha256": "3351f2b27ed4c48f2dfc557a8c6aa49c26147588040ad119600061aebe9d54cc",
+      "records": 124,
+      "errors": 0
+    },
+    {
+      "config": "T4",
+      "dataset": "blink_depth",
+      "path": "results_trt/configT4_TRT_F16v_INT4l__blink_depth.jsonl",
+      "sha256": "26e49ff01667bd99ff90d2519e50c5d0b1a7c6564883182d4def68bdcea5c165",
+      "records": 124,
+      "errors": 0
+    },
+    {
+      "config": "T16",
+      "dataset": "blink_depth",
+      "path": "results_trt/configT16_TRT_F16v_F16l__blink_depth.jsonl",
+      "sha256": "e8bc4745dd10dcc716c4f6fdf50280c88607bcdb30d8187a685f0517c2ed50f3",
+      "records": 124,
+      "errors": 0
+    },
+    {
+      "config": "C2",
+      "dataset": "blink_spatial",
+      "path": "results/config2_F16v_Q8l__blink_spatial.jsonl",
+      "sha256": "075042fa2b9a4fe2b338a17cff94977b41cd9897fec89ea3a8788c4075fce851",
+      "records": 143,
+      "errors": 0
+    },
+    {
+      "config": "T8",
+      "dataset": "blink_spatial",
+      "path": "results_trt/configT8_TRT_F16v_INT8l__blink_spatial.jsonl",
+      "sha256": "538ca2f0675fabe1d84e7bec65ac3eca5f4f12aa899ab8e82495a5808d9f9750",
+      "records": 143,
+      "errors": 0
+    },
+    {
+      "config": "C3",
+      "dataset": "blink_spatial",
+      "path": "results/config3_F16v_Q4l__blink_spatial.jsonl",
+      "sha256": "a245e80dd0b4ac03cfcfe5da50d75159d4b99f1ec7e837b016b8a84a97e07bf3",
+      "records": 143,
+      "errors": 0
+    },
+    {
+      "config": "T4",
+      "dataset": "blink_spatial",
+      "path": "results_trt/configT4_TRT_F16v_INT4l__blink_spatial.jsonl",
+      "sha256": "51451137756c43fcc602e4b664bdae0ea96b79d659763267f6cf2973cf95b048",
+      "records": 143,
+      "errors": 0
+    },
+    {
+      "config": "T16",
+      "dataset": "blink_spatial",
+      "path": "results_trt/configT16_TRT_F16v_F16l__blink_spatial.jsonl",
+      "sha256": "bd5f9efe1bfe14488b80d8ed04c9d9e7cde59758201d8621bcb81bcd4f8e8403",
+      "records": 143,
+      "errors": 0
+    },
+    {
+      "config": "C2",
+      "dataset": "cv_bench",
+      "path": "results/config2_F16v_Q8l__cv_bench.jsonl",
+      "sha256": "8a67ff5cc0e8e74415ac9d62edc50be2138cef16d77a61291065d6e01a1764da",
+      "records": 2638,
+      "errors": 118
+    },
+    {
+      "config": "T8",
+      "dataset": "cv_bench",
+      "path": "results_trt/configT8_TRT_F16v_INT8l__cv_bench.jsonl",
+      "sha256": "fb5657165e377baa529c968c33646bda2511c030301d09ad279d52c0341a247d",
+      "records": 2638,
+      "errors": 0
+    },
+    {
+      "config": "C3",
+      "dataset": "cv_bench",
+      "path": "results/config3_F16v_Q4l__cv_bench.jsonl",
+      "sha256": "fec653a9218cc7dd9d87dfbfaa3a76b95e082c529705be2ac803c0b69f088655",
+      "records": 2638,
+      "errors": 0
+    },
+    {
+      "config": "T4",
+      "dataset": "cv_bench",
+      "path": "results_trt/configT4_TRT_F16v_INT4l__cv_bench.jsonl",
+      "sha256": "782d2dd5cde192e9764dc335f0dec791c177b98f1fa3f62c0ca93df8e3a3539f",
+      "records": 2638,
+      "errors": 0
+    },
+    {
+      "config": "T16",
+      "dataset": "cv_bench",
+      "path": "results_trt/configT16_TRT_F16v_F16l__cv_bench.jsonl",
+      "sha256": "b4185411aec3516a74c6f46ce853c38c7577c17309f08898413e38a721632d99",
+      "records": 2638,
+      "errors": 0
+    },
+    {
+      "config": "C2",
+      "dataset": "scienceqa",
+      "path": "results/config2_F16v_Q8l__scienceqa.jsonl",
+      "sha256": "f3b03fe4a3602fd8b485eedf095ca2d2c11ccade78feda92f5574702d3046d18",
+      "records": 2017,
+      "errors": 0
+    },
+    {
+      "config": "T8",
+      "dataset": "scienceqa",
+      "path": "results_trt/configT8_TRT_F16v_INT8l__scienceqa.jsonl",
+      "sha256": "5310d20d6476af118d8afba6ec0d988f72e01be6d5395559bbe7a3352fdeab89",
+      "records": 2017,
+      "errors": 0
+    },
+    {
+      "config": "T4",
+      "dataset": "scienceqa",
+      "path": "results_trt/configT4_TRT_F16v_INT4l__scienceqa.jsonl",
+      "sha256": "40e1739698d765551879f01f02a6f4e5b1f5ed692ababba8f908da3706db3f8b",
+      "records": 2017,
+      "errors": 0
+    },
+    {
+      "config": "T16",
+      "dataset": "scienceqa",
+      "path": "results_trt/configT16_TRT_F16v_F16l__scienceqa.jsonl",
+      "sha256": "274c69eda539e9ffaabeaef0247e58a7afbff0935fc1a267d6401566c5157770",
+      "records": 2017,
+      "errors": 0
+    },
+    {
+      "config": "C2",
+      "dataset": "textvqa",
+      "path": "results/config2_F16v_Q8l__textvqa.jsonl",
+      "sha256": "361585882d194498838f85ebf80250bd7858ebf17626f86e0251c9913b43b619",
+      "records": 5000,
+      "errors": 5
+    },
+    {
+      "config": "T8",
+      "dataset": "textvqa",
+      "path": "results_trt/configT8_TRT_F16v_INT8l__textvqa.jsonl",
+      "sha256": "543424522fb2718c6ead1f584c924378c978bb2664f17d5ecbeaaf48f3dc1628",
+      "records": 5000,
+      "errors": 0
+    },
+    {
+      "config": "T4",
+      "dataset": "textvqa",
+      "path": "results_trt/configT4_TRT_F16v_INT4l__textvqa.jsonl",
+      "sha256": "f3e8d23d9f8f62deb21535038ad4af41586f258887f7e0ad5894c50de6beea4f",
+      "records": 5000,
+      "errors": 0
+    },
+    {
+      "config": "T16",
+      "dataset": "textvqa",
+      "path": "results_trt/configT16_TRT_F16v_F16l__textvqa.jsonl",
+      "sha256": "1466df0b9aed68bf50e6579d31e221bdf678ad8965ff7bf23b8cefcb8324edbc",
+      "records": 5000,
+      "errors": 0
+    }
+  ],
+  "latency_dirs": [
+    "/Users/Aeon/ias-vlm-quantization-edge/results_latency/overnight",
+    "/Users/Aeon/ias-vlm-quantization-edge/results_latency_trt/trio"
+  ]
+}
