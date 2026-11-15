@@ -12,6 +12,8 @@ T8,TensorRT Edge-LLM,FP16,INT8 SmoothQuant (W8A8),textvqa,75.5195,4995,5
 C3,llama.cpp,F16,Q4_K_M,blink_depth,82.2581,124,0
 C3,llama.cpp,F16,Q4_K_M,blink_spatial,77.6224,143,0
 C3,llama.cpp,F16,Q4_K_M,cv_bench,76.6667,2520,118
+C3,llama.cpp,F16,Q4_K_M,scienceqa,83.2920,2017,0
+C3,llama.cpp,F16,Q4_K_M,textvqa,74.8188,4995,5
 T4,TensorRT Edge-LLM,FP16,INT4 AWQ (W4A16),blink_depth,77.4194,124,0
 T4,TensorRT Edge-LLM,FP16,INT4 AWQ (W4A16),blink_spatial,77.6224,143,0
 T4,TensorRT Edge-LLM,FP16,INT4 AWQ (W4A16),cv_bench,75.0794,2520,118

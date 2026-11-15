@@ -56,6 +56,7 @@
       "errors_by_config": {
         "C2": 0,
         "T8": 0,
+        "C3": 0,
         "T4": 0,
         "T16": 0
       }
@@ -69,6 +70,7 @@
       "errors_by_config": {
         "C2": 5,
         "T8": 0,
+        "C3": 5,
         "T4": 0,
         "T16": 0
       }
@@ -212,6 +214,14 @@
       "errors": 0
     },
     {
+      "config": "C3",
+      "dataset": "scienceqa",
+      "path": "results/config3_F16v_Q4l__scienceqa.jsonl",
+      "sha256": "7a1ff47c4a332682ef231b55e67b2f9a5e977fd0dc654a91a43668dd9cd06e63",
+      "records": 2017,
+      "errors": 0
+    },
+    {
       "config": "T4",
       "dataset": "scienceqa",
       "path": "results_trt/configT4_TRT_F16v_INT4l__scienceqa.jsonl",
@@ -244,6 +254,14 @@
       "errors": 0
     },
     {
+      "config": "C3",
+      "dataset": "textvqa",
+      "path": "results/config3_F16v_Q4l__textvqa.jsonl",
+      "sha256": "c93fa2891ea6d28ba8003ba48e052b0f4a530eed31246790f08217dd3ff0c5ba",
+      "records": 5000,
+      "errors": 5
+    },
+    {
       "config": "T4",
       "dataset": "textvqa",
       "path": "results_trt/configT4_TRT_F16v_INT4l__textvqa.jsonl",
@@ -261,7 +279,7 @@
     }
   ],
   "latency_dirs": [
-    "/Users/Aeon/ias-vlm-quantization-edge/results_latency/overnight",
-    "/Users/Aeon/ias-vlm-quantization-edge/results_latency_trt/trio"
+    "results_latency/config3_nov",
+    "results_latency_trt/trio"
   ]
 }
