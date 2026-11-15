@@ -2,8 +2,8 @@
 
 ## Team
 
-- Yiang Shen, MS Computer Engineering
-- Maximilian Garcia, MS Artificial Intelligence
+- Yiang Shen, MS Computer Engineering (llama.cpp pipeline, vision sweep, latency benchmark, vLLM test)
+- Maximilian Garcia, MS Artificial Intelligence (TensorRT Edge-LLM pipeline: quantization, engine build on JetPack 6.2, runner and latency benchmark; see [`tensorrt/NOTES.md`](tensorrt/NOTES.md))
 
 **Advisor:** Prof. Kaikai Liu, SJSU
 
@@ -11,7 +11,7 @@
 
 Compact vision-language models (VLMs) are emerging as practical candidates for autonomous driving reasoning on edge platforms, but deploying them within the strict memory budgets of devices like the Jetson Orin Nano (8 GB) demands aggressive quantization. Prior work on VLM quantization has reported that vision encoders can be more sensitive to precision reduction than language decoders, yet this has mostly been characterized on general-purpose benchmarks using server-class hardware, not on spatial reasoning benchmarks or memory-constrained edge devices.
 
-This project isolates and measures vision encoder quantization sensitivity in Cosmos-Reason2-2B (NVIDIA's physical-world reasoning model built on the Qwen3-VL architecture) deployed on a physical Jetson Orin Nano 8 GB. Using llama.cpp's GGUF format, we quantize the vision encoder (mmproj) and language decoder independently. A pilot matrix of 7 configurations (F16/Q8_0/Q4_0 vision against F16/Q8_0/Q4_K_M language) established feasibility. The primary experiment then holds the language decoder fixed at Q8_0 and sweeps the vision encoder across six precisions (F16, Q8_0, Q6_K, Q5_K_M, Q4_0, Q3_K_M) on five benchmarks: BLINK depth, BLINK spatial, CV-Bench, TextVQA and ScienceQA, totaling about 71,000 inference calls. Every comparison is paired against the F16 baseline with bootstrap confidence intervals. A controlled benchmark adds latency and peak memory for each encoder, and a feasibility test checks whether vLLM can serve the same model on the same device. By locating the precision floor below which visual reasoning degrades, we provide deployment-stage quantization guidance that recent edge-oriented driving VLM pipelines (MoRAL, IEEE IMC 2026) identify as a critical next step.
+This project isolates and measures vision encoder quantization sensitivity in Cosmos-Reason2-2B (NVIDIA's physical-world reasoning model built on the Qwen3-VL architecture) deployed on a physical Jetson Orin Nano 8 GB. Using llama.cpp's GGUF format, we quantize the vision encoder (mmproj) and language decoder independently. A pilot matrix of 7 configurations (F16/Q8_0/Q4_0 vision against F16/Q8_0/Q4_K_M language) established feasibility. The primary experiment then holds the language decoder fixed at Q8_0 and sweeps the vision encoder across six precisions (F16, Q8_0, Q6_K, Q5_K_M, Q4_0, Q3_K_M) on five benchmarks: BLINK depth, BLINK spatial, CV-Bench, TextVQA and ScienceQA, totaling about 71,000 inference calls. Every comparison is paired against the F16 baseline with bootstrap confidence intervals. A controlled benchmark adds latency and peak memory for each encoder, and a feasibility test checks whether vLLM can serve the same model on the same device. A second runtime, TensorRT Edge-LLM on a second Jetson, is compared at matched language bit width (FP16 vision, FP16 / INT8 / INT4 language) to see how much of the result depends on the runtime and quantization method. By locating the precision floor below which visual reasoning degrades, we provide deployment-stage quantization guidance that recent edge-oriented driving VLM pipelines (MoRAL, IEEE IMC 2026) identify as a critical next step.
 
 ## Advisor Feedback (Sep 2026)
 
@@ -50,6 +50,10 @@ TextVQA uses the standard VQA accuracy (min(#matching human answers / 3, 1)). Sc
 
 Paired percentile bootstrap (10,000 resamples, seed 249, an independent random stream per config and dataset), not adjusted for multiple comparisons. Exact McNemar p-values and discordant-pair counts for the binary-scored datasets are in [`results/table_b.md`](results/table_b.md); per-cell numbers are in [`results/table_b_deltas.csv`](results/table_b_deltas.csv) and input file hashes in [`results/table_b_provenance.json`](results/table_b_provenance.json).
 
+![Change in accuracy from F16 vision vs mmproj size for CV-Bench, ScienceQA and TextVQA](figures/fig1_vision_sweep.png)
+
+*Figure 1. Change from F16 vision on the three large benchmarks, with paired 95% bootstrap CIs (filled = interval excludes 0). The x-axis is the mmproj file size; the measured peak-RAM saving is in the table below. BLINK is left out (intervals too wide).*
+
 ### Latency and peak memory
 
 Controlled benchmark on the same 200 frozen records for every config (100 ScienceQA + 100 TextVQA), 3 rotated rounds, 15W, one request at a time (`--parallel 1 --cache-ram 0`), prompt caching off. 3,600 of 3,600 timed requests valid. Peak RAM is the maximum system RAM sampled by `tegrastats` every 200 ms during the timed requests (idle baseline 1,636 MB of 7,620 MB). Details in [`results_latency/NOTES.md`](results_latency/NOTES.md).
@@ -79,11 +83,11 @@ Q3_K_M's TextVQA drop (-2.66 [-3.41, -1.93]) is the largest in the table, about 
 **4. BLINK is too small to resolve vision effects.**
 With 124 and 143 questions, every BLINK interval in Table B is several points wide and includes 0. BLINK results are reported for completeness, but conclusions rest on the larger datasets.
 
-**5. Language decoder precision matters more than vision precision down to 5 bits (pilot observation).**
-In Table A, switching the language decoder from Q8_0 to Q4_K_M changes BLINK depth by about +12 points (Configs 2 vs 3, 5 vs 6) and CV-Bench by about -2.3 to -2.4 points, both larger than any vision effect above Q4_0. The BLINK depth gain is reproducible across vision precisions but rests on 124 questions and has not yet been tested with paired statistics; it is a lead for follow-up, not a conclusion.
+**5. Language decoder precision matters more than vision precision down to 5 bits.**
+Config 3 (F16 vision + Q4_K_M language) now covers all five datasets. Against Config 2 (Q8_0 language), paired on the same records: CV-Bench -2.42 [-3.73, -1.15] and TextVQA -1.60 [-2.24, -0.96], both larger than any vision effect above Q4_0, while ScienceQA is unchanged (+0.35 [-0.89, +1.59]). The pilot's BLINK depth gain also holds up in a paired test (+12.10 [+5.65, +19.35], McNemar p = 0.0015, 18 vs 3 discordant pairs) and repeats at Q8_0 vision (Config 5 vs 6), but it rests on 124 questions and has no explanation yet; it is a lead for follow-up, not a conclusion. Numbers in [`results/crossruntime_table.md`](results/crossruntime_table.md).
 
 **6. Deployment guidance: Q8_0 is the best vision encoder on this device.**
-Q8_0 cuts peak RAM by 353 MB at no latency cost and under half a point of accuracy on every large benchmark. The lower precisions buy little on top of that: Q5_K_M saves only 59 MB more than Q8_0 and is 4% slower on TextVQA, Q4_0 saves 120 MB more but costs 0.7 to 2.0 points, and Q3_K_M saves no more memory than Q4_0, is slower, and loses 2.7 points on TextVQA, so it is not recommended for tasks that read text in images. For the language decoder, Q4_K_M (Config 6: about 1.6 GB of model files, 19.7 tok/s) is faster and smaller than Q8_0 but trades about 2.3 points of CV-Bench accuracy; it has not been evaluated on TextVQA or ScienceQA.
+Q8_0 cuts peak RAM by 353 MB at no latency cost and under half a point of accuracy on every large benchmark. The lower precisions buy little on top of that: Q5_K_M saves only 59 MB more than Q8_0 and is 4% slower on TextVQA, Q4_0 saves 120 MB more but costs 0.7 to 2.0 points, and Q3_K_M saves no more memory than Q4_0, is slower, and loses 2.7 points on TextVQA, so it is not recommended for tasks that read text in images. For the language decoder, Q4_K_M (Config 3) lowers peak RAM by about 630 MB (4,254 vs 4,884 MB, same-session benchmark) but gives no speedup in llama.cpp: median latency is about 2% higher (646 vs 635 ms ScienceQA, 2,685 vs 2,637 ms TextVQA). The pilot's higher decode speed (19.3 vs 17.1 tok/s, Table A) does not help here because answers are 2 to 3 tokens and prompt processing (image encoding and prefill) takes 85% (ScienceQA) to 92% (TextVQA) of each request. It costs 2.4 points on CV-Bench and 1.6 on TextVQA, so Q8_0 language is the better default unless the 630 MB is needed.
 
 ### Table A: Pilot and feasibility matrix (BLINK + CV-Bench)
 
@@ -134,6 +138,78 @@ Accuracy on the first 200 records of each dataset (same records as Table B, temp
 
 Both intervals include 0, so with 200 records neither difference is significant; the TextVQA gap is borderline. The checkpoint quantizes only the language model and leaves the whole vision tower unquantized, and vLLM has no equivalent of llama.cpp's separate `--mmproj` file. **vLLM therefore cannot run this project's vision-precision sweep**, which is why llama.cpp remains the primary runtime. vLLM is useful as a cross-runtime comparison point at fixed vision precision.
 
+## Cross-runtime comparison: llama.cpp vs TensorRT Edge-LLM (Nov 2026)
+
+Max built a second pipeline with TensorRT Edge-LLM v0.9.1 on a second Jetson Orin Nano 8 GB, using the same JetPack 6.2 stack, the same course container and 15W mode. Like llama.cpp, Edge-LLM builds the vision encoder and the language decoder as separate engines, but its only vision quantization is FP8, which the Orin GPU (SM87) does not support. Vision is therefore FP16 in every TensorRT config, and only the language decoder changes:
+
+- **T16:** FP16 language
+- **T8:** INT8 SmoothQuant (W8A8)
+- **T4:** INT4 AWQ (W4A16, group size 128)
+
+They are paired with the llama.cpp configs at the same language bit width: Config 2 (C2, F16 vision + Q8_0) with T8, and Config 3 (C3, F16 vision + Q4_K_M) with T4. T16 is the unquantized TensorRT reference (llama.cpp F16 + F16 runs out of memory, see Table A). Prompts, greedy decoding, the image resolution cap, the frozen datasets and the scorers are the same as for Table B. Setup, versions, patches and the run log are in [`tensorrt/NOTES.md`](tensorrt/NOTES.md).
+
+### Accuracy (matched records)
+
+A record is dropped for every config if any config errored on it, so each column uses one denominator (only the 118 CV-Bench and 5 TextVQA records excluded in Table B). Accuracy in %.
+
+| Config | Runtime | Vision | Language | BLINK depth (n=124) | BLINK spatial (n=143) | CV-Bench (n=2,520) | ScienceQA (n=2,017) | TextVQA (n=4,995) |
+|---|---|---|---|---:|---:|---:|---:|---:|
+| C2 | llama.cpp | F16 | Q8_0 | 70.16 | 73.43 | 79.09 | 82.94 | 76.41 |
+| T8 | TensorRT Edge-LLM | FP16 | INT8 SmoothQuant (W8A8) | 67.74 | 69.93 | 77.90 | 77.79 | 75.52 |
+| C3 | llama.cpp | F16 | Q4_K_M | 82.26 | 77.62 | 76.67 | 83.29 | 74.82 |
+| T4 | TensorRT Edge-LLM | FP16 | INT4 AWQ (W4A16) | 77.42 | 77.62 | 75.08 | 79.03 | 71.95 |
+| T16 | TensorRT Edge-LLM | FP16 | FP16 | 81.45 | 74.13 | 81.15 | 83.99 | 76.24 |
+
+**Paired change (points, 95% bootstrap CI), large benchmarks.** Bold = interval excludes 0.
+
+| Base to other | What it isolates | CV-Bench | ScienceQA | TextVQA |
+|---|---|---|---|---|
+| C2 to T8 | 8-bit language, across runtimes | -1.19 [-2.74, +0.36] | **-5.16 [-6.79, -3.52]** | -0.89 [-1.81, +0.06] |
+| C3 to T4 | 4-bit language, across runtimes | -1.59 [-3.21, +0.00] | **-4.26 [-5.90, -2.68]** | **-2.86 [-3.91, -1.82]** |
+| T16 to T8 | INT8 SmoothQuant, within TensorRT | **-3.25 [-4.56, -1.90]** | **-6.20 [-7.68, -4.66]** | -0.72 [-1.46, +0.01] |
+| T16 to T4 | INT4 AWQ, within TensorRT | **-6.07 [-7.54, -4.60]** | **-4.96 [-6.40, -3.52]** | **-4.28 [-5.11, -3.45]** |
+| C2 to C3 | Q8_0 to Q4_K_M, within llama.cpp | **-2.42 [-3.73, -1.15]** | +0.35 [-0.89, +1.59] | **-1.60 [-2.24, -0.96]** |
+| C2 to T16 | llama.cpp Q8_0 vs TensorRT FP16 | **+2.06 [+0.83, +3.29]** | +1.04 [-0.30, +2.38] | -0.18 [-1.03, +0.67] |
+
+Same bootstrap settings as Table B (10,000 resamples, seed 249, unadjusted). BLINK deltas, McNemar p-values and discordant-pair counts are in [`results/crossruntime_table.md`](results/crossruntime_table.md); per-cell numbers in [`results/crossruntime_deltas.csv`](results/crossruntime_deltas.csv) and input hashes in [`results/crossruntime_provenance.json`](results/crossruntime_provenance.json).
+
+![Accuracy per benchmark for C2, T8, C3, T4 and T16](figures/fig2_crossruntime_accuracy.png)
+
+*Figure 2. Matched-record accuracy on the three large benchmarks. Each bit-width pair differs in both runtime and quantization method.*
+
+### Latency and memory
+
+Same protocol as the llama.cpp benchmark above: the 200 frozen records (100 ScienceQA + 100 TextVQA), 3 rounds, 15W, one request at a time, 300 of 300 valid requests per config and dataset. C2 and C3 come from one same-session run (`results_latency/config3_nov`), T8 / T4 / T16 from one run of all three engines (`results_latency_trt/trio`). C2's numbers in this run match the Oct 5 run (635 vs 637 ms ScienceQA, 2,637 ms TextVQA in both).
+
+| Config | Language | ScienceQA median ms | TextVQA median ms | TextVQA p95 ms | Speedup vs C2 (ScienceQA / TextVQA) | Peak RAM MB |
+|---|---|---:|---:|---:|---|---:|
+| C2 | Q8_0 | 635 | 2,637 | 3,728 | 1.00x / 1.00x | 4,884 |
+| C3 | Q4_K_M | 646 | 2,685 | 3,749 | 0.98x / 0.98x | 4,254 |
+| T8 | INT8 SmoothQuant | 218 | 947 | 1,325 | 2.92x / 2.79x | 5,703 |
+| T4 | INT4 AWQ | 270 | 1,100 | 1,558 | 2.35x / 2.40x | 4,775 |
+| T16 | FP16 | 278 | 1,102 | 1,504 | 2.28x / 2.39x | 6,755 |
+
+![TextVQA median latency vs peak system RAM for all llama.cpp and TensorRT configs](figures/fig3_latency_vs_memory.png)
+
+*Figure 3. TextVQA median latency against peak system RAM for every config measured: the Oct 5 llama.cpp vision sweep (circles), the Nov 14 llama.cpp Config 2 / Config 3 run (squares) and the three TensorRT engines (triangles). The inset zooms in on the llama.cpp configs.*
+
+### Findings
+
+**1. TensorRT is 2.3 to 2.9x faster end-to-end.** Every TensorRT engine beats every llama.cpp config on median latency, on both datasets. INT8 SmoothQuant (T8) is the fastest; INT4 AWQ (T4) is no faster than FP16 (T16), possibly because W4A16 still computes with 16-bit activations (not profiled). TensorRT uses more memory at the same language bit width (T8 5,703 vs C2 4,884 MB; T4 4,775 vs C3 4,254 MB), but it can hold FP16 vision + FP16 language on the 8 GB board (T16, 6,755 MB), which llama.cpp cannot.
+
+**2. At matched bit width, TensorRT's quantized engines lose 4.3 to 5.2 points more on ScienceQA.** Llama.cpp's weight-only Q8_0 and Q4_K_M stay at the FP16 level on ScienceQA (82.94 and 83.29 vs 83.99 for T16), while T8 and T4 drop 5 to 6 points below T16 (77.79 and 79.03). On TextVQA, Q4_K_M loses 1.60 points against Q8_0 while INT4 AWQ loses 4.28 against FP16, so C3 beats T4 by 2.86 points. On CV-Bench the matched pairs are not significantly different.
+
+**3. This points to the quantization method, not the runtime.** TensorRT FP16 and llama.cpp Q8_0 are statistically indistinguishable on ScienceQA and TextVQA (C2 to T16: +1.04 and -0.18, both intervals include 0). The gap opens only once TensorRT quantizes, with SmoothQuant and AWQ calibrated on 512 CNN/DailyMail news articles, which contain no images or science questions. We did not run the same quantization method in both runtimes, so this is the likely explanation, not a proven cause.
+
+**4. 4-bit language buys memory, not speed, in llama.cpp.** Q4_K_M saves about 630 MB of peak RAM against Q8_0 but is about 2% slower, because prompt processing (image encoding and prefill) dominates each request (finding 6 above).
+
+**Caveats.**
+- TensorRT runs TensorRT 10.7.0.23 from the course container (JetPack 6.2 ships 10.3, which Edge-LLM v0.9.1 does not build against) with three small Edge-LLM patches for JetPack 6.2 (in [`tensorrt/jetson/`](tensorrt/jetson/)); none of them changes the computation.
+- Pairs are matched by bit width, not by method: weight-only GGUF Q8_0 / Q4_K_M vs SmoothQuant W8A8 / AWQ W4A16.
+- Only end-to-end latency is compared. Edge-LLM's Python API gives no prefill/decode split, and the timing boundary differs slightly (llama.cpp is an HTTP round trip to llama-server, TensorRT one in-process call); the HTTP overhead is small next to the gap.
+- INT8 and INT4 calibration uses the first 512 articles of the CNN/DailyMail train split (the Edge-LLM default).
+- Peak RAM is whole-system `tegrastats`, not per process, and the two Jetsons are separate boards with matched settings.
+
 ## Current Status
 
 - [x] Pilot matrix on BLINK + CV-Bench (Configs 2 to 8)
@@ -148,12 +224,14 @@ Both intervals include 0, so with 200 records neither difference is significant;
 - [x] Direct peak-memory profiling per config via `tegrastats`
 - [x] Controlled latency measurement
 - [x] vLLM feasibility test (accuracy, memory, reproducibility on 400 records)
-- [ ] Config 3 (F16 vision + Q4_K_M language) on ScienceQA and TextVQA, so the 4-bit language pair covers all datasets
-- [ ] TensorRT-LLM cross-runtime comparison on a second Jetson (Max)
-- [ ] Results visualization (accuracy vs. compression curves)
+- [x] Config 3 (F16 vision + Q4_K_M language) on ScienceQA and TextVQA, plus a same-session latency run against Config 2
+- [x] TensorRT Edge-LLM cross-runtime comparison on a second Jetson (Max): T16 / T8 / T4 on all five datasets, latency and memory
+- [x] Matched-record cross-runtime table with paired CIs and McNemar tests
+- [x] Figures: vision sweep, cross-runtime accuracy, latency vs peak memory
 - [ ] Per-task subgroup analysis within CV-Bench
 - [ ] Error analysis: which records flip between F16 and Q4_0 / Q3_K_M vision (TextVQA misreads, CV-Bench task breakdown)
-- [ ] Investigation: Q4_K_M language effect on BLINK depth (paired test, larger depth set)
+- [ ] Investigation: Q4_K_M language effect on BLINK depth (paired test done and significant on 124 questions; needs a larger depth set)
+- [ ] Per-layer vision sensitivity, e.g. mixed-precision mmproj with the first or last blocks at Q8_0 (future work)
 - [ ] Paper write-up
 
 ## Repository Structure
@@ -171,6 +249,8 @@ ias-vlm-quantization-edge/
 │   ├── run_experiment.py        # Experiment runner (protocol p2.1)
 │   ├── run_inference.py         # Standalone inference script
 │   ├── make_table_b.py          # Table B with paired bootstrap CIs + McNemar
+│   ├── make_crossruntime_table.py  # llama.cpp vs TensorRT, matched records
+│   ├── make_figures.py          # Figures 1 to 3 from the committed result tables
 │   ├── bench_latency.py         # Controlled latency + peak-memory benchmark
 │   ├── crash_report.py          # First failed request per server lifetime
 │   ├── vllm_eval.py             # Table B prompts/scorers against a vLLM server
@@ -186,9 +266,17 @@ ias-vlm-quantization-edge/
 │   ├── table_b_provenance.json  # Input file hashes, script hash, settings
 │   ├── config*_*.md / *.summary.json
 │   ├── config*__<dataset>.jsonl
-│   └── config*__<dataset>_poison.jsonl
+│   ├── config*__<dataset>_poison.jsonl
+│   └── crossruntime_*           # Cross-runtime table, deltas, latency, provenance
+├── figures/                     # PNGs made by scripts/make_figures.py
+├── tensorrt/                    # TensorRT Edge-LLM pipeline (Max): NOTES.md, runner,
+│   ├── jetson/                  #   latency benchmark, build scripts + Edge-LLM patches
+│   └── manifests/               #   ONNX hashes and quantization configs
+├── results_trt/                 # TensorRT T16 / T8 / T4 per-record results
 ├── results_rerun_oct4/          # Reproducibility re-run of Configs 2, 5, 8
-├── results_latency/             # Latency + memory benchmark, retry root-cause tests
+├── results_latency/             # Latency + memory benchmark (overnight = Oct 5 sweep,
+│                                #   config3_nov = Configs 2 and 3), retry root-cause tests
+├── results_latency_trt/         # TensorRT latency + memory (trio = all three engines)
 └── results_vllm/                # vLLM feasibility: results, server logs, notes
 ```
 
@@ -210,7 +298,8 @@ Benchmark data (`benchmarks/`) is not tracked in git. See [Get the benchmark dat
 | Runner revisions | `7663286e` (BLINK, CV-Bench for Configs 9 to 11), `4bfae0d4` (ScienceQA, TextVQA, Oct 4 re-runs) |
 | Total inference calls | about 71,000 in the accuracy experiments: 20,335 pilot (2,905 x 7) + 8,715 (Configs 9 to 11 on BLINK + CV-Bench) + 42,102 (6 configs x 7,017 ScienceQA + TextVQA); plus 3,600 timed latency-benchmark requests and two 400-request vLLM passes |
 | vLLM (feasibility only) | `ghcr.io/nvidia-ai-iot/vllm:latest-jetson-orin`, NGC checkpoint `cosmos-reason2-2b:1208-fp8-static-kv8` |
-| Stretch | TensorRT-LLM comparison, LingoQA, second VLM |
+| TensorRT (cross-runtime) | TensorRT Edge-LLM v0.9.1 (`7f061f2`) with TensorRT 10.7.0.23 in the same course container, on a second Jetson Orin Nano 8 GB (JetPack 6.2, 15W). Details in [`tensorrt/NOTES.md`](tensorrt/NOTES.md) |
+| Stretch | LingoQA, second VLM, per-layer vision sensitivity |
 
 ## Reproducing the Experiment
 
@@ -290,6 +379,23 @@ python3 scripts/bench_latency.py summarize results_latency/<new folder> --tegras
 ### 6. vLLM feasibility test
 
 See [`results_vllm/NOTES.md`](results_vllm/NOTES.md) for the container, checkpoint edits and launch command. With the server running, `python3 scripts/vllm_eval.py` (from the repo root) writes `results_vllm/`, and `python3 scripts/vllm_compare.py` compares it with Configs 2 and 5.
+
+### 7. TensorRT Edge-LLM and the cross-runtime table
+
+Building and running the TensorRT engines is described in [`tensorrt/NOTES.md`](tensorrt/NOTES.md). The table is built on the Mac (needs numpy) from the committed results:
+
+```bash
+python scripts/make_crossruntime_table.py \
+  --latency-dir results_latency/config3_nov --latency-dir results_latency_trt/trio
+```
+
+### 8. Figures (Mac or Linux, needs matplotlib)
+
+```bash
+python scripts/make_figures.py
+```
+
+Reads `results/table_b_deltas.csv`, `results/crossruntime_table.csv` and the latency folders above, and writes `figures/*.png`.
 
 ## References
 
