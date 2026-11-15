@@ -1,0 +1,43 @@
+{
+  "fingerprint": {
+    "protocol_version": "p2.1",
+    "config_num": 3,
+    "config_short": "F16v_Q4l",
+    "mmproj": "mmproj-Cosmos-Reason2-2B-F16.gguf",
+    "model": "Cosmos-Reason2-2B-Q4_K_M.gguf",
+    "mmproj_sha256": "8d3284c340d6a9c9237d56f2fc42f2df50d3761f539f3f01be964cefb0b73916",
+    "model_sha256": "3ed011641891e81fe654328071de251718832e7deafef579033485d33082e4fd",
+    "dataset": "scienceqa",
+    "format": "mcq",
+    "prompt": "context",
+    "parser": "v2",
+    "scorer": "mcq_exact_v1",
+    "max_tokens": 16,
+    "temperature": 0.0,
+    "ctx_size": 2048,
+    "n_gpu_layers": 999,
+    "data_sha256": "5a625705b29382c83b4076a1e936fc4b5e036bdd91667eafc48bc229f832e7be",
+    "manifest_sha256": "82810f584671d6f4bd8fa937932cb2b3b6fa802d8c5177c9f5f6e943483bb1c8"
+  },
+  "created": "2026-11-14T10:29:58.566700-08:00",
+  "sessions": [
+    {
+      "start": "2026-11-14T10:29:58.566744-08:00",
+      "processed": 2017,
+      "elapsed_s": 2011.5,
+      "completed": true,
+      "runner": {
+        "protocol_version": "p2.1",
+        "script_sha256": "4bfae0d4684f1cc8",
+        "git_commit": null
+      },
+      "end": "2026-11-14T11:03:30.055914-08:00"
+    }
+  ],
+  "model_checks": {
+    "mmproj_sha256": "8d3284c340d6a9c9237d56f2fc42f2df50d3761f539f3f01be964cefb0b73916",
+    "mmproj_frozen_match": true,
+    "model_sha256": "3ed011641891e81fe654328071de251718832e7deafef579033485d33082e4fd",
+    "model_frozen_match": true
+  }
+}

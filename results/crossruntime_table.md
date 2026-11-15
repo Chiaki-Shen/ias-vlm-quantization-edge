@@ -8,7 +8,7 @@ Matched records only: a record is dropped for every config if any config errored
 |---|---|---|---|---:|---:|---:|---:|---:|
 | C2 | llama.cpp | F16 | Q8_0 | 70.16 | 73.43 | 79.09 | 82.94 | 76.41 |
 | T8 | TensorRT Edge-LLM | FP16 | INT8 SmoothQuant (W8A8) | 67.74 | 69.93 | 77.90 | 77.79 | 75.52 |
-| C3 | llama.cpp | F16 | Q4_K_M | 82.26 | 77.62 | 76.67 | pending | pending |
+| C3 | llama.cpp | F16 | Q4_K_M | 82.26 | 77.62 | 76.67 | 83.29 | 74.82 |
 | T4 | TensorRT Edge-LLM | FP16 | INT4 AWQ (W4A16) | 77.42 | 77.62 | 75.08 | 79.03 | 71.95 |
 | T16 | TensorRT Edge-LLM | FP16 | FP16 | 81.45 | 74.13 | 81.15 | 83.99 | 76.24 |
 
@@ -21,10 +21,10 @@ Excluded records per dataset: BLINK depth 0 of 124, BLINK spatial 0 of 143, CV-B
 | Base to other | What it isolates | BLINK depth | BLINK spatial | CV-Bench | ScienceQA | TextVQA |
 |---|---|---|---|---|---|---|
 | C2 to T8 | 8-bit language, cross-runtime (Q8_0 vs INT8 SQ) | -2.42 [-8.06, +2.42] † | -3.50 [-6.99, +0.00] † | -1.19 [-2.74, +0.36] | -5.16 [-6.79, -3.52]* | -0.89 [-1.81, +0.06] |
-| C3 to T4 | 4-bit language, cross-runtime (Q4_K_M vs INT4 AWQ) | -4.84 [-10.48, +0.81] † | +0.00 [-6.29, +6.29] † | -1.59 [-3.21, +0.00] | pending | pending |
+| C3 to T4 | 4-bit language, cross-runtime (Q4_K_M vs INT4 AWQ) | -4.84 [-10.48, +0.81] † | +0.00 [-6.29, +6.29] † | -1.59 [-3.21, +0.00] | -4.26 [-5.90, -2.68]* | -2.86 [-3.91, -1.82]* |
 | T16 to T8 | INT8 SQ, within TensorRT | -13.71 [-20.16, -8.06]* † | -4.20 [-8.39, +0.00] † | -3.25 [-4.56, -1.90]* | -6.20 [-7.68, -4.66]* | -0.72 [-1.46, +0.01] |
 | T16 to T4 | INT4 AWQ, within TensorRT | -4.03 [-8.87, +0.81] † | +3.50 [-1.40, +9.09] † | -6.07 [-7.54, -4.60]* | -4.96 [-6.40, -3.52]* | -4.28 [-5.11, -3.45]* |
-| C2 to C3 | Q8_0 to Q4_K_M, within llama.cpp | +12.10 [+5.65, +19.35]* † | +4.20 [-0.70, +9.09] † | -2.42 [-3.73, -1.15]* | pending | pending |
+| C2 to C3 | Q8_0 to Q4_K_M, within llama.cpp | +12.10 [+5.65, +19.35]* † | +4.20 [-0.70, +9.09] † | -2.42 [-3.73, -1.15]* | +0.35 [-0.89, +1.59] | -1.60 [-2.24, -0.96]* |
 | C2 to T16 | llama.cpp Q8_0 vs TensorRT FP16 (not a pure runtime comparison) | +11.29 [+5.65, +16.94]* † | +0.70 [-2.80, +4.20] † | +2.06 [+0.83, +3.29]* | +1.04 [-0.30, +2.38] | -0.18 [-1.03, +0.67] |
 
 C2 to T16 changes both runtime and language precision (Q8_0 vs FP16). The clean statements are within a runtime (T16 to T8/T4 here, Table A/B for llama.cpp) and the matched bit-width pairs (C2 to T8, C3 to T4), which still differ in quantization method (weight-only Q8_0/Q4_K_M vs SmoothQuant W8A8 / AWQ W4A16).
@@ -40,6 +40,7 @@ C2 to T16 changes both runtime and language precision (Q8_0 vs FP16). The clean 
 | C3 to T4 | BLINK depth | 124 | 10 | 4 | 0.18 |
 | C3 to T4 | BLINK spatial | 143 | 11 | 11 | 1 |
 | C3 to T4 | CV-Bench | 2520 | 233 | 193 | 0.0587 |
+| C3 to T4 | ScienceQA | 2017 | 186 | 100 | 4.13e-07 |
 | T16 to T8 | BLINK depth | 124 | 17 | 0 | 1.53e-05 |
 | T16 to T8 | BLINK spatial | 143 | 8 | 2 | 0.109 |
 | T16 to T8 | CV-Bench | 2520 | 185 | 103 | 1.56e-06 |
@@ -51,6 +52,7 @@ C2 to T16 changes both runtime and language precision (Q8_0 vs FP16). The clean 
 | C2 to C3 | BLINK depth | 124 | 3 | 18 | 0.00149 |
 | C2 to C3 | BLINK spatial | 143 | 3 | 9 | 0.146 |
 | C2 to C3 | CV-Bench | 2520 | 167 | 106 | 0.000267 |
+| C2 to C3 | ScienceQA | 2017 | 78 | 85 | 0.639 |
 | C2 to T16 | BLINK depth | 124 | 0 | 14 | 0.000122 |
 | C2 to T16 | BLINK spatial | 143 | 3 | 4 | 1 |
 | C2 to T16 | CV-Bench | 2520 | 97 | 149 | 0.0011 |
@@ -60,12 +62,12 @@ C2 to T16 changes both runtime and language precision (Q8_0 vs FP16). The clean 
 
 | Config | Runtime | Language | ScienceQA median ms | ScienceQA p95 | TextVQA median ms | TextVQA p95 | Peak RAM MB (timed) | Source |
 |---|---|---|---:|---:|---:|---:|---:|---|
-| C2 | llama.cpp | Q8_0 | 637 | 1,481 | 2,637 | 3,761 | 4,928 | `results_latency/overnight` |
+| C2 | llama.cpp | Q8_0 | 635 | 1,479 | 2,637 | 3,728 | 4,884 | `results_latency/config3_nov` |
 | T8 | TensorRT Edge-LLM | INT8 SmoothQuant (W8A8) | 218 | 497 | 947 | 1,325 | 5,703 | `results_latency_trt/trio` |
-| C3 | llama.cpp | Q4_K_M | pending | pending | pending | pending | pending | - |
+| C3 | llama.cpp | Q4_K_M | 646 | 1,516 | 2,685 | 3,749 | 4,254 | `results_latency/config3_nov` |
 | T4 | TensorRT Edge-LLM | INT4 AWQ (W4A16) | 270 | 620 | 1,100 | 1,558 | 4,775 | `results_latency_trt/trio` |
 | T16 | TensorRT Edge-LLM | FP16 | 278 | 585 | 1,102 | 1,504 | 6,755 | `results_latency_trt/trio` |
 
-Median speedup vs C2: T8 ScienceQA 2.93x, T8 TextVQA 2.78x, T4 ScienceQA 2.36x, T4 TextVQA 2.40x, T16 ScienceQA 2.29x, T16 TextVQA 2.39x.
+Median speedup vs C2: T8 ScienceQA 2.92x, T8 TextVQA 2.79x, T4 ScienceQA 2.35x, T4 TextVQA 2.40x, T16 ScienceQA 2.28x, T16 TextVQA 2.39x.
 
 Wall-clock is not defined identically: llama.cpp is an HTTP round trip to llama-server, TensorRT is one in-process `LLM.generate()` call (image load, preprocess, encode, prefill, decode). The HTTP overhead is small next to the gap, but it is a caveat. Peak RAM is whole-system tegrastats (strict), not per process. Answers are 2 to 3 tokens, so latency is mostly vision encode plus prefill.
