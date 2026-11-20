@@ -89,6 +89,36 @@ Config 3 (F16 vision + Q4_K_M language) now covers all five datasets. Against Co
 **6. Deployment guidance: Q8_0 is the best vision encoder on this device.**
 Q8_0 cuts peak RAM by 353 MB at no latency cost and under half a point of accuracy on every large benchmark. The lower precisions buy little on top of that: Q5_K_M saves only 59 MB more than Q8_0 and is 4% slower on TextVQA, Q4_0 saves 120 MB more but costs 0.7 to 2.0 points, and Q3_K_M saves no more memory than Q4_0, is slower, and loses 2.7 points on TextVQA, so it is not recommended for tasks that read text in images. For the language decoder, Q4_K_M (Config 3) lowers peak RAM by about 630 MB (4,254 vs 4,884 MB, same-session benchmark) but gives no speedup in llama.cpp: median latency is about 2% higher (646 vs 635 ms ScienceQA, 2,685 vs 2,637 ms TextVQA). The pilot's higher decode speed (19.3 vs 17.1 tok/s, Table A) does not help here because answers are 2 to 3 tokens and prompt processing (image encoding and prefill) takes 85% (ScienceQA) to 92% (TextVQA) of each request. It costs 2.4 points on CV-Bench and 1.6 on TextVQA, so Q8_0 language is the better default unless the 630 MB is needed.
 
+### Subgroup and error analysis (Nov 2026)
+
+Both use only the committed per-record results. Scripts: `scripts/cvbench_subgroups.py` and `scripts/error_analysis.py`; full tables in [`results/analysis/cvbench_subgroups.md`](results/analysis/cvbench_subgroups.md) and [`results/analysis/error_analysis.md`](results/analysis/error_analysis.md); flipped TextVQA records in [`results/analysis/textvqa_flips.csv`](results/analysis/textvqa_flips.csv).
+
+**CV-Bench by task** (same 2,520 records as Table B; change in points vs the baseline, paired 95% bootstrap CI, bold = excludes 0, not adjusted for multiple comparisons):
+
+| Comparison | Count (n=697) | Relation (n=623) | Depth (n=600) | Distance (n=600) |
+|---|---|---|---|---|
+| Q8_0 vision vs F16 (C5) | +0.00 [-0.72, +0.72] | -0.48 [-1.28, +0.32] | +0.17 [-0.33, +0.67] | -0.33 [-1.50, +0.83] |
+| Q4_0 vision vs F16 (C8) | **-2.15 [-3.73, -0.57]** | -1.28 [-2.89, +0.32] | -1.50 [-3.00, +0.00] | **-3.00 [-5.00, -1.00]** |
+| Q3_K_M vision vs F16 (C11) | **-1.72 [-3.44, -0.14]** | +0.48 [-1.28, +2.25] | -0.17 [-1.67, +1.33] | **-3.17 [-5.50, -1.00]** |
+| Q4_K_M vs Q8_0 language (C3 vs C2) | -1.29 [-3.73, +1.15] | **-7.54 [-10.59, -4.49]** | **+2.33 [+0.50, +4.33]** | **-3.17 [-5.83, -0.50]** |
+| TensorRT INT4 AWQ vs FP16 (T4 vs T16) | **-5.16 [-8.18, -2.15]** | **-4.01 [-6.42, -1.61]** | **-5.67 [-8.17, -3.33]** | **-9.67 [-13.33, -6.17]** |
+
+- **Low-bit vision hurts Distance and Count, not Relation or Depth.** Q4_0 and Q3_K_M lose about 3 points on Distance and about 2 on Count, while Relation and Depth stay within noise. The lost Count answers are almost all off by one, and two thirds are over-counts (Q4_0: 15 of 23; Q3_K_M: 16 of 24).
+- **The Q4_K_M language drop on CV-Bench is mostly Relation (-7.54), and it comes with an answer-order bias.** Config 3 answers "A" on 31.8% of Relation questions against 50.2% in the ground truth (C2: 48.0%), so it leans toward the second option. Vision quantization barely moves this share.
+- **Depth follow-up to Finding 5.** On CV-Bench's 600 Depth questions, Q4_K_M language is also better than Q8_0, but by +2.33 points, not the +12.10 seen on BLINK depth's 124. The direction holds on the larger set, but the effect is much smaller. llama.cpp also answers "A" on 60% of Depth and 64% of Distance questions (ground truth 50%); Q4_K_M pulls Depth back toward 56%. Part of the gain may therefore be a smaller position bias rather than better depth perception (not tested).
+- **TensorRT quantization hurts every task**, most on Distance (T8 -6.00, T4 -9.67 vs T16).
+
+**TextVQA: what goes wrong at 3 and 4 bits.** Every record whose score changes against F16 is labelled by how the answer changes: a digit change (`1525` to `1515`), a character-level misread (`roost` to `roast`, `aecom` to `ascom`), a word added or dropped (`winter` to `winter collection`), or a different answer. Q8_0 vision (C5) is the noise floor: it changes 100 records but loses as many as it gains. Records lost minus records gained, above that floor:
+
+| Vision | digit change | misread | word added/dropped | different answer | total |
+|---|---:|---:|---:|---:|---:|
+| Q4_0 (C8) | +5 | +26 | -4 | +9 | +36 |
+| Q3_K_M (C11) | +30 | +64 | +11 | +42 | +147 |
+
+- **Most of the low-bit TextVQA loss is misreading the right text.** Digit changes and character misreads account for 94 of Q3_K_M's 147 net lost records and 31 of Q4_0's 36. The answer is usually the right piece of text, read wrong. This backs up the spot check in Finding 3 with counts.
+- **Longer answers break more often.** Q3_K_M loses 5.0% of records whose F16 answer is 1 to 3 characters and 8.6% of those with 16 or more characters. Q8_0 stays at 0.6 to 1.3% at every length.
+- **Q4_0 and Q3_K_M lose mostly different records.** Of 222 and 333 lost records, only 110 overlap (Jaccard 0.25). Combined with the reversed CV-Bench order (Finding 3), the two formats degrade differently rather than one being a stronger version of the other.
+
 ### Table A: Pilot and feasibility matrix (BLINK + CV-Bench)
 
 The original 7-configuration matrix. It established that F16/F16 does not fit on the device, so Q8_0 is the highest language precision that can be held fixed across all vision precisions including F16. This is why Table B fixes the language decoder at Q8_0. 2,905 records per config (124 BLINK depth + 143 BLINK spatial + 2,638 CV-Bench, 118 CV-Bench records excluded).
@@ -228,9 +258,9 @@ Same protocol as the llama.cpp benchmark above: the 200 frozen records (100 Scie
 - [x] TensorRT Edge-LLM cross-runtime comparison on a second Jetson (Max): T16 / T8 / T4 on all five datasets, latency and memory
 - [x] Matched-record cross-runtime table with paired CIs and McNemar tests
 - [x] Figures: vision sweep, cross-runtime accuracy, latency vs peak memory
-- [ ] Per-task subgroup analysis within CV-Bench
-- [ ] Error analysis: which records flip between F16 and Q4_0 / Q3_K_M vision (TextVQA misreads, CV-Bench task breakdown)
-- [ ] Investigation: Q4_K_M language effect on BLINK depth (paired test done and significant on 124 questions; needs a larger depth set)
+- [x] Per-task subgroup analysis within CV-Bench ([Subgroup and error analysis](#subgroup-and-error-analysis-nov-2026))
+- [x] Error analysis: which records flip between F16 and Q4_0 / Q3_K_M vision (TextVQA misreads, CV-Bench task breakdown)
+- [ ] Investigation: Q4_K_M language effect on BLINK depth (paired test done and significant on 124 questions; on CV-Bench's 600 Depth questions the gain is +2.33 [+0.50, +4.33], same direction but much smaller, possibly partly a position-bias effect)
 - [ ] Per-layer vision sensitivity, e.g. mixed-precision mmproj with the first or last blocks at Q8_0 (future work)
 - [ ] Paper write-up
 

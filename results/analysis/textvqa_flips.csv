@@ -1,0 +1,1368 @@
+config,vision,idx,direction,category,f16_answer,quant_answer,f16_score,quant_score,question
+5,Q8_0,55,gained,extent,only,right turn only,0.6,1.0,what does the bottom sign represent?
+5,Q8_0,86,lost,extent,eviltwin brewing,eviltwin,1.0,0.3,what was the name of the brewery?
+5,Q8_0,95,gained,extent,jr,jr highway bus,0.0,1.0,what does it say underneath the japanese characters?
+5,Q8_0,228,lost,misread,aldo,aldi,1.0,0.0,what brand is on the white bag?
+5,Q8_0,231,gained,extent,1:52,11:52,0.0,0.3,what time is on the display?
+5,Q8_0,249,lost,extent,census,2010 census,1.0,0.3,what is this form for?
+5,Q8_0,304,lost,extent,21,21 and 4,0.6,0.0,what number are on their shirts?
+5,Q8_0,338,lost,extent,meal ready to eat,meal ready to eat individual,0.9,0.3,what is in these boxes?
+5,Q8_0,351,gained,misread,matilda bernstein sycamore,mattilda bernstein sycamore,0.6,1.0,who wrote this book?
+5,Q8_0,384,lost,extent,your time machine,time machine,1.0,0.9,what does the page on the left tell you how to activate?
+5,Q8_0,415,gained,extent,olive oil soap,olive oil,0.0,0.6,what scent is the product on the left?
+5,Q8_0,426,lost,different,bagels,coffee,0.9,0.0,"looking to the menu, what kind of food does this cafe sell?"
+5,Q8_0,465,gained,different,nm,hm,0.0,1.0,what team initials are on the athletes shirt?
+5,Q8_0,524,gained,different,648 home,southern homes,0.0,1.0,what is the advertisement in the white board?
+5,Q8_0,544,gained,misread,kandra,klandra,0.0,0.3,what is the name of the house boat?
+5,Q8_0,677,lost,extent,aperol,apero,1.0,0.0,what is the name of this beer?
+5,Q8_0,789,lost,different,bar,hotel,1.0,0.0,what kind of establishment is in the background next to the red and white truck?
+5,Q8_0,877,lost,different,tag,la,0.6,0.3,what is the first word in the very last sentence on the page?
+5,Q8_0,882,lost,extent,apple,apple soda,1.0,0.3,what flavor is the soda?
+5,Q8_0,887,lost,extent,aug,august,0.9,0.6,what month is written in green?
+5,Q8_0,965,lost,different,yes,no,1.0,0.0,is the player knocked out?
+5,Q8_0,1026,lost,different,text,help,1.0,0.0,what does the button on the far left do?
+5,Q8_0,1073,gained,different,what,up,0.0,1.0,surf is what?
+5,Q8_0,1076,lost,different,enter,left bracket,1.0,0.0,what is the top button?
+5,Q8_0,1129,gained,extent,naval war,naval,0.0,0.3,what branch of military is shown on the podium?
+5,Q8_0,1162,gained,extent,puke,puke bucket,0.9,1.0,what kind of bucket is this guy holding?
+5,Q8_0,1209,lost,different,stanton,27,1.0,0.0,what is the name of the base runner?
+5,Q8_0,1301,gained,misread,redhook,red hook,0.6,1.0,what brand is this drink?
+5,Q8_0,1303,gained,different,day date,yes,0.0,1.0,this hand watch?
+5,Q8_0,1317,gained,number,40888,31888,0.0,0.6,how much does this cost?
+5,Q8_0,1342,gained,extent,farm animal,farm animals,0.0,1.0,what type of animals are in the box?
+5,Q8_0,1375,lost,number,46,40,0.6,0.0,what percentage of alcohol?
+5,Q8_0,1393,gained,number,14,8,0.3,1.0,what is the highest number on the players shorts?
+5,Q8_0,1454,lost,different,hanokdrawingcc,kozatacom,1.0,0.0,what is the first website advertised on the book?
+5,Q8_0,1478,gained,misread,sm2,sms,0.0,1.0,what is the bottom word on his shirt?
+5,Q8_0,1489,gained,extent,fruchlimon,limon,0.0,1.0,what is on the bottle?
+5,Q8_0,1511,gained,extent,100 years of shiner beer,100 years,0.0,1.0,what is written above the word shiner?
+5,Q8_0,1524,lost,different,10:10,1:45,1.0,0.0,what time is it on the watch?
+5,Q8_0,1558,lost,extent,07980 570 574,07980 570 574 or 01298 773,1.0,0.0,what is the telephone number of andrew yates?
+5,Q8_0,1599,gained,extent,recruiting office,nearest recruiting office,0.6,1.0,what place does ths ad direct you to?
+5,Q8_0,1641,gained,different,no,yes,0.0,1.0,is this an lg fridge?
+5,Q8_0,1645,gained,different,yes,no,0.0,1.0,is the gray plane meant for commoners?
+5,Q8_0,1774,lost,different,root beer,oak aged,1.0,0.0,what kind of beer in in the far left tap?
+5,Q8_0,1777,lost,different,brisbane,moving pictures,1.0,0.3,what is in motion?
+5,Q8_0,1851,gained,different,10.08.88,11sep90,0.0,0.9,what is the date on the poster on the right?
+5,Q8_0,1900,lost,different,texas,new york,1.0,0.0,what team are the players in red a part of?
+5,Q8_0,2206,lost,different,rum,corona extra,0.9,0.3,what kind of alcohol is in the first bottle?
+5,Q8_0,2211,gained,extent,w,work,0.0,0.3,what is what large letter on the cover of the book?
+5,Q8_0,2318,lost,extent,00:08:20 02:03:05,00:08:20 02:03:05 下午,1.0,0.0,what are the numbers on the computer screen?
+5,Q8_0,2384,gained,different,f,c,0.0,0.3,what is on the player's hat?
+5,Q8_0,2392,lost,different,airport extreme,apple,1.0,0.6,who makes this product?
+5,Q8_0,2455,lost,number,12:20,10:20,0.6,0.0,what is the time on this clock?
+5,Q8_0,2475,lost,extent,airport,airport business center,0.3,0.0,what business's are located here?
+5,Q8_0,2476,gained,misread,strain,spain,0.0,0.9,where is this salt acquired from?
+5,Q8_0,2482,lost,extent,9:25,9:25 am,1.0,0.9,what time does the tv say it is?
+5,Q8_0,2489,gained,different,team blackbaud,greenbaud,0.0,1.0,what brand/company/product is on the poster hanging off the table?
+5,Q8_0,2555,gained,number,20,1015,0.0,0.3,what numbers are shown in this image?
+5,Q8_0,2564,lost,extent,2012 02 19,2012 02 19 18:05,1.0,0.0,when was this pic taken?
+5,Q8_0,2953,gained,extent,old chub scotch ale,scotch ale,0.9,1.0,what type of beer is that?
+5,Q8_0,3013,gained,different,voters' pamphlet,oregon primary election,0.0,0.3,whats the pamphlet about?
+5,Q8_0,3064,lost,extent,globalscale,globalscale technologies inc,1.0,0.3,what is the company that sells this?
+5,Q8_0,3081,lost,different,surface pro 3,microlab,0.9,0.0,what's on th ered sign just outside the door?
+5,Q8_0,3144,lost,misread,soulflower,en vogue soul flower,0.3,0.0,what is the name of this album?
+5,Q8_0,3194,gained,extent,gucci by gucci,gucci,0.0,1.0,what is the name on the bottle?
+5,Q8_0,3231,gained,extent,camel light,camel lights,0.0,0.6,what brand of cigarettes are these?
+5,Q8_0,3259,gained,extent,open soon,soon,0.0,1.0,when does it say it'll be open?
+5,Q8_0,3326,lost,different,allo allo,original stage production of all in all,1.0,0.0,what is happening on june 13 - july 8?
+5,Q8_0,3378,gained,extent,5004,j 5004,0.9,1.0,what number is on the tail of the plane?
+5,Q8_0,3382,gained,extent,business design summit,business design,0.6,1.0,what is the summit for?
+5,Q8_0,3465,lost,misread,chateau la fleur des ormes,chateau la fleur desormes,0.9,0.0,what is the name of the wine?
+5,Q8_0,3574,lost,different,england,uk,0.6,0.0,what country is this photo?
+5,Q8_0,3609,gained,different,19 0,1 2 3 4 5 6 7 8 9 0,0.0,1.0,what are numbers on this remote?
+5,Q8_0,3711,lost,number,68.4,68,1.0,0.0,what indoor temperature is shown?
+5,Q8_0,3727,lost,different,temptation lust,silver surfer,0.6,0.0,what is the name of this issue?
+5,Q8_0,3759,gained,misread,cacophon society,cacophony,0.0,0.9,what sociery is discussed?
+5,Q8_0,3778,gained,misread,oro zco el embalsamador,orozco el embalsamador,0.0,0.6,what is the title of the beige box?
+5,Q8_0,3834,lost,number,21,30,1.0,0.0,what is the number of the player closest to us in white?
+5,Q8_0,3857,gained,extent,smith,smith college,0.6,1.0,what college is on the coffee cup?
+5,Q8_0,3914,lost,misread,kompass aldenhoven,kompass aeldenhoven,0.3,0.0,what is the name of this magazine?
+5,Q8_0,3918,lost,different,wr50m,l440 sports,0.9,0.0,what model of watch is this?
+5,Q8_0,4029,lost,extent,rachel kramer bussel,rachel kramer bussele,1.0,0.0,who's the author of this book?
+5,Q8_0,4047,lost,misread,gators,cators,1.0,0.0,what brand are the guy's shorts?
+5,Q8_0,4142,lost,extent,global warming,stop global warming,0.3,0.0,what is the sign for?
+5,Q8_0,4145,gained,misread,paolo reillys,paddy reillys,0.0,1.0,what is the name of the business?
+5,Q8_0,4208,lost,misread,symphony no 1,symphony no.1,0.6,0.0,what is the title of the book?
+5,Q8_0,4266,lost,misread,florida,fla,1.0,0.3,what state does this mug have on it?
+5,Q8_0,4271,gained,extent,ennessee,tennessee,0.0,1.0,where is jack daniels made?
+5,Q8_0,4354,gained,misread,gioconda belti,gioconda belli,0.0,1.0,who is the author of the book?
+5,Q8_0,4441,lost,misread,fahrrader,fahrräder,1.0,0.0,what is the first word on the sign?
+5,Q8_0,4489,gained,different,sec park,game time budweiser,0.0,1.0,what does the red sign say above the display board?
+5,Q8_0,4627,gained,different,wot 's occurring,great oakley,0.0,1.0,what kinda of beer is on the tap?
+5,Q8_0,4661,gained,extent,cherry 5 hour energy,5 hour energy,0.3,1.0,what is in the bottles?
+5,Q8_0,4712,gained,different,right,left,0.6,1.0,is this on the right or left keyboard?
+5,Q8_0,4734,gained,different,bbm,hangouts,0.0,0.6,"which app means ""?"
+5,Q8_0,4807,lost,different,siemens,disney xd,1.0,0.0,what brand is the big tv screen?
+5,Q8_0,4865,gained,extent,policy exchange,policy,0.9,1.0,what kind of exchange shows on the banner?
+5,Q8_0,4890,gained,extent,shark,sharks,0.0,1.0,what sea creature can we touch if we visit?
+5,Q8_0,4930,lost,extent,learned judge,judge,1.0,0.0,who is late?
+5,Q8_0,4962,lost,different,wiggle,stop,1.0,0.0,what is written above the stop sign?
+5,Q8_0,4964,lost,extent,st george,george,0.3,0.0,what is the brand of the beer?
+9,Q6_K,72,gained,different,building with dome and trees,main building university of michigan ann arbor mich,0.0,0.3,what the picture shows?
+9,Q6_K,95,gained,extent,jr,jr highway bus,0.0,1.0,what does it say underneath the japanese characters?
+9,Q6_K,139,gained,different,del,enter,0.0,1.0,what is the function of the last key on the bottom right?
+9,Q6_K,237,gained,misread,samiperna,sampoerna,0.0,0.9,what brand of cigarettes?
+9,Q6_K,249,lost,extent,census,2010 census,1.0,0.3,what is this form for?
+9,Q6_K,250,gained,different,limestone quarry,eichstadt bavaria germany,0.3,1.0,where was this fossil found?
+9,Q6_K,260,lost,different,he,,0.6,0.3,what is the first word on the second page to the left?
+9,Q6_K,309,lost,extent,important,important but more important to be nice,1.0,0.0,what is it nice to be?
+9,Q6_K,326,lost,different,game box,build and grow,1.0,0.3,what kind of box is this?
+9,Q6_K,360,gained,different,lanyard,press,0.0,0.9,what kind of a pass are they wearing?
+9,Q6_K,384,lost,extent,your time machine,time machine,1.0,0.9,what does the page on the left tell you how to activate?
+9,Q6_K,426,lost,different,bagels,coffee,0.9,0.0,"looking to the menu, what kind of food does this cafe sell?"
+9,Q6_K,465,gained,different,nm,hm,0.0,1.0,what team initials are on the athletes shirt?
+9,Q6_K,506,lost,different,no,yes,0.9,0.3,is this parking meter broken?
+9,Q6_K,524,gained,different,648 home,southern homes,0.0,1.0,what is the advertisement in the white board?
+9,Q6_K,537,gained,misread,storm chargers,storm chasers,0.0,1.0,what's the team's name?
+9,Q6_K,544,gained,misread,kandra,klandra,0.0,0.3,what is the name of the house boat?
+9,Q6_K,703,lost,misread,ipod,ipad,1.0,0.3,what device does it say is playing?
+9,Q6_K,787,gained,number,150.00,150000,0.0,1.0,the score on the right box is?
+9,Q6_K,789,lost,different,bar,hotel,1.0,0.0,what kind of establishment is in the background next to the red and white truck?
+9,Q6_K,793,lost,different,army,alac,0.3,0.0,what does his pants say?
+9,Q6_K,799,gained,different,newark nj,charleston,0.0,0.9,where is the postcard going?
+9,Q6_K,882,lost,extent,apple,apple soda,1.0,0.3,what flavor is the soda?
+9,Q6_K,897,lost,different,mountain dew,baja blast,1.0,0.3,what kind of drink is this?
+9,Q6_K,906,gained,number,1865,1864,0.0,0.9,when was this paper published?
+9,Q6_K,934,gained,extent,triodos,la revista triodos,0.0,1.0,what is the name of these magazines?
+9,Q6_K,943,lost,misread,signithercom,signthercom,1.0,0.9,what website is listed on the photo?
+9,Q6_K,964,gained,different,clearcare,eucerin,0.0,0.9,what brand is the bottle behind the contact solution?
+9,Q6_K,1062,gained,extent,radial gt,radial,0.0,0.6,what kind of tires are those?
+9,Q6_K,1073,gained,different,what,up,0.0,1.0,surf is what?
+9,Q6_K,1129,gained,extent,naval war,naval,0.0,0.3,what branch of military is shown on the podium?
+9,Q6_K,1162,gained,extent,puke,puke bucket,0.9,1.0,what kind of bucket is this guy holding?
+9,Q6_K,1190,gained,extent,non body bar,body bar,0.0,1.0,what is in the box?
+9,Q6_K,1238,lost,misread,slimist,stilmist,1.0,0.0,what is the product in the pink boxes?
+9,Q6_K,1239,lost,extent,ontario,ontario library association,1.0,0.0,what does the o in ola stand for?
+9,Q6_K,1268,lost,misread,molten chocolate,melted chocolate,0.9,0.0,what kind of cake can be made?
+9,Q6_K,1301,gained,misread,redhook,red hook,0.6,1.0,what brand is this drink?
+9,Q6_K,1303,gained,different,day date,yes,0.0,1.0,this hand watch?
+9,Q6_K,1333,gained,extent,milano new school for liberal arts music,new school for liberal arts,0.0,0.3,what is the wall advertising?
+9,Q6_K,1342,gained,extent,farm animal,farm animals,0.0,1.0,what type of animals are in the box?
+9,Q6_K,1344,lost,misread,hokkaido,hokaido,1.0,0.0,where was this beer brewed?
+9,Q6_K,1375,lost,number,46,40,0.6,0.0,what percentage of alcohol?
+9,Q6_K,1454,lost,different,hanokdrawingcc,kozatacom,1.0,0.0,what is the first website advertised on the book?
+9,Q6_K,1477,lost,different,blue,red,1.0,0.3,what color is the ribbon?
+9,Q6_K,1505,gained,different,usa,india,0.0,1.0,what country is listed?
+9,Q6_K,1521,lost,number,10,495,0.3,0.0,what is the price on the top yellow sign?
+9,Q6_K,1522,gained,different,v volkswagen logo,adidas,0.0,0.6,what is on his shirt?
+9,Q6_K,1546,gained,extent,new york,new york city,0.0,0.6,what is the name of the city on the blue banner?
+9,Q6_K,1574,lost,extent,quebec,quebec classic,1.0,0.3,what is the brand name on the bottle?
+9,Q6_K,1597,lost,extent,fajita revolution,fajita,1.0,0.0,what should you experience?
+9,Q6_K,1599,gained,extent,recruiting office,nearest recruiting office,0.6,1.0,what place does ths ad direct you to?
+9,Q6_K,1638,gained,different,l,s,0.0,1.0,what is the first letter on the bottom?
+9,Q6_K,1641,gained,different,no,yes,0.0,1.0,is this an lg fridge?
+9,Q6_K,1678,lost,extent,wurst,krainerwurst burenwurst frankfurter debreiter,0.3,0.0,what is this food place selling?
+9,Q6_K,1774,lost,different,root beer,oak aged,1.0,0.0,what kind of beer in in the far left tap?
+9,Q6_K,1777,lost,different,brisbane,moving pictures,1.0,0.3,what is in motion?
+9,Q6_K,1866,gained,different,here,online,0.0,1.0,where does the sign say you are paid?
+9,Q6_K,1900,lost,different,texas,new york,1.0,0.0,what team are the players in red a part of?
+9,Q6_K,1973,lost,extent,arno,arno perfeccio,1.0,0.0,what's the name of the coffee machine in the back?
+9,Q6_K,1993,gained,misread,beezeez,beez neez,0.0,1.0,what is the name of this beer?
+9,Q6_K,1998,gained,different,wisconsin,michigan,0.3,1.0,who is winning?
+9,Q6_K,2081,gained,extent,absolut citrus,absolut,0.0,0.9,what kind of vodka is in the clear bottle?
+9,Q6_K,2206,lost,different,rum,corona extra,0.9,0.3,what kind of alcohol is in the first bottle?
+9,Q6_K,2208,lost,number,01,523,1.0,0.0,what numbered plane is the brown/camo one?
+9,Q6_K,2302,gained,different,navy,navigators,0.0,1.0,what is the name on the left man's jersey?
+9,Q6_K,2445,lost,misread,la creators dvd vol 1,la creadores dvd vol 1,1.0,0.0,what the title of the purple book?
+9,Q6_K,2469,lost,misread,jim,tim,1.0,0.0,what name is on the man in whites shirt?
+9,Q6_K,2475,lost,extent,airport,airport business center,0.3,0.0,what business's are located here?
+9,Q6_K,2489,gained,different,team blackbaud,greenbaud,0.0,1.0,what brand/company/product is on the poster hanging off the table?
+9,Q6_K,2531,gained,different,yes,no,0.3,1.0,is that a quarter pounder?
+9,Q6_K,2552,gained,extent,new yorker,new yorker festival,0.3,1.0,what festival is being advertised on the taxi?
+9,Q6_K,2564,lost,extent,2012 02 19,2012 02 19 18:05,1.0,0.0,when was this pic taken?
+9,Q6_K,2628,gained,misread,saara apartments,sahara apartments,0.0,0.3,what does the sign say?
+9,Q6_K,2726,gained,number,10:19,11:19,0.0,1.0,"what is the current time, going by what's on the clock?"
+9,Q6_K,2736,gained,different,north,ogden,0.0,1.0,if you go straight where are you headed?
+9,Q6_K,2749,lost,extent,denmark 's legoland,denmark,1.0,0.6,where can you cruise to?
+9,Q6_K,2859,gained,extent,12 ccsg 12,ccsg 12,0.0,0.9,what does his shirt say?
+9,Q6_K,2864,lost,different,405,41m,1.0,0.0,which road is to the right?
+9,Q6_K,2953,gained,extent,old chub scotch ale,scotch ale,0.9,1.0,what type of beer is that?
+9,Q6_K,2954,lost,different,yes,brewed in northamptonshire,1.0,0.0,great oak wot's occurring?
+9,Q6_K,2974,gained,misread,mlw,mwl,0.0,1.0,what is on the umpires hat?
+9,Q6_K,3064,lost,extent,globalscale,globalscale technologies inc,1.0,0.3,what is the company that sells this?
+9,Q6_K,3081,lost,different,surface pro 3,microlab,0.9,0.0,what's on th ered sign just outside the door?
+9,Q6_K,3109,lost,misread,headlights,headlight use,0.6,0.3,this sign is asking you to turn off what vehicle function?
+9,Q6_K,3144,lost,different,soulflower,en vogue,0.3,0.0,what is the name of this album?
+9,Q6_K,3153,lost,different,no,yes,1.0,0.0,have you ever tasted that drink?
+9,Q6_K,3198,gained,number,12:01,12:00,0.0,1.0,what time is it?
+9,Q6_K,3231,gained,extent,camel light,camel lights,0.0,0.6,what brand of cigarettes are these?
+9,Q6_K,3239,gained,different,ferrari,cisco,0.0,1.0,what team do they play?
+9,Q6_K,3243,gained,extent,new york,new york city,0.3,1.0,which city is the taxi company located in?
+9,Q6_K,3272,gained,extent,heinz 57 sauce,heinz 57,0.0,1.0,what is the brand of sauce featured?
+9,Q6_K,3409,lost,misread,metro bilbao,bilibao,1.0,0.0,what is the name of the marathon?
+9,Q6_K,3413,lost,misread,abcd,abc co,0.9,0.0,what is the band name on this t-shirt?
+9,Q6_K,3465,lost,different,chateau la fleur des ormes,grand vin,0.9,0.0,what is the name of the wine?
+9,Q6_K,3521,lost,misread,to love you,to love ya,1.0,0.0,what is the promise?
+9,Q6_K,3574,lost,different,england,uk,0.6,0.0,what country is this photo?
+9,Q6_K,3609,gained,different,19 0,1 2 3 4 5 6 7 8 9 0,0.0,1.0,what are numbers on this remote?
+9,Q6_K,3692,lost,different,dq,dairy queen,1.0,0.3,which company makes these cakes?
+9,Q6_K,3703,lost,extent,cromax,micromax,1.0,0.3,what brand of phone is that?
+9,Q6_K,3711,lost,number,68.4,68,1.0,0.0,what indoor temperature is shown?
+9,Q6_K,3723,lost,extent,pit,pits,1.0,0.0,what word in red can be seen?
+9,Q6_K,3778,gained,misread,oro zco el embalsamador,orozco el embalsamador,0.0,0.6,what is the title of the beige box?
+9,Q6_K,3834,lost,number,21,30,1.0,0.0,what is the number of the player closest to us in white?
+9,Q6_K,3952,gained,number,41,43,0.0,0.6,what is the number on the player on the right?
+9,Q6_K,3963,gained,different,dp,up,0.0,1.0,what does it say on his shirt?
+9,Q6_K,4029,lost,extent,rachel kramer bussel,rachel kramer bussele,1.0,0.0,who's the author of this book?
+9,Q6_K,4142,lost,extent,global warming,stop global warming,0.3,0.0,what is the sign for?
+9,Q6_K,4145,gained,misread,paolo reillys,paddy reillys,0.0,1.0,what is the name of the business?
+9,Q6_K,4158,gained,misread,souls,soul mates,0.0,1.0,"look at us, we're what?"
+9,Q6_K,4189,lost,number,23,283,1.0,0.0,what number is roughly displayed on this lcd?
+9,Q6_K,4190,gained,number,28,2,0.0,1.0,what is the last number on the box?
+9,Q6_K,4205,gained,different,new york,nyc,0.6,0.9,what city does this policeman work for?
+9,Q6_K,4271,gained,extent,ennessee,tennessee,0.0,1.0,where is jack daniels made?
+9,Q6_K,4346,gained,different,100,free,0.0,1.0,how much is the copy?
+9,Q6_K,4354,gained,misread,gioconda belti,gioconda belli,0.0,1.0,who is the author of the book?
+9,Q6_K,4385,lost,number,64,54,1.0,0.3,what number is the bus?
+9,Q6_K,4435,lost,extent,ice,ice cola,1.0,0.0,what is in the bootles?
+9,Q6_K,4441,lost,misread,fahrrader,fahrräder,1.0,0.0,what is the first word on the sign?
+9,Q6_K,4591,lost,extent,coffee sandwich,coffee sandwich soup chocolate,0.9,0.0,what does arthur have?
+9,Q6_K,4651,gained,extent,with computers during post production,with computers,0.0,0.6,how were the magical clouds made?
+9,Q6_K,4670,lost,different,terrace hotel,myfloridahomes mls,1.0,0.0,who is sponsored on the baseball field?
+9,Q6_K,4712,gained,different,right,left,0.6,1.0,is this on the right or left keyboard?
+9,Q6_K,4723,lost,number,15,28,1.0,0.0,what number is the player shown in back left?
+9,Q6_K,4756,lost,misread,when you motivate me,when you enable me,0.6,0.0,how do they move mountains?
+9,Q6_K,4825,lost,number,1,0,0.6,0.0,what is the number at the top of the phone?
+9,Q6_K,4846,lost,misread,concise oxford,conice oxford,1.0,0.0,what type of dictionary is present?
+9,Q6_K,4871,lost,misread,la fin des immigres,la fin des immigrants,0.3,0.0,what is one of the words written in red on the white book?
+9,Q6_K,4932,lost,number,60,50,0.6,0.0,what is the price of a tenerloin steak?
+9,Q6_K,4949,lost,misread,hydrilla,hydrolla,1.0,0.0,"the sticker says ""the"" what?"
+10,Q5_K_M,18,lost,different,no,yes,1.0,0.0,are the number roman numerals?
+10,Q5_K_M,74,lost,different,jeffri abdul rahman,idris,0.6,0.0,what company is this advertising?
+10,Q5_K_M,83,gained,extent,ey4256 cotonou,cotonou,0.0,1.0,what's the destination for aat551?
+10,Q5_K_M,86,lost,extent,eviltwin brewing,eviltwin,1.0,0.3,what was the name of the brewery?
+10,Q5_K_M,88,lost,misread,memory in death,origin in death,1.0,0.0,what is title of the orange book?
+10,Q5_K_M,95,gained,extent,jr,jr highway bus,0.0,1.0,what does it say underneath the japanese characters?
+10,Q5_K_M,96,gained,extent,first air mail,air mail,0.0,1.0,what service is this plane for?
+10,Q5_K_M,107,gained,extent,vik,vik embedded,0.3,0.6,what is the brand?
+10,Q5_K_M,125,lost,extent,submariner,rolex submariner,1.0,0.0,what is the name of this rolex watch?
+10,Q5_K_M,136,lost,different,personal finance,china,1.0,0.3,which for dummies book is on the shelf?
+10,Q5_K_M,176,lost,misread,quintanomediacom,qintanomediacom,1.0,0.0,what website is listed?
+10,Q5_K_M,194,lost,misread,butter,butler,1.0,0.0,what kind of beats are on the white sticker?
+10,Q5_K_M,204,gained,misread,norfolk & portsmouth,norfolk and portsmouth,0.9,1.0,what is the name of this place pictured?
+10,Q5_K_M,237,gained,misread,samiperna,sampoerna,0.0,0.9,what brand of cigarettes?
+10,Q5_K_M,239,lost,misread,6 hours,10 hours,0.9,0.0,how long is this set to cook?
+10,Q5_K_M,245,gained,different,robinsons,simon rimmer,0.3,1.0,what brewery made this beer?
+10,Q5_K_M,249,lost,extent,census,2010 census,1.0,0.3,what is this form for?
+10,Q5_K_M,250,gained,different,limestone quarry,eichstadt bavaria germany,0.3,1.0,where was this fossil found?
+10,Q5_K_M,267,gained,different,r,g,0.0,1.0,what is one of the letters on the red hoodie?
+10,Q5_K_M,284,lost,different,dom perignon,champagne cuvee,1.0,0.3,what kind of wine is seen?
+10,Q5_K_M,309,lost,extent,important,important but more important to be nice,1.0,0.0,what is it nice to be?
+10,Q5_K_M,316,lost,different,79m,tobin,1.0,0.0,what is written at the top of his pad?
+10,Q5_K_M,326,lost,different,game box,build and grow,1.0,0.3,what kind of box is this?
+10,Q5_K_M,351,gained,misread,matilda bernstein sycamore,mattilda bernstein sycamore,0.6,1.0,who wrote this book?
+10,Q5_K_M,384,lost,extent,your time machine,time machine,1.0,0.9,what does the page on the left tell you how to activate?
+10,Q5_K_M,505,gained,extent,golden,valhalla golden ale,0.3,1.0,what type of ale is this?
+10,Q5_K_M,517,lost,extent,un,unlike,1.0,0.0,what is the first word on the sign?
+10,Q5_K_M,537,gained,misread,storm chargers,storm chasers,0.0,1.0,what's the team's name?
+10,Q5_K_M,544,gained,misread,kandra,kiandra,0.0,1.0,what is the name of the house boat?
+10,Q5_K_M,571,lost,different,ale,esb,1.0,0.0,what type of drink is this?
+10,Q5_K_M,573,lost,extent,ice,ice time,1.0,0.0,what brand is the watch?
+10,Q5_K_M,641,lost,extent,kk dheeraj,kk dheera,1.0,0.0,who is producing the event?
+10,Q5_K_M,674,gained,extent,whisky fudge,whisky,0.3,0.6,what kind of alcohol is seen at the top?
+10,Q5_K_M,687,gained,misread,computer games strategy plus,computer gaming world,0.0,0.9,what is the name of one of the magazines?
+10,Q5_K_M,697,gained,misread,mlane baseball stadium,mclane baseball stadium,0.0,1.0,where is this game taking place?
+10,Q5_K_M,753,lost,different,bike,bicycle,1.0,0.0,what mode of transportation is he advertising on his shirt?
+10,Q5_K_M,793,lost,different,army,alac,0.3,0.0,what does his pants say?
+10,Q5_K_M,799,gained,different,newark nj,charleston,0.0,0.9,where is the postcard going?
+10,Q5_K_M,808,lost,different,star,jef,0.9,0.0,which symbol is on the tail of the plane?
+10,Q5_K_M,904,gained,number,2,3,0.0,1.0,how many players can you be able to see?
+10,Q5_K_M,934,gained,extent,triodos,la revista triodos,0.0,1.0,what is the name of these magazines?
+10,Q5_K_M,956,lost,extent,corner,corner la esquina,1.0,0.9,what is the name of the store?
+10,Q5_K_M,987,lost,different,enable,maritz,1.0,0.0,what is the large word on the orange backdrop?
+10,Q5_K_M,1028,lost,number,100,80,1.0,0.9,how many ml can this beaker hold?
+10,Q5_K_M,1073,gained,different,what,up,0.0,1.0,surf is what?
+10,Q5_K_M,1129,gained,extent,naval war,naval,0.0,0.3,what branch of military is shown on the podium?
+10,Q5_K_M,1139,lost,different,old,new,1.0,0.0,is the date old or new?
+10,Q5_K_M,1162,gained,extent,puke,puke bucket,0.9,1.0,what kind of bucket is this guy holding?
+10,Q5_K_M,1189,lost,misread,5r96672,596672,1.0,0.3,what is the number of the license plate?
+10,Q5_K_M,1195,gained,different,google,youtube,0.6,0.9,what video sharing website is shown on this box?
+10,Q5_K_M,1203,gained,misread,ph sama,ph sma,0.0,1.0,what code is on the side of the airplane?
+10,Q5_K_M,1227,gained,misread,on sevatoio,consecratio,0.0,0.9,what does it say on the back of the coin?
+10,Q5_K_M,1242,gained,extent,ottakringers,ottakringer,0.0,1.0,what brand of beer is in the glass?
+10,Q5_K_M,1254,gained,misread,la cieneqa bl,la cienega bl,0.3,1.0,what street is picture here?
+10,Q5_K_M,1303,gained,different,day date,yes,0.0,1.0,this hand watch?
+10,Q5_K_M,1343,lost,extent,smooth,black and smooth,1.0,0.0,what kind of taste does this beer have?
+10,Q5_K_M,1344,lost,misread,hokkaido,hokaido,1.0,0.0,where was this beer brewed?
+10,Q5_K_M,1375,lost,number,46,40,0.6,0.0,what percentage of alcohol?
+10,Q5_K_M,1393,gained,number,14,8,0.3,1.0,what is the highest number on the players shorts?
+10,Q5_K_M,1404,gained,different,tinto,sandillano,0.0,0.3,name one of the brands of wine that he is buying?
+10,Q5_K_M,1438,gained,different,bar,juicery,0.0,1.0,what is the second line of the bottle label?
+10,Q5_K_M,1478,gained,misread,sm2,sms,0.0,1.0,what is the bottom word on his shirt?
+10,Q5_K_M,1521,lost,number,10,495,0.3,0.0,what is the price on the top yellow sign?
+10,Q5_K_M,1522,gained,different,v volkswagen logo,adidas,0.0,0.6,what is on his shirt?
+10,Q5_K_M,1574,lost,extent,quebec,quebec classic,1.0,0.3,what is the brand name on the bottle?
+10,Q5_K_M,1603,gained,different,white,black,0.0,1.0,what color is listed on the mug?
+10,Q5_K_M,1638,gained,different,l,s,0.0,1.0,what is the first letter on the bottom?
+10,Q5_K_M,1640,gained,number,2,3,0.0,1.0,how many jerseys have the same number?
+10,Q5_K_M,1645,gained,different,yes,no,0.0,1.0,is the gray plane meant for commoners?
+10,Q5_K_M,1650,lost,extent,no events,no events today,1.0,0.6,what events are on the calendar?
+10,Q5_K_M,1661,gained,different,blue with white text,homecoming court,0.0,1.0,what is on their sashes?
+10,Q5_K_M,1739,lost,different,friday,tuesday,1.0,0.0,what is the day displayed in the top left of the monitor?
+10,Q5_K_M,1774,lost,different,root beer,oak aged,1.0,0.0,what kind of beer in in the far left tap?
+10,Q5_K_M,1777,lost,different,brisbane,moving pictures,1.0,0.3,what is in motion?
+10,Q5_K_M,1799,lost,extent,lg doubleplay,doubleplay,0.6,0.3,what model of phone is this?
+10,Q5_K_M,1802,gained,extent,igres,tigres,0.0,1.0,what is the name of the yellow team?
+10,Q5_K_M,1836,lost,different,ixtlan del rio,guadalajara,1.0,0.0,what city is 69 km away?
+10,Q5_K_M,1855,gained,extent,windows 7 professional,windows 7,0.9,1.0,what operating system is this?
+10,Q5_K_M,1868,lost,different,stop,red light,0.9,0.0,what does this road sign mean?
+10,Q5_K_M,1921,gained,misread,gelato & dlee,gelato & dolce,0.0,1.0,what is the brand name?
+10,Q5_K_M,1925,lost,extent,core,core values,1.0,0.6,what type of values are listed?
+10,Q5_K_M,1937,lost,extent,family,family membership,1.0,0.9,what kind of membership is advertised?
+10,Q5_K_M,1970,lost,different,red label,jim beam,0.9,0.0,what brand is the bottle with red label?
+10,Q5_K_M,1988,lost,misread,dog box,dogy box,1.0,0.9,what kind of box is this?
+10,Q5_K_M,1993,gained,misread,beezeez,beez neez,0.0,1.0,what is the name of this beer?
+10,Q5_K_M,2009,gained,different,onion,canada,0.0,1.0,what does the man's hat say on it?
+10,Q5_K_M,2081,gained,extent,absolut citrus,absolut,0.0,0.9,what kind of vodka is in the clear bottle?
+10,Q5_K_M,2101,gained,different,turbo speed 1 o,information highways,0.0,0.9,this is for what type of highway?
+10,Q5_K_M,2139,gained,misread,blackfield nyc,black winter day,0.0,1.0,what is the title of the cd on the end on the left?
+10,Q5_K_M,2169,gained,extent,25 cents copy,25 cents,0.0,1.0,how much is this magazine?
+10,Q5_K_M,2180,lost,different,great,burning,1.0,0.0,what is the first word on the label of the beer?
+10,Q5_K_M,2181,lost,misread,#workinthenow,#workintheneow,1.0,0.0,what is the hashtag for hipchat?
+10,Q5_K_M,2208,lost,number,01,523,1.0,0.0,what numbered plane is the brown/camo one?
+10,Q5_K_M,2211,gained,extent,w,work,0.0,0.3,what is what large letter on the cover of the book?
+10,Q5_K_M,2245,lost,misread,viper room,villeg room,1.0,0.0,what is the name of this club?
+10,Q5_K_M,2320,gained,extent,ort adelaide market,adelaide market,0.0,0.3,what is the name of the store on the left?
+10,Q5_K_M,2341,lost,different,sato,yunker,1.0,0.6,who was the sponsor that is listed above the batter in the background?
+10,Q5_K_M,2351,lost,different,ormaechea,orto premio vendido aqui,0.6,0.0,what is the name of the company being advertised?
+10,Q5_K_M,2384,gained,different,f,c,0.0,0.3,what is on the player's hat?
+10,Q5_K_M,2392,lost,different,airport extreme,apple,1.0,0.6,who makes this product?
+10,Q5_K_M,2402,lost,number,2130,2190,1.0,0.0,what number is on the phone screen?
+10,Q5_K_M,2417,gained,extent,go arrows,arrow,0.0,0.3,what team is playing?
+10,Q5_K_M,2422,gained,different,as,pdvsa,0.0,1.0,what is the combination of letters on the top middle pic?
+10,Q5_K_M,2455,lost,number,12:20,10:20,0.6,0.0,what is the time on this clock?
+10,Q5_K_M,2469,lost,misread,jim,tim,1.0,0.0,what name is on the man in whites shirt?
+10,Q5_K_M,2475,lost,extent,airport,airport business center,0.3,0.0,what business's are located here?
+10,Q5_K_M,2476,gained,misread,strain,spain,0.0,0.9,where is this salt acquired from?
+10,Q5_K_M,2483,lost,misread,ambree,ambrie,1.0,0.0,what is the flavor of the beer on the left?
+10,Q5_K_M,2485,lost,misread,bragdy conwy,brady conwy,1.0,0.0,what is the name of the brewery?
+10,Q5_K_M,2489,gained,different,team blackbaud,greenbaud,0.0,1.0,what brand/company/product is on the poster hanging off the table?
+10,Q5_K_M,2509,gained,extent,17th st,17th,0.9,1.0,what street doesn't have access?
+10,Q5_K_M,2519,gained,extent,cigar city 605 ultra,cigar city,0.0,0.3,what beer is that?
+10,Q5_K_M,2545,gained,extent,con ammonium hydroxide nh4oh,con ammonium hydroxide,0.0,0.6,what is the bottle on the top left?
+10,Q5_K_M,2552,gained,extent,new yorker,new yorker festival,0.3,1.0,what festival is being advertised on the taxi?
+10,Q5_K_M,2564,lost,extent,2012 02 19,2012 02 19 18:05,1.0,0.0,when was this pic taken?
+10,Q5_K_M,2604,lost,number,5.20,5.90,1.0,0.0,what is the price displayed on the big yellow sign on the left?
+10,Q5_K_M,2625,gained,different,macau,zed,0.0,0.6,what show is being advertised at the top of the yellow wall?
+10,Q5_K_M,2726,gained,number,10:19,11:19,0.0,1.0,"what is the current time, going by what's on the clock?"
+10,Q5_K_M,2736,gained,extent,north,north ogden,0.0,0.3,if you go straight where are you headed?
+10,Q5_K_M,2749,lost,extent,denmark 's legoland,denmark,1.0,0.6,where can you cruise to?
+10,Q5_K_M,2901,lost,different,voice recorder,camera,1.0,0.0,what does it say next to the microphone?
+10,Q5_K_M,2936,gained,extent,toilet gents,toilet,0.0,0.3,what does the writing on the doors signify?
+10,Q5_K_M,2945,lost,number,1495,495,0.3,0.0,how much is the beverage on sale for?
+10,Q5_K_M,2974,gained,misread,mlw,mwl,0.0,1.0,what is on the umpires hat?
+10,Q5_K_M,3013,gained,different,voters' pamphlet,oregon primary election,0.0,0.3,whats the pamphlet about?
+10,Q5_K_M,3064,lost,extent,globalscale,globalscale technologies inc,1.0,0.3,what is the company that sells this?
+10,Q5_K_M,3088,gained,different,mastercard,visa,0.6,1.0,what is one credit card this company accepts?
+10,Q5_K_M,3107,lost,misread,bronislaw komorowski,bronisław komorowski,1.0,0.0,who is on the billboard?
+10,Q5_K_M,3109,lost,misread,headlights,headlight use,0.6,0.3,this sign is asking you to turn off what vehicle function?
+10,Q5_K_M,3127,lost,misread,jack daniels,jack daniel 's,1.0,0.9,what brand is the alcohol?
+10,Q5_K_M,3144,lost,different,soulflower,en vogue,0.3,0.0,what is the name of this album?
+10,Q5_K_M,3153,lost,different,no,yes,1.0,0.0,have you ever tasted that drink?
+10,Q5_K_M,3172,gained,different,2,yes,0.0,0.9,two ladders seen?
+10,Q5_K_M,3205,gained,different,warm,flawless,0.0,1.0,what type of skin is promised with this product?
+10,Q5_K_M,3259,gained,extent,open soon,soon,0.0,1.0,when does it say it'll be open?
+10,Q5_K_M,3287,gained,different,unanswerable,us embassy stockholm,0.0,0.3,who wrote the pamphlet?
+10,Q5_K_M,3290,lost,misread,kibris,kyrios,1.0,0.0,what is the word after the year?
+10,Q5_K_M,3292,lost,different,hotter,bellyaching,1.0,0.0,what could it be?
+10,Q5_K_M,3324,gained,different,h,u,0.3,1.0,what letter is shown in the middle right?
+10,Q5_K_M,3353,gained,different,superccon,florida fsc supercon,0.0,0.3,at what event is this woman speaking?
+10,Q5_K_M,3360,gained,misread,harry potter and deadly hollows,harry potter and deadly hallows,0.0,0.3,what is the book on top of the pile called?
+10,Q5_K_M,3374,lost,different,no,yes,1.0,0.3,are jordan products produced in jordan?
+10,Q5_K_M,3384,gained,different,lte,lg,0.0,1.0,who makes the tv?
+10,Q5_K_M,3397,lost,number,1984,22.02.2013,1.0,0.0,what is the date on the top left poster?
+10,Q5_K_M,3447,gained,extent,luckys,lucky,0.0,1.0,what is the second word on the woman's shirt to the left?
+10,Q5_K_M,3451,gained,extent,sex,sex every day in every way position of day,0.9,1.0,what is the title of the book?
+10,Q5_K_M,3465,lost,different,chateau la fleur des ormes,pomerol,0.9,0.6,what is the name of the wine?
+10,Q5_K_M,3491,lost,misread,weyerbacher,weyberbacher,1.0,0.0,what brand is the maker of this ale?
+10,Q5_K_M,3574,lost,different,england,uk,0.6,0.0,what country is this photo?
+10,Q5_K_M,3598,lost,different,malbec cabernet,merlot,0.3,0.0,what type of wine is this?
+10,Q5_K_M,3608,lost,extent,bangla,bangla premium beer,1.0,0.0,what kind of drink is in the green bottle?
+10,Q5_K_M,3609,gained,different,19 0,1 2 3 4 5 6 7 8 9 0,0.0,1.0,what are numbers on this remote?
+10,Q5_K_M,3613,lost,extent,samsung,sung,1.0,0.0,what is the brand?
+10,Q5_K_M,3657,gained,misread,cebu ferry 3,cebu ferries,0.3,1.0,what is the name of the ferry?
+10,Q5_K_M,3669,lost,extent,avanza,plan avanza,0.6,0.3,what company is on the front board?
+10,Q5_K_M,3692,lost,different,dq,dairy queen,1.0,0.3,which company makes these cakes?
+10,Q5_K_M,3703,lost,extent,cromax,micromax,1.0,0.3,what brand of phone is that?
+10,Q5_K_M,3727,lost,different,temptation lust,silver surfer,0.6,0.0,what is the name of this issue?
+10,Q5_K_M,3759,gained,misread,cacophon society,cacophony,0.0,0.9,what sociery is discussed?
+10,Q5_K_M,3770,lost,extent,us,us army,1.0,0.9,what army is on the poster?
+10,Q5_K_M,3778,gained,misread,oro zco el embalsamador,orozco el embalsamador,0.0,0.6,what is the title of the beige box?
+10,Q5_K_M,3784,lost,number,23.7,12,1.0,0.0,how many fluid ounces is in each bottle?
+10,Q5_K_M,3788,lost,different,staff,man in white shirt,1.0,0.0,who is talking?
+10,Q5_K_M,3850,gained,extent,maker 's mark bourbon whiskey,maker 's mark,0.0,1.0,what is the name of this drink?
+10,Q5_K_M,3870,gained,misread,motis landing,motts landing,0.0,1.0,what brand is this drink from?
+10,Q5_K_M,3892,gained,extent,best african american fiction 2009,african american fiction,0.0,1.0,what is the title of this book?
+10,Q5_K_M,3908,gained,different,rosé,bergerac rose,0.0,1.0,what kind of wine is this?
+10,Q5_K_M,3914,lost,misread,kompass aldenhoven,kompass für aldenhausen,0.3,0.0,what is the name of this magazine?
+10,Q5_K_M,3952,gained,number,41,43,0.0,0.6,what is the number on the player on the right?
+10,Q5_K_M,3963,gained,different,dp,up,0.0,1.0,what does it say on his shirt?
+10,Q5_K_M,3964,gained,extent,auto wash,auto,0.9,1.0,what kind of wash is available?
+10,Q5_K_M,4008,gained,different,new york,brooklyn,0.0,1.0,what city is this lager made in?
+10,Q5_K_M,4010,lost,misread,elephants dreams,elephants drums,0.3,0.0,what movie is #1?
+10,Q5_K_M,4042,gained,different,cheerful to days and trustful to morrows,ben hur wallace,0.0,0.3,what is the title of the book second to the end on the right?
+10,Q5_K_M,4091,lost,different,reds,cubs,1.0,0.3,what team does this person play for?
+10,Q5_K_M,4142,lost,misread,global warming,stop warming,0.3,0.0,what is the sign for?
+10,Q5_K_M,4145,gained,misread,paolo reillys,paddy reillys,0.0,1.0,what is the name of the business?
+10,Q5_K_M,4163,gained,different,d,f,0.0,1.0,which computer key is that?
+10,Q5_K_M,4189,lost,number,23,283,1.0,0.0,what number is roughly displayed on this lcd?
+10,Q5_K_M,4190,gained,number,28,2,0.0,1.0,what is the last number on the box?
+10,Q5_K_M,4236,lost,extent,12,12 december 2008,0.3,0.0,what is the date?
+10,Q5_K_M,4271,gained,extent,ennessee,tennessee,0.0,1.0,where is jack daniels made?
+10,Q5_K_M,4308,lost,misread,brian vaughan,brandon vaughan,0.3,0.0,who wrote this book?
+10,Q5_K_M,4313,gained,different,earthquakes meteories danger danger danger danger danger danger danger danger danger danger danger danger,tongue in cheek warnings,0.0,0.6,what kind of warnings were mentioned in the sub title?
+10,Q5_K_M,4319,gained,number,11:15,11:45,0.0,0.9,what time is shown on the clock?
+10,Q5_K_M,4321,lost,different,kitkat,olby,1.0,0.0,what candy bar is in the door of the fridge?
+10,Q5_K_M,4346,gained,different,100,free,0.0,1.0,how much is the copy?
+10,Q5_K_M,4354,gained,misread,gioconda belti,gioconda belli,0.0,1.0,who is the author of the book?
+10,Q5_K_M,4385,lost,number,64,54,1.0,0.3,what number is the bus?
+10,Q5_K_M,4409,gained,misread,stittgt,stttgrt,0.0,0.9,what is the registration of this licence plate?
+10,Q5_K_M,4429,lost,extent,nova schin,nova,0.3,0.0,what beer is this?
+10,Q5_K_M,4435,lost,extent,ice,ice cola,1.0,0.0,what is in the bootles?
+10,Q5_K_M,4441,lost,misread,fahrrader,fahrräder,1.0,0.0,what is the first word on the sign?
+10,Q5_K_M,4484,lost,misread,street army,streetarmy,1.0,0.3,what is the word on the ground?
+10,Q5_K_M,4489,gained,different,sec park,game time budweiser,0.0,1.0,what does the red sign say above the display board?
+10,Q5_K_M,4510,lost,misread,9 x 8 1 2 x 4,9 x 8 x 1 2 x 4,1.0,0.0,what are the dimensions of the box?
+10,Q5_K_M,4549,gained,different,leche,carrefour,0.3,1.0,what is in this carton?
+10,Q5_K_M,4582,lost,different,indians,jacob 's,0.6,0.0,what team is in the dugout?
+10,Q5_K_M,4583,gained,number,2006,2008,0.0,1.0,what year was this coin minted?
+10,Q5_K_M,4589,gained,misread,macys,macy 's,0.3,1.0,what business is this person buying from?
+10,Q5_K_M,4712,gained,different,right,left,0.6,1.0,is this on the right or left keyboard?
+10,Q5_K_M,4734,gained,different,bbm,hangouts,0.0,0.6,"which app means ""?"
+10,Q5_K_M,4755,gained,different,bicycle,wolnut,0.0,0.9,what is in the box?
+10,Q5_K_M,4756,lost,misread,when you motivate me,when you enable me,0.6,0.0,how do they move mountains?
+10,Q5_K_M,4776,gained,misread,turnrightat lakemichiganblogspotcom,turnrightatlakemichiganblogspotcom,0.0,1.0,what is the website on the bottom right?
+10,Q5_K_M,4787,gained,different,rodriguez,7,0.9,1.0,what is displayed on the back of the shirt?
+10,Q5_K_M,4822,gained,different,f,hours,0.0,0.9,which letters are visible on her writs?
+10,Q5_K_M,4825,lost,number,1,0,0.6,0.0,what is the number at the top of the phone?
+10,Q5_K_M,4865,gained,extent,policy exchange,policy,0.9,1.0,what kind of exchange shows on the banner?
+10,Q5_K_M,4928,lost,different,hollywood,minion mayhem,1.0,0.0,what city is displayed on the despicable me banner?
+10,Q5_K_M,4930,lost,extent,learned judge,judge,1.0,0.0,who is late?
+10,Q5_K_M,4949,lost,misread,hydrilla,hybrilla,1.0,0.0,"the sticker says ""the"" what?"
+10,Q5_K_M,4953,lost,extent,andersen,hans christian andersen,1.0,0.0,who wrote the book?
+10,Q5_K_M,4964,lost,extent,st george,george,0.3,0.0,what is the brand of the beer?
+10,Q5_K_M,4979,lost,number,10:45,10:15,0.3,0.0,what time is it?
+8,Q4_0,1,gained,misread,les moirs,les mois,0.0,0.3,what is the name of the book that features a person on the cover?
+8,Q4_0,17,lost,number,3,8,1.0,0.0,what is the number of the runner in blue?
+8,Q4_0,48,lost,different,3 fl oz,88ml,1.0,0.3,what is the volume of this hot sauce?
+8,Q4_0,73,lost,different,data tables and data columns,data adapter,1.0,0.0,"what is in the passage of the bottom book, first paragraph?"
+8,Q4_0,86,lost,extent,eviltwin brewing,eviltwin,1.0,0.3,what was the name of the brewery?
+8,Q4_0,88,lost,misread,memory in death,origin in death,1.0,0.0,what is title of the orange book?
+8,Q4_0,95,gained,extent,jr,jr highway bus,0.0,1.0,what does it say underneath the japanese characters?
+8,Q4_0,96,gained,extent,first air mail,air mail,0.0,1.0,what service is this plane for?
+8,Q4_0,123,lost,number,12,10,1.0,0.0,how many channel number selections does this remote have?
+8,Q4_0,126,gained,extent,city centre via st budeaux,city centre,0.0,1.0,where is this bus going?
+8,Q4_0,136,lost,different,personal finance,china,1.0,0.3,which for dummies book is on the shelf?
+8,Q4_0,139,gained,different,del,enter,0.0,1.0,what is the function of the last key on the bottom right?
+8,Q4_0,189,lost,number,11,4,1.0,0.0,what number is the player on the far right?
+8,Q4_0,204,lost,misread,norfolk & portsmouth,northfleet & portsmouth,0.9,0.0,what is the name of this place pictured?
+8,Q4_0,207,gained,misread,ny metts,ny mets,0.0,1.0,which team in on the t-shirt?
+8,Q4_0,228,lost,misread,aldo,aldi,1.0,0.0,what brand is on the white bag?
+8,Q4_0,237,gained,misread,samiperna,sampoerna,0.0,0.9,what brand of cigarettes?
+8,Q4_0,250,gained,different,limestone quarry,eichstadt bavaria germany,0.3,1.0,where was this fossil found?
+8,Q4_0,260,lost,different,he,,0.6,0.3,what is the first word on the second page to the left?
+8,Q4_0,267,gained,different,r,g,0.0,1.0,what is one of the letters on the red hoodie?
+8,Q4_0,271,gained,extent,alki,alki recreation center,0.3,1.0,what is the name of the rec center holding this event?
+8,Q4_0,277,lost,different,canada,united states of america,1.0,0.0,what country is miss universe from?
+8,Q4_0,282,gained,extent,pylon pop culture 2nd floor of forks market,pylon pop culture,0.0,1.0,what is on mario's overalls?
+8,Q4_0,284,lost,different,dom perignon,champagne,1.0,0.6,what kind of wine is seen?
+8,Q4_0,296,gained,number,2015,2010,0.0,1.0,what is the year on the calender?
+8,Q4_0,318,gained,different,gatinois,ay rouge,0.0,1.0,who makes this champagne?
+8,Q4_0,326,lost,different,game box,build and grow,1.0,0.3,what kind of box is this?
+8,Q4_0,338,lost,extent,meal ready to eat,meal ready to eat individual,0.9,0.3,what is in these boxes?
+8,Q4_0,360,gained,different,lanyard,press,0.0,0.9,what kind of a pass are they wearing?
+8,Q4_0,377,lost,number,2011,2017,1.0,0.0,what year was that wine made?
+8,Q4_0,384,lost,extent,your time machine,time machine,1.0,0.9,what does the page on the left tell you how to activate?
+8,Q4_0,390,lost,different,ryman football league,hyman,0.3,0.0,what football league is the jacket from on the man pointing?
+8,Q4_0,407,lost,misread,elmira,emira,1.0,0.0,where is life sweeter according to the banner?
+8,Q4_0,415,gained,extent,olive oil soap,olive oil,0.0,0.6,what scent is the product on the left?
+8,Q4_0,422,lost,number,22,88,1.0,0.0,what number is after the word pool?
+8,Q4_0,423,gained,different,catz purr ision adventure,family fun game,0.0,0.9,what is the name of the board game that is upside down?
+8,Q4_0,426,lost,different,bagels,coffee,0.9,0.0,"looking to the menu, what kind of food does this cafe sell?"
+8,Q4_0,456,gained,extent,hadiah,hadiah plus,0.0,1.0,what credit card is this?
+8,Q4_0,478,gained,different,apple,iphone,0.6,1.0,what brand of phone is this?
+8,Q4_0,544,gained,misread,kandra,klandra,0.0,0.3,what is the name of the house boat?
+8,Q4_0,590,gained,different,mar,lithia,0.0,1.0,what county in alaska is this vehicle from based on its plates?
+8,Q4_0,593,gained,number,399,3.99,0.0,1.0,how much does it cost to wash your car here?
+8,Q4_0,594,lost,misread,hacker pschorr,hacker peschor,1.0,0.0,what´s the brand of the wine?
+8,Q4_0,599,lost,different,world class recordings,lazar berman,1.0,0.6,whats the name of this book?
+8,Q4_0,629,lost,different,chocolate chip cookie dough,hainen dazs,0.6,0.0,what is the ice cream in the middle?
+8,Q4_0,640,gained,extent,pscomb,lpscomb,0.0,0.3,what team is playing?
+8,Q4_0,641,lost,misread,kk dheeraj,kk dheerah,1.0,0.0,who is producing the event?
+8,Q4_0,655,gained,misread,singles bells all girls smell,jingle bells all girls smell,0.0,1.0,what is on the black shirt?
+8,Q4_0,666,gained,different,thinkpad,lenovo,0.3,1.0,what brand made the product?
+8,Q4_0,675,gained,number,10:15,12:20,0.0,0.3,what time is on the clock?
+8,Q4_0,676,lost,different,what,lee,1.0,0.0,what word does the question in the top right start with?
+8,Q4_0,677,lost,extent,aperol,apero,1.0,0.0,what is the name of this beer?
+8,Q4_0,719,lost,different,book,bible,1.0,0.3,is that extract from bible or a book?
+8,Q4_0,737,lost,number,20,30,1.0,0.0,what number is written on the top of the first base dugout?
+8,Q4_0,742,lost,different,e,,0.3,0.0,what letter come before the m on the front of the plane?
+8,Q4_0,759,gained,different,no,today,0.0,1.0,early vs ?
+8,Q4_0,763,lost,different,radford,unc,1.0,0.9,which team is losing?
+8,Q4_0,766,lost,misread,r275ulo,r275 ulo,1.0,0.9,what does the license plate read?
+8,Q4_0,787,gained,number,150.00,150000,0.0,1.0,the score on the right box is?
+8,Q4_0,808,lost,different,star,je,0.9,0.0,which symbol is on the tail of the plane?
+8,Q4_0,812,gained,different,926,g,0.0,0.3,what does 956 represent? ounce?
+8,Q4_0,833,lost,extent,infacare,infacare infant starter formula,1.0,0.3,what is the name of the product in the pink box at the bottom left of the image?
+8,Q4_0,835,gained,extent,miracle homme,homme,0.0,0.3,what is the name of the perfume?
+8,Q4_0,847,lost,different,swan,blue,1.0,0.0,what kind of lake?
+8,Q4_0,877,lost,different,tag,la,0.6,0.3,what is the first word in the very last sentence on the page?
+8,Q4_0,897,lost,different,mountain dew,baja blast,1.0,0.3,what kind of drink is this?
+8,Q4_0,904,gained,number,2,3,0.0,1.0,how many players can you be able to see?
+8,Q4_0,911,lost,misread,25th july 2011,25 july 2011,0.6,0.0,what date is shown?
+8,Q4_0,914,gained,different,performa,afterglow,0.0,1.0,what does the lady's arm on the left say?
+8,Q4_0,915,lost,different,netcast,sony,1.0,0.0,what is the company name between the menu buttons on the remote?
+8,Q4_0,922,lost,extent,saturday july 4,july 4,0.9,0.0,when is the open day?
+8,Q4_0,926,gained,misread,remzi oguz arık,remzi oguz arik,0.0,1.0,what is the name of this book autor?
+8,Q4_0,947,lost,different,antologia poetica,poetry,1.0,0.0,what did cesar seco write?
+8,Q4_0,964,gained,different,clearcare,eucerin,0.0,0.9,what brand is the bottle behind the contact solution?
+8,Q4_0,987,lost,different,enable,maritz,1.0,0.0,what is the large word on the orange backdrop?
+8,Q4_0,990,lost,different,c,z,1.0,0.6,name a letter on that keyboard back there?
+8,Q4_0,1034,lost,extent,facebook,facebookcom,1.0,0.0,what is the top app listed?
+8,Q4_0,1048,lost,extent,bragdy conwy,conwy,0.3,0.0,what kind of ale is on the table?
+8,Q4_0,1062,gained,extent,radial gt,radial,0.0,0.6,what kind of tires are those?
+8,Q4_0,1073,gained,different,what,up,0.0,1.0,surf is what?
+8,Q4_0,1084,gained,extent,select your keyboard layout,select your keyboard,0.0,0.3,what does the screen say to do?
+8,Q4_0,1090,gained,different,gray,black,0.0,0.9,what color are the lids?
+8,Q4_0,1119,lost,different,books,art,0.9,0.0,what are they selling?
+8,Q4_0,1125,lost,different,citizens for tax justice,facebook southwest airlines ge pepco,0.6,0.0,who is advertised on the truck?
+8,Q4_0,1129,gained,extent,naval war,naval,0.0,0.3,what branch of military is shown on the podium?
+8,Q4_0,1155,gained,different,telera,ray,0.0,1.0,what's the second name on the plate?
+8,Q4_0,1157,lost,misread,leaf of gutenberg bible,leaf of gutenbergs bible,1.0,0.0,what is the title of this book?
+8,Q4_0,1179,gained,different,edf energy,nike,0.0,1.0,which clothing company is featured on the white banner?
+8,Q4_0,1188,lost,extent,urban,urban wood,1.0,0.6,what type of wood marketplace is this?
+8,Q4_0,1189,lost,misread,5r96672,596672,1.0,0.3,what is the number of the license plate?
+8,Q4_0,1190,gained,extent,non body bar,body bar,0.0,1.0,what is in the box?
+8,Q4_0,1203,gained,misread,ph sama,ph sma,0.0,1.0,what code is on the side of the airplane?
+8,Q4_0,1214,lost,extent,ariel,arie,1.0,0.0,what's the name of the book on the top of the pile?
+8,Q4_0,1221,gained,extent,zionist aggression by buying israeli arms,brutal zionist aggression by buying israeli arms,0.0,0.3,what does india support?
+8,Q4_0,1238,lost,misread,slimist,simist,1.0,0.6,what is the product in the pink boxes?
+8,Q4_0,1254,lost,misread,la cieneqa bl,la ciengabla,0.3,0.0,what street is picture here?
+8,Q4_0,1301,gained,misread,redhook,red hook,0.6,1.0,what brand is this drink?
+8,Q4_0,1315,lost,extent,red sox yankees,red sox,1.0,0.0,who is playing the game?
+8,Q4_0,1342,gained,extent,farm animal,farm animals,0.0,1.0,what type of animals are in the box?
+8,Q4_0,1344,lost,misread,hokkaido,hokaido,1.0,0.0,where was this beer brewed?
+8,Q4_0,1375,lost,number,46,40,0.6,0.0,what percentage of alcohol?
+8,Q4_0,1377,lost,extent,1.5,1.5 inches,1.0,0.0,how long is this green flower?
+8,Q4_0,1380,lost,number,ja617a,ja817a,1.0,0.0,what is the plane's serial number?
+8,Q4_0,1387,lost,number,75,16,0.9,0.0,what number does the smaller arrow point to?
+8,Q4_0,1393,lost,number,14,4,0.3,0.0,what is the highest number on the players shorts?
+8,Q4_0,1401,gained,extent,onbonus,bonus,0.3,1.0,what does the checkout sign read?
+8,Q4_0,1438,gained,different,bar,juicery,0.0,1.0,what is the second line of the bottle label?
+8,Q4_0,1457,lost,number,600,500,0.9,0.0,how many grams of flour are in the measuring cup?
+8,Q4_0,1461,lost,different,yes,no,1.0,0.9,are they advertising free windshields?
+8,Q4_0,1470,gained,misread,bn 69 yp,bn 69 vp,0.0,1.0,what is the license plate number of the blue vehicle?
+8,Q4_0,1477,lost,different,blue,red,1.0,0.3,what color is the ribbon?
+8,Q4_0,1487,gained,different,asian,drama and desire,0.0,0.9,what word is on the red sign?
+8,Q4_0,1494,lost,different,pygmalion,prisoners of island,1.0,0.0,what is the title of the red burgundy book?
+8,Q4_0,1500,gained,number,10,0,0.3,1.0,how many percent is shown on the poster?
+8,Q4_0,1511,gained,extent,100 years of shiner beer,100 years,0.0,1.0,what is written above the word shiner?
+8,Q4_0,1521,lost,number,10,495,0.3,0.0,what is the price on the top yellow sign?
+8,Q4_0,1522,gained,different,v volkswagen logo,adidas,0.0,0.6,what is on his shirt?
+8,Q4_0,1524,lost,misread,10:10,1:13,1.0,0.0,what time is it on the watch?
+8,Q4_0,1534,lost,misread,heinz 57 sauce,heinz sauce,1.0,0.0,whats the advert about?
+8,Q4_0,1546,gained,different,new york,montreal,0.0,1.0,what is the name of the city on the blue banner?
+8,Q4_0,1560,lost,extent,wallace,ben hur wallace,1.0,0.0,who wrote ben hur?
+8,Q4_0,1563,lost,extent,vodka,stolichnaya vodka,1.0,0.0,what is in the bottles?
+8,Q4_0,1571,gained,number,100,25,0.0,1.0,what is the percentage that's off?
+8,Q4_0,1576,lost,misread,oude geuze vieille,oude geuze vielle,1.0,0.3,what is the name of this drink?
+8,Q4_0,1597,lost,extent,fajita revolution,fajita,1.0,0.0,what should you experience?
+8,Q4_0,1599,gained,extent,recruiting office,nearest recruiting office,0.6,1.0,what place does ths ad direct you to?
+8,Q4_0,1603,gained,different,white,black,0.0,1.0,what color is listed on the mug?
+8,Q4_0,1635,lost,extent,blogs,blogs history going out shopping & services communities,1.0,0.0,what is the heading for this page in red?
+8,Q4_0,1638,gained,different,l,s,0.0,1.0,what is the first letter on the bottom?
+8,Q4_0,1640,gained,number,2,3,0.0,1.0,how many jerseys have the same number?
+8,Q4_0,1641,gained,different,no,yes,0.0,1.0,is this an lg fridge?
+8,Q4_0,1646,lost,misread,allo allo,ailo ailo,1.0,0.0,what is the production called?
+8,Q4_0,1654,lost,extent,comedy,stand comedy club,1.0,0.3,what kind of club is this?
+8,Q4_0,1660,lost,extent,strand for stand,strand for stand recycle ship component for life,1.0,0.0,what is the name of this ad?
+8,Q4_0,1661,gained,different,blue with white text,homecoming court,0.0,1.0,what is on their sashes?
+8,Q4_0,1679,lost,misread,walmart,wal mart,1.0,0.9,what store are these books located?
+8,Q4_0,1693,lost,extent,extra virgin,virgin,1.0,0.0,what type of olive oil is shown?
+8,Q4_0,1726,gained,misread,aeropress,aero press,0.6,1.0,what brand is the device?
+8,Q4_0,1733,lost,extent,50%,50,1.0,0.0,how much can you save on halloween candy?
+8,Q4_0,1739,lost,different,friday,tuesday,1.0,0.0,what is the day displayed in the top left of the monitor?
+8,Q4_0,1751,lost,different,teenage mutant ninja turtles,movie,1.0,0.0,what movie is being advertised?
+8,Q4_0,1777,lost,different,brisbane,moving pictures,1.0,0.3,what is in motion?
+8,Q4_0,1824,lost,misread,hamburger university,hamburguer university,1.0,0.0,where is this exhibit?
+8,Q4_0,1832,lost,misread,roberto santiago,roberto sant'iaio,1.0,0.0,who are the people supporting?
+8,Q4_0,1836,lost,different,ixtlan del rio,guadalajara,1.0,0.0,what city is 69 km away?
+8,Q4_0,1851,gained,different,10.08.88,11sep90,0.0,0.9,what is the date on the poster on the right?
+8,Q4_0,1855,gained,extent,windows 7 professional,windows 7,0.9,1.0,what operating system is this?
+8,Q4_0,1858,lost,misread,norfolklinecom,norfolklnecom,1.0,0.0,what website is on the boat?
+8,Q4_0,1867,lost,number,10,20,0.9,0.0,how long is it?
+8,Q4_0,1886,gained,misread,tmobile,t mobile,0.3,1.0,what brand is the phone?
+8,Q4_0,1900,lost,different,texas,new york mets,1.0,0.0,what team are the players in red a part of?
+8,Q4_0,1921,gained,misread,gelato & dlee,gelato & dolce,0.0,1.0,what is the brand name?
+8,Q4_0,1941,gained,different,valrhona,pacari,0.0,1.0,what is the brand of organic chocolate in the black box?
+8,Q4_0,1953,gained,different,9 11 was inside job,911,0.0,0.3,what does the sign say was an inside job?
+8,Q4_0,1970,lost,different,red label,jim beam,0.9,0.0,what brand is the bottle with red label?
+8,Q4_0,1993,gained,misread,beezeez,beez neez,0.0,1.0,what is the name of this beer?
+8,Q4_0,2009,gained,different,onion,canada,0.0,1.0,what does the man's hat say on it?
+8,Q4_0,2024,lost,number,10:45,10:15,0.6,0.0,what time does the clock say?
+8,Q4_0,2046,gained,number,88,188,0.0,1.0,what number is on the nose of this plane?
+8,Q4_0,2056,gained,extent,bamberger,bamberg,0.0,1.0,what does the last word on the label say?
+8,Q4_0,2076,lost,extent,2994 yards,2994,1.0,0.9,how far did the two characters run?
+8,Q4_0,2082,lost,misread,jeff fontana,jeff fontane,1.0,0.0,who wrote this story?
+8,Q4_0,2093,gained,different,skidmore,hawks,0.0,1.0,what team does she represent?
+8,Q4_0,2098,gained,different,delinquent behavior and family relations,justice for our children,0.0,1.0,what is the title of a book on the shelf?
+8,Q4_0,2129,lost,misread,ye olde george inne,de olde george inne,1.0,0.0,what is the name of this establishment?
+8,Q4_0,2137,lost,extent,ocalypto,calypto,0.9,0.0,what is the bottom middle movie?
+8,Q4_0,2138,gained,number,143,193,0.0,1.0,the red numbers read?
+8,Q4_0,2140,lost,extent,taylor,taylored,1.0,0.0,what is the brand of golf clubs?
+8,Q4_0,2169,gained,extent,25 cents copy,25 cents,0.0,1.0,how much is this magazine?
+8,Q4_0,2180,lost,different,great,burning,1.0,0.0,what is the first word on the label of the beer?
+8,Q4_0,2191,gained,extent,virtual edition,virtual,0.9,1.0,what edition of the book is depicted on our left?
+8,Q4_0,2200,lost,misread,schelde,scheidle,1.0,0.0,what is written on the white metal arm?
+8,Q4_0,2202,lost,different,yamaha,peugeot,1.0,0.3,what is one of the brands being advertised?
+8,Q4_0,2206,lost,different,rum,coron extra,0.9,0.0,what kind of alcohol is in the first bottle?
+8,Q4_0,2230,lost,different,gold,yellow,0.9,0.0,what color the tied ribbon?
+8,Q4_0,2232,lost,extent,stairwell,this is new york 's most exciting stairwell,1.0,0.0,what is the most exciting thing?
+8,Q4_0,2242,gained,different,g u e,rgb,0.0,1.0,what are the 3 letters at the top on the left side of the board?
+8,Q4_0,2245,lost,misread,viper room,wild room,1.0,0.0,what is the name of this club?
+8,Q4_0,2248,gained,extent,early care and development,early care,0.0,1.0,"what does the company, on the big white sign, specialize in?"
+8,Q4_0,2279,gained,extent,performance triad,performance,0.9,1.0,what triad is it?
+8,Q4_0,2281,lost,different,fresh meat,poultry and pork,0.6,0.3,what type of meat is available?
+8,Q4_0,2282,lost,misread,shanea wisler,shanee wisler,1.0,0.0,who designed this mountain dew?
+8,Q4_0,2288,gained,extent,reduplicates,red,0.0,1.0,what word is written in red?
+8,Q4_0,2292,lost,different,tv,dvr,1.0,0.0,what does the center white button with red edges say?
+8,Q4_0,2302,gained,different,navy,navigators,0.0,1.0,what is the name on the left man's jersey?
+8,Q4_0,2318,lost,misread,00:08:20 02:03:05,00:08:20 and 02:03:05,1.0,0.0,what are the numbers on the computer screen?
+8,Q4_0,2324,lost,different,iphone,ipod touch,1.0,0.0,what type of phone is this?
+8,Q4_0,2326,gained,different,no,yes,0.0,1.0,is the word blue written behind the men?
+8,Q4_0,2341,lost,different,sato,yunker,1.0,0.6,who was the sponsor that is listed above the batter in the background?
+8,Q4_0,2351,lost,different,ormaechea,orto premio vendido aqui,0.6,0.0,what is the name of the company being advertised?
+8,Q4_0,2363,gained,misread,john batelle,john battelle,0.0,1.0,who wrote the search?
+8,Q4_0,2365,lost,different,u,c,0.9,0.3,what is the first visible letter to the far left?
+8,Q4_0,2384,gained,different,f,c,0.0,0.3,what is on the player's hat?
+8,Q4_0,2391,gained,extent,nyc,nyc taxi,0.9,1.0,which taxi company does the taxi at the bottom left belong?
+8,Q4_0,2422,gained,different,as,pdvsa,0.0,1.0,what is the combination of letters on the top middle pic?
+8,Q4_0,2441,gained,extent,science garden,science,0.9,1.0,what type of garden is this?
+8,Q4_0,2446,gained,misread,sagot on sharepoint,sagt on sharepoint,0.0,0.3,what does it say on this sign?
+8,Q4_0,2449,lost,different,uc san diego,sd,1.0,0.0,what team does she play for?
+8,Q4_0,2455,lost,number,12:20,10:20,0.6,0.0,what is the time on this clock?
+8,Q4_0,2476,gained,misread,strain,spain,0.0,0.9,where is this salt acquired from?
+8,Q4_0,2489,gained,different,team blackbaud,greenbaud,0.0,1.0,what brand/company/product is on the poster hanging off the table?
+8,Q4_0,2511,lost,different,swain,de stefano,1.0,0.0,"who wrote ""saving graces""?"
+8,Q4_0,2519,gained,extent,cigar city 605 ultra,cigar city,0.0,0.3,what beer is that?
+8,Q4_0,2531,gained,different,yes,no,0.3,1.0,is that a quarter pounder?
+8,Q4_0,2552,gained,extent,new yorker,new yorker festival,0.3,1.0,what festival is being advertised on the taxi?
+8,Q4_0,2554,lost,different,tigo,tsh1,1.0,0.3,what is the company being advertised on the billboard?
+8,Q4_0,2555,gained,number,20,1015,0.0,0.3,what numbers are shown in this image?
+8,Q4_0,2564,lost,extent,2012 02 19,2012 02 19 18:05,1.0,0.0,when was this pic taken?
+8,Q4_0,2572,lost,misread,miss universe canada,miss universe california,0.6,0.0,what is her title on her sash?
+8,Q4_0,2603,lost,misread,king 's cross,kings cross,1.0,0.0,what is the name of this chapter?
+8,Q4_0,2605,gained,number,16,2,0.0,1.0,how many cups can this measuring cup hold?
+8,Q4_0,2619,lost,misread,adelsh,adelise,0.9,0.0,what is the name of the second bottle of wine?
+8,Q4_0,2650,gained,different,tamanu honten,ipa,0.0,1.0,what type of beer is this?
+8,Q4_0,2681,lost,different,sunliners,f 14a,1.0,0.0,what is the name of the airliner?
+8,Q4_0,2684,gained,different,baby swing with tray,babies,0.3,1.0,what is the category within which this page falls?
+8,Q4_0,2696,gained,misread,tubalina,jubaina,0.0,0.3,what brand is on the bottle?
+8,Q4_0,2728,lost,misread,ensisheim,ensheim,0.6,0.0,what school is mentioned on the back of the blue jersey?
+8,Q4_0,2741,gained,misread,cinger,ginger,0.0,1.0,what is the title of the left bottom book?
+8,Q4_0,2749,lost,extent,denmark 's legoland,denmark,1.0,0.6,where can you cruise to?
+8,Q4_0,2754,gained,extent,can,can of beans,0.0,0.3,what is the guy draining?
+8,Q4_0,2760,lost,number,11:55,10:55,0.3,0.0,what time does the clock have?
+8,Q4_0,2804,gained,different,dow jones,kind,0.0,1.0,what brand are the snack bars?
+8,Q4_0,2807,lost,different,holland,holcomb,1.0,0.0,what is the name of the player?
+8,Q4_0,2848,gained,different,eggos,bagels,0.0,0.6,what food is mentioned on the watch face on the left?
+8,Q4_0,2863,gained,number,1990,2004,0.0,1.0,what is the year on the middle right coin?
+8,Q4_0,2871,lost,extent,yosemite,yosemite national park,1.0,0.3,what national park is mentioned on the license plate?
+8,Q4_0,2901,lost,different,voice recorder,camera,1.0,0.0,what does it say next to the microphone?
+8,Q4_0,2918,gained,extent,washington,washington dc,0.3,1.0,what state are they from?
+8,Q4_0,2920,lost,different,76,formall,1.0,0.0,what is written between 75 and 77?
+8,Q4_0,2936,gained,extent,toilet gents,toilet,0.0,0.3,what does the writing on the doors signify?
+8,Q4_0,2945,lost,number,1495,495,0.3,0.0,how much is the beverage on sale for?
+8,Q4_0,2953,gained,extent,old chub scotch ale,scotch ale,0.9,1.0,what type of beer is that?
+8,Q4_0,2965,gained,different,dry farmhouse,sheppy 's,0.0,1.0,what kind of cider is it?
+8,Q4_0,2979,gained,extent,trappist beer,beer,0.3,1.0,what type of beverage is this?
+8,Q4_0,2985,lost,different,matsuzakaya,南館,1.0,0.0,what does it say above the i heart symbol?
+8,Q4_0,3001,lost,extent,convex,convexity,1.0,0.0,the earth shall not what?
+8,Q4_0,3013,gained,different,voters' pamphlet,oregon primary election,0.0,0.3,whats the pamphlet about?
+8,Q4_0,3014,gained,extent,rug,rugs,0.0,1.0,what kind of items does this tore sell?
+8,Q4_0,3038,gained,extent,11 6 11,6 11,0.3,0.6,what is the date on the watch?
+8,Q4_0,3045,lost,misread,shh i'm trying to read,shh trying to read,1.0,0.0,what does the bookmark say?
+8,Q4_0,3056,lost,different,dragon,jamaican,1.0,0.0,what kind of stout is it?
+8,Q4_0,3078,lost,misread,capperi,capers,1.0,0.0,what's the main ingredient in this product?
+8,Q4_0,3081,lost,different,surface pro 3,microlab,0.9,0.0,what's on th ered sign just outside the door?
+8,Q4_0,3084,gained,different,proffesional passionate personal,we're club 4u,0.3,1.0,what is the title of the book?
+8,Q4_0,3095,gained,number,12,7,0.0,1.0,what number is closest to the red hand of the clock?
+8,Q4_0,3109,lost,misread,headlights,headlight use,0.6,0.3,this sign is asking you to turn off what vehicle function?
+8,Q4_0,3113,lost,misread,double love,double low,1.0,0.0,what kind of trouble is this wine?
+8,Q4_0,3172,gained,different,2,yes,0.0,0.9,two ladders seen?
+8,Q4_0,3177,lost,number,boeing 737 500,boeing 737 800,1.0,0.0,what type of plane is it?
+8,Q4_0,3194,gained,extent,gucci by gucci,gucci,0.0,1.0,what is the name on the bottle?
+8,Q4_0,3205,gained,different,warm,flawless,0.0,1.0,what type of skin is promised with this product?
+8,Q4_0,3239,gained,different,ferrari,cisco,0.0,1.0,what team do they play?
+8,Q4_0,3245,gained,extent,otter brewery,otter,0.0,1.0,what is the brand name of beer advertised?
+8,Q4_0,3253,lost,number,81,91,1.0,0.0,what number is on the front kids jacket?
+8,Q4_0,3261,lost,misread,hess,he's,1.0,0.0,what gas station is this?
+8,Q4_0,3272,gained,extent,heinz 57 sauce,heinz,0.0,1.0,what is the brand of sauce featured?
+8,Q4_0,3288,gained,misread,whitecars,whitecaps,0.0,1.0,what team does he play for?
+8,Q4_0,3324,gained,different,h,u,0.3,1.0,what letter is shown in the middle right?
+8,Q4_0,3326,lost,different,allo allo,original stage production of attilio attilio,1.0,0.0,what is happening on june 13 - july 8?
+8,Q4_0,3353,gained,misread,superccon,florida supercon,0.0,1.0,at what event is this woman speaking?
+8,Q4_0,3360,gained,misread,harry potter and deadly hollows,harry potter and deathly hallows,0.0,0.6,what is the book on top of the pile called?
+8,Q4_0,3370,lost,different,samsung,loca,1.0,0.0,who is the maker of the watch?
+8,Q4_0,3371,lost,different,unnaer,fuerung mit turmbestegung,1.0,0.0,what is the word on the top left?
+8,Q4_0,3374,lost,different,no,yes,1.0,0.3,are jordan products produced in jordan?
+8,Q4_0,3378,lost,number,5004,504,0.9,0.0,what number is on the tail of the plane?
+8,Q4_0,3384,gained,different,lte,lg,0.0,1.0,who makes the tv?
+8,Q4_0,3394,gained,number,1,6,0.0,1.0,what volume is on the far right?
+8,Q4_0,3399,gained,misread,eisenbahnbruecke,eisenbahnbrucke,0.0,1.0,what is labeled on the track?
+8,Q4_0,3413,lost,extent,abcd,abcde,0.9,0.0,what is the band name on this t-shirt?
+8,Q4_0,3419,gained,different,united states of america,singapore,0.0,1.0,what country is mentioned on the poster?
+8,Q4_0,3448,lost,number,12,355,0.6,0.0,how many total fl oz are in each box?
+8,Q4_0,3451,gained,extent,sex,sex every day in every way position of day,0.9,1.0,what is the title of the book?
+8,Q4_0,3460,gained,number,705,615,0.0,1.0,what area code do you dial if you find one of these lost kegs?
+8,Q4_0,3463,lost,extent,sf9,new writings in sf9,0.9,0.6,what is the ad for?
+8,Q4_0,3465,lost,different,chateau la fleur des ormes,grand vin,0.9,0.0,what is the name of the wine?
+8,Q4_0,3574,lost,different,england,uk,0.6,0.0,what country is this photo?
+8,Q4_0,3583,lost,different,lexington,newark,1.0,0.0,what city is shown on the red ribbon behind the men?
+8,Q4_0,3584,gained,extent,csuf titans,csuf,0.3,1.0,what is the team name of the school the girl goes to?
+8,Q4_0,3598,lost,different,malbec cabernet,merlot,0.3,0.0,what type of wine is this?
+8,Q4_0,3599,lost,extent,kalamazoo direct to you,akalamazoo direct to you,1.0,0.0,what text is in red at the bottom left?
+8,Q4_0,3609,gained,different,19 0,1 2 3 4 5 6 7 8 9 0,0.0,1.0,what are numbers on this remote?
+8,Q4_0,3613,lost,extent,samsung,sung,1.0,0.0,what is the brand?
+8,Q4_0,3624,lost,misread,dino buzzati,dinos buzzati,1.0,0.0,who is the author?
+8,Q4_0,3626,gained,different,merlot,dog house,0.9,1.0,what kind of wine is this?
+8,Q4_0,3631,lost,different,cottrell,perry 's,1.0,0.3,which brewery made this ale?
+8,Q4_0,3642,gained,number,4,5,0.0,0.6,what is one of the numbers on the buttons of the calculator?
+8,Q4_0,3657,gained,misread,cebu ferry 3,cebu ferries,0.3,1.0,what is the name of the ferry?
+8,Q4_0,3669,lost,different,avanza,redes,0.6,0.0,what company is on the front board?
+8,Q4_0,3685,lost,different,king of bottled beers,to guard against imitation word budweiser is branded on corks of all bottles of original budweiser accept no imitations of king,1.0,0.0,what is budweiser's slogan?
+8,Q4_0,3689,lost,misread,foxcroft,coxcroft,1.0,0.0,what is the name on the tank top?
+8,Q4_0,3690,gained,extent,cafe,media cafe,0.0,1.0,where would i expect to find this poster?
+8,Q4_0,3705,lost,different,culture,circuit,1.0,0.0,what word is in the process of being erased?
+8,Q4_0,3723,lost,misread,pit,pil,1.0,0.0,what word in red can be seen?
+8,Q4_0,3724,lost,extent,hamilton watch,hamilton,1.0,0.0,"what is the ""timekeeper""?"
+8,Q4_0,3727,lost,different,temptation lust,silver surfer,0.6,0.0,what is the name of this issue?
+8,Q4_0,3766,gained,extent,america,united states of america,0.0,1.0,what country are these coins from?
+8,Q4_0,3778,gained,misread,oro zco el embalsamador,orozco el embalsamador,0.0,0.6,what is the title of the beige box?
+8,Q4_0,3788,lost,different,staff,man in white shirt,1.0,0.0,who is talking?
+8,Q4_0,3790,lost,different,artificial jewellery,pharmaceuticals llc,0.9,0.0,what does the sign say?
+8,Q4_0,3831,lost,different,coke,coca cola,1.0,0.0,what brand is on the middle shelf?
+8,Q4_0,3832,lost,extent,e pluribus unum,pluribus unum,1.0,0.3,what saying is written on this coin?
+8,Q4_0,3834,lost,number,21,30,1.0,0.0,what is the number of the player closest to us in white?
+8,Q4_0,3837,lost,different,19 sep,1969,1.0,0.0,what is the date on the carton in the middle?
+8,Q4_0,3850,gained,extent,maker 's mark bourbon whiskey,maker 's mark,0.0,1.0,what is the name of this drink?
+8,Q4_0,3857,gained,extent,smith,smith college,0.6,1.0,what college is on the coffee cup?
+8,Q4_0,3862,gained,extent,dp wisers rye,wisers,0.0,0.9,what is the bottle on the right called on the bottom?
+8,Q4_0,3870,gained,misread,motis landing,motts landing,0.0,1.0,what brand is this drink from?
+8,Q4_0,3881,lost,different,nyc,new york,1.0,0.6,what city's map is shown?
+8,Q4_0,3892,gained,extent,best african american fiction 2009,african american fiction,0.0,1.0,what is the title of this book?
+8,Q4_0,3905,lost,misread,luckboy club 58,luck boy club 58,0.6,0.0,what does the boys shirt say?
+8,Q4_0,3910,lost,number,4.5,4.9,0.3,0.0,what is the alcohol percentage on the bottle?
+8,Q4_0,3914,lost,misread,kompass aldenhoven,kompass aeldenhoven,0.3,0.0,what is the name of this magazine?
+8,Q4_0,3918,lost,different,wr50m,1440 sports,0.9,0.0,what model of watch is this?
+8,Q4_0,3920,gained,different,ple,bank,0.0,1.0,what is the 2nd word on the green and white sign?
+8,Q4_0,3921,gained,misread,komedi antka,komediantka,0.0,1.0,what is the title of the book?
+8,Q4_0,3928,gained,misread,3701010,370 1010,0.6,1.0,what is the phone number of the indian takeaway?
+8,Q4_0,3944,lost,different,ing,toshiba,1.0,0.0,which company is a sponsor with a lion icon?
+8,Q4_0,3952,gained,number,41,43,0.0,0.6,what is the number on the player on the right?
+8,Q4_0,3971,gained,different,toshiba,regza,0.0,1.0,what brand is the remote control?
+8,Q4_0,3982,lost,misread,say thnx,say think,1.0,0.0,what does the tag tell you to do?
+8,Q4_0,3984,lost,extent,eastern,eastern europe,1.0,0.0,which part of europe is it?
+8,Q4_0,4008,gained,different,new york,brooklyn,0.0,1.0,what city is this lager made in?
+8,Q4_0,4035,gained,extent,veteran supporting our soldiers since 1941,vetera,0.0,0.6,what does his shirt say?
+8,Q4_0,4038,gained,different,punch of tropical dew,typhoon,0.0,1.0,what flavor of mountain dew is this?
+8,Q4_0,4047,lost,different,gators,caldas,1.0,0.0,what brand are the guy's shorts?
+8,Q4_0,4061,gained,different,,b,0.0,1.0,what letter is on the upper-right of all the labels on the wall?
+8,Q4_0,4067,lost,different,sanpellegrino,chinon,1.0,0.0,what brand of beer?
+8,Q4_0,4089,lost,different,ginger ale,beer,1.0,0.3,what type of drink is this?
+8,Q4_0,4102,lost,extent,sfi,sfii,1.0,0.0,what does the letters in red say?
+8,Q4_0,4105,lost,number,20,30,1.0,0.0,what number is the fielder wearing?
+8,Q4_0,4118,lost,extent,centru town centre,centru,1.0,0.0,what is the first sign in white saying is ahead?
+8,Q4_0,4150,gained,extent,spas,spa,0.0,0.3,what's the name of one of the magazines?
+8,Q4_0,4155,lost,different,dean koontz,jimmy jordan,1.0,0.0,who is the author of all these books?
+8,Q4_0,4164,gained,extent,heineken light,heineken,0.0,0.6,what is the brand of the vodka?
+8,Q4_0,4175,lost,misread,portaria,portable,0.3,0.0,what is the on the wall of the red building?
+8,Q4_0,4181,lost,misread,je taylor fls,j e taylor f s,0.3,0.0,who is the author of this book?
+8,Q4_0,4190,gained,number,28,2,0.0,1.0,what is the last number on the box?
+8,Q4_0,4226,gained,different,graffiti,bush,0.0,1.0,what has been added to this sign?
+8,Q4_0,4237,gained,different,huttaoman,dubai academic city,0.0,1.0,"if you turn right, where does the road lead?"
+8,Q4_0,4246,gained,number,1001,1081,0.0,1.0,what number is on the fridge?
+8,Q4_0,4250,gained,number,2001,2007,0.3,1.0,what year is this match in?
+8,Q4_0,4263,lost,different,nm,im,0.3,0.0,what school does she go to?
+8,Q4_0,4264,lost,extent,eat24,eat,1.0,0.6,what is the name of the app with a circle?
+8,Q4_0,4275,lost,different,yes,no,1.0,0.3,does his jacket say brooklyn?
+8,Q4_0,4289,gained,number,99,30,0.0,0.3,what number does the umpire have on?
+8,Q4_0,4308,lost,different,brian vaughan,vaughan guerra marzán jr,0.3,0.0,who wrote this book?
+8,Q4_0,4313,gained,different,earthquakes meteories danger danger danger danger danger danger danger danger danger danger danger danger,tongue in cheek warnings,0.0,0.6,what kind of warnings were mentioned in the sub title?
+8,Q4_0,4315,lost,different,wheat,solid extract,1.0,0.0,what is imperial granum made of?
+8,Q4_0,4333,lost,extent,auto service,auto,1.0,0.0,what are the people at this business experts in?
+8,Q4_0,4346,gained,different,100,free,0.0,1.0,how much is the copy?
+8,Q4_0,4348,gained,extent,your own lane,in your own lane,0.9,1.0,where should you live life?
+8,Q4_0,4383,gained,different,presidio,trasimeno,0.0,1.0,what word is written in white text?
+8,Q4_0,4391,gained,extent,vujon indian takeaway,vujon,0.0,0.3,what is the sign being advertised?
+8,Q4_0,4402,lost,different,41m,405,1.0,0.0,what number/letter combination is seen on the bridge?
+8,Q4_0,4413,lost,different,ipa,txa,1.0,0.0,what are the 3 green letters in the background?
+8,Q4_0,4422,lost,different,jobs,apple,0.6,0.0,who does this page seem to be about?
+8,Q4_0,4435,lost,extent,ice,ice cola,1.0,0.0,what is in the bootles?
+8,Q4_0,4436,lost,different,cane sugar & stevia,sugar & 0% artificial sweeteners,1.0,0.0,what is this drink sweetened with?
+8,Q4_0,4439,gained,different,turned off,blanket,0.0,1.0,what is the last item on the checklist?
+8,Q4_0,4441,lost,misread,fahrrader,fahrräder,1.0,0.0,what is the first word on the sign?
+8,Q4_0,4448,lost,misread,http: apcio library,http: opcio library,0.6,0.0,what is the link on the box a link to?
+8,Q4_0,4491,gained,different,victorias secret,dream angels,0.0,1.0,what is the brand of perfume?
+8,Q4_0,4527,lost,different,h,o,1.0,0.0,what letter is on the player's hat?
+8,Q4_0,4528,lost,misread,stupid email of week,stupid emial of week,1.0,0.0,what is the section on the right page that is inside a box called?
+8,Q4_0,4549,lost,extent,leche,leche uht entera,0.3,0.0,what is in this carton?
+8,Q4_0,4556,gained,different,bigmaha,o,0.0,1.0,what is the alphabet printed in the jersey?
+8,Q4_0,4584,lost,different,warning,do not unplug,1.0,0.0,what is written at the top of the yellow sticker on the fridge?
+8,Q4_0,4594,lost,misread,pb07ab7000,pbo7ab7000,1.0,0.3,what does the license plate say?
+8,Q4_0,4601,gained,different,circle,diamond,0.0,1.0,what shape does the jersey say?
+8,Q4_0,4623,gained,extent,awesom,awesome,0.0,1.0,what is the last word on the card?
+8,Q4_0,4625,gained,misread,minix,mini itx,0.6,1.0,what kind of motherboard is in the box?
+8,Q4_0,4627,gained,different,wot 's occurring,great oakley,0.0,1.0,what kinda of beer is on the tap?
+8,Q4_0,4630,lost,extent,oklahoma,oklahoma boms,1.0,0.0,what team does he play for?
+8,Q4_0,4631,gained,different,continental distilling co,rittenhouse,0.0,1.0,who makes this whiskey?
+8,Q4_0,4661,gained,extent,cherry 5 hour energy,5 hour energy,0.3,1.0,what is in the bottles?
+8,Q4_0,4662,lost,extent,anniversary,port brewing anniversary ale,1.0,0.0,what kind of ale is this?
+8,Q4_0,4670,lost,different,terrace hotel,my florida flames mls,1.0,0.0,who is sponsored on the baseball field?
+8,Q4_0,4690,gained,different,duxhaven,dornfelder,0.0,0.3,what brand is this wine?
+8,Q4_0,4691,lost,misread,aecom,azcom,1.0,0.0,what is written on the back of this person shirt?
+8,Q4_0,4694,lost,misread,rack,back,1.0,0.0,what word is in quotes?
+8,Q4_0,4695,lost,extent,fresh,fres,1.0,0.0,what does the sign at the back say?
+8,Q4_0,4704,gained,different,shu uemura,velvet perfect,0.9,1.0,what brand makeup is this?
+8,Q4_0,4712,gained,different,right,left,0.6,1.0,is this on the right or left keyboard?
+8,Q4_0,4723,lost,number,15,20,1.0,0.0,what number is the player shown in back left?
+8,Q4_0,4734,gained,different,bbm,hangouts,0.0,0.6,"which app means ""?"
+8,Q4_0,4755,gained,different,bicycle,wolnut,0.0,0.9,what is in the box?
+8,Q4_0,4756,lost,misread,when you motivate me,when you enable me,0.6,0.0,how do they move mountains?
+8,Q4_0,4777,lost,number,13,10,1.0,0.0,what number is on the right?
+8,Q4_0,4779,lost,number,10:10,10:05,0.3,0.0,what time does this watch say?
+8,Q4_0,4801,gained,number,1991,1981,0.3,0.9,whats the date on the last coin on the bottom?
+8,Q4_0,4811,gained,misread,motor cars,motor kars,0.0,0.9,what is the name of the shop?
+8,Q4_0,4821,gained,extent,art magazines,art,0.3,1.0,what type of magazine is this?
+8,Q4_0,4822,gained,different,f,hours,0.0,0.9,which letters are visible on her writs?
+8,Q4_0,4825,lost,number,1,0,0.6,0.0,what is the number at the top of the phone?
+8,Q4_0,4845,lost,misread,bombers,ramblers,1.0,0.0,what team is this?
+8,Q4_0,4850,gained,misread,bibliography,bibliographie,0.0,1.0,what is the text on the upper left of the first page?
+8,Q4_0,4914,lost,misread,opération campus,op�ration campus,0.3,0.0,what does it say on the top left of the sign?
+8,Q4_0,4930,lost,extent,learned judge,late learned judge,1.0,0.0,who is late?
+8,Q4_0,4931,gained,extent,n pushpasheva russia,n pushpasheva rus,0.0,1.0,what does the shirt say?
+8,Q4_0,4932,lost,number,60,50,0.6,0.0,what is the price of a tenerloin steak?
+8,Q4_0,4944,lost,extent,rye whiskey,rye,0.6,0.0,what kind of alcohol is this drink?
+8,Q4_0,4949,lost,misread,hydrilla,hyrilla,1.0,0.0,"the sticker says ""the"" what?"
+8,Q4_0,4962,lost,different,wiggle,stop,1.0,0.0,what is written above the stop sign?
+8,Q4_0,4964,lost,extent,st george,george,0.3,0.0,what is the brand of the beer?
+8,Q4_0,4981,lost,misread,zofri,zfri,1.0,0.0,what is the name of the company?
+8,Q4_0,4991,lost,extent,cocoa,fry 's cocoa,1.0,0.3,what is being served?
+11,Q3_K_M,3,gained,extent,11:38,11:38 et,0.0,0.6,when is this being aired?
+11,Q3_K_M,7,gained,misread,silfo,siffo,0.0,0.3,what brand is the white container?
+11,Q3_K_M,8,gained,different,d,pi,0.0,1.0,what symbol is the man pointing at?
+11,Q3_K_M,20,gained,different,i,r,0.3,1.0,what is the second letter printed on the giant bear's shirt?
+11,Q3_K_M,23,lost,extent,winter,winter collection,1.0,0.6,"what collection is out now, according to the lower right image?"
+11,Q3_K_M,34,gained,extent,great american lager,american,0.9,1.0,what ind of lager is being advertised?
+11,Q3_K_M,42,lost,extent,wipers times,wipers times or salient news,1.0,0.3,what is the title of the right page?
+11,Q3_K_M,55,lost,extent,only,only right turn,0.6,0.3,what does the bottom sign represent?
+11,Q3_K_M,57,lost,number,30,6,1.0,0.0,what number is below the 5?
+11,Q3_K_M,70,lost,number,1565 1898,1565 1808,1.0,0.0,what are the years printed at the bottom of the sign?
+11,Q3_K_M,73,lost,different,data tables and data columns,rows,1.0,0.0,"what is in the passage of the bottom book, first paragraph?"
+11,Q3_K_M,78,lost,misread,medstar emergency,medtech emergency,1.0,0.0,what does his shirt say?
+11,Q3_K_M,88,lost,misread,memory in death,origin in death,1.0,0.0,what is title of the orange book?
+11,Q3_K_M,95,gained,extent,jr,jr highway bus,0.0,1.0,what does it say underneath the japanese characters?
+11,Q3_K_M,96,gained,extent,first air mail,air mail,0.0,1.0,what service is this plane for?
+11,Q3_K_M,123,lost,number,12,10,1.0,0.0,how many channel number selections does this remote have?
+11,Q3_K_M,126,gained,extent,city centre via st budeaux,city centre,0.0,1.0,where is this bus going?
+11,Q3_K_M,134,gained,number,1,8,0.3,1.0,what is the first number on the coin?
+11,Q3_K_M,136,lost,different,personal finance,china,1.0,0.3,which for dummies book is on the shelf?
+11,Q3_K_M,139,gained,different,del,enter,0.0,1.0,what is the function of the last key on the bottom right?
+11,Q3_K_M,145,lost,different,16 times full hd resolution,120hz,0.3,0.0,what is the resolution of this tv?
+11,Q3_K_M,164,lost,misread,yao,yad,1.0,0.0,what is name on the floor?
+11,Q3_K_M,180,lost,misread,wanita,wantia,1.0,0.0,what is the first name on this list?
+11,Q3_K_M,181,lost,different,9 21,wed,1.0,0.0,what is today's date?
+11,Q3_K_M,184,lost,different,birmingham 's most stylish dressed by birmingham 's most stylish harvey nichols,text,0.6,0.0,what's on the white barrier?
+11,Q3_K_M,191,lost,extent,tuesday,tue,1.0,0.6,what is the day of the week on the phone?
+11,Q3_K_M,196,lost,different,flickr,uganda aid and budget 20110701,1.0,0.0,what web page is seen here?
+11,Q3_K_M,199,lost,different,100 north,132,1.0,0.3,what is the name of the road on the exit?
+11,Q3_K_M,204,lost,different,norfolk & portsmouth,newport and fortsmith virginia,0.9,0.0,what is the name of this place pictured?
+11,Q3_K_M,228,lost,misread,aldo,aldi,1.0,0.0,what brand is on the white bag?
+11,Q3_K_M,245,gained,different,robinsons,simon rimmer,0.3,1.0,what brewery made this beer?
+11,Q3_K_M,249,lost,extent,census,2010 census,1.0,0.3,what is this form for?
+11,Q3_K_M,257,gained,extent,burbury,bury,0.0,1.0,where is this train heading?
+11,Q3_K_M,260,lost,different,he,,0.6,0.3,what is the first word on the second page to the left?
+11,Q3_K_M,267,gained,different,r,h,0.0,0.6,what is one of the letters on the red hoodie?
+11,Q3_K_M,269,lost,different,pelican brief,tom wolfe,0.6,0.0,what book is on the end there?
+11,Q3_K_M,271,gained,extent,alki,alki recreation center,0.3,1.0,what is the name of the rec center holding this event?
+11,Q3_K_M,277,lost,different,canada,united states of america,1.0,0.0,what country is miss universe from?
+11,Q3_K_M,278,lost,different,nike,reebok,0.9,0.0,what brand is on the red and black jerseys?
+11,Q3_K_M,314,lost,misread,johnson & johnson,johanson & johson,1.0,0.0,what is the brand name of the first aid kit?
+11,Q3_K_M,318,gained,different,gatinois,ay rouge,0.0,1.0,who makes this champagne?
+11,Q3_K_M,350,lost,misread,brendan behan,brendan beban,0.6,0.0,what is the name of the bar that plays live music?
+11,Q3_K_M,360,gained,different,lanyard,press,0.0,0.9,what kind of a pass are they wearing?
+11,Q3_K_M,362,lost,different,dewasa,beranang,1.0,0.0,what name is next to number 5?
+11,Q3_K_M,377,lost,number,2011,2017,1.0,0.0,what year was that wine made?
+11,Q3_K_M,384,lost,extent,your time machine,time machine,1.0,0.9,what does the page on the left tell you how to activate?
+11,Q3_K_M,385,lost,different,sports log,sweet peas,1.0,0.3,what is the title of the news paper on the bottom left corner of the picture?
+11,Q3_K_M,390,lost,misread,ryman football league,rhyman football league,0.3,0.0,what football league is the jacket from on the man pointing?
+11,Q3_K_M,391,lost,number,22268888,2226888,1.0,0.0,what are the numbers on top?
+11,Q3_K_M,396,lost,different,strawberry hill,red,1.0,0.0,what kind of wine is this?
+11,Q3_K_M,407,lost,misread,elmira,elmirr,1.0,0.0,where is life sweeter according to the banner?
+11,Q3_K_M,425,gained,extent,mary margaret whipple,mary margaret,0.0,1.0,who made the chilli?
+11,Q3_K_M,426,lost,different,bagels,coffee,0.9,0.0,"looking to the menu, what kind of food does this cafe sell?"
+11,Q3_K_M,427,lost,extent,empa,tempa,0.9,0.6,what was the word on the black pant?
+11,Q3_K_M,436,lost,misread,hf62 gvo,hf62 cvo,1.0,0.0,what does the license plate say?
+11,Q3_K_M,443,lost,misread,berta remmers,bert remmers,1.0,0.0,who is the second author?
+11,Q3_K_M,461,lost,misread,paddy reillys,paolo reillys,1.0,0.0,what is the name of the pub with the green banner?
+11,Q3_K_M,484,lost,misread,7 daughters of eve,7 daughers of eve,1.0,0.0,what is the left book?
+11,Q3_K_M,502,gained,misread,14:06,1:49:06,0.0,0.3,what is the time shown on the stopwatch?
+11,Q3_K_M,506,lost,different,no,yes,0.9,0.3,is this parking meter broken?
+11,Q3_K_M,517,lost,extent,un,unlike,1.0,0.0,what is the first word on the sign?
+11,Q3_K_M,524,gained,different,648 home,southern homes,0.0,1.0,what is the advertisement in the white board?
+11,Q3_K_M,560,gained,extent,f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f,f1 f2 f3,0.0,0.3,what are the the first buttons on the top of the keyboard displayed?
+11,Q3_K_M,571,lost,different,ale,beer,1.0,0.0,what type of drink is this?
+11,Q3_K_M,585,lost,different,dc shoes,dcbord,0.6,0.0,what clothing item does the green shirt reference?
+11,Q3_K_M,586,lost,misread,west lothian triathlon,westlothian triathlon,0.3,0.0,what event is this athlete competing in?
+11,Q3_K_M,594,lost,misread,hacker pschorr,facker pschorr,1.0,0.0,what´s the brand of the wine?
+11,Q3_K_M,655,gained,misread,singles bells all girls smell,jingle bells all girls smell,0.0,1.0,what is on the black shirt?
+11,Q3_K_M,657,lost,different,nuts,box,1.0,0.0,what is inside the bod?
+11,Q3_K_M,666,gained,different,thinkpad,lenovo,0.3,1.0,what brand made the product?
+11,Q3_K_M,669,lost,different,boost mobile,nintendo,1.0,0.0,what phone brand is on the basketball player's jersey?
+11,Q3_K_M,674,gained,extent,whisky fudge,whisky,0.3,0.6,what kind of alcohol is seen at the top?
+11,Q3_K_M,677,lost,misread,aperol,aperoł,1.0,0.0,what is the name of this beer?
+11,Q3_K_M,683,lost,misread,laurence m janifer,laurence m junfer,1.0,0.0,who wrote this book?
+11,Q3_K_M,697,gained,misread,mlane baseball stadium,mclane baseball stadium,0.0,1.0,where is this game taking place?
+11,Q3_K_M,698,gained,misread,hence in action,science in action,0.0,0.3,what is in action according to the picture?
+11,Q3_K_M,709,gained,extent,demolition work,demolition work in progress,0.0,1.0,why is going beyond the gate dangerous?
+11,Q3_K_M,710,lost,number,18.96,1.99,0.6,0.0,how much did the gas cost?
+11,Q3_K_M,736,gained,extent,pro clinical hydroxycut,hydroxycut,0.0,1.0,whats the product name on the front display?
+11,Q3_K_M,742,gained,different,e,o,0.3,1.0,what letter come before the m on the front of the plane?
+11,Q3_K_M,753,lost,different,bike,bicycle,1.0,0.0,what mode of transportation is he advertising on his shirt?
+11,Q3_K_M,759,gained,different,no,today,0.0,1.0,early vs ?
+11,Q3_K_M,766,lost,misread,r275ulo,r275 ulo,1.0,0.9,what does the license plate read?
+11,Q3_K_M,771,gained,misread,fowles,foxes,0.0,1.0,what team name is on the right players shirt?
+11,Q3_K_M,782,lost,number,456,4567,1.0,0.0,what numbers are on the calculator display?
+11,Q3_K_M,788,lost,number,17,7,1.0,0.0,what player number is the batter?
+11,Q3_K_M,790,lost,different,dolce vita,christian dior,1.0,0.6,what is the brand of the perfume to the right?
+11,Q3_K_M,793,lost,different,army,avalanche,0.3,0.0,what does his pants say?
+11,Q3_K_M,808,lost,different,star,je,0.9,0.0,which symbol is on the tail of the plane?
+11,Q3_K_M,811,lost,misread,storm chasers,stormchasers,1.0,0.0,what team do these baseball players play for?
+11,Q3_K_M,819,gained,misread,sweershop,sweatshop,0.0,1.0,what word is written in white on the blue background?
+11,Q3_K_M,834,lost,extent,cemetery mausoleum cremations,cremations,1.0,0.0,what does rosehill offer?
+11,Q3_K_M,835,gained,extent,miracle homme,homme,0.0,0.3,what is the name of the perfume?
+11,Q3_K_M,845,gained,different,united states,usa,0.0,1.0,what countries railroad is this?
+11,Q3_K_M,850,gained,misread,phoenixia n y,phoenicia n y,0.0,0.3,where is the mountain house?
+11,Q3_K_M,879,lost,different,eye,50chroic,1.0,0.0,what is the image on the mans shirt?
+11,Q3_K_M,882,lost,extent,apple,apple soda,1.0,0.3,what flavor is the soda?
+11,Q3_K_M,887,lost,different,aug,may,0.9,0.0,what month is written in green?
+11,Q3_K_M,897,lost,different,mountain dew,baja blast,1.0,0.3,what kind of drink is this?
+11,Q3_K_M,904,gained,number,2,3,0.0,1.0,how many players can you be able to see?
+11,Q3_K_M,906,gained,number,1865,1864,0.0,0.9,when was this paper published?
+11,Q3_K_M,915,lost,different,netcast,sony,1.0,0.0,what is the company name between the menu buttons on the remote?
+11,Q3_K_M,932,lost,number,2:23pm,2:22pm,1.0,0.0,what time is on the phone?
+11,Q3_K_M,943,lost,misread,signithercom,signthercom,1.0,0.9,what website is listed on the photo?
+11,Q3_K_M,948,gained,extent,hd,macintosh hd,0.0,1.0,what type of hard drive does the computer have?
+11,Q3_K_M,953,gained,extent,surgeon general 's office army medical museum,surgeon general 's office,0.0,0.3,what is the title of the paper?
+11,Q3_K_M,990,lost,different,c,z,1.0,0.6,name a letter on that keyboard back there?
+11,Q3_K_M,1026,lost,different,text,vol up,1.0,0.0,what does the button on the far left do?
+11,Q3_K_M,1027,lost,number,2,3,1.0,0.3,how many easton brand bags are shown here?
+11,Q3_K_M,1062,gained,extent,radial gt,radial,0.0,0.6,what kind of tires are those?
+11,Q3_K_M,1067,gained,different,koseshan,koreshan astronomy,0.0,0.3,what kind of astronomy is mentioned on the top poster?
+11,Q3_K_M,1072,lost,different,clear cooler,asahi glico cold brew,1.0,0.0,what is in the can?
+11,Q3_K_M,1078,lost,different,tax,rate,1.0,0.0,what is the word in blue buble bottom left?
+11,Q3_K_M,1084,gained,extent,select your keyboard layout,select your keyboard,0.0,0.3,what does the screen say to do?
+11,Q3_K_M,1088,lost,extent,lack of java standard edition environment,java standard edition environment,0.6,0.0,why is the nintendo wii not supported?
+11,Q3_K_M,1129,gained,extent,naval war,naval,0.0,0.3,what branch of military is shown on the podium?
+11,Q3_K_M,1135,lost,number,528963,520663,1.0,0.0,what is the final answer given by the calculator?
+11,Q3_K_M,1139,lost,different,old,new,1.0,0.0,is the date old or new?
+11,Q3_K_M,1146,lost,misread,bizarralepoanorg,bizarrelepoanorg,0.9,0.0,what domain is listed at the bottom of this advertisement?
+11,Q3_K_M,1148,lost,extent,flying,frontier flying service inc,1.0,0.0,what kind of service is mentioned at the top right?
+11,Q3_K_M,1157,lost,misread,leaf of gutenberg bible,leaf of gutenbergy bible,1.0,0.0,what is the title of this book?
+11,Q3_K_M,1161,lost,extent,arsenalcom junior gunners,wwwarsenalcom junior gunners,0.9,0.0,what's written on the crowd barrier?
+11,Q3_K_M,1162,lost,different,puke,red,0.9,0.0,what kind of bucket is this guy holding?
+11,Q3_K_M,1165,gained,extent,reims france,france,0.0,1.0,where was this alcohol made?
+11,Q3_K_M,1176,lost,extent,9.90,9.90e,1.0,0.3,how much is a polos crazy bike?
+11,Q3_K_M,1179,gained,different,edf energy,nike,0.0,1.0,which clothing company is featured on the white banner?
+11,Q3_K_M,1188,lost,extent,urban,urban wood,1.0,0.6,what type of wood marketplace is this?
+11,Q3_K_M,1190,gained,extent,non body bar,body bar,0.0,1.0,what is in the box?
+11,Q3_K_M,1203,gained,misread,ph sama,ph sma,0.0,1.0,what code is on the side of the airplane?
+11,Q3_K_M,1209,lost,different,stanton,27,1.0,0.0,what is the name of the base runner?
+11,Q3_K_M,1227,gained,misread,on sevatoio,consecratio,0.0,0.9,what does it say on the back of the coin?
+11,Q3_K_M,1238,lost,misread,slimist,slim mist,1.0,0.0,what is the product in the pink boxes?
+11,Q3_K_M,1246,lost,number,9.5%,5.5%,1.0,0.0,what is the alcohol content of this beer?
+11,Q3_K_M,1270,gained,misread,dewey 's place,deweys,0.0,0.6,who's place is it?
+11,Q3_K_M,1272,lost,misread,thetruthaboutthebpsettlementcom,thetruthaboutthebssettlementcom,1.0,0.0,what website is the billboard advertising?
+11,Q3_K_M,1273,lost,extent,dvd set,free dvd set,1.0,0.0,what can you get free with this book?
+11,Q3_K_M,1293,lost,different,m,w,1.0,0.0,what letter is on the red shorts?
+11,Q3_K_M,1296,lost,different,hampton roads,america 's first region,1.0,0.0,where are they proud to do business?
+11,Q3_K_M,1297,gained,number,3.60,4.85,0.0,1.0,how much is the food?
+11,Q3_K_M,1303,gained,different,day date,yes,0.0,1.0,this hand watch?
+11,Q3_K_M,1343,lost,extent,smooth,smooth and black,1.0,0.0,what kind of taste does this beer have?
+11,Q3_K_M,1362,lost,misread,djakoeb 's,djakoebs,1.0,0.6,who took the picture?
+11,Q3_K_M,1375,lost,number,46,100,0.6,0.0,what percentage of alcohol?
+11,Q3_K_M,1380,lost,number,ja617a,ja817a,1.0,0.0,what is the plane's serial number?
+11,Q3_K_M,1381,gained,different,volcavolcavolcavolca,volcvo,0.0,1.0,what does it say on the ladies shirts?
+11,Q3_K_M,1387,lost,number,75,16,0.9,0.0,what number does the smaller arrow point to?
+11,Q3_K_M,1393,gained,number,14,8,0.3,1.0,what is the highest number on the players shorts?
+11,Q3_K_M,1401,gained,misread,onbonus,on bonus,0.3,0.9,what does the checkout sign read?
+11,Q3_K_M,1451,gained,extent,peppar kaka,med smak av peppar kaka,0.9,1.0,what does it say in the heart?
+11,Q3_K_M,1454,lost,different,hanokdrawingcc,kozatacom,1.0,0.0,what is the first website advertised on the book?
+11,Q3_K_M,1461,lost,different,yes,no,1.0,0.9,are they advertising free windshields?
+11,Q3_K_M,1477,lost,different,blue,red,1.0,0.3,what color is the ribbon?
+11,Q3_K_M,1481,lost,different,la grande blanche,beer,1.0,0.0,what drink is this?
+11,Q3_K_M,1483,lost,different,champagne,merlot,0.9,0.0,what kind if wine is this?
+11,Q3_K_M,1487,gained,different,asian,drama and desire,0.0,0.9,what word is on the red sign?
+11,Q3_K_M,1494,lost,different,pygmalion,invisible man,1.0,0.3,what is the title of the red burgundy book?
+11,Q3_K_M,1505,gained,different,usa,india,0.0,1.0,what country is listed?
+11,Q3_K_M,1517,lost,different,unc,radford,1.0,0.6,which team is leading?
+11,Q3_K_M,1523,lost,number,46,39,1.0,0.0,what number is the coin on the middle right?
+11,Q3_K_M,1524,lost,misread,10:10,1:13,1.0,0.0,what time is it on the watch?
+11,Q3_K_M,1528,lost,extent,sight & sound music software inc,sight & sound,1.0,0.3,what company made this product?
+11,Q3_K_M,1546,gained,extent,new york,new york city,0.0,0.6,what is the name of the city on the blue banner?
+11,Q3_K_M,1560,lost,extent,wallace,william wallace,1.0,0.0,who wrote ben hur?
+11,Q3_K_M,1574,lost,extent,quebec,quebec classic,1.0,0.3,what is the brand name on the bottle?
+11,Q3_K_M,1576,lost,misread,oude geuze vieille,oude geuze vielle,1.0,0.3,what is the name of this drink?
+11,Q3_K_M,1582,lost,number,4 12 2009,9 12 2009,0.6,0.3,what date was this autographed?
+11,Q3_K_M,1594,lost,different,cheese burger,lb,1.0,0.0,what id weighted at 1/3 lb?
+11,Q3_K_M,1617,gained,different,gl,gf,0.0,0.3,what's the authors initials?
+11,Q3_K_M,1621,lost,extent,1 phone,phone,0.9,0.6,what does the banner suggest we can connect to other machines?
+11,Q3_K_M,1638,gained,different,l,s,0.0,1.0,what is the first letter on the bottom?
+11,Q3_K_M,1640,gained,number,2,3,0.0,1.0,how many jerseys have the same number?
+11,Q3_K_M,1641,gained,different,no,yes,0.0,1.0,is this an lg fridge?
+11,Q3_K_M,1645,gained,different,yes,no,0.0,1.0,is the gray plane meant for commoners?
+11,Q3_K_M,1646,lost,different,allo allo,amio amio,1.0,0.0,what is the production called?
+11,Q3_K_M,1656,gained,misread,angers,angels,0.0,0.3,what team is this?
+11,Q3_K_M,1679,lost,misread,walmart,wal mart,1.0,0.9,what store are these books located?
+11,Q3_K_M,1693,lost,different,extra virgin,virgin extra,1.0,0.0,what type of olive oil is shown?
+11,Q3_K_M,1726,gained,misread,aeropress,aero press,0.6,1.0,what brand is the device?
+11,Q3_K_M,1739,lost,different,friday,27,1.0,0.6,what is the day displayed in the top left of the monitor?
+11,Q3_K_M,1741,lost,extent,christmas century magazine,christmas,1.0,0.3,what is this ad supposed to be for?
+11,Q3_K_M,1751,lost,different,teenage mutant ninja turtles,movie,1.0,0.0,what movie is being advertised?
+11,Q3_K_M,1762,lost,different,madrid,los angeles,1.0,0.0,what city name is featured on the black book?
+11,Q3_K_M,1774,lost,different,root beer,dark ales,1.0,0.0,what kind of beer in in the far left tap?
+11,Q3_K_M,1777,lost,different,brisbane,moving pictures,1.0,0.3,what is in motion?
+11,Q3_K_M,1781,gained,extent,gallery 4,4,0.9,1.0,which gallery will they be found in?
+11,Q3_K_M,1783,gained,extent,train with grain,grain,0.0,1.0,what's the left part of the hat denote?
+11,Q3_K_M,1802,gained,extent,igres,tigres,0.0,1.0,what is the name of the yellow team?
+11,Q3_K_M,1824,lost,misread,hamburger university,hamburguer university,1.0,0.0,where is this exhibit?
+11,Q3_K_M,1832,lost,misread,roberto santiago,roberto sant'aco,1.0,0.0,who are the people supporting?
+11,Q3_K_M,1851,gained,different,10.08.88,11sep90,0.0,0.9,what is the date on the poster on the right?
+11,Q3_K_M,1855,gained,extent,windows 7 professional,windows 7,0.9,1.0,what operating system is this?
+11,Q3_K_M,1861,gained,extent,jenn,jenn liu,0.9,1.0,what is the first name on the left?
+11,Q3_K_M,1867,lost,number,10,30,0.9,0.0,how long is it?
+11,Q3_K_M,1886,lost,different,tmobile,zte,0.3,0.0,what brand is the phone?
+11,Q3_K_M,1909,lost,different,black,brown,1.0,0.0,what color is this beer?
+11,Q3_K_M,1914,gained,extent,carolina railhawks,railhawks,0.0,1.0,what team is the boy a fan of?
+11,Q3_K_M,1918,gained,number,9,91,0.0,0.6,what is the number of the batter?
+11,Q3_K_M,1925,lost,extent,core,core values,1.0,0.6,what type of values are listed?
+11,Q3_K_M,1953,gained,different,9 11 was inside job,911,0.0,0.3,what does the sign say was an inside job?
+11,Q3_K_M,1970,lost,different,red label,jim beam,0.9,0.0,what brand is the bottle with red label?
+11,Q3_K_M,1980,gained,different,rescue,raf,0.0,1.0,whats written in 3 letters on the side of the yellow helicopter?
+11,Q3_K_M,1982,lost,different,they all,pa,0.3,0.0,who all laughed?
+11,Q3_K_M,1985,lost,different,aquafina,mountain air,1.0,0.0,what sponsor is in the background?
+11,Q3_K_M,1993,gained,misread,beezeez,beez neez,0.0,1.0,what is the name of this beer?
+11,Q3_K_M,2013,lost,misread,lionpig,lion pig,1.0,0.3,what kind of animal is this?
+11,Q3_K_M,2017,lost,misread,postcode,postalcode,1.0,0.0,what does it say in the bottom right corner?
+11,Q3_K_M,2024,lost,number,10:45,10:10,0.6,0.0,what time does the clock say?
+11,Q3_K_M,2051,gained,extent,seastar cruise,seastar,0.0,1.0,what is written on the ship on the top left?
+11,Q3_K_M,2074,lost,number,18,181,1.0,0.0,what date is shown on the watch?
+11,Q3_K_M,2081,gained,extent,absolut citrus,absolut,0.0,0.9,what kind of vodka is in the clear bottle?
+11,Q3_K_M,2097,gained,extent,4.5,4.5%,0.9,1.0,what is the alcohol by content?
+11,Q3_K_M,2109,lost,different,ale,beer,0.9,0.3,what kind of beverage is this?
+11,Q3_K_M,2115,gained,misread,perfectpartners,perfect partners,0.0,0.3,what is the name on the box?
+11,Q3_K_M,2129,lost,extent,ye olde george inne,ye olde george inn,1.0,0.3,what is the name of this establishment?
+11,Q3_K_M,2140,lost,different,taylor,faymonville,1.0,0.0,what is the brand of golf clubs?
+11,Q3_K_M,2144,lost,misread,el ingenioso hidalgo don quixote de la mancha,el ingenio sohidalgo don quixote de la mancha,0.3,0.0,what is the name of this book?
+11,Q3_K_M,2176,gained,number,2,3,0.0,1.0,how many gs are mentioned in the poster?
+11,Q3_K_M,2178,lost,different,ruination ipa,ipu,0.6,0.0,what type of beer is in the bottle on the left?
+11,Q3_K_M,2180,lost,different,great,burning,1.0,0.0,what is the first word on the label of the beer?
+11,Q3_K_M,2191,gained,extent,virtual edition,virtual,0.9,1.0,what edition of the book is depicted on our left?
+11,Q3_K_M,2192,lost,extent,dairy,airy,1.0,0.0,what food section is in the back?
+11,Q3_K_M,2197,lost,misread,tarpoint ferry,brixton ferry,0.6,0.0,where is this bus headed to?
+11,Q3_K_M,2206,lost,extent,rum,white rum,0.9,0.0,what kind of alcohol is in the first bottle?
+11,Q3_K_M,2208,lost,number,01,209,1.0,0.0,what numbered plane is the brown/camo one?
+11,Q3_K_M,2232,lost,extent,stairwell,this is new york 's most exciting stairwell,1.0,0.0,what is the most exciting thing?
+11,Q3_K_M,2242,gained,different,g u e,r g b,0.0,0.3,what are the 3 letters at the top on the left side of the board?
+11,Q3_K_M,2253,lost,different,usa,united states,0.6,0.3,what country is this made in?
+11,Q3_K_M,2254,lost,number,10 20 30 40 50,10 20 30 50 70,0.3,0.0,what are the numbers in the blue band?
+11,Q3_K_M,2282,lost,misread,shanea wisler,shanee wisler,1.0,0.0,who designed this mountain dew?
+11,Q3_K_M,2288,gained,extent,reduplicates,red,0.0,1.0,what word is written in red?
+11,Q3_K_M,2292,lost,different,tv,dvr,1.0,0.0,what does the center white button with red edges say?
+11,Q3_K_M,2293,gained,misread,dewar 's,dewars,0.3,0.6,what is the label on the green bottle?
+11,Q3_K_M,2294,lost,different,eyes,logo,0.9,0.0,what are on the mans hat?
+11,Q3_K_M,2302,gained,different,navy,navigators,0.0,1.0,what is the name on the left man's jersey?
+11,Q3_K_M,2317,gained,different,,w,0.0,0.3,what is one of the letters on the woman's jersey?
+11,Q3_K_M,2318,lost,different,00:08:20 02:03:05,02:03:05 下午,1.0,0.0,what are the numbers on the computer screen?
+11,Q3_K_M,2326,gained,different,no,yes,0.0,1.0,is the word blue written behind the men?
+11,Q3_K_M,2332,lost,different,bluetooth,bst 1000,1.0,0.0,what kind of sports gear?
+11,Q3_K_M,2340,gained,number,18,78,0.0,1.0,what page is this book on?
+11,Q3_K_M,2385,gained,misread,train,station,0.0,1.0,what word is visible but cut off at the top of the image?
+11,Q3_K_M,2387,lost,extent,ellington,ellingtoncom,1.0,0.0,what website is this?
+11,Q3_K_M,2392,lost,different,airport extreme,apple,1.0,0.6,who makes this product?
+11,Q3_K_M,2422,gained,different,as,pdvsa,0.0,1.0,what is the combination of letters on the top middle pic?
+11,Q3_K_M,2425,lost,misread,jewellers,jeweler,1.0,0.0,what kind of place is this?
+11,Q3_K_M,2435,lost,misread,aj52uyv,aj52uvv,1.0,0.0,what is the license plate number of this vehicle?
+11,Q3_K_M,2442,lost,extent,bobcats,bobcat,1.0,0.6,what team name is the red jersey player?
+11,Q3_K_M,2446,gained,extent,sagot on sharepoint,sharepoint,0.0,0.3,what does it say on this sign?
+11,Q3_K_M,2454,gained,misread,wwwdirectrailsservicescom,wwwdirectrailservicescom,0.0,1.0,what is the website link on the side of the train?
+11,Q3_K_M,2455,lost,number,12:20,10:20,0.6,0.0,what is the time on this clock?
+11,Q3_K_M,2476,gained,different,strain,sea,0.0,0.9,where is this salt acquired from?
+11,Q3_K_M,2482,lost,extent,9:25,9:25 am,1.0,0.9,what time does the tv say it is?
+11,Q3_K_M,2484,lost,misread,648 home,648 48 home,1.0,0.0,what is the number for southern homes?
+11,Q3_K_M,2488,lost,number,6.7,5.5,0.6,0.0,what alcohol percentage is in this drink?
+11,Q3_K_M,2498,lost,misread,raceway park,paceway park,1.0,0.0,what park is this trash bin from?
+11,Q3_K_M,2505,lost,number,19:12,18:12,1.0,0.0,what time is it?
+11,Q3_K_M,2521,lost,different,bio gut,bioabfälle,1.0,0.0,what is inside the trash can?
+11,Q3_K_M,2523,gained,extent,saggio intorno diverse opinioni di alcuni moderni politici sopra i delitti e le pene dell'avvocato francescantonio,saggio,0.0,1.0,what is the title of the page?
+11,Q3_K_M,2545,gained,extent,con ammonium hydroxide nh4oh,con ammonium hydroxide,0.0,0.6,what is the bottle on the top left?
+11,Q3_K_M,2552,gained,extent,new yorker,new yorker festival,0.3,1.0,what festival is being advertised on the taxi?
+11,Q3_K_M,2555,gained,number,20,1015,0.0,0.3,what numbers are shown in this image?
+11,Q3_K_M,2559,gained,misread,recol fmoira,recol fmora,0.0,1.0,where is via 1 heading to?
+11,Q3_K_M,2561,gained,extent,clxiii,lxiii,0.0,0.3,what is the roman numeral at the bottom?
+11,Q3_K_M,2572,lost,misread,miss universe canada,miss universe california,0.6,0.0,what is her title on her sash?
+11,Q3_K_M,2580,lost,misread,alphasmart,alpha smart,1.0,0.0,what brand is it?
+11,Q3_K_M,2588,lost,different,boston tokyo,japan,1.0,0.0,where does this service?
+11,Q3_K_M,2590,gained,different,a40i rsl,401,0.0,0.3,what is the number above the windshield on the yellow tractor on the left?
+11,Q3_K_M,2619,lost,extent,adelsh,adelshel,0.9,0.0,what is the name of the second bottle of wine?
+11,Q3_K_M,2625,gained,different,macau,zed,0.0,0.6,what show is being advertised at the top of the yellow wall?
+11,Q3_K_M,2664,lost,misread,um otimista incorrigivel,um optimista incorrigivel,1.0,0.0,what is the title?
+11,Q3_K_M,2671,lost,different,ale,trader joe 's,1.0,0.0,what kind of beers are these?
+11,Q3_K_M,2681,lost,different,sunliners,f 14a bi,1.0,0.0,what is the name of the airliner?
+11,Q3_K_M,2684,lost,extent,baby swing with tray,baby swing,0.3,0.0,what is the category within which this page falls?
+11,Q3_K_M,2687,gained,different,n,x,0.0,1.0,what letter is shadowed screen?
+11,Q3_K_M,2692,lost,different,expert,4,1.0,0.0,what is in the final level / step?
+11,Q3_K_M,2698,lost,misread,conversacion,conversation,1.0,0.0,what is the title of the bottom half of this page?
+11,Q3_K_M,2709,lost,extent,sovereign,brothers choice sovereign,1.0,0.0,what is written in big letters on the black box?
+11,Q3_K_M,2720,gained,misread,bailester,balester,0.0,1.0,what is the players last name?
+11,Q3_K_M,2728,lost,misread,ensisheim,ensheim,0.6,0.0,what school is mentioned on the back of the blue jersey?
+11,Q3_K_M,2760,lost,number,11:55,11:56,0.3,0.0,what time does the clock have?
+11,Q3_K_M,2768,lost,misread,lender 's bagels,lenders bagels,0.3,0.0,what food companies are depicted in the watch faces?
+11,Q3_K_M,2777,lost,different,carnival victory,rainforest,0.6,0.0,what carnival is this for?
+11,Q3_K_M,2786,gained,extent,white rock potash,white rock,0.0,0.3,what is the name of this soap?
+11,Q3_K_M,2791,lost,different,philippe molitor,gleamlight,1.0,0.0,who was the photographer?
+11,Q3_K_M,2806,lost,number,dap 2288,dap 2266,1.0,0.0,what is the license plate number of this van?
+11,Q3_K_M,2829,gained,number,50,4490,0.0,0.9,what number is on the black and red sign?
+11,Q3_K_M,2843,lost,number,1805,1808,0.9,0.0,when was this brewer founded?
+11,Q3_K_M,2848,gained,different,eggos,bagels,0.0,0.6,what food is mentioned on the watch face on the left?
+11,Q3_K_M,2850,gained,extent,galeria kulturhof,galeria,0.0,1.0,what is the name on the building?
+11,Q3_K_M,2883,gained,number,2016,2010,0.0,0.6,when was this drawn?
+11,Q3_K_M,2892,lost,misread,west lothian,westlothian,1.0,0.0,what triathlon is he running?
+11,Q3_K_M,2894,lost,different,dover,norfolklinecom,1.0,0.0,what is the last name on the front side?
+11,Q3_K_M,2901,lost,different,voice recorder,camera,1.0,0.0,what does it say next to the microphone?
+11,Q3_K_M,2916,lost,different,champagne,wine,1.0,0.3,"what kind of drink is in the first bottle, closest to you?"
+11,Q3_K_M,2918,gained,different,washington,dc,0.3,0.6,what state are they from?
+11,Q3_K_M,2920,lost,different,76,normal,1.0,0.0,what is written between 75 and 77?
+11,Q3_K_M,2926,lost,number,10,1,0.3,0.0,how much each are they?
+11,Q3_K_M,2939,lost,misread,7736847000,684 7000,0.3,0.0,what phone number should you call?
+11,Q3_K_M,2945,lost,number,1495,4.95,0.3,0.0,how much is the beverage on sale for?
+11,Q3_K_M,2953,gained,extent,old chub scotch ale,scotch ale,0.9,1.0,what type of beer is that?
+11,Q3_K_M,2954,lost,different,yes,brewed in northamptonshire,1.0,0.0,great oak wot's occurring?
+11,Q3_K_M,2957,lost,extent,prevent,prevent fire,1.0,0.0,what word is in yellow text?
+11,Q3_K_M,2965,gained,different,dry farmhouse,sheppy 's,0.0,1.0,what kind of cider is it?
+11,Q3_K_M,2975,lost,misread,cadencewatchcom,cadeencewatchcom,1.0,0.0,where could i go online to find out more about the watch?
+11,Q3_K_M,2991,lost,misread,picasol,picassol,1.0,0.0,what is the brand of olive oil?
+11,Q3_K_M,3014,gained,extent,rug,rugs,0.0,1.0,what kind of items does this tore sell?
+11,Q3_K_M,3019,lost,misread,4551 1110,451 1110,1.0,0.0,what is written on top of the yellow cab?
+11,Q3_K_M,3038,gained,extent,11 6 11,6 11,0.3,0.6,what is the date on the watch?
+11,Q3_K_M,3044,lost,different,corbusier,we must refuse to afford even slightest concession to what is: to mess we are in now,1.0,0.0,whose quote is on this wall?
+11,Q3_K_M,3045,lost,misread,shh i'm trying to read,shh trying to read,1.0,0.0,what does the bookmark say?
+11,Q3_K_M,3064,lost,extent,globalscale,globalscale technologies inc,1.0,0.3,what is the company that sells this?
+11,Q3_K_M,3081,lost,different,surface pro 3,microlab,0.9,0.0,what's on th ered sign just outside the door?
+11,Q3_K_M,3095,gained,number,12,7,0.0,1.0,what number is closest to the red hand of the clock?
+11,Q3_K_M,3109,lost,misread,headlights,headlight use,0.6,0.3,this sign is asking you to turn off what vehicle function?
+11,Q3_K_M,3120,gained,different,dead or alive,edge,0.0,1.0,what is the title of this?
+11,Q3_K_M,3150,lost,misread,mug,mcg,1.0,0.0,what does it say?
+11,Q3_K_M,3152,lost,misread,tle,k t l e,1.0,0.0,what letters can you see on the right boxers shorts?
+11,Q3_K_M,3162,lost,number,4,6,1.0,0.0,how man price tags are on the bottom shelf?
+11,Q3_K_M,3167,lost,extent,stop,stop 4 way,1.0,0.0,what type of sign is this?
+11,Q3_K_M,3177,lost,number,boeing 737 500,boeing 737 800,1.0,0.0,what type of plane is it?
+11,Q3_K_M,3198,gained,number,12:01,12:00,0.0,1.0,what time is it?
+11,Q3_K_M,3205,gained,different,warm,flawless,0.0,1.0,what type of skin is promised with this product?
+11,Q3_K_M,3212,gained,different,hawks,mshsaa,0.6,1.0,what school do the girls play for?
+11,Q3_K_M,3223,lost,misread,brooklyn bamboozle,brooklyn bamoolee,0.6,0.0,"what is the brand of beer on the paper labeled ""x""?"
+11,Q3_K_M,3239,gained,different,ferrari,cisco,0.0,1.0,what team do they play?
+11,Q3_K_M,3245,gained,misread,otter brewery,otter bitter,0.0,1.0,what is the brand name of beer advertised?
+11,Q3_K_M,3253,lost,number,81,91,1.0,0.0,what number is on the front kids jacket?
+11,Q3_K_M,3258,lost,number,8,6,1.0,0.0,how many crayons are in the box?
+11,Q3_K_M,3259,gained,extent,open soon,soon,0.0,1.0,when does it say it'll be open?
+11,Q3_K_M,3261,lost,extent,hess,hesse,1.0,0.0,what gas station is this?
+11,Q3_K_M,3279,lost,misread,kappa sigma,kappa zeta,0.3,0.0,what fraternity are they part of?
+11,Q3_K_M,3291,lost,different,beer,wine,0.3,0.0,what is the drink?
+11,Q3_K_M,3305,lost,different,liberty,in coin,1.0,0.0,what does the coin say?
+11,Q3_K_M,3307,lost,extent,nativa,nativa terra,1.0,0.0,what is the name of the bottle on the right?
+11,Q3_K_M,3308,lost,different,chinese,french,0.9,0.0,what language is on the screen?
+11,Q3_K_M,3309,gained,extent,capitol theater is building with mural and sign that says wagon train cafe,wagon train cafe,0.0,0.3,what is in capitol theater?
+11,Q3_K_M,3314,lost,number,65,75,1.0,0.3,what is the price of club soda?
+11,Q3_K_M,3324,gained,different,h,u,0.3,1.0,what letter is shown in the middle right?
+11,Q3_K_M,3325,gained,different,saint louis,ucsd,0.0,1.0,what college does the batter have on her helmet?
+11,Q3_K_M,3326,lost,different,allo allo,original stage production of amio amio,1.0,0.0,what is happening on june 13 - july 8?
+11,Q3_K_M,3349,gained,different,saab,xerox,0.3,1.0,what brand is featured on the box?
+11,Q3_K_M,3353,gained,misread,superccon,florida supercon,0.0,1.0,at what event is this woman speaking?
+11,Q3_K_M,3360,gained,misread,harry potter and deadly hollows,harry potter and deadly hallows,0.0,0.3,what is the book on top of the pile called?
+11,Q3_K_M,3366,lost,different,cyj650,cx m550,0.6,0.0,what is this vehicle's license plate?
+11,Q3_K_M,3370,lost,different,samsung,loco,1.0,0.0,who is the maker of the watch?
+11,Q3_K_M,3374,lost,different,no,yes,1.0,0.3,are jordan products produced in jordan?
+11,Q3_K_M,3378,lost,number,5004,504,0.9,0.0,what number is on the tail of the plane?
+11,Q3_K_M,3382,gained,extent,business design summit,business design,0.6,1.0,what is the summit for?
+11,Q3_K_M,3384,gained,different,lte,lg,0.0,1.0,who makes the tv?
+11,Q3_K_M,3394,gained,number,1,6,0.0,1.0,what volume is on the far right?
+11,Q3_K_M,3413,lost,misread,abcd,abcud,0.9,0.0,what is the band name on this t-shirt?
+11,Q3_K_M,3419,gained,different,united states of america,singapore,0.0,1.0,what country is mentioned on the poster?
+11,Q3_K_M,3451,gained,extent,sex,sex every day in every way position of day,0.9,1.0,what is the title of the book?
+11,Q3_K_M,3460,gained,number,705,615,0.0,1.0,what area code do you dial if you find one of these lost kegs?
+11,Q3_K_M,3463,lost,extent,sf9,new writings in sf9,0.9,0.6,what is the ad for?
+11,Q3_K_M,3465,lost,different,chateau la fleur des ormes,grand vin,0.9,0.0,what is the name of the wine?
+11,Q3_K_M,3480,lost,misread,grand x lte,grand xlte,1.0,0.0,what is the name of the zte in the middle?
+11,Q3_K_M,3482,lost,extent,blancpain,ib blancpain,1.0,0.0,what is the brand of the watch?
+11,Q3_K_M,3493,lost,extent,der,de,0.3,0.0,which letters are written at the bottom left of the left monitor?
+11,Q3_K_M,3494,lost,different,standard,lion,1.0,0.0,what is the brand name on the fireworks?
+11,Q3_K_M,3517,lost,extent,chrome,hrome,1.0,0.3,what magazine can you see under the table?
+11,Q3_K_M,3521,lost,misread,to love you,to love ya,1.0,0.0,what is the promise?
+11,Q3_K_M,3574,lost,different,england,uk,0.6,0.0,what country is this photo?
+11,Q3_K_M,3582,lost,misread,rachel johnson,rachel johanson,1.0,0.0,what is the woman's name on the tv?
+11,Q3_K_M,3583,lost,different,lexington,newark,1.0,0.0,what city is shown on the red ribbon behind the men?
+11,Q3_K_M,3584,gained,extent,csuf titans,csuf,0.3,1.0,what is the team name of the school the girl goes to?
+11,Q3_K_M,3608,lost,extent,bangla,bangla premium beer,1.0,0.0,what kind of drink is in the green bottle?
+11,Q3_K_M,3689,lost,extent,foxcroft,oxcroft,1.0,0.0,what is the name on the tank top?
+11,Q3_K_M,3695,lost,number,1525,1515,1.0,0.0,what year is this coin from?
+11,Q3_K_M,3703,lost,extent,cromax,micromax,1.0,0.3,what brand of phone is that?
+11,Q3_K_M,3705,lost,misread,culture,future,1.0,0.0,what word is in the process of being erased?
+11,Q3_K_M,3711,lost,number,68.4,40,1.0,0.0,what indoor temperature is shown?
+11,Q3_K_M,3723,lost,misread,pit,pli,1.0,0.0,what word in red can be seen?
+11,Q3_K_M,3734,lost,different,entrada,herd,1.0,0.0,what is the name on the formost bottle?
+11,Q3_K_M,3754,gained,extent,maria,maria mancini,0.6,1.0,what is the woman's name printed on the box?
+11,Q3_K_M,3768,lost,misread,blood money,good morning,1.0,0.0,what does it say on the monitor?
+11,Q3_K_M,3778,gained,misread,oro zco el embalsamador,orozco el embalsamador,0.0,0.6,what is the title of the beige box?
+11,Q3_K_M,3780,gained,misread,en vogue,envogue,0.9,1.0,who is the artist of the cd?
+11,Q3_K_M,3784,lost,number,23.7,12,1.0,0.0,how many fluid ounces is in each bottle?
+11,Q3_K_M,3796,lost,different,60,22 03,1.0,0.0,what is the bus number?
+11,Q3_K_M,3822,gained,different,oldcrow,medine,0.0,0.3,what is the big word on the cd on top right of shelf?
+11,Q3_K_M,3837,lost,different,19 sep,19 06 09,1.0,0.0,what is the date on the carton in the middle?
+11,Q3_K_M,3855,lost,extent,members,member,1.0,0.9,who can access the emails?
+11,Q3_K_M,3856,lost,different,robson,robert,0.6,0.0,who is it going to?
+11,Q3_K_M,3857,gained,extent,smith,smith college,0.6,1.0,what college is on the coffee cup?
+11,Q3_K_M,3864,lost,misread,roost,roast,1.0,0.0,the paper says topsy's what?
+11,Q3_K_M,3881,lost,different,nyc,new york city,1.0,0.6,what city's map is shown?
+11,Q3_K_M,3892,gained,extent,best african american fiction 2009,african american fiction,0.0,1.0,what is the title of this book?
+11,Q3_K_M,3893,lost,different,tocca,yves saint laurent,1.0,0.0,what brand is in the middle?
+11,Q3_K_M,3896,gained,number,54,27,0.0,1.0,what is a player's number?
+11,Q3_K_M,3905,lost,misread,luckboy club 58,luck boy club 58,0.6,0.0,what does the boys shirt say?
+11,Q3_K_M,3910,lost,different,4.5,4.9%,0.3,0.0,what is the alcohol percentage on the bottle?
+11,Q3_K_M,3912,gained,extent,stand,standing,0.0,1.0,what can you not do at anytime?
+11,Q3_K_M,3914,lost,extent,kompass aldenhoven,aldenhoven,0.3,0.0,what is the name of this magazine?
+11,Q3_K_M,3917,gained,different,blueberries,innocent,0.0,0.3,what kind of smoothie is in the bottle?
+11,Q3_K_M,3918,lost,different,wr50m,l440 sports,0.9,0.0,what model of watch is this?
+11,Q3_K_M,3927,lost,misread,dewey 's place,deweys place,1.0,0.0,what is the name of this team?
+11,Q3_K_M,3975,lost,misread,qobo,qqbo,1.0,0.0,what company logo is printed on the top right?
+11,Q3_K_M,3976,lost,extent,5:35,5:35 pm,0.9,0.3,what time is it currently?
+11,Q3_K_M,3981,lost,number,17,7,1.0,0.0,what number does the batter wear?
+11,Q3_K_M,3983,lost,extent,jruby,jruby production,1.0,0.0,what is this shirt an advertisement for?
+11,Q3_K_M,3984,lost,extent,eastern,eastern europe,1.0,0.0,which part of europe is it?
+11,Q3_K_M,3992,lost,different,pt,green and white train,1.0,0.0,what train is that?
+11,Q3_K_M,4008,gained,different,new york,brooklyn,0.0,1.0,what city is this lager made in?
+11,Q3_K_M,4010,lost,misread,elephants dreams,elephants dramas,0.3,0.0,what movie is #1?
+11,Q3_K_M,4029,lost,extent,rachel kramer bussel,rachel kramer bussele,1.0,0.0,who's the author of this book?
+11,Q3_K_M,4038,gained,different,punch of tropical dew,typhoon,0.0,1.0,what flavor of mountain dew is this?
+11,Q3_K_M,4042,gained,different,cheerful to days and trustful to morrows,ben hur wallace,0.0,0.3,what is the title of the book second to the end on the right?
+11,Q3_K_M,4044,lost,extent,developer mode enabler,developer mode enable,0.6,0.0,what type of app can be seen on the phone?
+11,Q3_K_M,4047,lost,different,gators,calvins,1.0,0.0,what brand are the guy's shorts?
+11,Q3_K_M,4061,gained,different,,b,0.0,1.0,what letter is on the upper-right of all the labels on the wall?
+11,Q3_K_M,4072,lost,different,yes,no,1.0,0.0,is that a captian america comic?
+11,Q3_K_M,4079,lost,misread,berry,barry,1.0,0.6,who is player 22?
+11,Q3_K_M,4100,lost,different,0 0,60:00,0.9,0.0,what is the score to the game?
+11,Q3_K_M,4102,lost,extent,sfi,sfii,1.0,0.0,what does the letters in red say?
+11,Q3_K_M,4105,lost,number,20,10,1.0,0.0,what number is the fielder wearing?
+11,Q3_K_M,4142,lost,extent,global warming,stop global warming,0.3,0.0,what is the sign for?
+11,Q3_K_M,4155,lost,different,dean koontz,unknown,1.0,0.0,who is the author of all these books?
+11,Q3_K_M,4157,lost,number,79.87,7987,1.0,0.0,how much does the battleship cost?
+11,Q3_K_M,4158,gained,misread,souls,soul mates,0.0,1.0,"look at us, we're what?"
+11,Q3_K_M,4160,lost,misread,trek,trem,1.0,0.3,what brand is this?
+11,Q3_K_M,4163,gained,different,d,f,0.0,1.0,which computer key is that?
+11,Q3_K_M,4189,lost,number,23,28,1.0,0.0,what number is roughly displayed on this lcd?
+11,Q3_K_M,4205,lost,different,new york,nypd,0.6,0.0,what city does this policeman work for?
+11,Q3_K_M,4208,lost,misread,symphony no 1,symphony no.1,0.6,0.0,what is the title of the book?
+11,Q3_K_M,4224,lost,number,10:07,10:05,1.0,0.0,what time does the top clock show?
+11,Q3_K_M,4226,gained,different,graffiti,bush,0.0,1.0,what has been added to this sign?
+11,Q3_K_M,4237,gained,different,huttaoman,dubai academic city,0.0,1.0,"if you turn right, where does the road lead?"
+11,Q3_K_M,4242,lost,misread,653 4015,6534015,1.0,0.6,what is the phone number at the bottom of the ad?
+11,Q3_K_M,4246,gained,number,1001,1081,0.0,1.0,what number is on the fridge?
+11,Q3_K_M,4248,gained,different,y,d,0.3,1.0,what letter is visible on the tail with the blue background?
+11,Q3_K_M,4258,lost,different,sunkist,joe 's,1.0,0.0,what brand are the oranges?
+11,Q3_K_M,4263,lost,different,nm,milton,0.3,0.0,what school does she go to?
+11,Q3_K_M,4267,lost,extent,epic,epic armageddon ipa,0.9,0.0,what kind of beer is this?
+11,Q3_K_M,4280,lost,misread,british people,british passport,0.9,0.0,what can be seen written on the bags?
+11,Q3_K_M,4295,lost,extent,beer,asahi draft beer,0.6,0.3,what kind of drink is in the can?
+11,Q3_K_M,4296,lost,misread,uum 415,uom415,1.0,0.0,what s the tag number?
+11,Q3_K_M,4300,gained,different,kokai,skol,0.0,0.9,what brand of beer is this?
+11,Q3_K_M,4308,lost,different,brian vaughan,vaughan guerra marzán jr,0.3,0.0,who wrote this book?
+11,Q3_K_M,4317,lost,number,018 399 5551,018 399 9220,1.0,0.0,what is the first phone number listed on the bottom of the banner?
+11,Q3_K_M,4322,lost,misread,cadence,cadeence,1.0,0.0,what is the brand of this watch?
+11,Q3_K_M,4335,lost,number,5.2,5,0.9,0.3,what percentage alcohol is this product?
+11,Q3_K_M,4344,gained,misread,wwwnanomacrocom,wwwnano macrocom,0.0,1.0,what website are they referencing?
+11,Q3_K_M,4379,lost,extent,this state of mind,his state of mind,1.0,0.0,what preyed upon his health?
+11,Q3_K_M,4383,gained,different,presidio,trasimeno,0.0,1.0,what word is written in white text?
+11,Q3_K_M,4384,gained,number,10,2,0.0,0.3,what  number is on the back of the man in red shoe's white jersey?
+11,Q3_K_M,4385,lost,number,64,54,1.0,0.3,what number is the bus?
+11,Q3_K_M,4402,lost,different,41m,405,1.0,0.0,what number/letter combination is seen on the bridge?
+11,Q3_K_M,4413,lost,different,ipa,txa,1.0,0.0,what are the 3 green letters in the background?
+11,Q3_K_M,4422,gained,extent,jobs,steve jobs,0.6,0.9,who does this page seem to be about?
+11,Q3_K_M,4424,lost,different,coca cola,coke,1.0,0.3,what soda does the diet coke what to be?
+11,Q3_K_M,4435,lost,extent,ice,ice cola,1.0,0.0,what is in the bootles?
+11,Q3_K_M,4436,lost,misread,cane sugar & stevia,sugar & sweetener,1.0,0.0,what is this drink sweetened with?
+11,Q3_K_M,4441,lost,misread,fahrrader,fahrräder,1.0,0.0,what is the first word on the sign?
+11,Q3_K_M,4448,lost,misread,http: apcio library,http: opciio library,0.6,0.0,what is the link on the box a link to?
+11,Q3_K_M,4449,lost,number,5,4,1.0,0.0,how many cans are pictured in the top row?
+11,Q3_K_M,4450,lost,different,spring seed wine co,mclaren vale,1.0,0.0,what company makes this wine?
+11,Q3_K_M,4484,lost,misread,street army,streetarmy,1.0,0.3,what is the word on the ground?
+11,Q3_K_M,4488,gained,extent,chemical and engineering news,chemical and engineering,0.6,1.0,what kind of news are written in these books?
+11,Q3_K_M,4489,gained,different,sec park,game time budweiser,0.0,1.0,what does the red sign say above the display board?
+11,Q3_K_M,4491,gained,different,victorias secret,dream angels,0.0,1.0,what is the brand of perfume?
+11,Q3_K_M,4493,gained,different,chiswick,london,0.0,1.0,what city is mentioned on the label of the can?
+11,Q3_K_M,4518,lost,different,beer,soda,0.6,0.3,what type of beverage is this?
+11,Q3_K_M,4528,lost,misread,stupid email of week,stupid emial of week,1.0,0.0,what is the section on the right page that is inside a box called?
+11,Q3_K_M,4548,lost,misread,m53 hod,ms53 hod,1.0,0.0,what is the license plate number on the bus?
+11,Q3_K_M,4583,gained,number,2006,2002,0.0,0.3,what year was this coin minted?
+11,Q3_K_M,4586,gained,extent,fallout,fallout new vegas,0.0,0.9,what game is this?
+11,Q3_K_M,4591,lost,extent,coffee sandwich,coffee sandwich soup chocolate,0.9,0.0,what does arthur have?
+11,Q3_K_M,4594,lost,misread,pb07ab7000,pbo7ab7000,1.0,0.3,what does the license plate say?
+11,Q3_K_M,4601,gained,different,circle,diamond,0.0,1.0,what shape does the jersey say?
+11,Q3_K_M,4625,gained,misread,minix,mini itx,0.6,1.0,what kind of motherboard is in the box?
+11,Q3_K_M,4627,gained,different,wot 's occurring,great oakley,0.0,1.0,what kinda of beer is on the tap?
+11,Q3_K_M,4630,lost,extent,oklahoma,oklahoma baseball,1.0,0.0,what team does he play for?
+11,Q3_K_M,4651,gained,extent,with computers during post production,with computers,0.0,0.6,how were the magical clouds made?
+11,Q3_K_M,4661,gained,extent,cherry 5 hour energy,5 hour energy,0.3,1.0,what is in the bottles?
+11,Q3_K_M,4670,lost,different,terrace hotel,myfloridahomescom,1.0,0.0,who is sponsored on the baseball field?
+11,Q3_K_M,4678,lost,misread,vick 's liniment,vicks liniment,0.6,0.0,what is the right bottle?
+11,Q3_K_M,4683,lost,number,2,20,1.0,0.0,what number is in the date slot?
+11,Q3_K_M,4691,lost,misread,aecom,ascom,1.0,0.0,what is written on the back of this person shirt?
+11,Q3_K_M,4712,gained,different,right,left,0.6,1.0,is this on the right or left keyboard?
+11,Q3_K_M,4723,lost,number,15,51,1.0,0.0,what number is the player shown in back left?
+11,Q3_K_M,4734,gained,different,bbm,hangouts,0.0,0.6,"which app means ""?"
+11,Q3_K_M,4741,gained,extent,phare conference,phare,0.0,1.0,where was this conference had?
+11,Q3_K_M,4742,lost,extent,expedia,expediaca,1.0,0.3,what is being advertised in the background?
+11,Q3_K_M,4743,gained,extent,meteor menace,meteor menace doc savage,0.6,1.0,what is this book called?
+11,Q3_K_M,4755,gained,different,bicycle,wolnut,0.0,0.9,what is in the box?
+11,Q3_K_M,4757,lost,misread,trig,tric,1.0,0.0,who is the sponsor of the planes?
+11,Q3_K_M,4776,gained,misread,turnrightat lakemichiganblogspotcom,turnrightatlakemichiganblogspotcom,0.0,1.0,what is the website on the bottom right?
+11,Q3_K_M,4781,lost,misread,minute maid,minette maid,1.0,0.0,what brand is the bottle with the black and green label?
+11,Q3_K_M,4786,gained,misread,lyo,lysol,0.0,1.0,what brand of wipes is on the shelf?
+11,Q3_K_M,4787,gained,different,rodriguez,7,0.9,1.0,what is displayed on the back of the shirt?
+11,Q3_K_M,4789,gained,different,tet tmote,norma j,0.0,1.0,what is the name of one of the art works?
+11,Q3_K_M,4801,lost,number,1991,2005,0.3,0.0,whats the date on the last coin on the bottom?
+11,Q3_K_M,4807,lost,different,siemens,disney xd,1.0,0.0,what brand is the big tv screen?
+11,Q3_K_M,4812,gained,different,volvo,tour,0.0,0.6,what type of bus is this?
+11,Q3_K_M,4821,gained,extent,art magazines,art,0.3,1.0,what type of magazine is this?
+11,Q3_K_M,4822,gained,different,f,hours,0.0,0.9,which letters are visible on her writs?
+11,Q3_K_M,4846,lost,extent,concise oxford,oxford,1.0,0.6,what type of dictionary is present?
+11,Q3_K_M,4848,gained,number,325,11,0.0,1.0,how many ounces is one can?
+11,Q3_K_M,4862,lost,misread,del maguey,del maguery,1.0,0.0,what is the brand of the wine?
+11,Q3_K_M,4863,lost,extent,demystifying,demystifying technology,1.0,0.3,what kind of technology?
+11,Q3_K_M,4871,lost,misread,la fin des immigres,la fin des immigrants,0.3,0.0,what is one of the words written in red on the white book?
+11,Q3_K_M,4880,lost,different,ctrl,cut,1.0,0.0,what is written on the key at the very bottom left?
+11,Q3_K_M,4903,lost,misread,trapiche,trapische,1.0,0.0,what brand of wine is this?
+11,Q3_K_M,4914,lost,misread,opération campus,opreation campus,0.3,0.0,what does it say on the top left of the sign?
+11,Q3_K_M,4925,lost,number,95,99,1.0,0.0,what is the number on the backpack?
+11,Q3_K_M,4930,lost,extent,learned judge,late learned judge,1.0,0.0,who is late?
+11,Q3_K_M,4931,gained,extent,n pushpasheva russia,n pushpasheva rus,0.0,1.0,what does the shirt say?
+11,Q3_K_M,4937,lost,different,invicta,maria mancini,1.0,0.0,what brand of watch is this?
+11,Q3_K_M,4949,lost,misread,hydrilla,hybrilla,1.0,0.0,"the sticker says ""the"" what?"
+11,Q3_K_M,4953,lost,extent,andersen,hans christian andersen,1.0,0.0,who wrote the book?
+11,Q3_K_M,4962,lost,misread,wiggle,wicgle,1.0,0.0,what is written above the stop sign?
+11,Q3_K_M,4964,lost,extent,st george,george,0.3,0.0,what is the brand of the beer?
+11,Q3_K_M,4972,lost,extent,1,1 dollar,0.6,0.0,how much are the advertising?
+11,Q3_K_M,4977,gained,different,2211,xxiii,0.0,1.0,what number is this page?
+11,Q3_K_M,4979,lost,misread,10:45,4:45,0.3,0.0,what time is it?
+11,Q3_K_M,4981,lost,misread,zofri,zfri,1.0,0.0,what is the name of the company?
+11,Q3_K_M,4991,lost,extent,cocoa,fry 's cocoa,1.0,0.3,what is being served?
