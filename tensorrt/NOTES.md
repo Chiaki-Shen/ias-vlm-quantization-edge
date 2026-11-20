@@ -274,13 +274,15 @@ Caveats:
 All TensorRT runs that do not depend on Aeon are done (T8, T4, T16: accuracy and latency).
 
 1. ~~**Board sanity check (2e.4)**~~: done 2026-11-16 and passes (see "Board sanity check").
-2. **Pair T4 properly:** Config 3 latency run and ScienceQA/TextVQA accuracy (Aeon).
+2. ~~**Pair T4 properly**~~: done by Aeon on 2026-11-14 (`results/config3_*`,
+   `results_latency/config3_nov/`, PR #5) and in the README's cross-runtime table.
 3. Paper: write up the ScienceQA finding (W8A8 SmoothQuant vs weight-only Q8_0) and T16 fitting
-   where llama.cpp F16 does not.
+   where llama.cpp F16 does not. Already in the README (cross-runtime Findings 1 to 3, PR #6);
+   still to go into the paper.
 4. Paper caveats: TensorRT 10.7.0.23 from the course container (same image as llama.cpp's
    `jetson-dev`), the three Edge-LLM patches in `jetson/`, and matching by bit width, not method
    (SmoothQuant/AWQ vs Q8_0/Q4_K_M). Edge-LLM gives no prefill/decode split, so TensorRT latency is
-   end-to-end only.
+   end-to-end only. Already in the README's cross-runtime Caveats; still to go into the paper.
 5. Optional, if INT8 accuracy matters more: an INT8 weight-only (W8A16) TensorRT config would be
    the closer match to Q8_0.
 
@@ -289,12 +291,13 @@ All TensorRT runs that do not depend on Aeon are done (T8, T4, T16: accuracy and
 - [x] `Cosmos-Reason2-2B-Q8_0.gguf` and `mmproj-Cosmos-Reason2-2B-F16.gguf` (or where the Q8_0
       came from), for the sanity check on Max's board. Hashes are in his Phase 0 manifest.
       (Downloaded from `apolo13x/Cosmos-Reason2-2B-GGUF` @ 6efd567; hashes match.)
-- [ ] Config 3 (F16v + Q4_K_M) latency run with `bench_latency.py`, plus ScienceQA and TextVQA
-      accuracy, to pair with T4.
-- [ ] His caveats list says two Edge-LLM patches; there are three (the third works around the
-      ~2.5 GB `cudaMallocAsync` cap so T8's visual engine can load).
+- [x] Config 3 (F16v + Q4_K_M) latency run with `bench_latency.py`, plus ScienceQA and TextVQA
+      accuracy, to pair with T4. (Done 2026-11-14, PR #5.)
+- [x] His caveats list says two Edge-LLM patches; there are three (the third works around the
+      ~2.5 GB `cudaMallocAsync` cap so T8's visual engine can load). (The README now says three.)
 - [ ] His latency spec says `max_tokens` 16; `run_experiment.py` uses 32 for TextVQA. The TensorRT
-      bench follows the script. Please confirm and fix the spec.
+      bench follows the script. Please confirm and fix the spec. (The README no longer states
+      a latency `max_tokens`; still open for his spec.)
 - [x] `benchmarks/` folders (received 2026-11-11, `SHA256SUMS` and README hashes OK).
 - [x] Desktop state: on for accuracy runs, stopped for latency (spec received 2026-11-11).
 

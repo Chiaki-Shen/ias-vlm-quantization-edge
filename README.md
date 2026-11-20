@@ -208,7 +208,7 @@ Same protocol as the llama.cpp benchmark above: the 200 frozen records (100 Scie
 - Pairs are matched by bit width, not by method: weight-only GGUF Q8_0 / Q4_K_M vs SmoothQuant W8A8 / AWQ W4A16.
 - Only end-to-end latency is compared. Edge-LLM's Python API gives no prefill/decode split, and the timing boundary differs slightly (llama.cpp is an HTTP round trip to llama-server, TensorRT one in-process call); the HTTP overhead is small next to the gap.
 - INT8 and INT4 calibration uses the first 512 articles of the CNN/DailyMail train split (the Edge-LLM default).
-- Peak RAM is whole-system `tegrastats`, not per process, and the two Jetsons are separate boards with matched settings.
+- Peak RAM is whole-system `tegrastats`, not per process, and the two Jetsons are separate boards with matched settings. A board sanity check reran llama.cpp Config 2 on the TensorRT board: predictions are identical on all five datasets and median latency is within 0.3% (see [`tensorrt/NOTES.md`](tensorrt/NOTES.md)).
 
 ## Current Status
 
@@ -226,6 +226,7 @@ Same protocol as the llama.cpp benchmark above: the 200 frozen records (100 Scie
 - [x] vLLM feasibility test (accuracy, memory, reproducibility on 400 records)
 - [x] Config 3 (F16 vision + Q4_K_M language) on ScienceQA and TextVQA, plus a same-session latency run against Config 2
 - [x] TensorRT Edge-LLM cross-runtime comparison on a second Jetson (Max): T16 / T8 / T4 on all five datasets, latency and memory
+- [x] Board sanity check: llama.cpp Config 2 on the second Jetson matches record by record, latency within 0.3%
 - [x] Matched-record cross-runtime table with paired CIs and McNemar tests
 - [x] Figures: vision sweep, cross-runtime accuracy, latency vs peak memory
 - [ ] Per-task subgroup analysis within CV-Bench
