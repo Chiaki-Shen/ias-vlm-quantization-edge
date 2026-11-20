@@ -1,0 +1,15 @@
+Mon Nov 16 12:26:25 AM PST 2026
+Linux sjsujetson-45 5.15.148-tegra #1 SMP PREEMPT Tue Jan 7 17:14:38 PST 2025 aarch64 aarch64 aarch64 GNU/Linux
+NV Power Mode: 15W
+0
+inactive
+NAME       TYPE      SIZE  USED PRIO
+/dev/zram0 partition 635M 50.8M    5
+/dev/zram1 partition 635M 43.6M    5
+/dev/zram2 partition 635M 48.4M    5
+/dev/zram3 partition 635M 43.4M    5
+/dev/zram4 partition 635M 45.5M    5
+/dev/zram5 partition 635M 46.3M    5
+               total        used        free      shared  buff/cache   available
+Mem:            7619        1477        5034           2        1108        5907
+Swap:           3809         278        3531
