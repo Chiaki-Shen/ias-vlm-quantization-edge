@@ -1,0 +1,12 @@
+{
+  "/Developer/models/cosmos-reason2-2b/mmproj-Cosmos-Reason2-2B-F16.gguf": {
+    "size": 819395424,
+    "mtime_ns": 1794787974658362791,
+    "sha256": "8d3284c340d6a9c9237d56f2fc42f2df50d3761f539f3f01be964cefb0b73916"
+  },
+  "/Developer/models/cosmos-reason2-2b/Cosmos-Reason2-2B-Q8_0.gguf": {
+    "size": 2165040800,
+    "mtime_ns": 1794788190338948697,
+    "sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82"
+  }
+}

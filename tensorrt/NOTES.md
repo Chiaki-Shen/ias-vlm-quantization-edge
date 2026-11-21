@@ -148,7 +148,7 @@ generation prompt; the T16 result below confirms it). 4 is open (needs the GGUFs
    this needs the C++ `llm_inference` output or a debug log; method TBD on the board).
 3. Prompt text: compare the rendered prompt with llama-server's `/apply-template` for the same record.
 4. Board sanity check (agreement): run llama.cpp Config 2 once on this board; accuracy should match
-   Aeon's exactly and tok/s should be within noise.
+   Aeon's exactly and tok/s should be within noise. **Done 2026-11-16: passes.**
 
 **f. Full runs**, one config at a time, inside `tmux` so a dropped SSH session does not stop them:
 ```bash
@@ -225,32 +225,79 @@ Status: 1,200/1,200 valid, 0 worker deaths. Idle RAM 1,868 MB (Aeon: 1,636 MB).
   decode); llama.cpp's is an HTTP round trip to llama-server. Edge-LLM's Python API gives no
   prompt/decode split, so `prompt_ms`, `prompt_n`, `cache_n` are null (no prompt cache across calls).
 
+## Board sanity check (2026-11-15/16)
+
+llama.cpp Config 2 (F16 vision + Q8_0 language) on Max's board, as the agreement asks. Same stack as
+Aeon: llama.cpp e613ef2c8 (build 11056) built in `cmpelkk/jetson-llm:latest`, GGUFs from
+`apolo13x/Cosmos-Reason2-2B-GGUF` @ 6efd567 (SHA-256 match `FROZEN_SHA256`), runner unchanged.
+Compared with `scripts/compare_board_sanity.py` (full table: `results_board_sanity/compare.md`).
+
+**Accuracy: identical, record by record.** Every answered prediction is the same as in both of
+Aeon's runs (`results/`, `results_rerun_oct4/`), and the error sets (poison images) are the same records.
+
+| dataset | records | accuracy (Max = Aeon) | identical predictions | errors (same set) | median tok/s Max / Aeon |
+|---|---:|---:|---:|---:|---:|
+| BLINK depth | 124 | 70.16% | 124/124 | 0 | 18.2 / 16.7 |
+| BLINK spatial | 143 | 73.43% | 143/143 | 0 | 18.1 / 16.5 |
+| CV-Bench | 2,638 | 75.55% | 2,520/2,520 | 118 | 18.0 / 16.4 |
+| ScienceQA | 2,017 | 82.94% | 2,017/2,017 | 0 | 18.2 / 16.5 |
+| TextVQA | 5,000 | 76.34% | 4,995/4,995 | 5 | 18.0 / 17.0 |
+
+**Latency: within noise** (`results_latency_board_sanity/cfg23_maxboard/`: same `bench_latency.py`
+command and frozen records as Aeon's `results_latency/config3_nov/`, desktop stopped, 15W,
+1,200/1,200 valid, 0 cache hits).
+
+| config | dataset | median ms Max / Aeon | p95 ms Max / Aeon |
+|---|---|---:|---:|
+| 2 (Q8_0) | ScienceQA | 638 / 635 | 1,493 / 1,479 |
+| 2 (Q8_0) | TextVQA | 2,645 / 2,637 | 3,740 / 3,728 |
+| 3 (Q4_K_M) | ScienceQA | 647 / 646 | 1,518 / 1,516 |
+| 3 (Q4_K_M) | TextVQA | 2,692 / 2,685 | 3,762 / 3,749 |
+
+Medians differ by 0.1 to 0.3%. Peak system RAM during timed requests: Config 2 4,870 vs 4,884 MB,
+Config 3 4,223 vs 4,254 MB.
+
+Caveats:
+- tok/s in the accuracy run is about 10% higher on Max's board, but the latency bench (desktop
+  stopped on both boards) shows no difference. The likely cause is the desktop: it was on for
+  Aeon's accuracy runs and stopped for most of this one. Accuracy is unaffected.
+- The desktop was on for the first part of the accuracy run (BLINK and CV-Bench up to idx ~1576)
+  and stopped after that. The agreement says on for accuracy runs; predictions are identical anyway.
+- CV-Bench and TextVQA push memory hard on both boards: llama-server gets OOM-killed and the runner
+  retries (the same pattern as on Aeon's board). Once (2026-11-15 18:24, desktop on) the board became
+  unresponsive and was rebooted. The half-written last line of the CV-Bench file (750 NUL bytes) was
+  cut after idx 1926 and the run resumed with `--resume`; the idx sequence was checked afterwards.
+- Ollama is installed on this board (it stops together with the desktop).
+
 ## Next steps
 
 All TensorRT runs that do not depend on Aeon are done (T8, T4, T16: accuracy and latency).
 
-1. **Board sanity check (2e.4):** run llama.cpp Config 2 on this board (needs the GGUFs from Aeon);
-   accuracy should match Aeon's exactly and latency should be within noise.
-2. **Pair T4 properly:** Config 3 latency run and ScienceQA/TextVQA accuracy (Aeon).
+1. ~~**Board sanity check (2e.4)**~~: done 2026-11-16 and passes (see "Board sanity check").
+2. ~~**Pair T4 properly**~~: done by Aeon on 2026-11-14 (`results/config3_*`,
+   `results_latency/config3_nov/`, PR #5) and in the README's cross-runtime table.
 3. Paper: write up the ScienceQA finding (W8A8 SmoothQuant vs weight-only Q8_0) and T16 fitting
-   where llama.cpp F16 does not.
+   where llama.cpp F16 does not. Already in the README (cross-runtime Findings 1 to 3, PR #6);
+   still to go into the paper.
 4. Paper caveats: TensorRT 10.7.0.23 from the course container (same image as llama.cpp's
    `jetson-dev`), the three Edge-LLM patches in `jetson/`, and matching by bit width, not method
    (SmoothQuant/AWQ vs Q8_0/Q4_K_M). Edge-LLM gives no prefill/decode split, so TensorRT latency is
-   end-to-end only.
+   end-to-end only. Already in the README's cross-runtime Caveats; still to go into the paper.
 5. Optional, if INT8 accuracy matters more: an INT8 weight-only (W8A16) TensorRT config would be
    the closer match to Q8_0.
 
 ## Needed from Aeon
 
-- [ ] `Cosmos-Reason2-2B-Q8_0.gguf` and `mmproj-Cosmos-Reason2-2B-F16.gguf` (or where the Q8_0
+- [x] `Cosmos-Reason2-2B-Q8_0.gguf` and `mmproj-Cosmos-Reason2-2B-F16.gguf` (or where the Q8_0
       came from), for the sanity check on Max's board. Hashes are in his Phase 0 manifest.
-- [ ] Config 3 (F16v + Q4_K_M) latency run with `bench_latency.py`, plus ScienceQA and TextVQA
-      accuracy, to pair with T4.
-- [ ] His caveats list says two Edge-LLM patches; there are three (the third works around the
-      ~2.5 GB `cudaMallocAsync` cap so T8's visual engine can load).
+      (Downloaded from `apolo13x/Cosmos-Reason2-2B-GGUF` @ 6efd567; hashes match.)
+- [x] Config 3 (F16v + Q4_K_M) latency run with `bench_latency.py`, plus ScienceQA and TextVQA
+      accuracy, to pair with T4. (Done 2026-11-14, PR #5.)
+- [x] His caveats list says two Edge-LLM patches; there are three (the third works around the
+      ~2.5 GB `cudaMallocAsync` cap so T8's visual engine can load). (The README now says three.)
 - [ ] His latency spec says `max_tokens` 16; `run_experiment.py` uses 32 for TextVQA. The TensorRT
-      bench follows the script. Please confirm and fix the spec.
+      bench follows the script. Please confirm and fix the spec. (The README no longer states
+      a latency `max_tokens`; still open for his spec.)
 - [x] `benchmarks/` folders (received 2026-11-11, `SHA256SUMS` and README hashes OK).
 - [x] Desktop state: on for accuracy runs, stopped for latency (spec received 2026-11-11).
 
@@ -284,3 +331,7 @@ All TensorRT runs that do not depend on Aeon are done (T8, T4, T16: accuracy and
 | 2026-11-12 | T16 export + build | FP16 language ONNX exported on the x86 host (`tensorrt-edgellm-export models/Cosmos-Reason2-2B cr2b-fp16/onnx --skip-visual`, 2:14, peak RSS 9.4 GB), 7 files SHA-256 checked on the board. LLM engine 3.46 GB in 5:14 (`jetson/build_fp16_llm.sh`, same build flags; needed the NVMe swap file again, 8.9 GB swap used). Visual engine copied from `cr2b-int8sq` (same FP16 visual ONNX) |
 | 2026-11-12 | T16 accuracy | `jetson/run_t16.sh`, desktop stopped, swap file still on (accuracy only), 09:14 to 11:33. 0 errors. ScienceQA ran first and closed the ScienceQA question (see Results) |
 | 2026-11-12 | Latency bench, T16+T8+T4 | Swap file removed first. `jetson/bench_latency_trt.sh trio --configs T16,T8,T4`, headless, 11:59 to about 12:45. 1,800/1,800 valid. Results above |
+| 2026-11-15 | Sanity: setup | llama.cpp e613ef2c8 (build 11056) built in `cmpelkk/jetson-llm:latest` into `/Developer/llama-cpp-new` (CUDA arch 87). GGUFs downloaded and SHA-256 checked. Smoke test 5/5 OK |
+| 2026-11-15 | Sanity: Config 2 accuracy, first try | OOM restart loop at CV-Bench idx 1576 (desktop on); stopped and resumed with the desktop off. The board froze under memory pressure and was rebooted at 18:24; the CV-Bench file was repaired (see "Board sanity check") and the run resumed |
+| 2026-11-16 | Sanity: Config 2 accuracy | Done 00:24. Predictions on all 5 datasets identical to Aeon's, record by record; same error sets |
+| 2026-11-16 | Sanity: latency, Configs 2+3 | Desktop stopped, 00:26 to 01:12, 1,200/1,200 valid. Medians within 0.3% of Aeon's `config3_nov`. **Board sanity check passes** |
