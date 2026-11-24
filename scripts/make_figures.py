@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
-"""Make the three README / report figures from the committed result tables.
+"""Make the four README / report figures from the committed result tables.
 
-    python scripts/make_figures.py            # from the repo root, writes figures/*.png
+    python scripts/make_figures.py            # from the repo root, writes figures/*.png + *.pdf
 
 Inputs (read-only, all already in the repo):
-  results/table_b_deltas.csv                    Figure 1 (Table B paired deltas + CIs)
+  results/table_b_deltas.csv                    Figure 1 top (Table B paired deltas + CIs)
+  results/analysis/drivelm.csv                  Figure 1 bottom (DriveLM sign_box deltas + CIs)
   results/crossruntime_table.csv                Figure 2 (matched-record accuracy)
   results_latency/overnight/                    Figure 3 (Oct 5 vision sweep, Configs 2/5/9/10/8/11)
   results_latency/config3_nov/                  Figure 3 (Nov 14 same-session Configs 2/3)
   results_latency_trt/trio/                     Figure 3 (TensorRT T8/T4/T16)
+  results_latency/breakdown/breakdown_summary.csv  Figure 4 (Nov 24 encode/prefill/decode split)
+  results_latency/overnight/                    Figure 4 side panel (Oct 5 peak RAM)
 
 Each latency folder gives the TextVQA median wall-clock from latency_summary.csv and the
 peak system RAM (tegrastats, timed phase, strict) from summary.txt, the same numbers as the
-README tables. BLINK is left out of the figures: with 124/143 questions its intervals are
+README tables. PNG is for the README, PDF (vector) for the report. BLINK is left out of the figures: with 124/143 questions its intervals are
 too wide to resolve the effects shown here.
 
 Needs matplotlib (tested with 3.x). No numpy needed.
@@ -66,51 +69,76 @@ def read_csv(path):
         return list(csv.DictReader(f))
 
 
+def save(fig, out, stem):
+    """PNG (README) and PDF (vector, for the LaTeX report) side by side."""
+    fig.savefig(out / f"{stem}.png", dpi=200)
+    fig.savefig(out / f"{stem}.pdf")
+    plt.close(fig)
+
+
 def title(ax, main, sub):
     ax.set_title(main, loc="left", color=INK, fontweight="bold", pad=22)
     ax.text(0, 1.02, sub, transform=ax.transAxes, color=INK_2, fontsize=9, va="bottom")
 
 
 # ---- Figure 1 ------------------------------------------------------------------------
-def fig_vision_sweep(repo, out):
-    rows = [r for r in read_csv(repo / "results/table_b_deltas.csv") if r["baseline"] == "2"]
-    fig, ax = plt.subplots(figsize=(9.0, 4.8))
-    dodge = {"cv_bench": 1 / 1.018, "scienceqa": 1.0, "textvqa": 1.018}  # so CIs don't overlap
-    for key, name, color in DATASETS:
-        pts = [(VISION["2"][1], 0.0, 0.0, 0.0)]
-        for r in rows:
-            if r["dataset"] == key and r["config"] in VISION:
-                pts.append((VISION[r["config"]][1], float(r["delta_pts"]),
-                            float(r["ci_lo"]), float(r["ci_hi"])))
-        pts.sort(key=lambda p: -p[0])
-        xs = [p[0] * (dodge[key] if p[0] != VISION["2"][1] else 1) for p in pts]
-        ys = [p[1] for p in pts]
-        ax.plot(xs, ys, color=color, lw=2, zorder=2)
-        for x, (size, d, lo, hi) in zip(xs, pts):
-            if size == VISION["2"][1]:
-                ax.plot(x, 0, "o", ms=8, color=color, mec=SURFACE, mew=1.5, zorder=4)
-                continue
-            ax.plot([x, x], [lo, hi], color=color, lw=1.4, alpha=0.75, zorder=1,
-                    solid_capstyle="round")
-            sig = lo > 0 or hi < 0
-            ax.plot(x, d, "o", ms=8, zorder=4, color=color if sig else SURFACE,
-                    mec=color, mew=1.8)
-        # direct label at the low-precision end
-        ax.annotate(name, (xs[-1], ys[-1]), xytext=(-9, 0), textcoords="offset points",
+DRIVE = ("sign_box", "DriveLM sign_box", "#52514e")  # neutral ink + dashed: a different check
+DODGE = {"cv_bench": 1 / 1.018, "scienceqa": 1.0, "textvqa": 1.018, "sign_box": 1.0}
+
+
+def sweep_series(ax, rows, key, name, color, dashed=False, label_dy=0):
+    """One benchmark line: deltas vs F16 with paired CIs, filled marker if CI excludes 0."""
+    marker, ms = ("D", 7) if dashed else ("o", 8)
+    pts = [(VISION["2"][1], 0.0, 0.0, 0.0)]
+    for r in rows:
+        if r["dataset"] == key and r["config"] in VISION:
+            pts.append((VISION[r["config"]][1], float(r["delta_pts"]),
+                        float(r["ci_lo"]), float(r["ci_hi"])))
+    pts.sort(key=lambda p: -p[0])
+    xs = [p[0] * (DODGE[key] if p[0] != VISION["2"][1] else 1) for p in pts]
+    ys = [p[1] for p in pts]
+    ax.plot(xs, ys, color=color, lw=2, zorder=2, ls=(0, (4, 2)) if dashed else "-")
+    for x, (size, d, lo, hi) in zip(xs, pts):
+        if size == VISION["2"][1]:
+            ax.plot(x, 0, marker, ms=ms, color=color, mec=SURFACE, mew=1.5, zorder=4)
+            continue
+        ax.plot([x, x], [lo, hi], color=color, lw=1.4, alpha=0.75, zorder=1,
+                solid_capstyle="round")
+        sig = lo > 0 or hi < 0
+        ax.plot(x, d, marker, ms=ms, zorder=4, color=color if sig else SURFACE,
+                mec=color, mew=1.8)
+    if name:  # direct label at the low-precision end
+        ax.annotate(name, (xs[-1], ys[-1]), xytext=(-9, label_dy), textcoords="offset points",
                     va="center", ha="right", color=INK, fontsize=9.5, fontweight="bold")
 
+
+def sweep_axes(ax, ylim, band_label_y=None):
     ax.axhline(0, color=AXIS, lw=1, zorder=0)
     ax.set_xscale("log")
     ax.set_xlim(150, 850)  # ascending size; F16 at the right
     ax.minorticks_off()
     ax.set_xticks([v[1] for v in VISION.values()])
-    ax.set_xticklabels([f"{v[0]}\n{v[1]}" for v in VISION.values()], fontsize=8.5)
-    ax.set_xlabel("Vision encoder: mmproj file size in MB (log scale)")
-    ax.set_ylabel("Change from F16 vision (accuracy points)")
-    ax.set_ylim(-3.8, 1.4)
+    ax.set_ylim(*ylim)
     ax.grid(axis="x", visible=False)
     ax.axvspan(150, 262, color=GRID, alpha=0.35, zorder=0, lw=0)
-    ax.text(258, 1.15, "4 bits and below", color=INK_2, fontsize=9, ha="right")
+    if band_label_y is not None:
+        ax.text(258, band_label_y, "4 bits and below", color=INK_2, fontsize=9, ha="right")
+
+
+def fig_vision_sweep(repo, out):
+    rows = [r for r in read_csv(repo / "results/table_b_deltas.csv") if r["baseline"] == "2"]
+    drive = [{"dataset": DRIVE[0], "config": r["config"], "delta_pts": r["delta"],
+              "ci_lo": r["ci_lo"], "ci_hi": r["ci_hi"]}
+             for r in read_csv(repo / "results/analysis/drivelm.csv")
+             if r["subset"] == DRIVE[0] and r["delta"]]
+    fig, (ax, ax2) = plt.subplots(2, 1, figsize=(9.0, 7.0), sharex=True,
+                                  gridspec_kw={"height_ratios": [2.0, 1.15], "hspace": 0.32})
+
+    # Top: the three benchmarks, unchanged from the original figure.
+    for key, name, color in DATASETS:
+        sweep_series(ax, rows, key, name, color)
+    sweep_axes(ax, (-3.8, 1.4), band_label_y=1.15)
+    ax.set_ylabel("Change from F16 (points)")
     title(ax, "Vision quantization is nearly free down to 5 bits",
           "Cosmos-Reason2-2B on Jetson Orin Nano, llama.cpp, language decoder fixed at Q8_0. "
           "Paired 95% bootstrap CI.")
@@ -118,9 +146,18 @@ def fig_vision_sweep(repo, out):
               Line2D([], [], ls="none", marker="o", ms=8, color=SURFACE, mec=INK_2, mew=1.8,
                      label="CI includes 0")]
     ax.legend(handles=legend, loc="lower right", fontsize=9)
-    fig.tight_layout()
-    fig.savefig(out / "fig1_vision_sweep.png", dpi=200)
-    plt.close(fig)
+
+    # Bottom: driving-scene check on its own scale (n=150, much wider CIs).
+    sweep_series(ax2, drive, DRIVE[0], None, DRIVE[2], dashed=True)  # panel title names it
+    sweep_axes(ax2, (-6.8, 6.0))
+    ax2.set_yticks([-6, -3, 0, 3, 6])
+    ax2.set_ylabel("Change from F16 (points)")
+    ax2.set_title("Driving-scene check: DriveLM sign_box, \"is the boxed object a sign or "
+                  "barrier?\" (n=150, own scale)", loc="left", color=INK, fontsize=10, pad=6)
+    ax2.set_xticklabels([f"{v[0]}\n{v[1]}" for v in VISION.values()], fontsize=8.5)
+    ax2.set_xlabel("Vision encoder: mmproj file size in MB (log scale)")
+    fig.subplots_adjust(left=0.08, right=0.98, top=0.90, bottom=0.10)
+    save(fig, out, "fig1_vision_sweep")
 
 
 # ---- Figure 2 ------------------------------------------------------------------------
@@ -162,8 +199,7 @@ def fig_crossruntime(repo, out):
     fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=9,
                bbox_to_anchor=(0.5, 0.0))
     fig.tight_layout(rect=(0, 0.07, 1, 0.90))
-    fig.savefig(out / "fig2_crossruntime_accuracy.png", dpi=200)
-    plt.close(fig)
+    save(fig, out, "fig2_crossruntime_accuracy")
 
 
 # ---- Figure 3 ------------------------------------------------------------------------
@@ -247,8 +283,81 @@ def fig_latency_memory(repo, out):
     ]
     ax.legend(handles=handles, loc="lower left", fontsize=8.5)
     fig.tight_layout()
-    fig.savefig(out / "fig3_latency_vs_memory.png", dpi=200)
-    plt.close(fig)
+    save(fig, out, "fig3_latency_vs_memory")
+
+
+# ---- Figure 4 ------------------------------------------------------------------------
+PARTS = [("encode", "Vision encode", BLUE), ("prefill", "LLM prefill", ORANGE),
+         ("decode", "LLM decode", AQUA), ("overhead", "HTTP + preprocessing", MUTED)]
+BREAKDOWN_CFGS = ["2", "5", "8", "11"]  # F16, Q8_0, Q4_0, Q3_K_M vision; language Q8_0
+
+
+def fig_latency_breakdown(repo, out):
+    rows = {(r["config"], r["dataset"]): r
+            for r in read_csv(repo / "results_latency/breakdown/breakdown_summary.csv")}
+    ram = {c: mb for c, (_lat, mb) in latency_points(repo / "results_latency/overnight").items()}
+    fig, (ax, axm) = plt.subplots(1, 2, figsize=(11.0, 4.9),
+                                  gridspec_kw={"width_ratios": [3.1, 1.0], "wspace": 0.28})
+
+    # Left: stacked mean latency per request (means, so the parts add up to the bar).
+    xs, ticks = [], []
+    for g, (ds, ds_name) in enumerate([("scienceqa", "ScienceQA"), ("textvqa", "TextVQA")]):
+        for i, c in enumerate(BREAKDOWN_CFGS):
+            x = g * 5.0 + i
+            xs.append(x)
+            ticks.append(VISION[c][0])
+            r = rows[(c, ds)]
+            bottom = 0.0
+            for key, _name, color in PARTS:
+                v = float(r[f"{key}_mean"])
+                ax.bar(x, v, bottom=bottom, width=0.78, color=color,
+                       edgecolor=SURFACE, linewidth=1.0)
+                bottom += v
+            ax.text(x, bottom + 35, f"{bottom:,.0f}", ha="center", va="bottom", fontsize=8.5,
+                    color=INK_2)
+            if i == 0:
+                share = float(r["encode_share"]) * 100
+                ax.text(x, float(r["encode_mean"]) / 2, f"{share:.0f}%", ha="center",
+                        va="center", fontsize=8.5, color=SURFACE, fontweight="bold")
+        ntok = rows[(BREAKDOWN_CFGS[0], ds)]["image_tokens_med"]
+        ax.text(g * 5.0 + 1.5, -0.13, f"{ds_name}  (median {float(ntok):.0f} image tokens)",
+                transform=ax.get_xaxis_transform(), ha="center", color=INK, fontsize=9.5)
+    ax.set_xticks(xs)
+    ax.set_xticklabels(ticks, fontsize=8.5)
+    ax.tick_params(axis="x", length=0)
+    ax.grid(axis="x", visible=False)
+    ax.set_ylim(0, 3100)
+    ax.yaxis.set_major_formatter(matplotlib.ticker.StrMethodFormatter("{x:,.0f}"))
+    ax.set_ylabel("Mean latency per request (ms)")
+    ax.set_title("Latency: encoder is the biggest part, and quantizing it does not shrink it",
+                 loc="left", color=INK, fontsize=10.5, pad=8)
+    handles = [Patch(color=col, label=name) for _k, name, col in PARTS]
+    ax.legend(handles=handles, loc="upper left", fontsize=8.5, ncol=2)
+
+    # Right: peak system RAM per vision level (Oct 5 run, same configs).
+    mx = list(range(len(BREAKDOWN_CFGS)))
+    for x, c in zip(mx, BREAKDOWN_CFGS):
+        axm.bar(x, ram[c], width=0.7, color=INK_2, linewidth=0)
+        axm.text(x, ram[c] + 60, f"{ram[c]:,}", ha="center", va="bottom", fontsize=8.5,
+                 color=INK_2)
+    axm.set_xticks(mx)
+    axm.set_xticklabels([VISION[c][0] for c in BREAKDOWN_CFGS], fontsize=8.5)
+    axm.tick_params(axis="x", length=0)
+    axm.grid(axis="x", visible=False)
+    axm.set_ylim(0, 5600)
+    axm.yaxis.set_major_formatter(matplotlib.ticker.StrMethodFormatter("{x:,.0f}"))
+    axm.set_ylabel("Peak system RAM, timed phase (MB)")
+    saved = ram["2"] - ram["5"]
+    axm.set_title(f"Memory: F16 to Q8_0\nsaves {saved} MB", loc="left", color=INK,
+                  fontsize=10.5, pad=8)
+
+    fig.suptitle("Vision quantization saves memory, not time", x=0.01, ha="left", color=INK,
+                 fontweight="bold", fontsize=12)
+    fig.text(0.01, 0.905, "llama.cpp, Jetson Orin Nano 15W, language Q8_0. Left: Nov 24, "
+             "first 50 + 50 frozen records x 3 rounds. Right: Oct 5 run, tegrastats.",
+             color=INK_2, fontsize=9, ha="left")
+    fig.subplots_adjust(left=0.065, right=0.985, top=0.78, bottom=0.14)
+    save(fig, out, "fig4_latency_breakdown")
 
 
 def main():
@@ -263,7 +372,8 @@ def main():
     fig_vision_sweep(repo, out)
     fig_crossruntime(repo, out)
     fig_latency_memory(repo, out)
-    print(f"wrote 3 figures to {out}/")
+    fig_latency_breakdown(repo, out)
+    print(f"wrote 4 figures (PNG + PDF) to {out}/")
 
 
 if __name__ == "__main__":
