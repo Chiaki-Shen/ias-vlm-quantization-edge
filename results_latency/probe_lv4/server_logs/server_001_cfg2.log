@@ -1,0 +1,430 @@
+0.00.001.253 I srv  llama_server: initializing ...
+0.00.064.068 I cmn  common_param: common_params_print_info: build 11056 (e613ef2c8) with GNU 13.2.0 for Linux aarch64
+0.00.064.078 I cmn  common_param: common_params_print_info: verbosity = 4 (adjust with the `-lv N` CLI arg)
+0.00.064.080 I cmn  common_param: device_info:
+0.00.133.025 I cmn  common_param:   - CUDA0   : Orin (7619 MiB, 5494 MiB free)
+0.00.133.050 I cmn  common_param:   - CPU     : ARMv8 Processor rev 1 (v8l) (7619 MiB, 7619 MiB free)
+0.00.133.271 I cmn  common_param: system_info: n_threads = 6 (n_threads_batch = 6) / 6 | CUDA : ARCHS = 870 | USE_GRAPHS = 1 | FA_QUANTS = q4_0-q4_0,q8_0-q8_0,f16-f16,bf16-bf16 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | DOTPROD = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | 
+0.00.133.431 I srv          init: running without SSL
+0.00.133.623 I srv          init: using 5 threads for HTTP server
+0.00.134.373 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.134.473 I srv         start: binding port with default address family
+0.00.136.066 I srv    load_model: loading model '/Developer/models/cosmos-reason2-2b/Cosmos-Reason2-2B-Q8_0.gguf'
+0.00.136.071 I srv    load_model: local path '/Developer/models/cosmos-reason2-2b/Cosmos-Reason2-2B-Q8_0.gguf'
+0.00.338.042 I srv    load_model: [mtmd] estimated worst-case memory usage of mmproj is 1128.83 MiB (took 201.88 ms)
+0.00.338.099 I cmn  common_init_: fitting params to device memory ...
+0.00.338.099 I cmn  common_init_: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+0.00.338.158 I common_params_fit_impl: getting device memory data for initial parameters:
+0.00.947.143 I common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+0.00.947.154 I common_memory_breakdown_print: |   - CUDA0 (Orin)       |  7619 = 5373 + (2029 =  1743 +     224 +      62) +         216 |
+0.00.947.155 I common_memory_breakdown_print: |   - Host               |                  337 =   315 +       0 +      22                |
+0.01.057.892 I common_params_fit_impl: projected to use 2029 MiB of device memory vs. 5373 MiB of free device memory
+0.01.057.905 I common_params_fit_impl: will leave 3343 >= 2127 MiB of free device memory, no changes needed
+0.01.057.908 I common_fit_params: successfully fit params to free device memory
+0.01.057.918 I common_fit_params: fitting params to free memory took 0.72 seconds
+0.01.119.200 I llama_model_loader: loaded meta data with 40 key-value pairs and 311 tensors from /Developer/models/cosmos-reason2-2b/Cosmos-Reason2-2B-Q8_0.gguf (version GGUF V3 (latest))
+0.01.119.231 I llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+0.01.119.240 I llama_model_loader: - kv   0:                       general.architecture str              = qwen3vl
+0.01.119.242 I llama_model_loader: - kv   1:                               general.type str              = model
+0.01.119.246 I llama_model_loader: - kv   2:                     general.sampling.top_k i32              = 20
+0.01.119.258 I llama_model_loader: - kv   3:                     general.sampling.top_p f32              = 0.800000
+0.01.119.260 I llama_model_loader: - kv   4:                      general.sampling.temp f32              = 0.700000
+0.01.119.262 I llama_model_loader: - kv   5:                               general.name str              = Cosmos Reason2 2b
+0.01.119.263 I llama_model_loader: - kv   6:                           general.basename str              = cosmos-reason2
+0.01.119.264 I llama_model_loader: - kv   7:                         general.size_label str              = 2B
+0.01.119.265 I llama_model_loader: - kv   8:                            general.license str              = other
+0.01.119.266 I llama_model_loader: - kv   9:                       general.license.name str              = nvidia-open-model-license
+0.01.119.271 I llama_model_loader: - kv  10:                       general.license.link str              = https://www.nvidia.com/en-us/agreemen...
+0.01.119.274 I llama_model_loader: - kv  11:                   general.base_model.count u32              = 1
+0.01.119.275 I llama_model_loader: - kv  12:                  general.base_model.0.name str              = Qwen3 VL 2B Instruct
+0.01.119.276 I llama_model_loader: - kv  13:          general.base_model.0.organization str              = Qwen
+0.01.119.279 I llama_model_loader: - kv  14:              general.base_model.0.repo_url str              = https://huggingface.co/Qwen/Qwen3-VL-...
+0.01.119.305 I llama_model_loader: - kv  15:                               general.tags arr[str,4]       = ["nvidia", "cosmos", "conversational"...
+0.01.119.307 I llama_model_loader: - kv  16:                        qwen3vl.block_count u32              = 28
+0.01.119.308 I llama_model_loader: - kv  17:                     qwen3vl.context_length u32              = 262144
+0.01.119.308 I llama_model_loader: - kv  18:                   qwen3vl.embedding_length u32              = 2048
+0.01.119.309 I llama_model_loader: - kv  19:                qwen3vl.feed_forward_length u32              = 6144
+0.01.119.310 I llama_model_loader: - kv  20:               qwen3vl.attention.head_count u32              = 16
+0.01.119.312 I llama_model_loader: - kv  21:            qwen3vl.attention.head_count_kv u32              = 8
+0.01.119.316 I llama_model_loader: - kv  22:            qwen3vl.rope.dimension_sections arr[i32,4]       = [24, 20, 20, 0]
+0.01.119.321 I llama_model_loader: - kv  23:                     qwen3vl.rope.freq_base f32              = 5000000.000000
+0.01.119.324 I llama_model_loader: - kv  24:   qwen3vl.attention.layer_norm_rms_epsilon f32              = 0.000001
+0.01.119.325 I llama_model_loader: - kv  25:               qwen3vl.attention.key_length u32              = 128
+0.01.119.326 I llama_model_loader: - kv  26:             qwen3vl.attention.value_length u32              = 128
+0.01.119.327 I llama_model_loader: - kv  27:                 qwen3vl.n_deepstack_layers u32              = 3
+0.01.119.328 I llama_model_loader: - kv  28:                       tokenizer.ggml.model str              = gpt2
+0.01.119.329 I llama_model_loader: - kv  29:                         tokenizer.ggml.pre str              = qwen2
+0.01.153.353 I llama_model_loader: - kv  30:                      tokenizer.ggml.tokens arr[str,151936]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+0.01.163.737 I llama_model_loader: - kv  31:                  tokenizer.ggml.token_type arr[i32,151936]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+0.01.197.924 I llama_model_loader: - kv  32:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+0.01.197.937 I llama_model_loader: - kv  33:                tokenizer.ggml.eos_token_id u32              = 151645
+0.01.197.938 I llama_model_loader: - kv  34:            tokenizer.ggml.padding_token_id u32              = 151643
+0.01.197.939 I llama_model_loader: - kv  35:                tokenizer.ggml.bos_token_id u32              = 151643
+0.01.197.941 I llama_model_loader: - kv  36:               tokenizer.ggml.add_bos_token bool             = false
+0.01.197.949 I llama_model_loader: - kv  37:                    tokenizer.chat_template str              = {%- if tools %}\n    {{- '<|im_start|>...
+0.01.197.951 I llama_model_loader: - kv  38:               general.quantization_version u32              = 2
+0.01.197.952 I llama_model_loader: - kv  39:                          general.file_type u32              = 7
+0.01.197.956 I llama_model_loader: - type  f32:  113 tensors
+0.01.197.957 I llama_model_loader: - type q8_0:  198 tensors
+0.01.197.962 I print_info: file format = GGUF V3 (latest)
+0.01.197.964 I print_info: file type   = Q8_0
+0.01.197.972 I print_info: file size   = 2.01 GiB (8.50 BPW) 
+0.01.198.345 I llama_prepare_model_devices: using device CUDA0 (Orin) (0000:00:00.0) - 5373 MiB free
+0.01.435.237 I load: 0 unused tokens
+0.01.437.311 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.01.514.860 I load: printing all EOG tokens:
+0.01.514.867 I load:   - 128247 ('</s>')
+0.01.514.869 I load:   - 151643 ('<|endoftext|>')
+0.01.514.869 I load:   - 151645 ('<|im_end|>')
+0.01.514.871 I load:   - 151662 ('<|fim_pad|>')
+0.01.514.872 I load:   - 151663 ('<|repo_name|>')
+0.01.514.873 I load:   - 151664 ('<|file_sep|>')
+0.01.515.597 I load: special tokens cache size = 27
+0.01.615.299 I load: token to piece cache size = 0.9311 MB
+0.01.615.346 I print_info: arch                  = qwen3vl
+0.01.615.347 I print_info: vocab_only            = 0
+0.01.615.348 I print_info: no_alloc              = 0
+0.01.615.349 I print_info: n_ctx_train           = 262144
+0.01.615.351 I print_info: n_embd_inp            = 8192
+0.01.615.351 I print_info: n_embd                = 2048
+0.01.615.352 I print_info: n_embd_out            = 2048
+0.01.615.353 I print_info: n_layer               = 28
+0.01.615.354 I print_info: n_layer_all           = 28
+0.01.615.379 I print_info: n_head                = 16
+0.01.615.381 I print_info: n_head_kv             = 8
+0.01.615.382 I print_info: n_rot                 = 128
+0.01.615.383 I print_info: n_swa                 = 0
+0.01.615.384 I print_info: is_swa_any            = 0
+0.01.615.419 I print_info: non_causal_type       = 0
+0.01.615.422 I print_info: n_embd_head_k         = 128
+0.01.615.422 I print_info: n_embd_head_v         = 128
+0.01.615.428 I print_info: n_gqa                 = 2
+0.01.615.433 I print_info: n_embd_k_gqa          = 1024
+0.01.615.436 I print_info: n_embd_v_gqa          = 1024
+0.01.615.438 I print_info: f_norm_eps            = 0.0e+00
+0.01.615.441 I print_info: f_norm_rms_eps        = 1.0e-06
+0.01.615.442 I print_info: f_clamp_kqv           = 0.0e+00
+0.01.615.442 I print_info: f_max_alibi_bias      = 0.0e+00
+0.01.615.443 I print_info: f_logit_scale         = 0.0e+00
+0.01.615.444 I print_info: f_attn_scale          = 0.0e+00
+0.01.615.445 I print_info: f_attn_value_scale    = 0.0000
+0.01.615.447 I print_info: n_ff                  = 6144
+0.01.615.447 I print_info: n_expert              = 0
+0.01.615.449 I print_info: n_expert_used         = 0
+0.01.615.449 I print_info: n_expert_groups       = 0
+0.01.615.450 I print_info: n_group_used          = 0
+0.01.615.450 I print_info: causal attn           = 1
+0.01.615.451 I print_info: pooling type          = -1
+0.01.615.452 I print_info: rope type             = 40
+0.01.615.452 I print_info: rope scaling          = linear
+0.01.615.455 I print_info: freq_base_train       = 5000000.0
+0.01.615.456 I print_info: freq_scale_train      = 1
+0.01.615.457 I print_info: n_ctx_orig_yarn       = 262144
+0.01.615.458 I print_info: rope_yarn_log_mul     = 0.0000
+0.01.615.459 I print_info: rope_finetuned        = unknown
+0.01.615.460 I print_info: mrope sections        = [24, 20, 20, 0]
+0.01.615.463 I print_info: model type            = 1.7B
+0.01.615.464 I print_info: model params          = 2.03 B
+0.01.615.465 I print_info: general.name          = Cosmos Reason2 2b
+0.01.615.469 I print_info: vocab type            = BPE
+0.01.615.470 I print_info: n_vocab               = 151936
+0.01.615.470 I print_info: n_merges              = 151387
+0.01.615.471 I print_info: BOS token             = 151643 '<|endoftext|>'
+0.01.615.472 I print_info: EOS token             = 151645 '<|im_end|>'
+0.01.615.473 I print_info: EOT token             = 151645 '<|im_end|>'
+0.01.615.474 I print_info: PAD token             = 151643 '<|endoftext|>'
+0.01.615.475 I print_info: LF token              = 198 'Ċ'
+0.01.615.475 I print_info: FIM PRE token         = 151659 '<|fim_prefix|>'
+0.01.615.476 I print_info: FIM SUF token         = 151661 '<|fim_suffix|>'
+0.01.615.477 I print_info: FIM MID token         = 151660 '<|fim_middle|>'
+0.01.615.477 I print_info: FIM PAD token         = 151662 '<|fim_pad|>'
+0.01.615.478 I print_info: FIM REP token         = 151663 '<|repo_name|>'
+0.01.615.478 I print_info: FIM SEP token         = 151664 '<|file_sep|>'
+0.01.615.479 I print_info: EOG token             = 128247 '</s>'
+0.01.615.481 I print_info: EOG token             = 151643 '<|endoftext|>'
+0.01.615.481 I print_info: EOG token             = 151645 '<|im_end|>'
+0.01.615.482 I print_info: EOG token             = 151662 '<|fim_pad|>'
+0.01.615.483 I print_info: EOG token             = 151663 '<|repo_name|>'
+0.01.615.483 I print_info: EOG token             = 151664 '<|file_sep|>'
+0.01.615.484 I print_info: max token length      = 256
+0.01.615.890 I load_tensors: loading model tensors, this can take a while... (load_mode = none)
+0.02.033.370 I load_tensors: offloading output layer to GPU
+0.02.033.379 I load_tensors: offloading 27 repeating layers to GPU
+0.02.033.380 I load_tensors: offloaded 29/29 layers to GPU
+0.02.033.395 I load_tensors:        CUDA0 model buffer size =  1743.77 MiB
+0.02.033.397 I load_tensors:    CUDA_Host model buffer size =   315.30 MiB
+0.04.026.635 I cmn  common_init_: added </s> logit bias = -inf
+0.04.027.090 I cmn  common_init_: added <|endoftext|> logit bias = -inf
+0.04.027.093 I cmn  common_init_: added <|im_end|> logit bias = -inf
+0.04.027.095 I cmn  common_init_: added <|fim_pad|> logit bias = -inf
+0.04.027.096 I cmn  common_init_: added <|repo_name|> logit bias = -inf
+0.04.027.096 I cmn  common_init_: added <|file_sep|> logit bias = -inf
+0.04.027.300 I llama_context: constructing llama_context
+0.04.027.310 I llama_context: n_seq_max             = 1
+0.04.027.311 I llama_context: n_ctx                 = 2048
+0.04.027.312 I llama_context: n_ctx_seq             = 2048
+0.04.027.312 I llama_context: n_batch               = 2048
+0.04.027.313 I llama_context: n_ubatch              = 512
+0.04.027.314 I llama_context: causal_attn           = 1
+0.04.027.315 I llama_context: flash_attn            = auto
+0.04.027.316 I llama_context: kv_unified            = false
+0.04.027.325 I llama_context: freq_base             = 5000000.0
+0.04.027.326 I llama_context: freq_scale            = 1
+0.04.027.327 I llama_context: n_rs_seq              = 0
+0.04.027.328 I llama_context: n_outputs_max         = 1
+0.04.027.328 I llama_context: n_outputs_max_per_seq = 1
+0.04.027.329 I llama_context: n_ctx_seq (2048) < n_ctx_train (262144) -- the full capacity of the model will not be utilized
+0.04.028.150 I llama_context:  CUDA_Host  output buffer size =     0.58 MiB
+0.04.098.209 I llama_kv_cache:      CUDA0 KV buffer size =   224.00 MiB
+0.04.107.259 I llama_kv_cache: size =  224.00 MiB (  2048 cells,  28 layers,  1/1 seqs), K (f16):  112.00 MiB, V (f16):  112.00 MiB
+0.04.107.272 I llama_kv_cache: attn_rot_k = 0, n_embd_head_k_all = 128
+0.04.107.273 I llama_kv_cache: attn_rot_v = 0, n_embd_head_k_all = 128
+0.04.107.390 I sched_reserve: reserving ...
+0.04.108.560 I resolve_fused_ops: Flash Attention enabled
+0.04.108.568 I resolve_fused_ops: resolving fused DeepSeek V4 HC support:
+0.04.109.205 I resolve_fused_ops: fused DeepSeek V4 HC pre enabled
+0.04.109.805 I resolve_fused_ops: fused DeepSeek V4 HC comb enabled
+0.04.110.397 I resolve_fused_ops: fused DeepSeek V4 HC post enabled
+0.04.140.627 I sched_reserve:      CUDA0 compute buffer size =    62.02 MiB
+0.04.140.637 I sched_reserve:  CUDA_Host compute buffer size =    22.02 MiB
+0.04.140.639 I sched_reserve: graph nodes  = 994
+0.04.140.640 I sched_reserve: graph splits = 2
+0.04.140.642 I sched_reserve: reserve took 33.24 ms, sched copies = 1
+0.04.140.767 I cmn          init: llama threadpool init, n_threads = 6
+0.04.140.941 I cmn  common_init_: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+0.04.255.931 I clip_model_loader: model name:   Cosmos Reason2 2b
+0.04.255.942 I clip_model_loader: description:  
+0.04.255.945 I clip_model_loader: GGUF version: 3
+0.04.255.947 I clip_model_loader: alignment:    32
+0.04.255.949 I clip_model_loader: n_tensors:    316
+0.04.255.950 I clip_model_loader: n_kv:         34
+0.04.255.951 I 
+0.04.255.957 I clip_model_loader: has vision encoder
+0.04.256.963 I clip_ctx: CLIP using CUDA0 backend
+0.04.257.432 W load_hparams: Qwen-VL models require at minimum 1024 image tokens to function correctly on grounding tasks
+0.04.257.437 W load_hparams: if you encounter problems with accuracy, try adding --image-min-tokens 1024
+0.04.257.437 W load_hparams: more info: https://github.com/ggml-org/llama.cpp/issues/16842
+
+0.04.257.439 I load_hparams: projector:          qwen3vl_merger
+0.04.257.441 I load_hparams: n_embd:             1024
+0.04.257.442 I load_hparams: n_head:             16
+0.04.257.442 I load_hparams: n_ff:               4096
+0.04.257.443 I load_hparams: n_layer:            24
+0.04.257.444 I load_hparams: ffn_op:             gelu
+0.04.257.444 I load_hparams: projection_dim:     2048
+0.04.257.445 I 
+--- vision hparams ---
+0.04.257.445 I load_hparams: image_size:         768
+0.04.257.446 I load_hparams: patch_size:         16
+0.04.257.447 I load_hparams: has_llava_proj:     0
+0.04.257.447 I load_hparams: minicpmv_version:   0
+0.04.257.448 I load_hparams: n_merge:            2
+0.04.257.448 I load_hparams: n_wa_pattern: 0
+0.04.257.450 I load_hparams: image_min_pixels:   8192
+0.04.257.450 I load_hparams: image_max_pixels:   4194304
+0.04.257.451 I 
+0.04.257.460 I load_hparams: model size:         781.42 MiB
+0.04.257.463 I load_hparams: metadata size:      0.11 MiB
+0.05.538.050 I get_dummy_batch: warmup with image size = 1472 x 1472
+0.05.554.128 I get_dummy_batch: warmup with image size = 1472 x 1472
+0.05.720.333 I reserve_compute_meta:      CUDA0 compute buffer size =   322.49 MiB
+0.05.720.351 I reserve_compute_meta:        CPU compute buffer size =    24.93 MiB
+0.05.720.357 I reserve_compute_meta: graph splits = 1, nodes = 766
+0.05.720.453 I warmup: flash attention is enabled
+0.05.720.503 I srv    load_model: loaded multimodal model, '/Developer/models/cosmos-reason2-2b/mmproj-Cosmos-Reason2-2B-F16.gguf'
+0.05.805.554 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+0.05.805.606 I spec common_specu: no implementations specified for speculative decoding
+0.05.805.616 I slot   load_model: id  0 | task -1 | new slot, n_ctx = 2048
+0.05.805.819 I srv    load_model: prompt cache is disabled - use `--cache-ram N` to enable it
+0.05.805.825 I srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+0.05.805.826 I srv    load_model: context checkpoints enabled, max = 32, min spacing = 8192
+0.05.805.868 W srv          init: --cache-idle-slots requires --cache-ram, disabling
+0.05.818.497 I srv          init: init: chat template, example_format: '<|im_start|>system
+You are a helpful assistant<|im_end|>
+<|im_start|>user
+Hello<|im_end|>
+<|im_start|>assistant
+Hi there<|im_end|>
+<|im_start|>user
+How are you?<|im_end|>
+<|im_start|>assistant
+'
+0.05.825.784 I srv          init: init: chat template, thinking = 0
+0.05.825.820 I srv          init: preserve_reasoning kwarg: not supported by template
+0.05.825.912 I srv  llama_server: model loaded
+0.05.825.926 I srv  llama_server: listening on http://127.0.0.1:8080
+0.05.825.926 W srv  llama_server: notice: server default port will be changed to :9931 in a future release (ref: https://github.com/ggml-org/llama.cpp/pull/26508)
+0.05.826.201 I srv  update_slots: all slots are idle
+0.06.073.811 I srv  server_strea: conv_id= (empty=1)
+0.06.092.372 I srv    operator(): chat format: peg-native
+0.06.093.050 I slot get_availabl: id  0 | task -1 |  - skipping, slot is empty
+0.06.093.061 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+0.06.093.291 I slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+0.06.093.331 I slot launch_slot_: id  0 | task -1 | sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 20, top_p = 0.800, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+0.06.093.340 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.06.093.383 I slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 2048, n_keep = 0, task.n_tokens = 172
+0.06.093.391 I slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
+0.06.104.738 I slot   operator(): id  0 | task 0 | cached n_tokens = 4, memory_seq_rm [4, end)
+0.06.104.790 I slot process_mtmd: id  0 | task 0 | encoding mtmd batch from idx = 4, n_chunks = 1
+0.06.487.543 I decoding image batch 1/1, n_tokens_batch = 119
+0.06.523.559 I image decoded (batch 1/1) in 36 ms
+0.06.524.081 I slot init_sampler: id  0 | task 0 | init sampler, took 0.06 ms, tokens: text = 53, total = 172
+0.06.791.188 I slot print_timing: id  0 | task 0 | prompt eval time =     641.95 ms /   172 tokens (    3.73 ms per token,   267.93 tokens per second)
+0.06.791.207 I slot print_timing: id  0 | task 0 |        eval time =      55.81 ms /     2 tokens (   55.81 ms per token,    17.92 tokens per second)
+0.06.791.210 I slot print_timing: id  0 | task 0 |       total time =     697.75 ms /   174 tokens
+0.06.791.222 I slot print_timing: id  0 | task 0 |    graphs reused =          1
+0.06.791.327 I slot      release: id  0 | task 0 | stop processing: n_tokens = 173, truncated = 0
+0.06.791.371 I srv  update_slots: all slots are idle
+0.06.840.337 I srv  server_strea: conv_id= (empty=1)
+0.06.911.156 I srv    operator(): chat format: peg-native
+0.06.911.745 I slot get_availabl: id  0 | task -1 |  - checking sim = 0.006 (4/701) > 0.100
+0.06.911.758 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = 40399082868
+0.06.911.978 I slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+0.06.912.009 I slot launch_slot_: id  0 | task -1 | sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 20, top_p = 0.800, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+0.06.912.018 I slot launch_slot_: id  0 | task 4 | processing task, is_child = 0
+0.06.912.042 I slot   operator(): id  0 | task 4 | new prompt, n_ctx_slot = 2048, n_keep = 0, task.n_tokens = 701
+0.06.912.062 I slot   operator(): id  0 | task 4 | cached n_tokens = 0, memory_seq_rm [0, end)
+0.06.923.677 I slot   operator(): id  0 | task 4 | cached n_tokens = 4, memory_seq_rm [4, end)
+0.06.923.709 I slot process_mtmd: id  0 | task 4 | encoding mtmd batch from idx = 4, n_chunks = 1
+0.08.280.954 I decoding image batch 1/1, n_tokens_batch = 672
+0.08.850.042 I image decoded (batch 1/1) in 569 ms
+0.08.850.474 I slot init_sampler: id  0 | task 4 | init sampler, took 0.03 ms, tokens: text = 29, total = 701
+0.09.207.548 I slot print_timing: id  0 | task 4 | prompt eval time =    2181.06 ms /   701 tokens (    3.11 ms per token,   321.40 tokens per second)
+0.09.207.567 I slot print_timing: id  0 | task 4 |        eval time =     114.39 ms /     3 tokens (   57.19 ms per token,    17.48 tokens per second)
+0.09.207.570 I slot print_timing: id  0 | task 4 |       total time =    2295.45 ms /   704 tokens
+0.09.207.573 I slot print_timing: id  0 | task 4 |    graphs reused =          2
+0.09.207.645 I slot      release: id  0 | task 4 | stop processing: n_tokens = 703, truncated = 0
+0.09.207.694 I srv  update_slots: all slots are idle
+0.09.257.087 I srv  server_strea: conv_id= (empty=1)
+0.09.306.762 I srv    operator(): chat format: peg-native
+0.09.307.076 I slot get_availabl: id  0 | task -1 |  - checking sim = 0.009 (4/446) > 0.100
+0.09.307.090 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = 40401499178
+0.09.307.311 I slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+0.09.307.340 I slot launch_slot_: id  0 | task -1 | sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 20, top_p = 0.800, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+0.09.307.351 I slot launch_slot_: id  0 | task 9 | processing task, is_child = 0
+0.09.307.377 I slot   operator(): id  0 | task 9 | new prompt, n_ctx_slot = 2048, n_keep = 0, task.n_tokens = 446
+0.09.307.388 I slot   operator(): id  0 | task 9 | cached n_tokens = 0, memory_seq_rm [0, end)
+0.09.319.296 I slot   operator(): id  0 | task 9 | cached n_tokens = 4, memory_seq_rm [4, end)
+0.09.319.330 I slot process_mtmd: id  0 | task 9 | encoding mtmd batch from idx = 4, n_chunks = 1
+0.10.109.193 I decoding image batch 1/1, n_tokens_batch = 416
+0.10.138.796 I image decoded (batch 1/1) in 30 ms
+0.10.139.251 I slot init_sampler: id  0 | task 9 | init sampler, took 0.03 ms, tokens: text = 30, total = 446
+0.10.773.689 I slot print_timing: id  0 | task 9 | prompt eval time =    1305.37 ms /   446 tokens (    2.93 ms per token,   341.67 tokens per second)
+0.10.773.710 I slot print_timing: id  0 | task 9 |        eval time =     160.91 ms /     4 tokens (   53.64 ms per token,    18.64 tokens per second)
+0.10.773.712 I slot print_timing: id  0 | task 9 |       total time =    1466.28 ms /   450 tokens
+0.10.773.716 I slot print_timing: id  0 | task 9 |    graphs reused =          4
+0.10.773.782 I slot      release: id  0 | task 9 | stop processing: n_tokens = 449, truncated = 0
+0.10.773.823 I srv  update_slots: all slots are idle
+0.10.809.192 I srv  server_strea: conv_id= (empty=1)
+0.10.849.571 I srv    operator(): chat format: peg-native
+0.10.849.892 I slot get_availabl: id  0 | task -1 |  - checking sim = 0.011 (4/352) > 0.100
+0.10.849.897 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = 40403065315
+0.10.850.095 I slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+0.10.850.127 I slot launch_slot_: id  0 | task -1 | sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 20, top_p = 0.800, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+0.10.850.133 I slot launch_slot_: id  0 | task 15 | processing task, is_child = 0
+0.10.850.156 I slot   operator(): id  0 | task 15 | new prompt, n_ctx_slot = 2048, n_keep = 0, task.n_tokens = 352
+0.10.850.166 I slot   operator(): id  0 | task 15 | cached n_tokens = 0, memory_seq_rm [0, end)
+0.10.862.039 I slot   operator(): id  0 | task 15 | cached n_tokens = 4, memory_seq_rm [4, end)
+0.10.862.070 I slot process_mtmd: id  0 | task 15 | encoding mtmd batch from idx = 4, n_chunks = 1
+0.11.448.675 I decoding image batch 1/1, n_tokens_batch = 299
+0.11.473.071 I image decoded (batch 1/1) in 24 ms
+0.11.473.292 I slot init_sampler: id  0 | task 15 | init sampler, took 0.04 ms, tokens: text = 53, total = 352
+0.11.916.016 I slot print_timing: id  0 | task 15 | prompt eval time =    1010.77 ms /   352 tokens (    2.87 ms per token,   348.25 tokens per second)
+0.11.916.039 I slot print_timing: id  0 | task 15 |        eval time =      55.04 ms /     2 tokens (   55.04 ms per token,    18.17 tokens per second)
+0.11.916.042 I slot print_timing: id  0 | task 15 |       total time =    1065.82 ms /   354 tokens
+0.11.916.045 I slot print_timing: id  0 | task 15 |    graphs reused =          4
+0.11.916.116 I slot      release: id  0 | task 15 | stop processing: n_tokens = 353, truncated = 0
+0.11.916.160 I srv  update_slots: all slots are idle
+0.11.951.923 I srv  server_strea: conv_id= (empty=1)
+0.11.986.173 I srv    operator(): chat format: peg-native
+0.11.986.499 I slot get_availabl: id  0 | task -1 |  - checking sim = 0.014 (4/295) > 0.100
+0.11.986.505 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = 40404207649
+0.11.986.702 I slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+0.11.986.736 I slot launch_slot_: id  0 | task -1 | sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 20, top_p = 0.800, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+0.11.986.744 I slot launch_slot_: id  0 | task 19 | processing task, is_child = 0
+0.11.986.766 I slot   operator(): id  0 | task 19 | new prompt, n_ctx_slot = 2048, n_keep = 0, task.n_tokens = 295
+0.11.986.777 I slot   operator(): id  0 | task 19 | cached n_tokens = 0, memory_seq_rm [0, end)
+0.11.998.556 I slot   operator(): id  0 | task 19 | cached n_tokens = 4, memory_seq_rm [4, end)
+0.11.998.588 I slot process_mtmd: id  0 | task 19 | encoding mtmd batch from idx = 4, n_chunks = 1
+0.12.468.453 I decoding image batch 1/1, n_tokens_batch = 242
+0.12.489.345 I image decoded (batch 1/1) in 20 ms
+0.12.489.565 I slot init_sampler: id  0 | task 19 | init sampler, took 0.04 ms, tokens: text = 53, total = 295
+0.12.860.447 I slot print_timing: id  0 | task 19 | prompt eval time =     818.31 ms /   295 tokens (    2.77 ms per token,   360.50 tokens per second)
+0.12.860.466 I slot print_timing: id  0 | task 19 |        eval time =      55.33 ms /     2 tokens (   55.33 ms per token,    18.07 tokens per second)
+0.12.860.503 I slot print_timing: id  0 | task 19 |       total time =     873.64 ms /   297 tokens
+0.12.860.513 I slot print_timing: id  0 | task 19 |    graphs reused =          4
+0.12.860.585 I slot      release: id  0 | task 19 | stop processing: n_tokens = 296, truncated = 0
+0.12.860.630 I srv  update_slots: all slots are idle
+0.12.920.659 I srv  server_strea: conv_id= (empty=1)
+0.12.974.186 I srv    operator(): chat format: peg-native
+0.12.974.671 I slot get_availabl: id  0 | task -1 |  - checking sim = 0.005 (4/732) > 0.100
+0.12.974.685 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = 40405152118
+0.12.974.899 I slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+0.12.974.925 I slot launch_slot_: id  0 | task -1 | sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 20, top_p = 0.800, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+0.12.974.931 I slot launch_slot_: id  0 | task 23 | processing task, is_child = 0
+0.12.974.952 I slot   operator(): id  0 | task 23 | new prompt, n_ctx_slot = 2048, n_keep = 0, task.n_tokens = 732
+0.12.974.962 I slot   operator(): id  0 | task 23 | cached n_tokens = 0, memory_seq_rm [0, end)
+0.12.986.775 I slot   operator(): id  0 | task 23 | cached n_tokens = 4, memory_seq_rm [4, end)
+0.12.986.809 I slot process_mtmd: id  0 | task 23 | encoding mtmd batch from idx = 4, n_chunks = 1
+0.14.384.016 I decoding image batch 1/1, n_tokens_batch = 704
+0.14.896.399 I image decoded (batch 1/1) in 512 ms
+0.14.896.855 I slot init_sampler: id  0 | task 23 | init sampler, took 0.03 ms, tokens: text = 28, total = 732
+0.15.256.808 I slot print_timing: id  0 | task 23 | prompt eval time =    2170.99 ms /   732 tokens (    2.97 ms per token,   337.17 tokens per second)
+0.15.256.829 I slot print_timing: id  0 | task 23 |        eval time =     110.82 ms /     3 tokens (   55.41 ms per token,    18.05 tokens per second)
+0.15.256.832 I slot print_timing: id  0 | task 23 |       total time =    2281.81 ms /   735 tokens
+0.15.256.835 I slot print_timing: id  0 | task 23 |    graphs reused =          5
+0.15.256.906 I slot      release: id  0 | task 23 | stop processing: n_tokens = 734, truncated = 0
+0.15.256.954 I srv  update_slots: all slots are idle
+0.15.339.759 I srv  server_strea: conv_id= (empty=1)
+0.15.383.811 I srv    operator(): chat format: peg-native
+0.15.384.097 I slot get_availabl: id  0 | task -1 |  - checking sim = 0.005 (4/798) > 0.100
+0.15.384.110 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = 40407548438
+0.15.384.342 I slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+0.15.384.374 I slot launch_slot_: id  0 | task -1 | sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 20, top_p = 0.800, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+0.15.384.386 I slot launch_slot_: id  0 | task 28 | processing task, is_child = 0
+0.15.384.410 I slot   operator(): id  0 | task 28 | new prompt, n_ctx_slot = 2048, n_keep = 0, task.n_tokens = 798
+0.15.384.424 I slot   operator(): id  0 | task 28 | cached n_tokens = 0, memory_seq_rm [0, end)
+0.15.396.653 I slot   operator(): id  0 | task 28 | cached n_tokens = 4, memory_seq_rm [4, end)
+0.15.396.689 I slot process_mtmd: id  0 | task 28 | encoding mtmd batch from idx = 4, n_chunks = 1
+0.17.036.201 I decoding image batch 1/1, n_tokens_batch = 768
+0.17.549.878 I image decoded (batch 1/1) in 514 ms
+0.17.550.306 I slot init_sampler: id  0 | task 28 | init sampler, took 0.03 ms, tokens: text = 30, total = 798
+0.17.972.576 I slot print_timing: id  0 | task 28 | prompt eval time =    2475.40 ms /   798 tokens (    3.10 ms per token,   322.37 tokens per second)
+0.17.972.597 I slot print_timing: id  0 | task 28 |        eval time =     112.72 ms /     3 tokens (   56.36 ms per token,    17.74 tokens per second)
+0.17.972.600 I slot print_timing: id  0 | task 28 |       total time =    2588.12 ms /   801 tokens
+0.17.972.604 I slot print_timing: id  0 | task 28 |    graphs reused =          6
+0.17.972.679 I slot      release: id  0 | task 28 | stop processing: n_tokens = 800, truncated = 0
+0.17.972.731 I srv  update_slots: all slots are idle
+0.17.975.825 I srv    operator(): operator(): cleaning up before exit...
+0.17.977.795 I common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+0.17.977.806 I common_memory_breakdown_print: |   - CUDA0 (Orin)       |  7619 = 2619 + (2076 =  1743 +     224 +     108) +        2923 |
+0.17.977.808 I common_memory_breakdown_print: |   - Host               |                  337 =   315 +       0 +      22                |
+0.17.978.083 W ~llama_context:      CUDA0 compute buffer size of 108.6719 MiB, does not match expectation of  62.0157 MiB

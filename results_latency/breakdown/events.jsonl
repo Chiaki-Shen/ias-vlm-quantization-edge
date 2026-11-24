@@ -1,0 +1,75 @@
+{"event": "round_order", "round": 0, "t": 1795538321.424763, "order": [2, 5, 8, 11]}
+{"event": "interval", "phase": "cooldown", "t0": 1795538321.4251716, "t1": 1795538381.4312255, "iso0": "2026-11-24T16:38:41.425+00:00", "round": 0, "slot": 0, "config": 2, "temp_end_c": 45.437, "timed_out": false}
+{"event": "baseline", "t": 1795538381.4319878, "round": 0, "slot": 0, "config": 2, "mem_avail_mb": 5777, "swap_free_mb": 3427}
+{"event": "interval", "phase": "load", "t0": 1795538381.4323301, "t1": 1795538388.0386171, "iso0": "2026-11-24T16:39:41.432+00:00", "round": 0, "slot": 0, "config": 2, "block": "scienceqa:0", "load_s": 5.593106508255005}
+{"event": "interval", "phase": "warmup", "t0": 1795538388.0400581, "t1": 1795538392.8269615, "iso0": "2026-11-24T16:39:48.040+00:00", "round": 0, "slot": 0, "config": 2, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795538392.8272495, "t1": 1795538428.9847727, "iso0": "2026-11-24T16:39:52.827+00:00", "round": 0, "slot": 0, "config": 2, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795538428.9871278, "t1": 1795538566.200046, "iso0": "2026-11-24T16:40:28.987+00:00", "round": 0, "slot": 0, "config": 2, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "interval", "phase": "cooldown", "t0": 1795538567.8370252, "t1": 1795538627.8443177, "iso0": "2026-11-24T16:42:47.837+00:00", "round": 0, "slot": 1, "config": 5, "temp_end_c": 47.843, "timed_out": false}
+{"event": "baseline", "t": 1795538627.8452835, "round": 0, "slot": 1, "config": 5, "mem_avail_mb": 5781, "swap_free_mb": 3421}
+{"event": "interval", "phase": "load", "t0": 1795538627.845693, "t1": 1795538633.8817325, "iso0": "2026-11-24T16:43:47.845+00:00", "round": 0, "slot": 1, "config": 5, "block": "scienceqa:0", "load_s": 5.023603677749634}
+{"event": "interval", "phase": "warmup", "t0": 1795538633.8822687, "t1": 1795538638.578687, "iso0": "2026-11-24T16:43:53.882+00:00", "round": 0, "slot": 1, "config": 5, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795538638.57899, "t1": 1795538674.6818821, "iso0": "2026-11-24T16:43:58.578+00:00", "round": 0, "slot": 1, "config": 5, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795538674.6822565, "t1": 1795538812.1791956, "iso0": "2026-11-24T16:44:34.682+00:00", "round": 0, "slot": 1, "config": 5, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "interval", "phase": "cooldown", "t0": 1795538813.7363677, "t1": 1795538873.7424364, "iso0": "2026-11-24T16:46:53.736+00:00", "round": 0, "slot": 2, "config": 8, "temp_end_c": 48.187, "timed_out": false}
+{"event": "baseline", "t": 1795538873.7431812, "round": 0, "slot": 2, "config": 8, "mem_avail_mb": 5787, "swap_free_mb": 3416}
+{"event": "interval", "phase": "load", "t0": 1795538873.7434828, "t1": 1795538880.7837162, "iso0": "2026-11-24T16:47:53.743+00:00", "round": 0, "slot": 2, "config": 8, "block": "scienceqa:0", "load_s": 6.0313005447387695}
+{"event": "interval", "phase": "warmup", "t0": 1795538880.7842965, "t1": 1795538885.5175982, "iso0": "2026-11-24T16:48:00.784+00:00", "round": 0, "slot": 2, "config": 8, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795538885.5178869, "t1": 1795538921.6514854, "iso0": "2026-11-24T16:48:05.517+00:00", "round": 0, "slot": 2, "config": 8, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795538921.651865, "t1": 1795539057.7491753, "iso0": "2026-11-24T16:48:41.651+00:00", "round": 0, "slot": 2, "config": 8, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "interval", "phase": "cooldown", "t0": 1795539059.2224793, "t1": 1795539119.2278502, "iso0": "2026-11-24T16:50:59.222+00:00", "round": 0, "slot": 3, "config": 11, "temp_end_c": 48.75, "timed_out": false}
+{"event": "baseline", "t": 1795539119.2286232, "round": 0, "slot": 3, "config": 11, "mem_avail_mb": 5785, "swap_free_mb": 3414}
+{"event": "interval", "phase": "load", "t0": 1795539119.2289274, "t1": 1795539124.2584443, "iso0": "2026-11-24T16:51:59.228+00:00", "round": 0, "slot": 3, "config": 11, "block": "scienceqa:0", "load_s": 4.020341873168945}
+{"event": "interval", "phase": "warmup", "t0": 1795539124.2608445, "t1": 1795539129.137809, "iso0": "2026-11-24T16:52:04.260+00:00", "round": 0, "slot": 3, "config": 11, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795539129.1380925, "t1": 1795539166.418002, "iso0": "2026-11-24T16:52:09.138+00:00", "round": 0, "slot": 3, "config": 11, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795539166.4183736, "t1": 1795539306.4439528, "iso0": "2026-11-24T16:52:46.418+00:00", "round": 0, "slot": 3, "config": 11, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "round_order", "round": 1, "t": 1795539307.9157517, "order": [5, 8, 11, 2]}
+{"event": "interval", "phase": "cooldown", "t0": 1795539307.9164157, "t1": 1795539367.9235237, "iso0": "2026-11-24T16:55:07.916+00:00", "round": 1, "slot": 0, "config": 5, "temp_end_c": 48.656, "timed_out": false}
+{"event": "baseline", "t": 1795539367.9243195, "round": 1, "slot": 0, "config": 5, "mem_avail_mb": 5714, "swap_free_mb": 3414}
+{"event": "interval", "phase": "load", "t0": 1795539367.924632, "t1": 1795539373.4550023, "iso0": "2026-11-24T16:56:07.924+00:00", "round": 1, "slot": 0, "config": 5, "block": "scienceqa:0", "load_s": 4.521951198577881}
+{"event": "interval", "phase": "warmup", "t0": 1795539373.4555616, "t1": 1795539378.1302161, "iso0": "2026-11-24T16:56:13.455+00:00", "round": 1, "slot": 0, "config": 5, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795539378.130506, "t1": 1795539414.2334898, "iso0": "2026-11-24T16:56:18.130+00:00", "round": 1, "slot": 0, "config": 5, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795539414.2360432, "t1": 1795539548.551931, "iso0": "2026-11-24T16:56:54.236+00:00", "round": 1, "slot": 0, "config": 5, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "interval", "phase": "cooldown", "t0": 1795539550.1354024, "t1": 1795539610.1409037, "iso0": "2026-11-24T16:59:10.135+00:00", "round": 1, "slot": 1, "config": 8, "temp_end_c": 48.875, "timed_out": false}
+{"event": "baseline", "t": 1795539610.1417062, "round": 1, "slot": 1, "config": 8, "mem_avail_mb": 5762, "swap_free_mb": 3414}
+{"event": "interval", "phase": "load", "t0": 1795539610.1420074, "t1": 1795539615.1708536, "iso0": "2026-11-24T17:00:10.142+00:00", "round": 1, "slot": 1, "config": 8, "block": "scienceqa:0", "load_s": 4.019615411758423}
+{"event": "interval", "phase": "warmup", "t0": 1795539615.171452, "t1": 1795539619.9160883, "iso0": "2026-11-24T17:00:15.171+00:00", "round": 1, "slot": 1, "config": 8, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795539619.9164581, "t1": 1795539656.1930761, "iso0": "2026-11-24T17:00:19.916+00:00", "round": 1, "slot": 1, "config": 8, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795539656.1949193, "t1": 1795539793.6114557, "iso0": "2026-11-24T17:00:56.194+00:00", "round": 1, "slot": 1, "config": 8, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "interval", "phase": "cooldown", "t0": 1795539795.1355417, "t1": 1795539855.1425173, "iso0": "2026-11-24T17:03:15.135+00:00", "round": 1, "slot": 2, "config": 11, "temp_end_c": 48.812, "timed_out": false}
+{"event": "baseline", "t": 1795539855.143273, "round": 1, "slot": 2, "config": 11, "mem_avail_mb": 5781, "swap_free_mb": 3414}
+{"event": "interval", "phase": "load", "t0": 1795539855.169032, "t1": 1795539863.207988, "iso0": "2026-11-24T17:04:15.169+00:00", "round": 1, "slot": 2, "config": 11, "block": "scienceqa:0", "load_s": 7.030056953430176}
+{"event": "interval", "phase": "warmup", "t0": 1795539863.2085679, "t1": 1795539868.0780418, "iso0": "2026-11-24T17:04:23.208+00:00", "round": 1, "slot": 2, "config": 11, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795539868.0783796, "t1": 1795539905.3947756, "iso0": "2026-11-24T17:04:28.078+00:00", "round": 1, "slot": 2, "config": 11, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795539905.3951502, "t1": 1795540046.531476, "iso0": "2026-11-24T17:05:05.395+00:00", "round": 1, "slot": 2, "config": 11, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "interval", "phase": "cooldown", "t0": 1795540048.0055645, "t1": 1795540108.012634, "iso0": "2026-11-24T17:07:28.005+00:00", "round": 1, "slot": 3, "config": 2, "temp_end_c": 48.562, "timed_out": false}
+{"event": "baseline", "t": 1795540108.0133722, "round": 1, "slot": 3, "config": 2, "mem_avail_mb": 5775, "swap_free_mb": 3414}
+{"event": "interval", "phase": "load", "t0": 1795540108.0136647, "t1": 1795540114.0484827, "iso0": "2026-11-24T17:08:28.013+00:00", "round": 1, "slot": 3, "config": 2, "block": "scienceqa:0", "load_s": 5.025114297866821}
+{"event": "interval", "phase": "warmup", "t0": 1795540114.04907, "t1": 1795540118.7515645, "iso0": "2026-11-24T17:08:34.049+00:00", "round": 1, "slot": 3, "config": 2, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795540118.75187, "t1": 1795540154.7687423, "iso0": "2026-11-24T17:08:38.751+00:00", "round": 1, "slot": 3, "config": 2, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795540154.7691154, "t1": 1795540291.1933186, "iso0": "2026-11-24T17:09:14.769+00:00", "round": 1, "slot": 3, "config": 2, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "round_order", "round": 2, "t": 1795540292.7488725, "order": [8, 11, 2, 5]}
+{"event": "interval", "phase": "cooldown", "t0": 1795540292.7495706, "t1": 1795540352.754915, "iso0": "2026-11-24T17:11:32.749+00:00", "round": 2, "slot": 0, "config": 8, "temp_end_c": 48.656, "timed_out": false}
+{"event": "baseline", "t": 1795540352.7556672, "round": 2, "slot": 0, "config": 8, "mem_avail_mb": 5791, "swap_free_mb": 3412}
+{"event": "interval", "phase": "load", "t0": 1795540352.7559786, "t1": 1795540357.783493, "iso0": "2026-11-24T17:12:32.755+00:00", "round": 2, "slot": 0, "config": 8, "block": "scienceqa:0", "load_s": 4.017303943634033}
+{"event": "interval", "phase": "warmup", "t0": 1795540357.784034, "t1": 1795540362.445818, "iso0": "2026-11-24T17:12:37.784+00:00", "round": 2, "slot": 0, "config": 8, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795540362.446198, "t1": 1795540398.551614, "iso0": "2026-11-24T17:12:42.446+00:00", "round": 2, "slot": 0, "config": 8, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795540398.5519783, "t1": 1795540533.791356, "iso0": "2026-11-24T17:13:18.551+00:00", "round": 2, "slot": 0, "config": 8, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "interval", "phase": "cooldown", "t0": 1795540535.264509, "t1": 1795540595.2699492, "iso0": "2026-11-24T17:15:35.264+00:00", "round": 2, "slot": 1, "config": 11, "temp_end_c": 48.656, "timed_out": false}
+{"event": "baseline", "t": 1795540595.270705, "round": 2, "slot": 1, "config": 11, "mem_avail_mb": 5785, "swap_free_mb": 3412}
+{"event": "interval", "phase": "load", "t0": 1795540595.2710044, "t1": 1795540600.29941, "iso0": "2026-11-24T17:16:35.271+00:00", "round": 2, "slot": 1, "config": 11, "block": "scienceqa:0", "load_s": 4.019386529922485}
+{"event": "interval", "phase": "warmup", "t0": 1795540600.299969, "t1": 1795540605.154839, "iso0": "2026-11-24T17:16:40.299+00:00", "round": 2, "slot": 1, "config": 11, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795540605.1551256, "t1": 1795540642.4136162, "iso0": "2026-11-24T17:16:45.155+00:00", "round": 2, "slot": 1, "config": 11, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795540642.413984, "t1": 1795540783.6689084, "iso0": "2026-11-24T17:17:22.413+00:00", "round": 2, "slot": 1, "config": 11, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "interval", "phase": "cooldown", "t0": 1795540785.1421053, "t1": 1795540845.1490877, "iso0": "2026-11-24T17:19:45.142+00:00", "round": 2, "slot": 2, "config": 2, "temp_end_c": 48.718, "timed_out": false}
+{"event": "baseline", "t": 1795540845.1498218, "round": 2, "slot": 2, "config": 2, "mem_avail_mb": 5775, "swap_free_mb": 3412}
+{"event": "interval", "phase": "load", "t0": 1795540845.1501324, "t1": 1795540881.2939937, "iso0": "2026-11-24T17:20:45.150+00:00", "round": 2, "slot": 2, "config": 2, "block": "scienceqa:0", "load_s": 35.135339975357056}
+{"event": "interval", "phase": "warmup", "t0": 1795540881.2950873, "t1": 1795540886.0627384, "iso0": "2026-11-24T17:21:21.295+00:00", "round": 2, "slot": 2, "config": 2, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795540886.0630484, "t1": 1795540922.1738744, "iso0": "2026-11-24T17:21:26.063+00:00", "round": 2, "slot": 2, "config": 2, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795540922.1742418, "t1": 1795541058.5869114, "iso0": "2026-11-24T17:22:02.174+00:00", "round": 2, "slot": 2, "config": 2, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
+{"event": "interval", "phase": "cooldown", "t0": 1795541060.217324, "t1": 1795541120.2226233, "iso0": "2026-11-24T17:24:20.217+00:00", "round": 2, "slot": 3, "config": 5, "temp_end_c": 48.75, "timed_out": false}
+{"event": "baseline", "t": 1795541120.223356, "round": 2, "slot": 3, "config": 5, "mem_avail_mb": 5788, "swap_free_mb": 3409}
+{"event": "interval", "phase": "load", "t0": 1795541120.2236583, "t1": 1795541157.3853319, "iso0": "2026-11-24T17:25:20.223+00:00", "round": 2, "slot": 3, "config": 5, "block": "scienceqa:0", "load_s": 36.15279936790466}
+{"event": "interval", "phase": "warmup", "t0": 1795541157.3878314, "t1": 1795541162.0822318, "iso0": "2026-11-24T17:25:57.387+00:00", "round": 2, "slot": 3, "config": 5, "block": "scienceqa:0", "ok": true}
+{"event": "interval", "phase": "timed", "t0": 1795541162.0825198, "t1": 1795541198.1164446, "iso0": "2026-11-24T17:26:02.082+00:00", "round": 2, "slot": 3, "config": 5, "block": "scienceqa:0", "dataset": "scienceqa", "n": 50}
+{"event": "interval", "phase": "timed", "t0": 1795541198.1168144, "t1": 1795541333.202499, "iso0": "2026-11-24T17:26:38.116+00:00", "round": 2, "slot": 3, "config": 5, "block": "textvqa:0", "dataset": "textvqa", "n": 50}
