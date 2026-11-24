@@ -564,6 +564,8 @@ DATASET_SPECS = {
     "scienceqa":     {"format": "mcq", "prompt": "context", "parser": "v2", "max_tokens": 16, "strict": True},
     "textvqa":       {"format": "open_vqa", "prompt": "short", "parser": "short", "max_tokens": 32, "strict": True},
     "textvqa_1500":  {"format": "open_vqa", "prompt": "short", "parser": "short", "max_tokens": 32, "strict": True},
+    # Driving-scene check (handoff_10): DriveLM-nuScenes CAM_FRONT, traffic_light + sign_box tasks
+    "drivelm":       {"format": "mcq", "prompt": "context", "parser": "v2", "max_tokens": 16, "strict": True},
 }
 
 

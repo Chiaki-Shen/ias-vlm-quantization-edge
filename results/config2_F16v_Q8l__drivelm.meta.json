@@ -1,0 +1,43 @@
+{
+  "fingerprint": {
+    "protocol_version": "p2.1",
+    "config_num": 2,
+    "config_short": "F16v_Q8l",
+    "mmproj": "mmproj-Cosmos-Reason2-2B-F16.gguf",
+    "model": "Cosmos-Reason2-2B-Q8_0.gguf",
+    "mmproj_sha256": "8d3284c340d6a9c9237d56f2fc42f2df50d3761f539f3f01be964cefb0b73916",
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "dataset": "drivelm",
+    "format": "mcq",
+    "prompt": "context",
+    "parser": "v2",
+    "scorer": "mcq_exact_v1",
+    "max_tokens": 16,
+    "temperature": 0.0,
+    "ctx_size": 2048,
+    "n_gpu_layers": 999,
+    "data_sha256": "0a2b3074a17f679012fdefef8855f03d727c62bfb2738e445903e2cc3deb4d26",
+    "manifest_sha256": "6c700ddad5714414ea9ddb14ff00a6b7aa5c94ca595a4505a3092101f48b4751"
+  },
+  "created": "2026-11-23T23:02:24.493498-08:00",
+  "sessions": [
+    {
+      "start": "2026-11-23T23:02:24.493539-08:00",
+      "processed": 300,
+      "elapsed_s": 2130.4,
+      "completed": true,
+      "runner": {
+        "protocol_version": "p2.1",
+        "script_sha256": "92ebca6bae8a486f",
+        "git_commit": null
+      },
+      "end": "2026-11-23T23:37:54.926344-08:00"
+    }
+  ],
+  "model_checks": {
+    "mmproj_sha256": "8d3284c340d6a9c9237d56f2fc42f2df50d3761f539f3f01be964cefb0b73916",
+    "mmproj_frozen_match": true,
+    "model_sha256": "2a36ee7a3cb47d28794d2da3686e31e81502b76ec9a2b22cce709de553bb8c82",
+    "model_frozen_match": true
+  }
+}
