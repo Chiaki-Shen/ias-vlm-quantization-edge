@@ -45,6 +45,12 @@ CONFIGS = {
            "label": "FP16 vision + INT4 AWQ language (pairs with Config 3)"},
     "T16": {"num": "T16", "short": "TRT_F16v_F16l", "engine_dir": "cr2b-fp16",
             "label": "FP16 vision + FP16 language (bonus, if it fits)"},
+    # Audit (Nov 2026): same quantization as T8 / T4, calibrated on 128 in-domain image + prompt pairs
+    # (ScienceQA / TextVQA train, tensorrt/quantize_mmcalib.py) instead of 512 text-only news articles.
+    "T8m": {"num": "T8m", "short": "TRT_F16v_INT8l_mmcal", "engine_dir": "cr2b-int8sq-mm",
+            "label": "FP16 vision + INT8 SmoothQuant language, multimodal in-domain calibration (audit)"},
+    "T4m": {"num": "T4m", "short": "TRT_F16v_INT4l_mmcal", "engine_dir": "cr2b-int4awq-mm",
+            "label": "FP16 vision + INT4 AWQ language, multimodal in-domain calibration (audit)"},
 }
 
 
