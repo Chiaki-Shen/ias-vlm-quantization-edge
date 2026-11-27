@@ -74,6 +74,7 @@ def run_llamacpp(args, ds: str, out_path: Path) -> None:
 def run_trt(args, ds: str, out_path: Path) -> None:
     from run_trt_experiment import EdgeLLMBackend
     backend = EdgeLLMBackend(args.workspace / args.engine / "engines")
+    backend._llm._rt.set_profiling_enabled(True)   # the runtime's token metrics are only collected with profiling on
     rt = backend._llm._runtime
     n = 0
     with open(out_path, "w") as f:
@@ -89,6 +90,8 @@ def run_trt(args, ds: str, out_path: Path) -> None:
                                 "error": err}) + "\n")
             f.flush()
             n += 1
+            if n == 1 and not err and (mm1 - mm0 <= 0 or pf1 - pf0 <= 0):
+                sys.exit(f"runtime token metrics did not move ({mm1 - mm0}, {pf1 - pf0}); refusing to write zeros")
             if n % 200 == 0:
                 print(f"  {ds} {n}", flush=True)
 
