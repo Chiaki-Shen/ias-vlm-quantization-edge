@@ -46,14 +46,28 @@ def records(ds: str, data_dir: Path, limit: int | None):
 
 
 def run_llamacpp(args, ds: str, out_path: Path) -> None:
+    """Resumable. Restarts llama-server every rx.RESTART_EVERY requests like the accuracy runner: its unified
+    (GPU) memory grows with every multimodal request and exhausts the 8 GB board after a few hundred."""
     config = rx.get_config(2)
+    done = set()
+    if out_path.exists():
+        done = {r["idx"] for r in rx.load_jsonl(out_path) if r.get("prompt_n") is not None}
     rx.kill_stale_servers()
     proc = rx.start_server(config)
     if not rx.wait_for_server():
         sys.exit("llama-server did not start")
-    n = 0
-    with open(out_path, "w") as f:
+    n = since_restart = 0
+    with open(out_path, "a") as f:
         for r, imgs, prompt in records(ds, args.data_dir, args.textvqa_limit if ds == "textvqa" else None):
+            if r["idx"] in done:
+                continue
+            if since_restart >= rx.RESTART_EVERY:
+                rx.stop_server(proc)
+                proc = rx.start_server(config)
+                if not rx.wait_for_server():
+                    sys.exit("llama-server did not restart")
+                since_restart = 0
+            since_restart += 1
             for attempt in range(2):
                 resp = rx.call_server(imgs, prompt, 1)
                 t = resp.get("timings") if isinstance(resp, dict) else None
