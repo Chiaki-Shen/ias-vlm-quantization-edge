@@ -1,0 +1,32 @@
+{
+  "runtime": "tensorrt-edgellm",
+  "edge_llm_version": "v0.9.1",
+  "edge_llm_rev": "7f061f21f0a581ba234a1e233c9315b89d8e47d6",
+  "runner_rev": "13e2fbc6f29349d3f108c0d6095e27c6dc66c021",
+  "config": {
+    "num": "T4m",
+    "short": "TRT_F16v_INT4l_mmcal",
+    "engine_dir": "cr2b-int4awq-mm",
+    "label": "FP16 vision + INT4 AWQ language, multimodal in-domain calibration (audit)"
+  },
+  "engine_root": "/home/sjsujetson/tensorrt-edgellm-workspace/cr2b-int4awq-mm/engines",
+  "dataset": "textvqa",
+  "data_sha256": "c984a621405e2883e8576a6cd1313aeb7d2bd21897c0d508dbd9906e601e6324",
+  "n_records": 5000,
+  "protocol_version": "p2.1",
+  "spec": {
+    "format": "open_vqa",
+    "prompt": "short",
+    "parser": "short",
+    "max_tokens": 32,
+    "strict": true
+  },
+  "sampling": {
+    "temperature": 0.0,
+    "top_k": 1,
+    "top_p": 1.0,
+    "max_tokens": 32,
+    "enable_thinking": false
+  },
+  "written_at": "2026-11-27T02:51:21.903491-08:00"
+}

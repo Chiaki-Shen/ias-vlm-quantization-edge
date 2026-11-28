@@ -83,9 +83,12 @@ def main():
         gap8m = np.mean([data["T16"]["valid"][i] - data["T8m"]["valid"][i] for i in ids])
         gap4 = np.mean([data["T16"]["valid"][i] - data["T4"]["valid"][i] for i in ids])
         gap4m = np.mean([data["T16"]["valid"][i] - data["T4m"]["valid"][i] for i in ids])
-        L += ["", f"Share of the gap to T16 closed by recalibration: INT8 "
-              f"{100 * (gap8 - gap8m) / gap8:.0f}% ({100 * gap8:.2f} -> {100 * gap8m:.2f} points), INT4 "
-              f"{100 * (gap4 - gap4m) / gap4:.0f}% ({100 * gap4:.2f} -> {100 * gap4m:.2f} points).", ""]
+        def gap_text(name, before, after):
+            if after < before:
+                return f"{name} gap to T16 {100 * before:.2f} -> {100 * after:.2f} points ({100 * (before - after) / before:.0f}% closed)"
+            return f"{name} gap to T16 {100 * before:.2f} -> {100 * after:.2f} points (wider)"
+
+        L += ["", gap_text("INT8", gap8, gap8m) + "; " + gap_text("INT4", gap4, gap4m) + ".", ""]
         if ds == "scienceqa":
             ctx = {}
             for line in open(paths["C2"]):
