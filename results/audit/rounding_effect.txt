@@ -1,0 +1,2 @@
+affected (llama.cpp gets more image tokens): n=164  C2 87.80  T16 89.02  T16 - C2 +1.22 [-2.44, +4.88]
+unaffected: n=1853  C2 82.51  T16 83.54  T16 - C2 +1.03 [-0.38, +2.37]

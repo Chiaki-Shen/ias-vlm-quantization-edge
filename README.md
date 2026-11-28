@@ -25,7 +25,7 @@ After the progress report, Prof. Liu asked for four follow-ups. Status:
 
 | Request | Status |
 |---|---|
-| Audit the TensorRT pipeline (calibration data vs the VQA prompts, image-token handling, chat template) before claiming the cross-runtime accuracy gap | **In progress (Max).** The cross-runtime accuracy results below are preliminary until it is done |
+| Audit the TensorRT pipeline (calibration data vs the VQA prompts, image-token handling, chat template) before claiming the cross-runtime accuracy gap | **Done (Max).** No pipeline bug; INT8 SmoothQuant depends strongly on calibration data, INT4 AWQ does not. [`tensorrt/AUDIT.md`](tensorrt/AUDIT.md) |
 | Add a small driving-scene check (200 to 300 questions), focused on signs, lights or text | **Done.** [Driving-scene check](#driving-scene-check-drivelm-nov-2026) |
 | Latency breakdown: vision encode vs prefill vs decode | **Done.** [Where the time goes](#where-the-time-goes-latency-breakdown-nov-2026) |
 | Lead with the vision sweep and the cross-runtime comparison together | For the final talk and report |
@@ -265,7 +265,7 @@ Max built a second pipeline with TensorRT Edge-LLM v0.9.1 on a second Jetson Ori
 
 They are paired with the llama.cpp configs at the same language bit width: Config 2 (C2, F16 vision + Q8_0) with T8, and Config 3 (C3, F16 vision + Q4_K_M) with T4. T16 is the unquantized TensorRT reference (llama.cpp F16 + F16 runs out of memory, see Table A). Prompts, greedy decoding, the image resolution cap, the frozen datasets and the scorers are the same as for Table B. Setup, versions, patches and the run log are in [`tensorrt/NOTES.md`](tensorrt/NOTES.md).
 
-> **Status: preliminary (Nov 24, 2026).** The TensorRT pipeline audit requested by Prof. Liu (calibration data vs the multimodal VQA prompts, image-token handling and chat template across runtimes) is in progress. Until it is done, the accuracy gap of the TensorRT INT8 / INT4 engines (Findings 2 and 3 below) should not be read as a property of SmoothQuant or AWQ. The latency and memory numbers are not affected.
+> **Audit done (Nov 27, 2026), details in [`tensorrt/AUDIT.md`](tensorrt/AUDIT.md).** No pipeline bug: the chat template, tokenizer and output handling are identical across runtimes, and the one image preprocessing difference (llama.cpp rounds image sizes half up, Edge-LLM half to even; 8% of ScienceQA images get slightly more image tokens in llama.cpp) has no measurable accuracy effect. The INT8 / INT4 engines were calibrated on text only (Edge-LLM's default). Recalibrating on 128 in-domain image + question prompts moves INT8 by +2.78 on ScienceQA and -1.57 on TextVQA and leaves INT4 nearly unchanged (+0.05 / +0.82), so the quantized engines still trail TensorRT FP16 (INT8 by 3.4 on ScienceQA with in-domain calibration; INT4 by 3.5 to 5 on both). Findings 2 and 3 below are still to be reworded for the calibration result (Aeon).
 
 ### Accuracy (matched records)
 
@@ -354,7 +354,7 @@ Same protocol as the llama.cpp benchmark above: the 200 frozen records (100 Scie
 - [x] Driving-scene check: 300 DriveLM-nuScenes questions, all six vision encoders, paired CIs and error inspection (Nov 2026)
 - [x] Latency breakdown (vision encode / prefill / decode / overhead) for F16, Q8_0, Q4_0 and Q3_K_M vision (Nov 2026)
 - [x] Figures updated: DriveLM panel in Figure 1, latency breakdown (Figure 4); PDF versions for the report
-- [ ] TensorRT pipeline audit (calibration data, image tokens, chat template), in progress (Max)
+- [x] TensorRT pipeline audit (calibration data, image tokens, chat template) and in-domain recalibration ([`tensorrt/AUDIT.md`](tensorrt/AUDIT.md))
 - [ ] Per-layer vision sensitivity, e.g. mixed-precision mmproj with the first or last blocks at Q8_0 (future work)
 - [ ] Final talk (Dec 3) and paper write-up (Dec 15)
 
